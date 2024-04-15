@@ -27,7 +27,7 @@
   },
   "config": {
     "cz-customizable": {
-      "config": "./.cz-config.js"
+      "config": "cz-config.js"
     }
   }
 }
