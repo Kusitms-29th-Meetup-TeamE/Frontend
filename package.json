@@ -10,10 +10,13 @@
     "cz": "./node_modules/cz-customizable/standalone.js"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.29.2",
+    "@tanstack/react-query-devtools": "^5.29.2",
     "cz-customizable": "^7.0.0",
     "next": "14.2.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
