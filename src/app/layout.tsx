@@ -1,6 +1,7 @@
 import './globals.css';
 
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import Providers from './providers';
 
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
