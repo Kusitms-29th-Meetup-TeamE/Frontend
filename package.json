@@ -10,11 +10,14 @@
     "cz": "./node_modules/cz-customizable/standalone.js"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.19",
+    "clsx": "^2.1.0",
     "cz-customizable": "^7.0.0",
     "next": "14.2.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-loading-skeleton": "^3.4.0"
+    "react-loading-skeleton": "^3.4.0",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
