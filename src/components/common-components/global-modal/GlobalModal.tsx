@@ -1,3 +1,5 @@
+'use client';
+
 import ErrorModal from './ErrorModal';
 import { useGlobalModal } from './GlobalModalContext';
 import SuccessModal from './SuccessModal';

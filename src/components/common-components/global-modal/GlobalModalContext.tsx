@@ -73,5 +73,5 @@ export function useGlobalModal() {
       'useGlobalModal은 GlobalModalContext 내에서 사용되어야 한다.',
     );
   }
-  return useContext(GlobalModalContext);
+  return context;
 }
