@@ -3,6 +3,8 @@ import './globals.css';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
+import wantedSans from '@/utils/font';
+
 import Providers from './providers';
 
 import { Inter } from 'next/font/google';
@@ -16,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={inter.className}>
+      <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           {children}
           <Toaster />
