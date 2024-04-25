@@ -11,10 +11,6 @@ import wantedSans from '@/utils/font';
 
 import Providers from './providers';
 
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
-
 export default function RootLayout({
   children,
 }: Readonly<{
