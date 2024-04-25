@@ -51,77 +51,77 @@ const config: Config = {
       },
       fontSize: {
         h1: [
-          '30px',
+          '1.875rem', // 30px
           {
             fontWeight: 'bold',
             lineHeight: '50px',
           },
         ],
         h2: [
-          '18px',
+          '1.125rem', //18px
           {
             fontWeight: '600',
             lineHeight: '30px',
           },
         ],
         h3: [
-          '18px',
+          '1.125rem', // 18px
           {
             fontWeight: '400',
             lineHeight: '28px',
           },
         ],
         h4: [
-          '16px',
+          '1rem', // 16px
           {
             fontWeight: '500',
             lineHeight: '26px',
           },
         ],
         body1: [
-          '18px',
+          '1.125rem', // 18px
           {
             fontWeight: '600',
             lineHeight: '30px',
           },
         ],
         body2: [
-          '16px',
+          '1rem', // 16px
           {
             fontWeight: '500',
             lineHeight: '26px',
           },
         ],
         'chip-bold': [
-          '14px',
+          '0.875rem', // 14px
           {
             fontWeight: 'bold',
             lineHeight: '20px',
           },
         ],
         'chip-medium': [
-          '14px',
+          '0.875rem', // 14px
           {
             fontWeight: '500',
             lineHeight: '20px',
           },
         ],
         'footer-bold': [
-          '20px',
+          '1.25rem', // 20px
           {
             fontWeight: 'bold',
             lineHeight: '26px',
           },
         ],
         'footer-medium': [
-          '14px',
+          '0.875rem', // 14px
           {
             fontWeight: '500',
             lineHeight: '26px',
           },
         ],
         'footer-regular': [
-          '14px',
+          '0.875rem', // 14px
           {
             fontWeight: '400',
             lineHeight: '18px',
