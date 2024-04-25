@@ -3,6 +3,10 @@ import './globals.css';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
+import GlobalModal, {
+  GlobalModalProvider,
+} from '@/components/common-components/global-modal';
+
 import wantedSans from '@/utils/font';
 
 import Providers from './providers';
@@ -20,7 +24,10 @@ export default function RootLayout({
     <html>
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
-          {children}
+          <GlobalModalProvider>
+            {children}
+            <GlobalModal />
+          </GlobalModalProvider>
           <Toaster />
         </Providers>
       </body>
