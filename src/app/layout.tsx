@@ -19,11 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html>
+      {/* TOFIX: body 제거 필요 */}
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           <GlobalModalProvider>
             <Header />
-            {children}
+            {/* TOFIX: container 작업 필요 */}
+            <div className="pt-[50px]">{children}</div>
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />
