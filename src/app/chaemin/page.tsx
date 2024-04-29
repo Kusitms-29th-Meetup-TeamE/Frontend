@@ -2,8 +2,10 @@
 
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Skeleton from '@/components/common-components/skeleton';
+import Tag from '@/components/common-components/tag';
 
 import MainTitle from '@/components/main/MainTitle';
+import RecommendItem from '@/components/main/RecommendItem';
 
 import {
   useNotifyError,
@@ -32,6 +34,13 @@ export default function TestPage() {
 
   return (
     <>
+      <RecommendItem />
+      <div className="flex p-2 gap-2">
+        <Tag color="orange" text="잔잔한" />
+        <Tag color="orange" text="잔잔한" />
+        <Tag color="orange" text="잔잔한" />
+      </div>
+
       {/* main-title component 테스트 */}
       <MainTitle
         title="또바 추천 활동"
