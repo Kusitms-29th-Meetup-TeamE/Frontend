@@ -25,7 +25,7 @@ export default function RootLayout({
           <GlobalModalProvider>
             <Header />
             {/* TOFIX: container 작업 필요 */}
-            <div className="pt-[50px]">{children}</div>
+            <div className="pt-[90px]">{children}</div>
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />
