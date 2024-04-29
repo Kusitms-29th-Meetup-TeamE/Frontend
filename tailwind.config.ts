@@ -45,51 +45,74 @@ const config: Config = {
         'gray-09': '#373c40',
         'gray-10': '#303539',
         'gray-11': '#272b30',
+        'gray-chip': '#e1e8ef',
 
         // error color
         'error-main': '#FF465C',
       },
       fontSize: {
         h1: [
+          '3.75rem', // 60px
+          {
+            fontWeight: 'bold',
+            lineHeight: '50px',
+            letterSpacing: '0%',
+          },
+        ],
+        h2: [
           '1.875rem', // 30px
           {
             fontWeight: 'bold',
             lineHeight: '50px',
+            letterSpacing: '2%',
           },
         ],
-        h2: [
+        h3: [
           '1.125rem', //18px
           {
             fontWeight: '600',
             lineHeight: '30px',
+            letterSpacing: '2%',
           },
         ],
-        h3: [
+        h4: [
           '1.125rem', // 18px
           {
             fontWeight: '400',
             lineHeight: '28px',
+            letterSpacing: '2%',
           },
         ],
-        h4: [
+        h5: [
           '1rem', // 16px
           {
             fontWeight: '500',
             lineHeight: '26px',
+            letterSpacing: '2%',
           },
         ],
         body1: [
+          '1.5rem', // 24px
+          {
+            fontWeight: '700',
+            lineHeight: '30px',
+            letterSpacing: '2%',
+          },
+        ],
+        body2: [
           '1.125rem', // 18px
           {
             fontWeight: '600',
             lineHeight: '30px',
+            letterSpacing: '2%',
           },
         ],
-        body2: [
+        body3: [
           '1rem', // 16px
           {
             fontWeight: '500',
             lineHeight: '26px',
+            letterSpacing: '2%',
           },
         ],
         'chip-bold': [
@@ -97,6 +120,7 @@ const config: Config = {
           {
             fontWeight: 'bold',
             lineHeight: '20px',
+            letterSpacing: '2%',
           },
         ],
         'chip-medium': [
@@ -104,6 +128,7 @@ const config: Config = {
           {
             fontWeight: '500',
             lineHeight: '20px',
+            letterSpacing: '2%',
           },
         ],
         'footer-bold': [
@@ -111,6 +136,7 @@ const config: Config = {
           {
             fontWeight: 'bold',
             lineHeight: '26px',
+            letterSpacing: '2%',
           },
         ],
         'footer-medium': [
@@ -118,6 +144,7 @@ const config: Config = {
           {
             fontWeight: '500',
             lineHeight: '26px',
+            letterSpacing: '2%',
           },
         ],
         'footer-regular': [
@@ -125,6 +152,7 @@ const config: Config = {
           {
             fontWeight: '400',
             lineHeight: '18px',
+            letterSpacing: '2%',
           },
         ],
       },
