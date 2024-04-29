@@ -3,6 +3,8 @@
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Skeleton from '@/components/common-components/skeleton';
 
+import MainTitle from '@/components/main/MainTitle';
+
 import {
   useNotifyError,
   useNotifySuccess,
@@ -30,6 +32,13 @@ export default function TestPage() {
 
   return (
     <>
+      {/* main-title component 테스트 */}
+      <MainTitle
+        title="또바 추천 활동"
+        subTitle="내가 선택한 성격을 바탕으로 나에게 맞는 활동을 추천드려요."
+        className="max-w-[500px] border border-red-500"
+      />
+
       {/* isLoading 관련 예시 코드 */}
       <h3>This is Skeleton component.</h3>
       <div className="flex">
