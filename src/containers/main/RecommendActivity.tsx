@@ -9,7 +9,7 @@ export default function RecommendActivity() {
       img: 'alss',
       joinNum: 2,
       totalNum: 11,
-      date: '2024.04.30',
+      date: '4월 30일 화요일',
       likeStatus: false,
     },
     {
@@ -33,13 +33,13 @@ export default function RecommendActivity() {
   ];
 
   return (
-    <div className="border border-black max-w-[1200px] w-full">
+    <div className="border border-black max-w-[1200px] w-full mx-auto">
       <MainTitle
         title="또바 추천 활동"
         subTitle="내가 선택한 성격을 바탕으로 나에게 맞는 활동을 추천드려요."
       />
 
-      <div className="flex gap-6 border border-green-500 justify-center max-w-[1200px]">
+      <div className="flex gap-6 justify-center border border-green-500">
         {data.map((item, idx) => {
           return (
             <RecommendItem
@@ -51,6 +51,7 @@ export default function RecommendActivity() {
               totalNum={item.totalNum}
               date={item.date}
               likeStatus={item.likeStatus}
+              className={idx === 0 ? 'w-1/2' : 'w-auto'}
             />
           );
         })}
