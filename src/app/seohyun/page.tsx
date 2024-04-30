@@ -1,6 +1,6 @@
 import React from 'react';
 
-const page = () => {
+const TestPage = () => {
   return (
     <>
       <div className="w-full h-[700px] bg-slate-200" />
@@ -9,4 +9,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default TestPage;
