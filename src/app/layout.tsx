@@ -22,7 +22,8 @@ export default function RootLayout({
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           <GlobalModalProvider>
-            {children}
+            {/* footer 없는 화면에 대한 처리 필요*/}
+            <div className="mb-[264px]">{children}</div>
             <Footer />
             <GlobalModal />
           </GlobalModalProvider>
