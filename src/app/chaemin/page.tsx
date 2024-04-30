@@ -15,6 +15,8 @@ import {
   useNotifyToast,
 } from '@/hooks/useToast';
 
+import RecommendActivity from '@/containers/main/RecommendActivity';
+
 export default function TestPage() {
   const isTempLoading = true; // tanstack-query 데이터 패칭 시 가져올 isLoading
 
@@ -34,19 +36,9 @@ export default function TestPage() {
     });
   };
 
-  const [hover, setHover] = useState<boolean>(false);
-
   return (
     <>
-      <RecommendItem
-        title="안녕하세요 타이틀이요"
-        subTitle="서브타이틀인데요하하하하하"
-        img="alss"
-        joinNum={2}
-        totalNum={11}
-        date="2024.04.30"
-        likeStatus={false}
-      />
+      <RecommendActivity />
 
       <div className="flex p-2 gap-2">
         <Tag color="orange" text="잔잔한" />
@@ -59,6 +51,11 @@ export default function TestPage() {
         title="또바 추천 활동"
         subTitle="내가 선택한 성격을 바탕으로 나에게 맞는 활동을 추천드려요."
         className="max-w-[500px] border border-red-500"
+      />
+      <MainTitle
+        title="또바 추천 활동"
+        subTitle="내가 선택한 성격을 바탕으로 나에게 맞는 활동을 추천드려요."
+        className="max-w-[1200px] border border-red-500"
       />
 
       {/* isLoading 관련 예시 코드 */}
