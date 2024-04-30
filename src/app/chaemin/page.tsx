@@ -8,6 +8,7 @@ import Tag from '@/components/common-components/tag';
 
 import MainTitle from '@/components/main/MainTitle';
 import RecommendItem from '@/components/main/RecommendItem';
+import ShareProfile from '@/components/main/ShareProfile';
 
 import {
   useNotifyError,
@@ -15,6 +16,7 @@ import {
   useNotifyToast,
 } from '@/hooks/useToast';
 
+import HowTo from '@/containers/main/HowTo';
 import RecommendActivity from '@/containers/main/RecommendActivity';
 
 export default function TestPage() {
@@ -38,7 +40,9 @@ export default function TestPage() {
 
   return (
     <>
-      <RecommendActivity />
+      {/* <HowTo /> */}
+      {/* <RecommendActivity /> */}
+      <ShareProfile />
 
       <div className="flex p-2 gap-2">
         <Tag color="orange" text="잔잔한" />
