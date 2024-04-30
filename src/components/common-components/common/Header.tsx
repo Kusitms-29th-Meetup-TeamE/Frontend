@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 // TODO: hover 추가 필요
 const variants = {
-  menubar: 'flex text-gray-11 justify-between gap-[50px]',
+  menubar: 'w-1/2 max-w-[760px] flex text-gray-11 justify-between',
   centerMenu: 'text-h3 cursor-pointer hover:text-red-500',
   rightBar: 'flex items-center gap-[40px] text-gray-07 text-body3',
   rightMenu:
@@ -25,38 +25,38 @@ export default function Header() {
   return (
     <div className="w-full border border-black flex items-center fixed z-50 top-0 h-[90px]">
       <div className="w-4/5 flex justify-between m-auto">
-        <div className="flex gap-[200px]">
-          <Link href="/">
-            <div className="flex gap-[2px] items-center">
-              <Image
-                src="/assets/ddoba_logo.png"
-                alt="logo"
-                width={38}
-                height={30}
-                className="pr-[2px]"
-              />
-              <div className="text-body1 text-gray-11">또바</div>
-            </div>
+        {/* <div className="flex gap-[200px]"> */}
+        <Link href="/">
+          <div className="flex gap-[2px] items-center">
+            <Image
+              src="/assets/ddoba_logo.png"
+              alt="logo"
+              width={38}
+              height={30}
+              className="pr-[2px]"
+            />
+            <div className="text-body1 text-gray-11">또바</div>
+          </div>
+        </Link>
+
+        <div className={variants.menubar}>
+          <Link href="#">
+            <div className={variants.centerMenu}>활동 참여하기</div>
+          </Link>
+          <Link href="#">
+            <div className={variants.centerMenu}>경험 나누기</div>
           </Link>
 
-          <div className={variants.menubar}>
-            <Link href="#">
-              <div className={variants.centerMenu}>활동 참여하기</div>
-            </Link>
-            <Link href="#">
-              <div className={variants.centerMenu}>경험 나누기</div>
-            </Link>
-
-            <Link
-              href={accessToken ? '#' : '#'}
-              onClick={() => {
-                if (!accessToken) useNotifyLogin();
-              }}
-            >
-              <div className={variants.centerMenu}>함께 대화하기</div>
-            </Link>
-          </div>
+          <Link
+            href={accessToken ? '#' : '#'}
+            onClick={() => {
+              if (!accessToken) useNotifyLogin();
+            }}
+          >
+            <div className={variants.centerMenu}>함께 대화하기</div>
+          </Link>
         </div>
+        {/* </div> */}
 
         {accessToken ? (
           <div className={variants.rightBar}>
