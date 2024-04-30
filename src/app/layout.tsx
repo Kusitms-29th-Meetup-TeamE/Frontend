@@ -3,6 +3,7 @@ import './globals.css';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
+import Footer from '@/components/common-components/common/Footer';
 import GlobalModal, {
   GlobalModalProvider,
 } from '@/components/common-components/global-modal';
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Providers>
           <GlobalModalProvider>
             {children}
+            <Footer />
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />
