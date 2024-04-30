@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Skeleton from '@/components/common-components/skeleton';
 import Tag from '@/components/common-components/tag';
@@ -32,9 +34,20 @@ export default function TestPage() {
     });
   };
 
+  const [hover, setHover] = useState<boolean>(false);
+
   return (
     <>
-      <RecommendItem />
+      <RecommendItem
+        title="안녕하세요 타이틀이요"
+        subTitle="서브타이틀인데요하하하하하"
+        img="alss"
+        joinNum={2}
+        totalNum={11}
+        date="2024.04.30"
+        likeStatus={false}
+      />
+
       <div className="flex p-2 gap-2">
         <Tag color="orange" text="잔잔한" />
         <Tag color="orange" text="잔잔한" />

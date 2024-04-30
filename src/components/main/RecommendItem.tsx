@@ -1,12 +1,23 @@
 import Tag from '../common-components/tag';
 
-export default function RecommendItem() {
+export type RecommendItemProps = {
+  title: string;
+  subTitle: string;
+  totalNum: number;
+  joinNum: number;
+  date: string;
+  img: string;
+  likeStatus: boolean; // TODO: 백엔드랑 논의 필요
+};
+
+export default function RecommendItem(props: RecommendItemProps) {
+  const { title, subTitle, totalNum, joinNum, date, img } = props;
+
   return (
     <div className="flex flex-col border border-black m-2">
       <div className="rounded-[20px] w-full h-[380px] border border-red-500">
-        이미지
+        이미지{img}
       </div>
-      {/* text part */}
       <div className="flex flex-col mt-[14px]">
         <div className="flex items-center justify-between mb-[12px] border border-green-500">
           <Tag color="orange" text="잔잔한" />
@@ -14,13 +25,20 @@ export default function RecommendItem() {
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col gap-[9px]">
-            <span className="text-gray-11 text-body2">title만들어먹기</span>
-            <span className="text-gray-07 text-h5">서브타이틀복지관어쩌구</span>
+            <span className="text-gray-11 text-body2">{title}</span>
+            <span className="text-gray-07 text-h5">{subTitle}</span>
           </div>
-          <div className="text-gray-11 text-h5">참여 인원</div>
+          {/* hover하면 보여야 하는 부분 */}
+          {true ? (
+            <div className="text-gray-11 text-h5">
+              참여 인원: {joinNum}/{totalNum}
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
 
-        <div className="mt-[20px]">4월 30일 화요일</div>
+        <div className="mt-[20px]">{date}</div>
       </div>
     </div>
   );
