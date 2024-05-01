@@ -3,6 +3,7 @@ import './globals.css';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
+import Header from '@/components/common-components/common/Header';
 import GlobalModal, {
   GlobalModalProvider,
 } from '@/components/common-components/global-modal';
@@ -18,10 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html>
+      {/* TOFIX: body 제거 필요 */}
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           <GlobalModalProvider>
-            {children}
+            <Header />
+            {/* TOFIX: container 작업 필요 */}
+            <div className="pt-[90px]">{children}</div>
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />
