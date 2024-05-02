@@ -40,7 +40,7 @@ export default function HowTo() {
             <div className="text-primary-orange6 text-body2">{item.title}</div>
             <Image src={item.imgUrl} alt="how-image" width={140} height={140} />
             <div
-              className="bg-gray-03 flex items-center gap-[2px] rounded-[20px] px-5 py-[10px]"
+              className="bg-gray-03 cursor-pointer flex items-center gap-[2px] rounded-[20px] px-5 py-[10px]"
               onClick={() => router.push(`${item.goToUrl}`)}
             >
               활동 참여하기 바로가기
