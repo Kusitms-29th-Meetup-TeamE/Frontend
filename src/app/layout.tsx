@@ -5,7 +5,6 @@ import { Toaster } from 'react-hot-toast';
 
 import Footer from '@/components/common-components/common/Footer';
 import Header from '@/components/common-components/common/Header';
-
 import GlobalModal, {
   GlobalModalProvider,
 } from '@/components/common-components/global-modal';
@@ -27,7 +26,7 @@ export default function RootLayout({
           <GlobalModalProvider>
             <Header />
             {/* TOFIX: container 작업 필요 */}
-            <div className="pt-[90px] mb-[264px]">{children}</div>
+            <div className="pt-[90px]">{children}</div>
             <Footer />
             <GlobalModal />
           </GlobalModalProvider>
