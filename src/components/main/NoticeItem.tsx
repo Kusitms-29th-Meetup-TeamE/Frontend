@@ -6,18 +6,13 @@ export type NoticeItemProps = {
   img: string;
   title: string;
   subTitle: string;
-  content: NoticeListType[];
-};
-
-export type NoticeListType = {
-  type: string;
-  content: string;
+  content: string[];
 };
 
 const NoticeItem = (props: NoticeItemProps) => {
   const { img, title, subTitle, content } = props;
   return (
-    <div className="pt-[39px] pb-[41px] pl-[53px] pr-[53px] rounded-[20px] bg-gray-02 ">
+    <div className="w-full pt-[39px] pb-[41px] pl-[53px] pr-[53px] rounded-[20px] bg-gray-02 ">
       <div className="flex flex-row gap-[10px] text-gray-11 text-h2">
         <Image
           src={img}
@@ -32,10 +27,9 @@ const NoticeItem = (props: NoticeItemProps) => {
       <div className="mt-[50px]">
         {content &&
           content.map((item, index) => {
-            const result = '[' + item.type + ']' + ' ' + item.content;
             return (
               <>
-                <div className="mt-[34px] text-h5 text-gray-09">{result}</div>
+                <div className="mt-[34px] text-h5 text-gray-09">{item}</div>
                 <div className="mt-[14px] h-[1px] bg-gray-05"></div>
               </>
             );
