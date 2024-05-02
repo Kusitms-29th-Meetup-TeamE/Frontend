@@ -166,6 +166,21 @@ const config: Config = {
         semibold: '600',
         bold: '700',
       },
+      keyframes: {
+        pageScroll: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20%)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0%)',
+          },
+        },
+      },
+      animation: {
+        pageScroll: 'pageScroll 2s forwards',
+      },
     },
   },
   plugins: [],
