@@ -1,10 +1,12 @@
 import React from 'react';
 
+import Notice from '@/containers/main/Notice';
+
 const TestPage = () => {
   return (
     <>
-      <div className="w-full h-[700px] bg-slate-200" />
-      <h3>end</h3>
+      <div className="flex gap-2 p-2"></div>
+      <Notice />
     </>
   );
 };
