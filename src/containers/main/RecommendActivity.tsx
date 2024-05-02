@@ -45,7 +45,7 @@ export default function RecommendActivity() {
         className="mb-[50px]"
       />
 
-      <div className="flex gap-6 justify-center">
+      <div className="flex gap-6 justify-center border border-black">
         {data.map((item, idx) => {
           return (
             <RecommendItem
@@ -57,15 +57,16 @@ export default function RecommendActivity() {
               maxParticipants={item.maxParticipants}
               time={item.time}
               isLiked={item.isLiked}
-              className={idx === 0 ? 'w-1/2' : 'w-auto'}
+              // className={idx === 0 ? 'w-1/2' : 'w-auto'}
               personalities={item.personalities}
+              // className="transition duration-2000 ease-in-out delay-1000 hover:w-[576px]"
             />
           );
         })}
       </div>
 
       <div className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10">
-        <div className="inline-flex items-center gap-[2px] cursor-pointer">
+        <div className="inline-flex items-center gap-[2px] cursor-pointer px-3 py-1 rounded-lg hover:bg-gray-02">
           더 많은 활동 보기
           <IoIosArrowForward />
         </div>
