@@ -71,7 +71,7 @@ export default function ShareExperience() {
       </div>
 
       <div className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10">
-        <div className="inline-flex items-center gap-[2px] cursor-pointer">
+        <div className="inline-flex items-center gap-[2px] cursor-pointer px-3 py-1 rounded-lg hover:bg-gray-02">
           더 많은 활동 보기
           <IoIosArrowForward />
         </div>
