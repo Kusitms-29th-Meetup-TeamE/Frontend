@@ -42,7 +42,7 @@ export default function TestPage() {
     <>
       {/* <HowTo /> */}
       {/* <RecommendActivity /> */}
-      <ShareProfile />
+      {/* <ShareProfile  /> */}
 
       <div className="flex p-2 gap-2">
         <Tag color="orange" text="잔잔한" />
