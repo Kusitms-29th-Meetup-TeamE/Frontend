@@ -1,3 +1,5 @@
+import { ScrollContainer } from '@/components/common-components/animation/ScrollContainer';
+
 import HowTo from '@/containers/main/HowTo';
 import RecommendActivity from '@/containers/main/RecommendActivity';
 import ShareExperience from '@/containers/main/ShareExperience';
@@ -21,8 +23,13 @@ export default function Home() {
         />
         <HowTo />
       </div>
-      <RecommendActivity />
-      <ShareExperience />
+
+      <ScrollContainer>
+        <RecommendActivity />
+      </ScrollContainer>
+      <ScrollContainer>
+        <ShareExperience />
+      </ScrollContainer>
     </main>
   );
 }
