@@ -4,6 +4,7 @@ const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/containers/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -164,6 +165,21 @@ const config: Config = {
         medium: '500',
         semibold: '600',
         bold: '700',
+      },
+      keyframes: {
+        pageScroll: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20%)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0%)',
+          },
+        },
+      },
+      animation: {
+        pageScroll: 'pageScroll 1.5s forwards',
       },
     },
   },

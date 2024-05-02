@@ -1,13 +1,23 @@
 'use client';
 
+import { useState } from 'react';
+
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Skeleton from '@/components/common-components/skeleton';
+import Tag from '@/components/common-components/tag';
+
+import MainTitle from '@/components/main/MainTitle';
+import RecommendItem from '@/components/main/RecommendItem';
+import ShareProfile from '@/components/main/ShareProfile';
 
 import {
   useNotifyError,
   useNotifySuccess,
   useNotifyToast,
 } from '@/hooks/useToast';
+
+import HowTo from '@/containers/main/HowTo';
+import RecommendActivity from '@/containers/main/RecommendActivity';
 
 export default function TestPage() {
   const isTempLoading = true; // tanstack-query 데이터 패칭 시 가져올 isLoading
@@ -30,6 +40,28 @@ export default function TestPage() {
 
   return (
     <>
+      {/* <HowTo /> */}
+      {/* <RecommendActivity /> */}
+      {/* <ShareProfile  /> */}
+
+      <div className="flex p-2 gap-2">
+        <Tag color="orange" text="잔잔한" />
+        <Tag color="orange" text="잔잔한" />
+        <Tag color="orange" text="잔잔한" />
+      </div>
+
+      {/* main-title component 테스트 */}
+      <MainTitle
+        title="또바 추천 활동"
+        subTitle="내가 선택한 성격을 바탕으로 나에게 맞는 활동을 추천드려요."
+        className="max-w-[500px] border border-red-500"
+      />
+      <MainTitle
+        title="또바 추천 활동"
+        subTitle="내가 선택한 성격을 바탕으로 나에게 맞는 활동을 추천드려요."
+        className="max-w-[1200px] border border-red-500"
+      />
+
       {/* isLoading 관련 예시 코드 */}
       <h3>This is Skeleton component.</h3>
       <div className="flex">

@@ -23,7 +23,7 @@ export default function Header() {
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
   return (
-    <div className="w-full border border-black flex items-center fixed z-50 top-0 h-[90px]">
+    <div className="w-full border border-b-gray-04 flex items-center fixed z-50 top-0 h-[90px] bg-white shadow-md">
       <div className="w-4/5 flex justify-between m-auto">
         {/* <div className="flex gap-[200px]"> */}
         <Link href="/">
