@@ -19,7 +19,7 @@ export const ScrollContainer = React.memo(({ children }: PropsType) => {
         ref={ref}
         className={clsx(
           'flex justify-center opacity-0',
-          isInViewport ? 'animate-[pageScroll_2s_forwards]' : '',
+          isInViewport ? 'animate-[pageScroll_1.5s_forwards]' : '',
         )}
       >
         {children}

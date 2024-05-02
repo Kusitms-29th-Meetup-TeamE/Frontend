@@ -179,7 +179,7 @@ const config: Config = {
         },
       },
       animation: {
-        pageScroll: 'pageScroll 2s forwards',
+        pageScroll: 'pageScroll 1.5s forwards',
       },
     },
   },
