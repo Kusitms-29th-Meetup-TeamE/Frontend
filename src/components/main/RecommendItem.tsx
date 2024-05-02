@@ -7,6 +7,7 @@ import { FaHeart } from 'react-icons/fa6';
 import Tag from '../common-components/tag';
 
 import clsx from 'clsx';
+import Image from 'next/image';
 
 export type RecommendItemProps = {
   title: string;
@@ -37,18 +38,20 @@ export default function RecommendItem(props: RecommendItemProps) {
 
   return (
     <div
-      className={clsx(
-        'border border-blue-500 cursor-pointer w-full min-w-[282px]',
-        className,
-      )}
+      className={clsx('w-full min-w-[282px]', className)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className="rounded-[20px] w-full h-[380px] border border-red-500">
-        {img}
-      </div>
+      <Image
+        src={img}
+        height={380}
+        width={380}
+        alt=""
+        className="cursor-pointer object-cover rounded-[20px] w-full h-[380px]"
+      />
+
       <div className="mt-[14px]">
-        <div className="flex items-center justify-between mb-[12px] border border-green-500">
+        <div className="flex items-center justify-between mb-[12px]">
           <div className="flex gap-2">
             {personalities.map((item, idx) => (
               <Tag color="orange" text={item} key={idx} />
@@ -56,14 +59,24 @@ export default function RecommendItem(props: RecommendItemProps) {
           </div>
 
           {isLiked ? (
-            <FaHeart width={25} height={25} />
+            <FaHeart
+              width={25}
+              height={25}
+              className="cursor-pointer text-primary-orange5"
+            />
           ) : (
-            <FaRegHeart width={25} height={25} />
+            <FaRegHeart
+              width={25}
+              height={25}
+              className="cursor-pointer text-primary-orange5"
+            />
           )}
         </div>
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[9px]">
-            <span className="text-gray-11 text-body2">{title}</span>
+            <span className="text-gray-11 text-body2 cursor-pointer">
+              {title}
+            </span>
             <span className="text-gray-07 text-h5">{location}</span>
           </div>
 

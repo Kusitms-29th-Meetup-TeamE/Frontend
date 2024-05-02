@@ -18,7 +18,7 @@ export default function RecommendActivity() {
     {
       title: '안녕하세요 타이틀이요',
       location: '서브타이틀인데요하하하하하',
-      img: 'alss',
+      img: '/assets/main/main_banner.png',
       currentParticipants: 2,
       maxParticipants: 11,
       time: '2024.04.30',
@@ -28,7 +28,7 @@ export default function RecommendActivity() {
     {
       title: '안녕하세요 타이틀이요',
       location: '서브타이틀인데요하하하하하',
-      img: 'alss',
+      img: '/assets/main/main_banner.png',
       currentParticipants: 2,
       maxParticipants: 11,
       time: '2024.04.30',
@@ -45,7 +45,7 @@ export default function RecommendActivity() {
         className="mb-[50px]"
       />
 
-      <div className="flex gap-6 justify-center border border-green-500">
+      <div className="flex gap-6 justify-center">
         {data.map((item, idx) => {
           return (
             <RecommendItem
