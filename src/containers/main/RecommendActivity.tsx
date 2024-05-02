@@ -35,7 +35,7 @@ export default function RecommendActivity() {
   ];
 
   return (
-    <div className="border border-black max-w-[1200px] w-full mx-auto">
+    <div className="max-w-[1200px] w-full mx-auto">
       <MainTitle
         title="또바 추천 활동"
         subTitle="내가 선택한 성격을 바탕으로 나에게 맞는 활동을 추천드려요."
@@ -59,6 +59,7 @@ export default function RecommendActivity() {
           );
         })}
       </div>
+
       <div className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10">
         <div className="inline-flex items-center gap-[2px] cursor-pointer">
           더 많은 활동 보기

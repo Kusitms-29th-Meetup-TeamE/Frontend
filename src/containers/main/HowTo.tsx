@@ -30,7 +30,7 @@ export default function HowTo() {
   const router = useRouter();
 
   return (
-    <div className="w-full mx-auto max-w-[1435px] bg-white flex items-center justify-between rounded-full px-[140px] h-[300px] shadow-[0_4px_30px_10px_rgba(0,0,0,0.08)]">
+    <div className="mt-[-150px] w-full mx-auto max-w-[1435px] bg-white flex items-center justify-between rounded-full px-[140px] h-[300px] shadow-[0_4px_30px_10px_rgba(0,0,0,0.08)]">
       {howData.map((item, idx) => {
         return (
           <div

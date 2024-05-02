@@ -17,7 +17,7 @@ export default function ShareProfile(props: ShareProfileProps) {
         alt=""
         width={250}
         height={250}
-        className="rounded-xl border border-red-500"
+        className="rounded-xl h-[250px] object-cover"
       />
       <div className="flex justify-between mt-5">
         <div className="text-footer-bold text-gray-09">{name}</div>
@@ -29,7 +29,7 @@ export default function ShareProfile(props: ShareProfileProps) {
           <span>{address}</span>
         </div>
       </div>
-      <div className="mt-[18px] text-gray-07 text-body3 border max-h-[52px] border-red-500 overflow-hidden text-ellipsis">
+      <div className="mt-[18px] text-gray-07 text-body3 max-h-[52px]overflow-hidden text-ellipsis">
         {content}
       </div>
     </div>

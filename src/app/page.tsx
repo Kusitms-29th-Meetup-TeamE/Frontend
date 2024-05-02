@@ -1,10 +1,6 @@
-import { IoIosArrowForward } from 'react-icons/io';
-
 import HowTo from '@/containers/main/HowTo';
 import RecommendActivity from '@/containers/main/RecommendActivity';
 import ShareExperience from '@/containers/main/ShareExperience';
-
-import Image from 'next/image';
 
 export const metadata = {
   // metadataBase: new URL(process.env.NEXT_PUBLIC_ORIGIN),
@@ -15,14 +11,16 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="flex flex-col gap-[160px]">
-      {/* <div
-        className="w-full mx-auto max-w-[1800px] px-[60px] h-[700px] flex justify-center"
-        style={{
-          backgroundImage: "url('/assets/main/main_banner.png')",
-          backgroundSize: 'cover',
-        }}
-      /> */}
-      <HowTo />
+      <div>
+        <div
+          className="w-full mx-auto max-w-[1800px] px-[60px] h-[700px] flex justify-center"
+          style={{
+            backgroundImage: "url('/assets/main/main_banner.png')",
+            backgroundSize: 'cover',
+          }}
+        />
+        <HowTo />
+      </div>
       <RecommendActivity />
       <ShareExperience />
     </main>
