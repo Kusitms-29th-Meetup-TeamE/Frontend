@@ -1,5 +1,3 @@
-'user client';
-
 import Image from 'next/image';
 
 const variants = {
@@ -13,7 +11,7 @@ const variants = {
 
 const Footer = () => {
   return (
-    <footer className="w-full h-[264px]  fixed bottom-0 flex flex-col flex-wrap justify-center content-center items-center text-gray-06 bg-gray-03">
+    <footer className="w-full h-[264px] fixed bottom-0 flex flex-col flex-wrap justify-center content-center items-center text-gray-06 bg-gray-03">
       <div className={variants.title}>
         <Image
           src="/assets/ddoba_logo_black-footer.svg"
