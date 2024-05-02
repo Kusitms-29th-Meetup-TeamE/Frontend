@@ -11,9 +11,9 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="flex flex-col gap-[160px]">
-      <div>
+      <div className="px-[60px]">
         <div
-          className="w-full mx-auto max-w-[1800px] px-[60px] h-[700px] flex justify-center"
+          className="w-full rounded-[20px] mx-auto max-w-[1800px] px-[60px] h-[700px] flex justify-center"
           style={{
             backgroundImage: "url('/assets/main/main_banner.png')",
             backgroundSize: 'cover',
