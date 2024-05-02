@@ -2,6 +2,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import HowTo from '@/containers/main/HowTo';
 import RecommendActivity from '@/containers/main/RecommendActivity';
+import ShareExperience from '@/containers/main/ShareExperience';
 
 import Image from 'next/image';
 
@@ -13,7 +14,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <main className="flex flex-col gap-[160px]">
       {/* <div
         className="w-full mx-auto max-w-[1800px] px-[60px] h-[700px] flex justify-center"
         style={{
@@ -23,13 +24,7 @@ export default function Home() {
       /> */}
       <HowTo />
       <RecommendActivity />
-
-      <div className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10">
-        <div className="inline-flex items-center gap-[2px] cursor-pointer">
-          더 많은 활동 보기
-          <IoIosArrowForward />
-        </div>
-      </div>
+      <ShareExperience />
     </main>
   );
 }
