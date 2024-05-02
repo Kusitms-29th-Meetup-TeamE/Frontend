@@ -11,6 +11,16 @@ const data = [
     gender: '남',
     address: '청계동',
     content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
+    type: '운동',
+  },
+  {
+    img: '/assets/main/how1.png',
+    name: '김또바',
+    age: 24,
+    gender: '남',
+    address: '청계동',
+    content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
+    type: '운동',
   },
   {
     img: '/assets/main/main_banner.png',
@@ -19,6 +29,7 @@ const data = [
     gender: '남',
     address: '청계동',
     content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
+    type: '운동',
   },
   {
     img: '/assets/main/main_banner.png',
@@ -27,14 +38,7 @@ const data = [
     gender: '남',
     address: '청계동',
     content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
-  },
-  {
-    img: '/assets/main/main_banner.png',
-    name: '김또바',
-    age: 24,
-    gender: '남',
-    address: '청계동',
-    content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
+    type: '운동',
   },
 ];
 
@@ -55,9 +59,11 @@ export default function ShareExperience() {
                 name={item.name}
                 age={item.age}
                 gender={item.gender}
-                content={item.content}
-                address={item.address}
-                img={item.img}
+                message={item.content}
+                location={item.address}
+                imgUrl={item.img}
+                type={item.type}
+                className="transition-transform duration-300 ease-in-out transform-gpu hover:-translate-y-10"
               />
             </div>
           );

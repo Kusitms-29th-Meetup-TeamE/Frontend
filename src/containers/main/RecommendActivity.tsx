@@ -7,30 +7,33 @@ export default function RecommendActivity() {
   const data = [
     {
       title: '안녕하세요 타이틀이요',
-      subTitle: '서브타이틀인데요하하하하하',
-      img: 'alss',
-      joinNum: 2,
-      totalNum: 11,
-      date: '4월 30일 화요일',
-      likeStatus: false,
+      location: '서브타이틀인데요하하하하하',
+      img: '/assets/main/main_banner.png',
+      currentParticipants: 2,
+      maxParticipants: 11,
+      time: '4월 30일 화요일',
+      isLiked: false,
+      personalities: ['잔잔한'],
     },
     {
       title: '안녕하세요 타이틀이요',
-      subTitle: '서브타이틀인데요하하하하하',
+      location: '서브타이틀인데요하하하하하',
       img: 'alss',
-      joinNum: 2,
-      totalNum: 11,
-      date: '2024.04.30',
-      likeStatus: false,
+      currentParticipants: 2,
+      maxParticipants: 11,
+      time: '2024.04.30',
+      isLiked: false,
+      personalities: ['잔잔한', '활발한'],
     },
     {
       title: '안녕하세요 타이틀이요',
-      subTitle: '서브타이틀인데요하하하하하',
+      location: '서브타이틀인데요하하하하하',
       img: 'alss',
-      joinNum: 2,
-      totalNum: 11,
-      date: '2024.04.30',
-      likeStatus: false,
+      currentParticipants: 2,
+      maxParticipants: 11,
+      time: '2024.04.30',
+      isLiked: false,
+      personalities: ['잔잔한', '활발한'],
     },
   ];
 
@@ -48,13 +51,14 @@ export default function RecommendActivity() {
             <RecommendItem
               key={idx}
               title={item.title}
-              subTitle={item.subTitle}
+              location={item.location}
               img={item.img}
-              joinNum={item.joinNum}
-              totalNum={item.totalNum}
-              date={item.date}
-              likeStatus={item.likeStatus}
+              currentParticipants={item.currentParticipants}
+              maxParticipants={item.maxParticipants}
+              time={item.time}
+              isLiked={item.isLiked}
               className={idx === 0 ? 'w-1/2' : 'w-auto'}
+              personalities={item.personalities}
             />
           );
         })}

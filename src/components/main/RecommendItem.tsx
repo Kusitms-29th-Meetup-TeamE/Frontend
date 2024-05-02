@@ -10,24 +10,26 @@ import clsx from 'clsx';
 
 export type RecommendItemProps = {
   title: string;
-  subTitle: string;
-  totalNum: number;
-  joinNum: number;
-  date: string;
+  location: string;
+  maxParticipants: number;
+  currentParticipants: number;
+  time: string;
   img: string;
-  likeStatus: boolean; // TODO: 백엔드랑 논의 필요
+  isLiked: boolean;
   className?: string;
+  personalities: string[];
 };
 
 export default function RecommendItem(props: RecommendItemProps) {
   const {
     title,
-    subTitle,
-    totalNum,
-    joinNum,
-    date,
+    personalities,
+    location,
+    maxParticipants,
+    currentParticipants,
+    time,
     img,
-    likeStatus,
+    isLiked,
     className,
   } = props;
 
@@ -47,8 +49,13 @@ export default function RecommendItem(props: RecommendItemProps) {
       </div>
       <div className="mt-[14px]">
         <div className="flex items-center justify-between mb-[12px] border border-green-500">
-          <Tag color="orange" text="잔잔한" />
-          {likeStatus ? (
+          <div className="flex gap-2">
+            {personalities.map((item, idx) => (
+              <Tag color="orange" text={item} key={idx} />
+            ))}
+          </div>
+
+          {isLiked ? (
             <FaHeart width={25} height={25} />
           ) : (
             <FaRegHeart width={25} height={25} />
@@ -57,18 +64,18 @@ export default function RecommendItem(props: RecommendItemProps) {
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[9px]">
             <span className="text-gray-11 text-body2">{title}</span>
-            <span className="text-gray-07 text-h5">{subTitle}</span>
+            <span className="text-gray-07 text-h5">{location}</span>
           </div>
 
           {hover && (
             <div className="text-gray-11 text-h5">
-              참여 인원: {joinNum}/{totalNum}
+              참여 인원: {currentParticipants}/{maxParticipants}
             </div>
           )}
         </div>
 
         <div className="inline-flex max-h-[35px] mt-[20px] bg-gray-chip rounded-[20px] px-5 py-[10px] items-center text-center">
-          {date}
+          {time}
         </div>
       </div>
     </div>

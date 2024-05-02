@@ -2,6 +2,6 @@ export interface UserProps {
   name: string;
   age: number;
   gender: string;
-  address: string;
-  img?: string;
+  location: string;
+  imgUrl?: string;
 }
