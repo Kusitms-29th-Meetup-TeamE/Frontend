@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa6';
 import { FaHeart } from 'react-icons/fa6';
 
-import Tag from '../common-components/tag';
+import Tag from '../common-components/chip';
 
 import clsx from 'clsx';
 import Image from 'next/image';

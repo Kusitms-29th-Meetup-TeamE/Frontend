@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
+import Tag from '@/components/common-components/chip';
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Skeleton from '@/components/common-components/skeleton';
-import Tag from '@/components/common-components/tag';
 
 import MainTitle from '@/components/main/MainTitle';
 import RecommendItem from '@/components/main/RecommendItem';
