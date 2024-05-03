@@ -1,6 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+
 import { useGlobalModal } from '@/components/common-components/global-modal';
+import Input from '@/components/common-components/input';
 import Skeleton from '@/components/common-components/skeleton';
 
 import MainTitle from '@/components/main/MainTitle';
@@ -30,8 +33,21 @@ export default function TestPage() {
     });
   };
 
+  const [value, setValue] = useState<string>('');
+
   return (
     <>
+      <div>
+        <Input
+          defaultValue={value}
+          onChange={(e) => setValue(e.target.value)}
+          size="xl"
+          textSize="xl"
+          placeholder="검색어를 입력하세요."
+          backgroundColors="white"
+          shape="square"
+        />
+      </div>
       {/* main-title component 테스트 */}
       <MainTitle
         title="또바 추천 활동"
