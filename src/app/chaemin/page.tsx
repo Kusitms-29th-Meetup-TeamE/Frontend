@@ -1,5 +1,6 @@
 'use client';
 
+import Button from '@/components/common-components/button';
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Skeleton from '@/components/common-components/skeleton';
 
@@ -32,6 +33,15 @@ export default function TestPage() {
 
   return (
     <>
+      <div className="flex gap-4">
+        <Button color="gray" shape="square">
+          이전
+        </Button>
+        <Button color="default" shape="square">
+          로그인
+        </Button>
+      </div>
+
       {/* main-title component 테스트 */}
       <MainTitle
         title="또바 추천 활동"
