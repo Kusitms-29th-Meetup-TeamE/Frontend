@@ -36,7 +36,7 @@ const SubBannerSlider = (props: SubBannerSliderProps) => {
           bulletClass: 'bg-gray-200 rounded-full',
           bulletActiveClass: 'bg-white',
         }}
-        className="h-full"
+        className="h-full cursor-pointer"
         style={{
           position: 'absolute',
           width: '100%',

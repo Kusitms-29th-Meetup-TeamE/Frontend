@@ -12,7 +12,7 @@ export type NoticeItemProps = {
 const NoticeItem = (props: NoticeItemProps) => {
   const { img, title, subTitle, content } = props;
   return (
-    <div className="w-full pt-[39px] pb-[41px] pl-[53px] pr-[53px] rounded-[20px] bg-gray-02 ">
+    <div className="w-full pt-[39px] pb-[41px] pl-[53px] pr-[53px] rounded-[20px] bg-gray-02 cursor-pointer">
       <div className="flex flex-row gap-[10px] text-gray-11 text-h2">
         <Image
           src={img}
