@@ -21,7 +21,7 @@ export default function RecommendActivity() {
       img: '/assets/main/main_banner.png',
       currentParticipants: 2,
       maxParticipants: 11,
-      time: '2024.04.30',
+      time: '4월 30일 화요일',
       isLiked: false,
       personalities: ['학문적인', '예술적인'],
     },
@@ -31,7 +31,7 @@ export default function RecommendActivity() {
       img: '/assets/main/main_banner.png',
       currentParticipants: 2,
       maxParticipants: 11,
-      time: '2024.04.30',
+      time: '4월 30일 화요일',
       isLiked: false,
       personalities: ['자연친화적인', '창의적인'],
     },
@@ -45,7 +45,7 @@ export default function RecommendActivity() {
         className="mb-[50px]"
       />
 
-      <div className="flex gap-6 justify-center border border-black">
+      <div className="flex gap-6 justify-center">
         {data.map((item, idx) => {
           return (
             <RecommendItem

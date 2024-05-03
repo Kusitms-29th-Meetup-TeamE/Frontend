@@ -3,13 +3,17 @@ import { UserProps } from '@/types/user';
 import Chip from '../common-components/chip';
 
 import clsx from 'clsx';
-import Image from 'next/image';
 
 export interface ShareProfileProps extends UserProps {
   message: string;
   className?: string;
   type: string;
 }
+
+const style = {
+  triangle:
+    'h-0 w-0 border-b-[15px] border-l-transparent border-r-transparent border-l-[10px] border-r-[10px] border-solid border-gray-03',
+};
 
 export default function ShareProfile(props: ShareProfileProps) {
   const { message, name, age, type, gender, location, imgUrl, className } =
@@ -18,12 +22,12 @@ export default function ShareProfile(props: ShareProfileProps) {
   return (
     <div
       className={clsx(
-        'cursor-pointer p-4 bg-white max-h-[400px] rounded-[20px] max-w-[282px] w-full shadow-[0_4px_30px_10px_rgba(0,0,0,0.08)]',
+        'cursor-pointer h-full max-h-[453px] w-full pb-6 rounded-[20px]',
         className,
       )}
     >
       <div
-        className="rounded-xl h-[250px] object-cover py-4 px-[11px]"
+        className="rounded-[20px] h-[282px] object-cover py-[10px] px-[10px]"
         style={{
           backgroundImage: `url(${imgUrl})`,
           backgroundSize: 'cover',
@@ -32,7 +36,7 @@ export default function ShareProfile(props: ShareProfileProps) {
         <Chip type={type} />
       </div>
 
-      <div className="flex justify-between mt-5">
+      <div className="flex justify-between mt-5 px-5">
         <div className="text-footer-bold text-gray-09">{name}</div>
         <div className="flex gap-[15px] px-[14px] py-1 bg-gray-03 rounded-[18px] text-footer-regular text-gray-08">
           <span>{age}세</span>
@@ -42,7 +46,8 @@ export default function ShareProfile(props: ShareProfileProps) {
           <span>{location}</span>
         </div>
       </div>
-      <div className="mt-[18px] text-gray-07 text-body3 max-h-[52px] overflow-hidden text-ellipsis">
+      <div className={clsx(style.triangle, 'mx-[10px] mt-1 ml-[30px]')} />
+      <div className="bg-gray-03 rounded-[20px] mx-[10px] p-4 text-body3 text-gray-07 overflow-hidden text-ellipsis">
         {message}
       </div>
     </div>

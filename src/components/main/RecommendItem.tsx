@@ -62,13 +62,13 @@ export default function RecommendItem(props: RecommendItemProps) {
             <FaHeart
               width={25}
               height={25}
-              className="cursor-pointer text-primary-orange5"
+              className="cursor-pointer text-primary-orange5 text-[24px]"
             />
           ) : (
             <FaRegHeart
               width={25}
               height={25}
-              className="cursor-pointer text-primary-orange5"
+              className="cursor-pointer text-primary-orange5 text-[24px]"
             />
           )}
         </div>

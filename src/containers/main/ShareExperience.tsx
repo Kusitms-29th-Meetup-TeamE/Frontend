@@ -51,7 +51,7 @@ export default function ShareExperience() {
         className="mb-[50px]"
       />
 
-      <div className="flex gap-6">
+      <div className="flex gap-4">
         {data.map((item, idx) => {
           return (
             <div key={idx}>
@@ -63,7 +63,7 @@ export default function ShareExperience() {
                 location={item.address}
                 imgUrl={item.img}
                 type={item.type}
-                className="transition-transform duration-300 ease-in-out transform-gpu hover:-translate-y-10"
+                className="bg-white transition-transform duration-300 ease-in-out transform-gpu hover:rounded-[20px] hover:p-[6px] hover:bg-white hover:shadow-[0_4px_30px_20px_rgba(0,0,0,0.08)]"
               />
             </div>
           );
