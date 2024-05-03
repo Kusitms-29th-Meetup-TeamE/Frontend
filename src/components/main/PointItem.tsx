@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdArrowForwardIos } from 'react-icons/md';
 
 import Image from 'next/image';
 
@@ -20,8 +21,9 @@ const PointItem = (props: PointItemProps) => {
         <span className="text-black text-body2">{title}</span>
         <div className="w-[100%] mt-[21px] flex justify-between content-end">
           <div className="text-body3 text-gray-08">{content}</div>
-          <button className="bg-gray-03 rounded-[20px] text-gray-08 text-chip-medium pt-[10px] pr-[14px] pb-[8px] pl-[14px]">
+          <button className="flex items-center gap-[3px] bg-gray-03 rounded-[20px] text-gray-08 text-chip-medium pt-[10px] pr-[14px] pb-[8px] pl-[14px]">
             {btnContent}
+            <MdArrowForwardIos className="w-[16px] h-[16px] fill-gray-08" />
           </button>
         </div>
       </div>
