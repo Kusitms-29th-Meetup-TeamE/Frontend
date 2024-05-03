@@ -1,8 +1,11 @@
 import { ScrollContainer } from '@/components/common-components/animation/ScrollContainer';
 
 import HowTo from '@/containers/main/HowTo';
+import Notice from '@/containers/main/Notice';
+import Point from '@/containers/main/Point';
 import RecommendActivity from '@/containers/main/RecommendActivity';
 import ShareExperience from '@/containers/main/ShareExperience';
+import SubBannerSlider from '@/containers/main/SubBannerSlider';
 
 export const metadata = {
   // metadataBase: new URL(process.env.NEXT_PUBLIC_ORIGIN),
@@ -40,6 +43,16 @@ export default function Home() {
       <ScrollContainer>
         <ShareExperience />
       </ScrollContainer>
+
+      <Point />
+      <SubBannerSlider
+        imgs={[
+          '/assets/main/subBanner1.svg',
+          '/assets/main/subBanner1.svg',
+          '/assets/main/subBanner1.svg',
+        ]}
+      />
+      <Notice />
     </main>
   );
 }

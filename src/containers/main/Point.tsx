@@ -29,7 +29,7 @@ const Point = () => {
         </div>
         <img src="/assets/main/point-right.svg" alt="" />
       </div>
-      <div className="flex gap-[24px] w-full mb-[160px]">
+      <div className="flex gap-[24px] w-full">
         <PointItem
           title={'또바 포인트를 더 받고 싶다면?'}
           content={
