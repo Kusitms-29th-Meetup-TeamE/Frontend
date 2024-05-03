@@ -10,12 +10,12 @@ export type PointItemProps = {
 };
 
 const variants = {
-  container: 'flex flex-row rounded-[20px] bg-white overflow-hidden',
+  container: 'flex flex-row rounded-[20px] bg-white overflow-hidden w-full',
   textContainer:
-    'w-[100%] flex flex-col gap-[21px] pt-[30px] pb-[36px] pr-[18px] pl-[18px]',
+    'w-full flex flex-col gap-[21px] pt-[30px] pb-[36px] pr-[18px] pl-[18px]',
   title: 'text-black text-body2',
   contentContainer: 'w-[100%] mt-[21px] flex justify-between items-end',
-  content: 'text-body3 text-gray-08',
+  content: 'text-body3 text-gray-08 whitespace-pre-wrap',
   btn: 'flex items-center gap-[3px] bg-gray-03 rounded-[20px] text-gray-08 text-chip-medium pt-[10px] pr-[14px] pb-[8px] pl-[14px]',
   arrow: 'w-[16px] h-[16px] fill-gray-08',
 };
@@ -24,10 +24,13 @@ const PointItem = (props: PointItemProps) => {
   const { title, content, btnContent } = props;
 
   return (
-    <div className={variants.container}>
+    <div
+      className={variants.container}
+      style={{ boxShadow: '0px 4px 30px 10px rgba(0, 0, 0, 0.04)' }}
+    >
       {/* <Image src="/assets/main/pointItem.svg" width={169} height={169} alt=""/> */}
       {/* 이미지 대체 div */}
-      <div className="w-[169px] h-[169px] bg-gray-03"></div>
+      <div className="w-[169px] h-full bg-gray-03"></div>
       <div className={variants.textContainer}>
         <span className={variants.title}>{title}</span>
         <div className={variants.contentContainer}>
