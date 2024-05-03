@@ -43,7 +43,7 @@ export default function ShareProfile(props: ShareProfileProps) {
           <span>{location}</span>
         </div>
       </div>
-      <div className="mt-[18px] text-gray-07 text-body3 max-h-[52px]overflow-hidden text-ellipsis">
+      <div className="mt-[18px] text-gray-07 text-body3 max-h-[52px] overflow-hidden text-ellipsis">
         {message}
       </div>
     </div>
