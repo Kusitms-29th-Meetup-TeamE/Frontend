@@ -1,5 +1,7 @@
 import { UserProps } from '@/types/user';
 
+import Chip from '../common-components/chip';
+
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -27,10 +29,7 @@ export default function ShareProfile(props: ShareProfileProps) {
           backgroundSize: 'cover',
         }}
       >
-        {/* TODO: 칩 컴포넌트 만들기 */}
-        <span className="inline-flex px-[14px] py-2 rounded-[30px] text-white text-chip-bold bg-primary-orange4 bg-opacity-80">
-          {type}
-        </span>
+        <Chip type={type} />
       </div>
 
       <div className="flex justify-between mt-5">

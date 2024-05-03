@@ -13,7 +13,7 @@ export default function RecommendActivity() {
       maxParticipants: 11,
       time: '4월 30일 화요일',
       isLiked: false,
-      personalities: ['잔잔한'],
+      personalities: ['활발한'],
     },
     {
       title: '안녕하세요 타이틀이요',
@@ -23,7 +23,7 @@ export default function RecommendActivity() {
       maxParticipants: 11,
       time: '2024.04.30',
       isLiked: false,
-      personalities: ['잔잔한', '활발한'],
+      personalities: ['학문적인', '예술적인'],
     },
     {
       title: '안녕하세요 타이틀이요',
@@ -33,7 +33,7 @@ export default function RecommendActivity() {
       maxParticipants: 11,
       time: '2024.04.30',
       isLiked: false,
-      personalities: ['잔잔한', '활발한'],
+      personalities: ['자연친화적인', '창의적인'],
     },
   ];
 

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa6';
 import { FaHeart } from 'react-icons/fa6';
 
-import Tag from '../common-components/chip';
+import Chip from '../common-components/chip';
 
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -54,7 +54,7 @@ export default function RecommendItem(props: RecommendItemProps) {
         <div className="flex items-center justify-between mb-[12px]">
           <div className="flex gap-2">
             {personalities.map((item, idx) => (
-              <Tag color="orange" text={item} key={idx} />
+              <Chip text={item} key={idx} />
             ))}
           </div>
 
