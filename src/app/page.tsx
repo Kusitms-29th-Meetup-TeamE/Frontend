@@ -13,25 +13,26 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="flex flex-col gap-[160px]">
-      <div
-        className="w-full mx-auto max-w-[1920px] h-[761px] flex justify-center items-center"
-        style={{
-          backgroundImage: "url('/assets/main/main_banner.png')",
-          backgroundSize: 'cover',
-        }}
-      >
-        <span className="flex flex-col gap-8 text-h1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
-          <span>나의 일생을 더 아름답고 따뜻하게</span>
-          <span className="">
-            지역 기반 사회 참여 서비스,&nbsp;
-            <span className="bg-primary-orange5 px-2">또바</span>
+      <div>
+        <div
+          className="w-full mx-auto max-w-[1920px] h-[761px] flex justify-center items-center"
+          style={{
+            backgroundImage: "url('/assets/main/main_banner.png')",
+            backgroundSize: 'cover',
+          }}
+        >
+          <span className="flex flex-col gap-8 text-h1 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
+            <span>나의 일생을 더 아름답고 따뜻하게</span>
+            <span className="">
+              지역 기반 사회 참여 서비스,&nbsp;
+              <span className="bg-primary-orange5 px-2">또바</span>
+            </span>
           </span>
-        </span>
+        </div>
+        <ScrollContainer>
+          <HowTo />
+        </ScrollContainer>
       </div>
-
-      <ScrollContainer>
-        <HowTo />
-      </ScrollContainer>
 
       <ScrollContainer>
         <RecommendActivity />

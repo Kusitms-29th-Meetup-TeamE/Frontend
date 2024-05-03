@@ -2,6 +2,7 @@
 
 import { IoIosArrowForward } from 'react-icons/io';
 
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -30,7 +31,7 @@ export default function HowTo() {
   const router = useRouter();
 
   return (
-    <div className="w-full max-w-[1200px] flex gap-6">
+    <div className="w-full max-w-[1200px] flex gap-6 mt-[-130px]">
       {howData.map((item, idx) => {
         return (
           <div
@@ -41,9 +42,12 @@ export default function HowTo() {
               <Image
                 src={item.imgUrl}
                 alt="how-image"
-                width={120}
-                height={120}
-                className="mt-[-80px] object-cover"
+                width={240}
+                height={240}
+                className={clsx(
+                  'mt-[-100px] ml-[-50px] object-cover',
+                  idx === 2 ? 'mb-2.5' : '',
+                )}
               />
               <div className="flex items-center w-[36px] h-[36px] justify-center rounded-full bg-gray-chip cursor-pointer">
                 <IoIosArrowForward
@@ -53,7 +57,7 @@ export default function HowTo() {
               </div>
             </div>
 
-            <p>{item.title}</p>
+            <p className="text-body2 text-gray-08">{item.title}</p>
             <span className="text-primary-orange6 text-h2">
               {item.goToText}
             </span>
