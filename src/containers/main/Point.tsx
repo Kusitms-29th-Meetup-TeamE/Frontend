@@ -23,7 +23,7 @@ const Point = () => {
             <span className="text-primary-orange6">{PointData.user}</span>
             <span className="text-gray-08">님의 또바 포인트!</span>
           </div>
-          <div className="text-center bg-primary-orange5 text-white text-h2 pt-[3px[ pb-[3px] pl-[29px] pr-[29px] rounded-[21px]">
+          <div className="text-center bg-primary-orange5 text-white text-h2 pt-[3px] pb-[3px] pl-[29px] pr-[29px] rounded-[21px]">
             {PointData.point} 원
           </div>
         </div>

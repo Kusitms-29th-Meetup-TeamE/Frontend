@@ -1,7 +1,6 @@
 'use client';
 
 import 'swiper/css';
-import 'swiper/css';
 
 import React, { useState } from 'react';
 
@@ -19,7 +18,7 @@ const SubBannerSlider = (props: SubBannerSliderProps) => {
   const [currentCard, setCurrentCard] = useState<number>(0);
 
   return (
-    <div className="relative w-[1200px] mx-auto h-[146px] flex justify-center overflow-hidden ">
+    <div className="relative max-w-[1200px] w-full mx-auto h-[146px] flex justify-center overflow-hidden ">
       <Swiper
         slidesPerView={'auto'}
         loop={true}
@@ -52,7 +51,7 @@ const SubBannerSlider = (props: SubBannerSliderProps) => {
         })}
       </Swiper>
       <div className="absolute bottom-[22px] flex flex-col justify-end items-center w-full h-full">
-        <div className="swiper-pagination w-[36px] h-[4px]rounded-full"></div>
+        <div className="swiper-pagination w-[36px] h-[4px] rounded-full" />
       </div>
     </div>
   );
