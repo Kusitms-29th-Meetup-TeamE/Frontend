@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper-pagination {
+  --swiper-pagination-color: bg-white;
+}
+
+.swiper-pagination-bullet-active {
+  --swiper-pagination-color: white;
+}
