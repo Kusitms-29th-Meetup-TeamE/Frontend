@@ -28,13 +28,14 @@ const SubBannerSlider = (props: SubBannerSliderProps) => {
           setCurrentCard(swiper.snapIndex);
         }}
         modules={[Pagination]}
-        pagination={{
-          clickable: true,
-          el: '.swiper-pagination',
-          type: 'bullets',
-          bulletClass: 'bg-gray-200 rounded-full',
-          bulletActiveClass: 'bg-white',
-        }}
+        // pagination={{
+        //   clickable: true,
+        //   el: '.swiper-pagination',
+        //   type: 'bullets',
+        //   bulletClass: 'bg-gray-200 rounded-full',
+        //   bulletActiveClass: 'bg-white',
+        // }}
+        pagination={true}
         className="h-full cursor-pointer"
         style={{
           position: 'absolute',
@@ -50,9 +51,6 @@ const SubBannerSlider = (props: SubBannerSliderProps) => {
           );
         })}
       </Swiper>
-      <div className="absolute bottom-[22px] flex flex-col justify-end items-center w-full h-full">
-        <div className="swiper-pagination w-[36px] h-[4px] rounded-full" />
-      </div>
     </div>
   );
 };
