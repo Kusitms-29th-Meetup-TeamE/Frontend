@@ -2,6 +2,7 @@
 
 import { IoIosArrowForward } from 'react-icons/io';
 
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -10,42 +11,56 @@ export default function HowTo() {
     {
       title: '내가 하고 싶은 활동을 찾고 있다면',
       imgUrl: '/assets/main/how1.png',
-      goToText: '활동 참여하기 바로가기',
-      goToUrl: '경험 나누기 바로가기',
+      goToText: '활동 참여하기',
+      goToUrl: '/',
     },
     {
       title: '알찬 내 인생을 위해 배움을 찾고 있다면',
       imgUrl: '/assets/main/how2.png',
-      goToText: '경험 나누기 바로가기',
-      goToUrl: '경험 나누기 바로가기',
+      goToText: '경험 나누기',
+      goToUrl: '/',
     },
     {
       title: '내 배움을 누군가에게 나누고 싶다면',
       imgUrl: '/assets/main/how3.png',
-      goToText: '경험 나누기 바로가기',
-      goToUrl: '경험 나누기 바로가기',
+      goToText: '함께 대화하기',
+      goToUrl: '/',
     },
   ];
 
   const router = useRouter();
 
   return (
-    <div className="mt-[-150px] w-full mx-auto max-w-[1435px] bg-white flex items-center justify-between rounded-full px-[140px] h-[300px] shadow-[0_4px_30px_10px_rgba(0,0,0,0.08)]">
+    <div className="w-full max-w-[1200px] flex gap-6 mt-[-130px]">
       {howData.map((item, idx) => {
         return (
           <div
             key={idx}
-            className="text-center flex flex-col justify-center items-center"
+            className="bg-white p-[44px] box-border rounded-[40px] opacity-95 h-[250px] w-full max-w-[384px] shadow-[0_4px_30px_10px_rgba(0,0,0,0.08)] transition-all duration-500 ease-in-out hover:bg-primary-orange1"
           >
-            <div className="text-primary-orange6 text-body2">{item.title}</div>
-            <Image src={item.imgUrl} alt="how-image" width={140} height={140} />
-            <div
-              className="bg-gray-03 cursor-pointer flex items-center gap-[2px] rounded-[20px] px-5 py-[10px] hover:bg-gray-04 hover:bg-opacity-70"
-              onClick={() => router.push(`${item.goToUrl}`)}
-            >
-              {item.goToText}
-              <IoIosArrowForward />
+            <div className="flex justify-between">
+              <Image
+                src={item.imgUrl}
+                alt="how-image"
+                width={240}
+                height={240}
+                className={clsx(
+                  'mt-[-100px] ml-[-50px] object-cover',
+                  idx === 2 ? 'mb-2.5' : '',
+                )}
+              />
+              <div className="flex items-center w-[36px] h-[36px] justify-center rounded-full bg-gray-chip cursor-pointer transition-all duration-300 ease-in-out hover:bg-primary-orange5 hover:text-white">
+                <IoIosArrowForward
+                  onClick={() => router.push(`${item.goToUrl}`)}
+                  color="#95989a hover:white"
+                />
+              </div>
             </div>
+
+            <p className="text-body2 text-gray-08">{item.title}</p>
+            <span className="text-primary-orange6 text-h2">
+              {item.goToText}
+            </span>
           </div>
         );
       })}

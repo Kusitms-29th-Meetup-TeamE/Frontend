@@ -9,10 +9,9 @@ import { useNotifyLogin } from '@/hooks/useToast';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// TODO: hover 추가 필요
 const variants = {
   menubar: 'w-1/2 max-w-[760px] flex text-gray-11 justify-between',
-  centerMenu: 'text-h3 cursor-pointer hover:text-red-500',
+  centerMenu: 'text-h3 cursor-pointer',
   rightBar: 'flex items-center gap-[40px] text-gray-07 text-body3',
   rightMenu:
     'flex items-center text-gray-07 text-body3 hover:text-red-500 cursor-pointer',
@@ -23,7 +22,7 @@ export default function Header() {
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
   return (
-    <div className="w-full border border-b-gray-04 flex items-center fixed z-50 top-0 h-[90px] bg-white shadow-md">
+    <div className="w-full border border-b-gray-04 flex items-center fixed z-50 top-0 h-[70px] bg-white shadow-md">
       <div className="w-4/5 flex justify-between m-auto">
         {/* <div className="flex gap-[200px]"> */}
         <Link href="/">
