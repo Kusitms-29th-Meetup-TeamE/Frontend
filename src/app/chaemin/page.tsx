@@ -1,23 +1,15 @@
 'use client';
 
-import { useState } from 'react';
-
-import Tag from '@/components/common-components/chip';
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Skeleton from '@/components/common-components/skeleton';
 
 import MainTitle from '@/components/main/MainTitle';
-import RecommendItem from '@/components/main/RecommendItem';
-import ShareProfile from '@/components/main/ShareProfile';
 
 import {
   useNotifyError,
   useNotifySuccess,
   useNotifyToast,
 } from '@/hooks/useToast';
-
-import HowTo from '@/containers/main/HowTo';
-import RecommendActivity from '@/containers/main/RecommendActivity';
 
 export default function TestPage() {
   const isTempLoading = true; // tanstack-query 데이터 패칭 시 가져올 isLoading
@@ -40,16 +32,6 @@ export default function TestPage() {
 
   return (
     <>
-      {/* <HowTo /> */}
-      {/* <RecommendActivity /> */}
-      {/* <ShareProfile  /> */}
-
-      <div className="flex p-2 gap-2">
-        <Tag color="orange" text="잔잔한" />
-        <Tag color="orange" text="잔잔한" />
-        <Tag color="orange" text="잔잔한" />
-      </div>
-
       {/* main-title component 테스트 */}
       <MainTitle
         title="또바 추천 활동"
