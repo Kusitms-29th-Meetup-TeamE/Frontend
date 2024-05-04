@@ -26,7 +26,6 @@ const CheckBox = (props: CheckBoxProps) => {
       width={width}
       height={height}
       onClick={handleCheck}
-      className="cursor-pointer"
     />
   );
 };
