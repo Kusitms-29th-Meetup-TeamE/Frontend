@@ -17,11 +17,10 @@ const style: {
 } = {
   base: 'inline-flex items-center justify-center box-border select-none m-0 p-0 w-fit h-fit border cursor-pointer align-middle disabled:cursor-default',
   size: {
-    xs: 'min-h-[30px] px-[14px] py-[10px] text-body3 gap-[4px]',
-    sm: 'min-h-[40px] px-[34px] py-[10px] text-body1 gap-[6px]',
-    md: 'min-h-[48px] px-[53px] py-[10px] text-body1 gap-[6px]',
-    lg: 'min-h-[50px] px-[60px] py-[10px] text-body1 gap-2',
-    xl: 'w-full !flex',
+    sm: '',
+    md: '',
+    lg: 'w-full max-w-[216px] h-[54px] py-3 text-h3', // 이전, 다음 버튼
+    xl: 'w-full max-w-[588px] !flex h-[68px] text-body2', // 로그인
   },
   shape: {
     square: 'rounded-[20px]',
@@ -30,7 +29,6 @@ const style: {
   color: {
     active: 'text-white',
     default: 'bg-primary-orange6 text-white',
-    border: '',
     gray: 'bg-gray-03 text-gray-07',
   },
 };

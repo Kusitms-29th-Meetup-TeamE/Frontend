@@ -1,7 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
 
 export const buttonSizes = {
-  xs: 'xs',
   sm: 'sm',
   md: 'md',
   lg: 'lg',
@@ -18,7 +17,6 @@ export type ButtonShape = (typeof buttonShapes)[keyof typeof buttonShapes];
 export const buttonColors = {
   active: 'active',
   default: 'default',
-  border: 'border',
   gray: 'gray',
 } as const;
 export type ButtonColor = (typeof buttonColors)[keyof typeof buttonColors];
