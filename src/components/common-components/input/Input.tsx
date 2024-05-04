@@ -1,39 +1,24 @@
 import { forwardRef, PropsWithChildren, useState } from 'react';
+import { IoIosSearch } from 'react-icons/io';
 
-import { InputProps, InputSize, InputShape, InputColor } from '.';
+import { InputProps, InputSize, InputShape } from '.';
 
 import clsx from 'clsx';
 
 const style: {
   base: string;
   sizes: Record<InputSize, string>;
-  textSizes: Record<InputSize, string>;
   shapes: Record<InputShape, string>;
-  backgroundColors: Record<InputColor, string>;
 } = {
-  // TODO: 디자인 시스템 확정 후 수정 필요
-  base: 'border border-gray-05 placeholder:text-gray-06 focus:outline-none',
+  base: 'border border-gray-05 placeholder:text-gray-06 focus:outline-primary-orange5',
   sizes: {
-    xs: '',
     sm: '',
     md: '',
-    lg: '',
-    xl: 'px-7 py-5 max-h-[68px]', // 로그인
-  },
-  textSizes: {
-    xs: 'text-body2',
-    sm: '',
-    md: 'text-body1',
-    lg: 'text-h2',
-    xl: 'text-h3',
+    lg: 'py-5 px-7 w-full max-w-[588px] h-[68px] text-h4', // 회원가입, 로그인에서 사용
   },
   shapes: {
-    square: 'rounded-[20px]',
+    square: 'rounded-[20px]', // 회원가입, 로그인에서 사용
     rounded: 'rounded-[30px]',
-  },
-
-  backgroundColors: {
-    white: 'bg-white',
   },
 };
 
@@ -45,13 +30,12 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       onKeyDown,
       defaultValue = '',
       size,
-      textSize,
       shape,
-      backgroundColors,
+      type,
       className,
       search,
       startIcon,
-      endIcon,
+      ...rest
     } = props;
 
     const [value, setValue] = useState(defaultValue);
@@ -59,17 +43,25 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     return (
       <div className="relative">
         {search && (
-          //   <SearchIcon
-          //     className="absolute top-[12px] left-[18px] text-gray-60"
-          //     sx={{ fontSize: 26.1 }}
-          //   />
-          <></>
+          <IoIosSearch
+            className={clsx(
+              'text-[20px] absolute top-[25px] left-[18px]',
+              value ? 'text-gray-10' : 'text-gray-06',
+            )}
+          />
         )}
-        {/* TODO: icon 여부 판단해서 수정하기 */}
-        {startIcon && <></>}
+        <div
+          className={clsx(
+            'text-[20px] absolute top-[25px] left-[18px]',
+            value ? 'text-gray-10' : 'text-gray-06',
+          )}
+        >
+          {startIcon}
+        </div>
+
         <input
-          type="text"
           value={value}
+          type={type}
           onChange={(e) => {
             onChange?.(e);
             setValue(e.target.value);
@@ -78,13 +70,14 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
           placeholder={placeholder}
           ref={ref}
           className={clsx(
+            search && 'pl-12',
+            startIcon !== undefined && 'pl-12',
             className,
-            style.textSizes[textSize],
             style.base,
             style.shapes[shape],
-            style.sizes[size],
-            style.backgroundColors[backgroundColors],
+            style.sizes[size as InputSize],
           )}
+          {...rest}
         />
       </div>
     );
