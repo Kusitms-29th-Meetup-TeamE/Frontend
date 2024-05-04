@@ -33,11 +33,17 @@ export default function TestPage() {
 
   return (
     <>
-      <div className="flex gap-4">
-        <Button color="gray" shape="square">
-          이전
-        </Button>
-        <Button color="default" shape="square">
+      <div className="flex flex-col gap-4 my-4">
+        <div className="flex gap-2 mt-4">
+          <Button color="gray" shape="rounded" size="lg">
+            이전
+          </Button>
+          <Button color="default" shape="rounded" size="lg">
+            다음
+          </Button>
+        </div>
+
+        <Button color="default" shape="square" size="xl">
           로그인
         </Button>
       </div>
