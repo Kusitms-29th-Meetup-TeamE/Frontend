@@ -15,7 +15,7 @@ const style: {
   shape: Record<ButtonShape, string>;
   color: Record<ButtonColor, string>;
 } = {
-  base: 'inline-flex items-center justify-center box-border select-none m-0 p-0 w-fit h-fit border cursor-pointer align-middle disabled:cursor-default',
+  base: 'inline-flex items-center justify-center box-border select-none m-0 p-0 w-fit h-fit cursor-pointer disabled:cursor-default',
   size: {
     sm: '',
     md: '',
