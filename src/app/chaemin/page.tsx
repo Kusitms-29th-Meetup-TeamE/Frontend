@@ -1,6 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { BsPerson } from 'react-icons/bs';
+import { MdOutlineLock } from 'react-icons/md';
+import { TfiEmail } from 'react-icons/tfi';
 
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Input from '@/components/common-components/input';
@@ -37,14 +40,46 @@ export default function TestPage() {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col gap-2 py-6 px-2">
         <Input
           defaultValue={value}
           onChange={(e) => setValue(e.target.value)}
-          size="xl"
-          textSize="xl"
+          size="lg"
           placeholder="검색어를 입력하세요."
-          backgroundColors="white"
+          shape="square"
+          search
+          type="text"
+        />
+        <Input
+          defaultValue={value}
+          onChange={(e) => setValue(e.target.value)}
+          size="lg"
+          placeholder="이메일을 입력하세요."
+          shape="square"
+          startIcon={<TfiEmail />}
+        />
+        <Input
+          defaultValue={value}
+          onChange={(e) => setValue(e.target.value)}
+          size="lg"
+          placeholder="비밀번호를 입력하세요."
+          shape="square"
+          type="password"
+          startIcon={<MdOutlineLock />}
+        />
+        <Input
+          defaultValue={value}
+          onChange={(e) => setValue(e.target.value)}
+          size="lg"
+          placeholder="이름을 입력하세요."
+          shape="square"
+          startIcon={<BsPerson />}
+        />
+        <Input
+          defaultValue={value}
+          onChange={(e) => setValue(e.target.value)}
+          size="lg"
+          placeholder="오른쪽 버튼을 눌러 주소를 검색해보세요."
           shape="square"
         />
       </div>
