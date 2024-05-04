@@ -70,7 +70,6 @@ export default function TestPage() {
         <Input
           defaultValue={value}
           onChange={(e) => setValue(e.target.value)}
-          size="lg"
           placeholder="이름을 입력하세요."
           shape="square"
           startIcon={<BsPerson />}

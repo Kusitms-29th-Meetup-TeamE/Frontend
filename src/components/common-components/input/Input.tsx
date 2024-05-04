@@ -29,9 +29,8 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       placeholder,
       onKeyDown,
       defaultValue = '',
-      size,
-      shape,
-      type,
+      size = 'lg',
+      shape = 'square',
       className,
       search,
       startIcon,
@@ -61,7 +60,6 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
 
         <input
           value={value}
-          type={type}
           onChange={(e) => {
             onChange?.(e);
             setValue(e.target.value);
