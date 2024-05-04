@@ -46,8 +46,8 @@ export default function ShareExperience() {
   return (
     <div className="max-w-[1200px] w-full mx-auto">
       <MainTitle
-        title="또바 추천 경험 나누기"
-        subTitle="우리 동네 선생님을 추천해드려요."
+        title="또바 추천 배움 나누기"
+        subTitle="우리 동네 배움 선생님을 추천해드려요."
         className="mb-[50px]"
       />
 
