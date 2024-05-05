@@ -56,7 +56,7 @@ const config: Config = {
         'chip-active': '#FD8F2A',
         'chip-creative': '#FFC700',
         'chip-learnable': '#E85087',
-        'chip-artistic': '#8598FC',
+        'chip-artistic': '#A954DD',
         'chip-peaceful': '#8598FC',
         'chip-natural': '#52BD63',
       },
