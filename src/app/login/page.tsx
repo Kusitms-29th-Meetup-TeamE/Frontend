@@ -1,9 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { TfiEmail } from 'react-icons/tfi';
+import { TfiLock } from 'react-icons/tfi';
 
 import Button from '@/components/common-components/button';
 import Checkbox from '@/components/common-components/check-box/Checkbox';
+import Input from '@/components/common-components/input';
 
 import SignUpTitle from '@/components/signUp/SignUpTitle';
 
@@ -23,6 +26,9 @@ const variants = {
 
 const page = () => {
   const [isCheck, setIsCheck] = useState<boolean>(false);
+
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const handleCheck = () => {
     setIsCheck(!isCheck);
@@ -57,9 +63,27 @@ const page = () => {
           height={60}
         />
       </div>
-      <div className="flex flex-col gap-[12px] mb-[20px]">
-        <div className="w-[588px] bg-gray-04">이메일 인풋</div>
-        <div className="w-[588px] bg-gray-04 mb-[10px]">비밀번호 인풋</div>
+      <div className="max-w-[588px] w-full mx-auto flex flex-col mb-[20px]">
+        <Input
+          ref={emailInputRef}
+          startIcon={<TfiEmail />}
+          onChange={() => {
+            console.log(emailInputRef.current?.value);
+          }}
+          placeholder={'이메일을 입력해주세요'}
+          shape={'square'}
+          className="mb-3"
+        />
+        <Input
+          ref={passwordInputRef}
+          startIcon={<TfiLock />}
+          onChange={() => {
+            console.log(passwordInputRef.current?.value);
+          }}
+          placeholder={'비밀번호를 입력해주세요'}
+          shape={'square'}
+          className="mb-5"
+        />
         <div className={variants.checkboxContainer} onClick={handleCheck}>
           <Checkbox
             width={19}
