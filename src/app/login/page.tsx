@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import Button from '@/components/common-components/button';
-import CheckBox from '@/components/common-components/check-box/CheckBox';
+import Checkbox from '@/components/common-components/check-box/Checkbox';
 
 import SignUpTitle from '@/components/signUp/SignUpTitle';
 
@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 const variants = {
   login: 'flex justify-center items-end gap-[38px] pt-[124px] pb-[54px]',
-  checkbox: 'flex flex-row gap-[10px] pl-[28px] cursor-pointer',
+  checkboxContainer: 'flex flex-row gap-[10px] pl-[28px] cursor-pointer',
   checkboxLabel: 'text-body3 text-gray-07',
   seperator: 'relative flex justify-center w-[588px] mb-5',
   seperatorLabel:
@@ -60,8 +60,8 @@ const page = () => {
       <div className="flex flex-col gap-[12px] mb-[20px]">
         <div className="w-[588px] bg-gray-04">이메일 인풋</div>
         <div className="w-[588px] bg-gray-04 mb-[10px]">비밀번호 인풋</div>
-        <div className={variants.checkbox} onClick={handleCheck}>
-          <CheckBox
+        <div className={variants.checkboxContainer} onClick={handleCheck}>
+          <Checkbox
             width={19}
             height={19}
             isLogin={true}
@@ -79,7 +79,12 @@ const page = () => {
         <div className={variants.seperatorLabel}>또는</div>
       </div>
       <button className={variants.kakao}>
-        <Image src="/assets/kakao.svg" alt="" width={22} height={19} />
+        <Image
+          src="/assets/components/kakao.svg"
+          alt=""
+          width={22}
+          height={19}
+        />
         <span>카카오 로그인</span>
       </button>
       <div className={variants.bottomLabel}>
