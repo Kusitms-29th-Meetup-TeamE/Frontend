@@ -38,12 +38,24 @@ const page = () => {
         height={30}
       />
       <div className={variants.login}>
-        <img className="h-min" src="/assets/main/point-left.svg" alt={''} />
+        <Image
+          className="h-min"
+          src="/assets/main/point-left.svg"
+          alt={''}
+          width={96}
+          height={60}
+        />
         <SignUpTitle
           title={'로그인'}
           subTitle={'활기찬 우리들의 만남\n또바에서 또 봐요!'}
         />
-        <img className="h-min" src="/assets/main/point-right.svg" alt={''} />
+        <Image
+          className="h-min"
+          src="/assets/main/point-right.svg"
+          alt={''}
+          width={96}
+          height={60}
+        />
       </div>
       <div className="flex flex-col gap-[12px] mb-[20px]">
         <div className="w-[588px] bg-gray-04">이메일 인풋</div>
@@ -67,7 +79,7 @@ const page = () => {
         <div className={variants.seperatorLabel}>또는</div>
       </div>
       <button className={variants.kakao}>
-        <img src="/assets/kakao.svg" alt="" />
+        <Image src="/assets/kakao.svg" alt="" width={22} height={19} />
         <span>카카오 로그인</span>
       </button>
       <div className={variants.bottomLabel}>
