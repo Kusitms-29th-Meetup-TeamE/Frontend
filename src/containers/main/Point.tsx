@@ -3,6 +3,8 @@ import React from 'react';
 import MainTitle from '@/components/main/MainTitle';
 import PointItem from '@/components/main/PointItem';
 
+import Image from 'next/image';
+
 const Point = () => {
   const PointData = {
     user: '또바기',
@@ -17,7 +19,12 @@ const Point = () => {
         className="mb-[60px]"
       />
       <div className="mb-[53px] flex gap-[17px] justify-center">
-        <img src="/assets/main/point-left.svg" alt="" />
+        <Image
+          src="/assets/main/point-left.svg"
+          alt=""
+          width={96}
+          height={60}
+        />
         <div>
           <div className="text-footer-bold mb-[18px]">
             <span className="text-primary-orange6">{PointData.user}</span>
@@ -27,7 +34,12 @@ const Point = () => {
             {PointData.point} 원
           </div>
         </div>
-        <img src="/assets/main/point-right.svg" alt="" />
+        <Image
+          src="/assets/main/point-right.svg"
+          alt=""
+          width={96}
+          height={60}
+        />
       </div>
       <div className="flex gap-[24px] w-full">
         <PointItem
