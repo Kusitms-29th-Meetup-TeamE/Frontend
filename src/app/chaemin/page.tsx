@@ -5,6 +5,7 @@ import { BsPerson } from 'react-icons/bs';
 import { MdOutlineLock } from 'react-icons/md';
 import { TfiEmail } from 'react-icons/tfi';
 
+import Button from '@/components/common-components/button';
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Input from '@/components/common-components/input';
 import Skeleton from '@/components/common-components/skeleton';
@@ -82,6 +83,22 @@ export default function TestPage() {
           shape="square"
         />
       </div>
+
+      <div className="flex flex-col gap-4 my-4">
+        <div className="flex gap-2 mt-4">
+          <Button color="gray" shape="rounded" size="lg">
+            이전
+          </Button>
+          <Button color="default" shape="rounded" size="lg">
+            다음
+          </Button>
+        </div>
+
+        <Button color="default" shape="square" size="xl">
+          로그인
+        </Button>
+      </div>
+
       {/* main-title component 테스트 */}
       <MainTitle
         title="또바 추천 활동"
