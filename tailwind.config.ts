@@ -133,6 +133,14 @@ const config: Config = {
             letterSpacing: '2%',
           },
         ],
+        'chip-semibold': [
+          '1.625rem', // 26px
+          {
+            fontWeight: '600',
+            lineHeight: '50px',
+            letterSpacing: '4%',
+          },
+        ],
         'chip-medium': [
           '0.875rem', // 14px
           {
