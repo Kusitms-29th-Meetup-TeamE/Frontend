@@ -20,7 +20,7 @@ const style: {
     sm: '',
     md: '',
     lg: 'w-full max-w-[216px] h-[54px] py-3 text-h3', // 이전, 다음 버튼
-    xl: 'w-full max-w-[588px] !flex h-[68px] text-body2', // 로그인
+    xl: 'w-full max-w-[588px] !flex h-[68px] py-4 text-body2', // 로그인
   },
   shape: {
     square: 'rounded-[20px]',
