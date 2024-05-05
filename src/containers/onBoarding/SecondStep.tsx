@@ -15,8 +15,8 @@ const SecondStep = () => {
       centerImg={
         <Image
           src="/assets/onboarding/second_center_img.png"
-          width={1200}
-          height={736}
+          width={1524}
+          height={917}
           className="mt-[124px]" // step에서부터 124px
           alt={''}
         />
