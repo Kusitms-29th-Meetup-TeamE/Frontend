@@ -5,7 +5,7 @@ import Button from '@/components/common-components/button/Button';
 import Image from 'next/image';
 
 export type OnboardingFrameProps = {
-  stepImg: React.ReactNode;
+  stepImg: string;
   title: string;
   subTitle: string;
   isLast?: boolean;
@@ -17,7 +17,7 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
 
   return (
     <div className="flex flex-col justify-center items-center mt-[18px]">
-      {stepImg}
+      <Image src={stepImg} width={300} height={12} alt={''} />
       {/* 로그인 머지된 후 컴포넌트 사용 예정 */}
       {centerImg}
       <div className="w-full flex justify-center gap-[24px] mb-[28px]">

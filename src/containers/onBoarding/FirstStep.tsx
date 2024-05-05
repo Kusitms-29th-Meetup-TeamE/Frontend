@@ -9,14 +9,7 @@ import Image from 'next/image';
 const FirstStep = () => {
   return (
     <OnboardingFrame
-      stepImg={
-        <Image
-          src="/assets/onboarding/first_step.png"
-          width={300}
-          height={12}
-          alt={''}
-        />
-      }
+      stepImg={'/assets/onboarding/first_step.png'}
       title={''}
       subTitle={''}
       centerImg={
