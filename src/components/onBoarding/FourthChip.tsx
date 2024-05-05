@@ -8,7 +8,7 @@ const style: {
   color: Record<string, string>;
   type: string;
 } = {
-  base: 'max-w-[300px] w-full max-h-[100px] inline-flex justify-center items-center rounded-[50px] py-[25px] text-chip-semibold border-2 bg-white bg-opacity-54',
+  base: 'max-w-[300px] w-full max-h-[100px] inline-flex justify-center items-center rounded-[50px] py-[25px] text-chip-semibold border-2 bg-white/[.54]',
   color: {
     활발한: 'gap-[14px] border border-chip-active text-chip-active', // 활발한
     학문적인: 'gap-[10px] border border-chip-scholar text-chip-scholar', // 학문적인

@@ -16,7 +16,7 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
   const { stepImg, title, subTitle, isLast, centerImg } = props;
 
   return (
-    <div className="flex flex-col justify-center items-center mt-[18px]">
+    <div className="w-full flex flex-col justify-center items-center mt-[18px]">
       <Image src={stepImg} width={300} height={12} alt={''} />
       {/* 로그인 머지된 후 컴포넌트 사용 예정 */}
       {centerImg}
