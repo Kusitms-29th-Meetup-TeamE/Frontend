@@ -11,20 +11,21 @@ const style: {
 } = {
   base: 'max-h-[32px] inline-flex justify-center items-center rounded-[20px] px-[20px] py-[6px] text-chip-bold',
   color: {
-    활발한: 'bg-[rgba(253,143,42,0.1)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
+    활발한:
+      'bg-chip-active bg-opacity-10 border border-chip-active text-chip-active', // 활발한
     학문적인:
-      'border border-[#E78751] bg-[rgba(231, 135, 81, 0.10)] text-[#E78751]', // 학문적인
+      'border border-chip-scholar bg-chip-scholar bg-opacity-10 text-chip-scholar', // 학문적인
 
     평화로운:
-      'border border-[#8598FC] bg-[rgba(133, 152, 252, 0.10)] text-[#8598FC]',
+      'border border-chip-peaceful bg-chip-peaceful bg-opacity-10 text-chip-peaceful',
     예술적인:
-      'border border-[#A954DD] bg-[rgba(169, 84, 221, 0.10)] text-[#A954DD]',
+      'border border-chip-artistic bg-chip-artistic bg-opacity-10 text-chip-artistic',
     자연친화적인:
-      'border border-[#4BAB5A] bg-[rgba(75, 171, 90, 0.10)] text-[#4BAB5A]',
+      'border border-chip-natural bg-chip-natural bg-opacity-10 text-chip-natural',
     '배울 수 있는':
-      'border border-[#EA709C] bg-[rgba(234, 112, 156, 0.10)] text-[#EA709C]',
+      'border border-chip-learnable bg-chip-learnable bg-opacity-10 text-chip-learnable',
     창의적인:
-      'border border-[#FFC700] bg-[rgba(255, 199, 0, 0.10)] text-[#FFC700]',
+      'border border-chip-creative bg-chip-creative bg-opacity-10 text-chip-creative',
   },
   // 활동 타입은 아래 type 색상만 사용합니다.
   type: '!px-[16px] !rounded-[30px] text-white text-chip-bold bg-primary-orange4 bg-opacity-80',

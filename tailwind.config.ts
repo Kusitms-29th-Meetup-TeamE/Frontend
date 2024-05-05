@@ -53,12 +53,12 @@ const config: Config = {
 
         // chip color
         'chip-scholar': '#E78751',
-        'chip-active': 'FD8F2A',
+        'chip-active': '#FD8F2A',
         'chip-creative': '#FFC700',
-        'chip-learnable': 'E85087',
-        'chip-artistic': '8598FC',
-        'chip-peaceful': '8598FC',
-        'chip-natural': '52BD63',
+        'chip-learnable': '#E85087',
+        'chip-artistic': '#8598FC',
+        'chip-peaceful': '#8598FC',
+        'chip-natural': '#52BD63',
       },
       fontSize: {
         h1: [
