@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+import Button from '@/components/common-components/button';
 import CheckBox from '@/components/common-components/check-box/CheckBox';
 
 import SignUpTitle from '@/components/signUp/SignUpTitle';
@@ -12,7 +13,7 @@ const variants = {
   login: 'flex justify-center items-end gap-[38px] pt-[124px] pb-[54px]',
   checkbox: 'flex flex-row gap-[10px] pl-[28px] cursor-pointer',
   checkboxLabel: 'text-body3 text-gray-07',
-  seperator: 'relative flex justify-center w-[588px] mb-[20px]',
+  seperator: 'relative flex justify-center w-[588px] mb-5',
   seperatorLabel:
     'absolute top-[-10px] pr-[14px] pl-[14px] bg-white text-gray-07 text-footer-regular',
   kakao:
@@ -58,7 +59,9 @@ const page = () => {
           <div className={variants.checkboxLabel}>로그인 상태 유지</div>
         </div>
       </div>
-      <div className="w-[588px] h-[68px] bg-gray-04 mb-[40px]">로그인 버튼</div>
+      <Button size="xl" shape="square" className="mb-10">
+        로그인
+      </Button>
       <div className={variants.seperator}>
         <div className="w-full h-[1px] bg-gray-05" />
         <div className={variants.seperatorLabel}>또는</div>
