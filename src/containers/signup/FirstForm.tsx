@@ -1,3 +1,5 @@
+import SignUpTitle from '@/components/signUp/SignUpTitle';
+
 import Image from 'next/image';
 
 const style = {
@@ -9,12 +11,21 @@ const style = {
 
 export default function FirstForm() {
   return (
-    <div className="m-auto border border-black w-full max-w-[800px] flex flex-col justify-center items-center gap-[60px]">
-      <Image src={'/assets/signup/form1.png'} width={618} height={42} alt="" />
-      {/* TODO: 컴포넌트로 붙이기 */}
-      <div>회원가입 어쩌구</div>
+    <div className="m-auto border border-black w-full max-w-[800px] flex flex-col justify-center items-center">
+      <Image
+        src={'/assets/signup/form1.png'}
+        width={618}
+        height={42}
+        alt=""
+        className="mb-[96px]"
+      />
 
-      <div className="flex gap-6">
+      <SignUpTitle
+        title={'회원가입'}
+        subTitle={'어떤 유형의 이용자이신가요?'}
+      />
+
+      <div className="flex gap-6 mt-[104px]">
         <div className={style.background}>
           <div>이미지</div>
           <div className={style.title}>일반 회원</div>
