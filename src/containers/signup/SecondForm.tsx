@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 import Checkbox from '@/components/common-components/check-box/Checkbox';
@@ -8,17 +8,20 @@ import SignUpTitle from '@/components/signUp/SignUpTitle';
 import clsx from 'clsx';
 import Image from 'next/image';
 
-const checkData = [
+export const checkData = [
   { type: '[필수]', text: '만 15세 이상입니다.' },
   { type: '[필수]', text: '개인회원 이용약관 동의' },
   { type: '[필수]', text: '개인정보 수집 및 이용 동의' },
   { type: '[선택]', text: '마케팅 수신 동의' },
 ];
 
-export default function SecondForm() {
-  const [checkItems, setCheckItems] = useState(() => {
-    return checkData.map(() => false);
-  });
+export type SecondFormProps = {
+  checkItems: boolean[];
+  setCheckItems: Dispatch<SetStateAction<boolean[]>>;
+};
+
+export default function SecondForm(props: SecondFormProps) {
+  const { checkItems, setCheckItems } = props;
 
   const handleCheckChange = (idx: number) => {
     setCheckItems((prev) => {
