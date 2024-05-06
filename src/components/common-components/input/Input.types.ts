@@ -6,7 +6,7 @@ export type InputProps = {
   shape: InputShape;
   search?: boolean;
   className?: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   startIcon?: React.ReactNode;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'className'>;
 
