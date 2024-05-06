@@ -79,14 +79,14 @@ export default function Header() {
           </div>
         ) : (
           <div className={variants.rightBar}>
-            <div>
+            <div className="flex gap-1">
               <Link href="/login">
                 <span>로그인</span>
               </Link>
 
               <span>/</span>
 
-              <Link href="/sign-up">
+              <Link href="/signup">
                 <span>회원가입</span>
               </Link>
             </div>
