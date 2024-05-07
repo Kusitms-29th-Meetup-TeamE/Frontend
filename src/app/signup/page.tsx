@@ -78,7 +78,7 @@ export default function SignUp() {
 
       <div
         className={clsx(
-          'flex gap-6 border border-black w-full justify-center',
+          'flex gap-6 w-full justify-center',
           step === 0 && btnStyle.form1,
           step === 1 && btnStyle.form2,
           step === 2 && btnStyle.form3,

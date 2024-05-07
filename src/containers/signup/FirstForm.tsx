@@ -12,7 +12,7 @@ const style = {
   content: 'text-gray-08 text-body2 text-center',
   background:
     'cursor-pointer w-full border border-white flex flex-col max-w-[384px] h-[372px] bg-white px-[96px] py-[46px] rounded-[40px] shadow-[0_4px_20px_5px_rgba(0,0,0,0.08)] hover:border hover:border-primary-orange6 hover:bg-primary-orange1',
-  clicked: 'border border-primary-orange6 !bg-primary-orange1',
+  clicked: '!border !border-primary-orange6 !bg-primary-orange1',
 };
 
 export type FirstFormProps = {
