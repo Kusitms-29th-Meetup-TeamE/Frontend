@@ -74,6 +74,8 @@ export default function FourthForm() {
     console.log(getValues('confirmPassword'));
   };
 
+  const [nameNotiVisible, setnameNotiVisible] = useState(true);
+
   return (
     <div className="m-auto border border-black w-full max-w-[800px] flex flex-col justify-center items-center">
       <Image
@@ -98,15 +100,16 @@ export default function FourthForm() {
             // defaultValue={name}
             placeholder="이름을 입력해주세요."
             shape="square"
+            onFocus={(e) => setnameNotiVisible(false)}
             {...register('name')}
           />
           <span className="pl-7 my-2 text-h5 h-[28px] flex">
-            {errors.name ? (
+            {nameNotiVisible ? (
+              <span className="text-gray-08">2글자 이상으로 입력해주세요.</span>
+            ) : errors.name ? (
               <span className="text-error-main">{errors.name.message}</span>
             ) : (
-              <span className="text-gray-08">
-                {/* 2글자 이상으로 입력해주세요. */}
-              </span>
+              <span className="text-gray-08"></span>
             )}
           </span>
         </div>
@@ -128,7 +131,7 @@ export default function FourthForm() {
               <span className="text-error-main">{errors.password.message}</span>
             ) : (
               <span className="text-gray-08">
-                {/* 8자 이상 32자 이하로 입력해주세요. */}
+                8자 이상 32자 이하로 입력해주세요.
               </span>
             )}
           </span>
