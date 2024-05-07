@@ -19,6 +19,10 @@ export default function ThirdForm() {
   const [email, setEmail] = useState<string>('');
   const [confirmNum, setConfirmNum] = useState<Number | null>(null);
 
+  const checkEmail = () => {
+    const regExp = '^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$';
+  };
+
   return (
     <div className="m-auto border border-black w-full max-w-[800px] flex flex-col justify-center items-center">
       <Image
