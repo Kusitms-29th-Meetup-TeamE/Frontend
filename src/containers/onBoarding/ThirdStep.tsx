@@ -12,8 +12,10 @@ const ThirdStep = () => {
       subTitle={
         '스치듯 지나가는 새로운 인연들, 만남을 계속 이어가볼까요? 함께 대화하기로 또 만나봐요!'
       }
-      centerImg={''}
-    />
+      btnMt={0}
+    >
+      사진자리
+    </OnboardingFrame>
   );
 };
 

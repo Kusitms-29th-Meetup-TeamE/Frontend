@@ -7,16 +7,19 @@ import Image from 'next/image';
 
 const FourthStep = () => {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <>
       <OnboardingFrame
         stepImg={'/assets/onboarding/fourth_step.png'}
-        title={'배움 나누기'}
+        title={'어떤 성격의 활동을 선호하시나요?'}
         subTitle={
-          '내가 배움 선배가 되어 가르치거나, 내가 배움 후배가 되어 배우거나!'
+          '선호하시는 활동 성격을 선택해주세요. 또바가 꼭 맞는 활동을 추천해드릴게요.'
         }
-        centerImg={<FourthChipCloud />}
-      />
-    </div>
+        btnMt={0}
+      ></OnboardingFrame>
+      <div className="absolute w-screen top-0">
+        <FourthChipCloud />
+      </div>
+    </>
   );
 };
 
