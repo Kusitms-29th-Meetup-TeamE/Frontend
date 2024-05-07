@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { MdOutlineLock } from 'react-icons/md';
 import { TfiEmail } from 'react-icons/tfi';
 
@@ -15,12 +15,29 @@ export const inputStyle = {
   activeBtn: 'bg-primary-orange1 text-primary-orange6 cursor-pointer',
 };
 
-export default function ThirdForm() {
-  const [email, setEmail] = useState<string>('');
-  const [confirmNum, setConfirmNum] = useState<Number | null>(null);
+export type ThirdFormProps = {
+  authEmail: boolean;
+  setAuthEmail: Dispatch<SetStateAction<boolean>>;
+};
 
-  const checkEmail = () => {
-    const regExp = '^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$';
+export default function ThirdForm(props: ThirdFormProps) {
+  const { authEmail, setAuthEmail } = props;
+  const [email, setEmail] = useState<string>('');
+
+  const [confirmAuthNum, setConfirmAuthNum] = useState<Number | null>(null);
+
+  const disabledBtn = () => {
+    const regExp =
+      /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+    if (regExp.test(email)) {
+      // TODO: 아래 setter 삭제 필요 (임시로 작성해놓음)
+      setAuthEmail(false);
+      return false;
+    } else return true;
+  };
+
+  const requestAuthNumber = () => {
+    // TODO: 인증 요청 api 통신 필요
   };
 
   return (
@@ -42,15 +59,22 @@ export default function ThirdForm() {
         <div className="relative">
           <Input
             startIcon={<TfiEmail />}
-            onChange={() => {
-              // console.log(emailInputRef.current?.value);
+            onChange={(e) => {
+              setEmail(e.target.value);
             }}
             size="lg"
             defaultValue={email}
             placeholder="이메일을 입력해주세요."
             shape="square"
           />
-          <span className={inputStyle.inputBtn} aria-disabled={true}>
+          <span
+            className={clsx(
+              inputStyle.inputBtn,
+              !disabledBtn() && inputStyle.activeBtn,
+            )}
+            aria-disabled={disabledBtn()}
+            onClick={requestAuthNumber}
+          >
             인증 요청
           </span>
         </div>
@@ -62,7 +86,7 @@ export default function ThirdForm() {
               // console.log(emailInputRef.current?.value);
             }}
             size="lg"
-            defaultValue={confirmNum as number}
+            // defaultValue={confirmNum as number}
             placeholder="인증번호를 입력해주세요."
             shape="square"
           />
