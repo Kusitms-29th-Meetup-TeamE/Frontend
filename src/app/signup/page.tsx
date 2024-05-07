@@ -28,9 +28,34 @@ export default function SignUp() {
     return checkData.map(() => false);
   });
 
+  const [authEmail, setAuthEmail] = useState<boolean>(true);
+
+  // 각 단계에서 입력한 데이터를 저장할 상태 추가
+  const [formData, setFormData] = useState<any>({
+    firstForm: {}, // 첫 번째 단계 데이터
+    secondForm: {}, // 두 번째 단계 데이터
+    thirdForm: {}, // 세 번째 단계 데이터
+    fourthForm: {}, // 네 번째 단계 데이터
+  });
+
   const handlePrevClick = () => {
     if (step > 0) {
       setStep(step - 1);
+
+      // 이전 단계 데이터 저장
+      // switch (step) {
+      //   case 1:
+      //     setFormData({ ...formData, firstForm: selectedOption });
+      //     break;
+      //   case 2:
+      //     setFormData({ ...formData, secondForm: checkItems });
+      //     break;
+      //   case 3:
+      //     setFormData({ ...formData, thirdForm: authEmail });
+      //     break;
+      //   default:
+      //     break;
+      // }
     }
   };
 
@@ -53,6 +78,9 @@ export default function SignUp() {
     )
       return true;
     if (step === 1 && !allRequiredChecked) return true;
+    if (step === 2 && authEmail) return true;
+
+    return false;
   };
 
   const onSubmitFourthForm = (data: any) => {
@@ -72,7 +100,9 @@ export default function SignUp() {
       {step === 1 && (
         <SecondForm checkItems={checkItems} setCheckItems={setCheckItems} />
       )}
-      {step === 2 && <ThirdForm />}
+      {step === 2 && (
+        <ThirdForm authEmail={authEmail} setAuthEmail={setAuthEmail} />
+      )}
       {step === 3 && <FourthForm />}
       {step === 4 && <FifthForm />}
 
