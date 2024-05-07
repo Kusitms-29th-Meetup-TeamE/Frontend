@@ -24,7 +24,10 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
 
-  const isGuest = pathname.includes('/login') || pathname.includes('/signup');
+  const isGuest =
+    pathname.includes('/login') ||
+    pathname.includes('/signup') ||
+    pathname.includes('/onboarding');
 
   return (
     <html>
@@ -33,8 +36,9 @@ export default function RootLayout({
         <Providers>
           <GlobalModalProvider>
             {!isGuest && <Header />}
-            {/* TOFIX: container 작업 필요 */}
-            <div className="mt-[70px] mb-[160px]">{children}</div>
+            <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>
+              {children}
+            </div>
             {!isGuest && <Footer />}
             <GlobalModal />
           </GlobalModalProvider>
