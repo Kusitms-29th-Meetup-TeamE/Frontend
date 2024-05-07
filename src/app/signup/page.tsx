@@ -38,6 +38,9 @@ export default function SignUp() {
     if (step < 4) {
       setStep(step + 1);
     }
+    if (step === 4) {
+      // TODO: onSubmit?
+    }
   };
 
   const allRequiredChecked = checkItems.slice(0, 3).every(Boolean); // 필수항목 체크 여부 확인
@@ -50,6 +53,12 @@ export default function SignUp() {
     )
       return true;
     if (step === 1 && !allRequiredChecked) return true;
+  };
+
+  const onSubmitFourthForm = (data: any) => {
+    // FourthForm의 onSubmit에 전달할 로직 구현
+    console.log('Submitted from FourthForm:', data);
+    // 필요한 로직 수행
   };
 
   return (
@@ -94,6 +103,7 @@ export default function SignUp() {
           size="lg"
           onClick={handleNextClick}
           disabled={disabledBtn()}
+          type="submit"
         >
           {step !== 4 ? '다음' : '완료'}
         </Button>
