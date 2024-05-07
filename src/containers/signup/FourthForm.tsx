@@ -100,11 +100,13 @@ export default function FourthForm() {
             shape="square"
             {...register('name')}
           />
-          <span className="pl-7 mt-[10px] mb-[14px] text-h5 h-[28px] flex">
+          <span className="pl-7 my-2 text-h5 h-[28px] flex">
             {errors.name ? (
               <span className="text-error-main">{errors.name.message}</span>
             ) : (
-              <span className="text-gray-08" />
+              <span className="text-gray-08">
+                {/* 2글자 이상으로 입력해주세요. */}
+              </span>
             )}
           </span>
         </div>
@@ -121,12 +123,12 @@ export default function FourthForm() {
             {...register('password')}
           />
 
-          <span className="pl-7 mt-[10px] mb-[14px] text-h5 h-[28px] flex">
+          <span className="pl-7 my-2 text-h5 h-[28px] flex">
             {errors.password ? (
               <span className="text-error-main">{errors.password.message}</span>
             ) : (
               <span className="text-gray-08">
-                8자 이상 32자 이하로 입력해주세요.
+                {/* 8자 이상 32자 이하로 입력해주세요. */}
               </span>
             )}
           </span>
@@ -143,7 +145,7 @@ export default function FourthForm() {
             type="password"
             {...register('confirmPassword')}
           />
-          <span className="pl-7 mt-[10px] mb-[14px] text-h5 h-[28px] flex">
+          <span className="pl-7 my-2 text-h5 h-[28px] flex">
             {errors.confirmPassword ? (
               <span className="text-error-main">
                 {errors.confirmPassword.message}
