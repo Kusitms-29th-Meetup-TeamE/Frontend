@@ -12,15 +12,15 @@ const ThirdLine = ['배울 수 있는', '예술적인'];
 
 const FourthChipCloud = () => {
   return (
-    <div className="relative w-full flex justify-center mb-[121px]">
+    <div className="relative w-full flex justify-center items-center mt-72">
       <Image
         src="/assets/onboarding/fourth_center_img.png"
         width={1076}
         height={745}
-        className="absolute mt-[91px] -z-10" // step에서부터 91px
+        className="absolute -z-10" // step에서부터 91px
         alt={''}
       />
-      <div className="flex flex-col max-w-[920px] w-full gap-[49px] mt-[91px]">
+      <div className="flex flex-col max-w-[920px] w-full gap-[49px]">
         <div className="flex justify-center gap-[10px]">
           {FirstLine.map((data, index) => (
             <FourthChip text={data} />

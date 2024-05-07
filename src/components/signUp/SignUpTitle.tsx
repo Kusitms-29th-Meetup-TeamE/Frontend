@@ -10,7 +10,7 @@ const SignUpTitle = (props: SignUpTitleProps) => {
 
   return (
     <div className="w-fit flex flex-col justify-center items-center text-center">
-      <div className="mb-[16px] text-h2 text-black">{title}</div>
+      <div className="mb-4 text-h2 text-black">{title}</div>
       <div className="text-gray-08 text-h4 whitespace-pre-wrap">{subTitle}</div>
     </div>
   );
