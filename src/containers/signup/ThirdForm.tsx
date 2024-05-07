@@ -11,8 +11,8 @@ import Image from 'next/image';
 
 export const inputStyle = {
   inputBtn:
-    'absolute right-7 top-4 px-[10px] py-[9px] rounded-[6px] items-center flex justify-center text-gray-06 text-h5 bg-gray-03 h-[36px] w-full max-w-[90px] cursor-pointer',
-  activeBtn: 'bg-primary-orange1 text-primary-orange6',
+    'absolute right-7 top-4 px-[10px] py-[9px] rounded-[6px] items-center flex justify-center text-gray-06 text-h5 bg-gray-03 h-[36px] w-full max-w-[90px]',
+  activeBtn: 'bg-primary-orange1 text-primary-orange6 cursor-pointer',
 };
 
 export default function ThirdForm() {
@@ -50,7 +50,9 @@ export default function ThirdForm() {
             placeholder="이메일을 입력해주세요."
             shape="square"
           />
-          <span className={inputStyle.inputBtn}>인증 요청</span>
+          <span className={inputStyle.inputBtn} aria-disabled={true}>
+            인증 요청
+          </span>
         </div>
 
         <div className="relative">
@@ -64,7 +66,9 @@ export default function ThirdForm() {
             placeholder="인증번호를 입력해주세요."
             shape="square"
           />
-          <span className={clsx(inputStyle.inputBtn)}>인증 확인</span>
+          <span className={clsx(inputStyle.inputBtn)} aria-disabled={true}>
+            인증 확인
+          </span>
         </div>
       </div>
     </div>
