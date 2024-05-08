@@ -56,14 +56,19 @@ export default function SelectBox({
         onMouseDown={() => setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu)}
         onBlur={handleBlur}
       >
-        <div>
-          {selectedItem ? (
-            <span className="text-gray-10">{selectedItem}</span>
-          ) : (
-            initText ?? `${items[0].text}`
-          )}
+        <div
+          className={
+            initText === selectedItem ? 'text-gray-06' : 'text-gray-10'
+          }
+        >
+          {selectedItem ? selectedItem : initText ?? `${items[0].text}`}
         </div>
-        <span className={clsx(selectedItem && 'text-gray-10')}>
+
+        <span
+          className={clsx(
+            selectedItem === initText ? 'text-gray-06' : 'text-gray-10',
+          )}
+        >
           {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </span>
       </button>
