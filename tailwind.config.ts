@@ -156,6 +156,38 @@ const config: Config = {
             letterSpacing: '2%',
           },
         ],
+        'notification-h1': [
+          '1.5rem', // 24px
+          {
+            fontWeight: '700',
+            lineHeight: '30px',
+            letterSpacing: '2%',
+          },
+        ],
+        'notification-b1': [
+          '1.125rem', // 18px
+          {
+            fontWeight: '500',
+            lineHeight: '30px',
+            letterSpacing: '2%',
+          },
+        ],
+        'notification-chip-no': [
+          '1rem', // 16px
+          {
+            fontWeight: '500',
+            lineHeight: '26px',
+            letterSpacing: '2%',
+          },
+        ],
+        'notification-chip-yes': [
+          '1rem', // 16px
+          {
+            fontWeight: '600',
+            lineHeight: '26px',
+            letterSpacing: '2%',
+          },
+        ],
       },
       fontFamily: {
         wantedSans: ['var(--font-wantedSans)'],
