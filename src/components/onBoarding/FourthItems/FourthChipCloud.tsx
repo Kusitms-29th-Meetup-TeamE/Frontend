@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FourthChip from '@/components/onBoarding/FourthChip';
+import FourthChip from '@/components/onBoarding/FourthItems/FourthChip';
 
 import Image from 'next/image';
 
