@@ -29,7 +29,7 @@ export default function ShareExperience() {
       <div className="flex gap-4">
         {mainProfileList.map((item, idx) => {
           return (
-            <div key={idx}>
+            <div key={idx} className="w-full">
               <ShareProfile
                 isLoading={isLoading}
                 name={item.name}
