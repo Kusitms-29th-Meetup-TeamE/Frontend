@@ -70,7 +70,32 @@ export default function TestPage() {
     {
       id: 6,
       text: 'ㅁㅁㅁㄴㅇㄹ',
-      value: 'f',
+      value: 'fs',
+    },
+    {
+      id: 7,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fsf',
+    },
+    {
+      id: 8,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fvv',
+    },
+    {
+      id: 9,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fxx',
+    },
+    {
+      id: 10,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fqq',
+    },
+    {
+      id: 11,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fzzzz',
     },
   ];
 
