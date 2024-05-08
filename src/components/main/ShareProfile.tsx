@@ -56,9 +56,9 @@ export default function ShareProfile(props: ShareProfileProps) {
           <Skeleton width={280} height={25} className="mt-5" />
         </div>
       ) : (
-        <div className="flex justify-between mt-5 px-5">
+        <div className="flex justify-between items-center gap-2 mt-5 px-4">
           <div className="text-footer-bold text-gray-09">{name}</div>
-          <div className="flex gap-[15px] px-[14px] py-1 bg-gray-03 rounded-[18px] text-footer-regular text-gray-08">
+          <div className="flex gap-2 px-[14px] py-1 bg-gray-03 rounded-[18px] text-footer-regular text-gray-08">
             <span>{age}세</span>
             <span>|</span>
             <span>{gender}</span>
