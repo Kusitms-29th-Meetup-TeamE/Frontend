@@ -1,6 +1,6 @@
 import { variants } from './Modal';
 
-import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx';
 
 // 모달 Description 컴포넌트(모달의 설명) - 모달 기본 body 영역
 export default function ModalDescription({
@@ -11,7 +11,7 @@ export default function ModalDescription({
   children: React.ReactNode;
 }) {
   return (
-    <div className={twMerge(variants.description, className)}>{children}</div>
+    <div className={clsx(variants.description, className)}>{children}</div>
   );
 }
 
