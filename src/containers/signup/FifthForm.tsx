@@ -15,7 +15,7 @@ const style = {
   genderBase:
     'cursor-pointer border border-gray-05 text-h4 text-gray-06 rounded-[20px] py-5 w-full flex justify-center items-center',
   genderClicked:
-    'bg-primary-orange1 border border-primary-orange6 text-h3 text-primary-orange6',
+    'bg-primary-orange1 border border-primary-orange6 !text-h3 text-primary-orange6',
 };
 
 export const monthItems: SelectItemType[] = [
