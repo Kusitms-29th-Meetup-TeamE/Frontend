@@ -1,24 +1,22 @@
 import { Fragment, useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
-// import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md';
 import { Transition } from '@headlessui/react';
 
 import {
-  DropdownSize,
   SelectBoxProps,
+  SelectBoxSize,
   SelectItemType,
 } from './SelectBox.types';
 
 import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
 
 const style: {
   base: string;
-  sizes: Record<DropdownSize, string>;
-  design: Record<DropdownSize, string>;
+  sizes: Record<SelectBoxSize, string>;
+  design: Record<SelectBoxSize, string>;
 } = {
-  base: 'absolute w-full mt-1 z-50 overflow-y-auto rounded-[20px] border border-1 border-gray-05 text-gray-06 bg-white',
+  base: 'absolute w-full mt-1 z-50 rounded-[20px] border border-1 border-gray-05 text-gray-06 bg-white',
   sizes: {
     sm: '',
     // md - 회원가입 생년월일
@@ -27,7 +25,7 @@ const style: {
   },
   design: {
     sm: '',
-    md: 'px-7 py-[6px] text-h4 max-w-[192px] max-h-[268px] overflow-y-auto',
+    md: 'max-w-[192px] max-h-[268px] overflow-y-auto rounded-[20px]',
     lg: '',
   },
 };
@@ -70,7 +68,11 @@ export default function SelectBox({
             leaveTo="opacity-0"
           >
             <div
-              className={clsx(style.base, style.design[size])}
+              className={clsx(
+                'scroll-container',
+                style.base,
+                style.design[size],
+              )}
               onMouseDown={(e) => e.preventDefault()}
             >
               {items.map((item, idx) => {
@@ -85,10 +87,11 @@ export default function SelectBox({
                     onMouseEnter={() => setHoverMenu(item.value)}
                     onMouseLeave={() => setHoverMenu(null)}
                     className={clsx(
-                      idx === 0 && 'rounded-t', // 첫 번째 항목에 rounded 추가
-                      idx === items.length - 1 && 'rounded-b', // 마지막 항목에 rounded 추가
-                      'cursor-pointer px-[5px] py-4',
-                      hoverMenu === item.value && 'bg-yellow-300',
+                      // idx === 0 && 'rounded-t-[20px]',
+                      // idx === items.length - 1 && 'rounded-b-[20px]',
+                      'cursor-pointer px-7 py-[6px] text-h4 box-border',
+                      hoverMenu === item.value &&
+                        'bg-primary-orange1 !text-h3 text-primary-orange6',
                     )}
                   >
                     {item.text}
