@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FourthChipCloud from '@/components/onBoarding/FourthChipCloud';
+import FourthChipCloud from '@/components/onBoarding/FourthItems/FourthChipCloud';
 import OnboardingFrame from '@/components/onBoarding/OnboardingFrame';
 
 import Image from 'next/image';
