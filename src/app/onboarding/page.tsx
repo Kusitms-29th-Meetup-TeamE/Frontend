@@ -4,6 +4,7 @@ import FirstStep from '@/containers/onBoarding/FirstStep';
 import FourthStep from '@/containers/onBoarding/FourthStep';
 import SecondStep from '@/containers/onBoarding/SecondStep';
 import ThirdStep from '@/containers/onBoarding/ThirdStep';
+import ZeroStep from '@/containers/onBoarding/ZeroStep';
 
 import Image from 'next/image';
 
@@ -17,7 +18,8 @@ const page = () => {
         width={86}
         height={30}
       />
-      <FirstStep />
+      <ZeroStep />
+      {/* <FirstStep /> */}
       {/* <SecondStep /> */}
       {/* <ThirdStep /> */}
       {/* <FourthStep /> */}
