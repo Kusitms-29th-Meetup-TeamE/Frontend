@@ -1,7 +1,8 @@
-// import CloseIcon from "@mui/icons-material/Close";
+import { IoClose } from 'react-icons/io5';
+
 import { variants } from './Modal';
 
-import { twMerge } from 'tailwind-merge';
+import clsx from 'clsx';
 
 export default function ModalClose({
   className,
@@ -12,15 +13,14 @@ export default function ModalClose({
 }) {
   return (
     <div className="flex justify-end cursor-pointer">
-      {/* TODO: icon library 선택 후 수정 필요 */}
-      {/* <CloseIcon
+      <IoClose
         type="button"
         className={
-          (twMerge(variants.close, className),
-          "text-black hover:bg-gray-20 hover:rounded")
+          (clsx(variants.close, className),
+          'text-gray-09 hover:bg-gray-03 hover:rounded !text-h2')
         }
         onClick={onClick}
-      /> */}
+      />
     </div>
   );
 }
