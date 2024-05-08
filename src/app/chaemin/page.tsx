@@ -103,8 +103,14 @@ export default function TestPage() {
 
   return (
     <>
-      <div className="flex w-[200px]">
+      <div className="flex flex-col w-[200px]">
         <SelectBox items={tempItems} size="md" setParams={setSelectItem} />
+        <SelectBox
+          initText="이름"
+          items={tempItems}
+          size="md"
+          setParams={setSelectItem}
+        />
       </div>
 
       <div className="flex flex-col gap-2 py-6 px-2">
