@@ -18,7 +18,7 @@ const style: {
   base: 'inline-flex items-center justify-center box-border select-none m-0 p-0 w-fit h-fit cursor-pointer disabled:cursor-default',
   size: {
     sm: '',
-    md: '',
+    md: 'w-full max-w-[153px] h-[50px] py-3 px-12',
     lg: 'w-full max-w-[216px] h-[54px] py-3 text-h3', // 이전, 다음 버튼
     xl: 'w-full max-w-[588px] !flex h-[68px] py-4 text-body2', // 로그인
   },
