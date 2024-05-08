@@ -35,11 +35,14 @@ export default function SelectBox({
   className,
   setParams,
   size = 'md',
+  initText,
 }: SelectBoxProps) {
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const [hoverMenu, setHoverMenu] = useState<string | null>(null);
 
-  const [selectedItem, setSelectedItem] = useState<string>(items[0].text);
+  const [selectedItem, setSelectedItem] = useState<string>(
+    initText ?? items[0].text,
+  );
 
   const handleBlur = () => {
     setIsOpenMenu(false);
@@ -53,7 +56,9 @@ export default function SelectBox({
         onMouseDown={() => setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu)}
         onBlur={handleBlur}
       >
-        <div>{selectedItem ? `${selectedItem}` : `${items[0].text}`}</div>
+        <div>
+          {selectedItem ? `${selectedItem}` : initText ?? `${items[0].text}`}
+        </div>
         {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </button>
       {

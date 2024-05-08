@@ -4,6 +4,7 @@ export type SelectBoxProps = {
   setParams: (text: string) => void;
   size: SelectBoxSize;
   className?: string;
+  initText?: string;
 };
 
 export const selectBoxSizes = {
