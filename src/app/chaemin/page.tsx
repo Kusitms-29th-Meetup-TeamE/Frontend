@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import DaumPostcode from 'react-daum-postcode';
 import { BsPerson } from 'react-icons/bs';
 import { MdOutlineLock } from 'react-icons/md';
 import { TfiEmail } from 'react-icons/tfi';
@@ -8,6 +9,7 @@ import { TfiEmail } from 'react-icons/tfi';
 import Button from '@/components/common-components/button';
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Input from '@/components/common-components/input';
+import { Modal } from '@/components/common-components/modal';
 import { SelectItemType } from '@/components/common-components/select-box';
 import SelectBox from '@/components/common-components/select-box/SelectBox';
 import Skeleton from '@/components/common-components/skeleton';
@@ -101,8 +103,35 @@ export default function TestPage() {
 
   const [selectItem, setSelectItem] = useState<string>();
 
+  const [location, setLocation] = useState<string>('');
+
+  const handleComplete = (data: any) => {
+    console.log(data);
+    setLocation(data.roadAddress);
+    onToggleModal();
+  };
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  // 주소 검색 모달
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <>
+      {/* 주소 검색 테스트 */}
+      <Button size="lg" onClick={() => setIsOpen(true)}>
+        주소 검색
+      </Button>
+      {isOpen && (
+        <Modal open={isOpen} onClose={onToggleModal}>
+          <DaumPostcode onComplete={handleComplete} />
+        </Modal>
+      )}
+      <div>
+        <h2>{location}</h2>
+      </div>
+
       <div className="flex flex-col w-[200px]">
         <SelectBox items={tempItems} size="md" setParams={setSelectItem} />
         <SelectBox
