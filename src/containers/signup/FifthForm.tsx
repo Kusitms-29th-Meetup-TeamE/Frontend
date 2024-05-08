@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 import Input from '@/components/common-components/input';
+import { SelectItemType } from '@/components/common-components/select-box';
+import SelectBox from '@/components/common-components/select-box/SelectBox';
 
 import SignUpTitle from '@/components/signUp/SignUpTitle';
 
@@ -16,17 +18,60 @@ const style = {
     'bg-primary-orange1 border border-primary-orange6 text-h3 text-primary-orange6',
 };
 
+export const monthItems: SelectItemType[] = [
+  { id: 1, text: '1월', value: 1 },
+  { id: 2, text: '2월', value: 2 },
+  { id: 3, text: '3월', value: 3 },
+  { id: 4, text: '4월', value: 4 },
+  { id: 5, text: '5월', value: 5 },
+  { id: 6, text: '6월', value: 6 },
+  { id: 7, text: '7월', value: 7 },
+  { id: 8, text: '8월', value: 8 },
+  { id: 9, text: '9월', value: 9 },
+  { id: 10, text: '10월', value: 10 },
+  { id: 11, text: '11월', value: 11 },
+  { id: 12, text: '12월', value: 12 },
+];
+
+export const yearItems: SelectItemType[] = [];
+
+const currentYear = new Date().getFullYear();
+const startYear = 1900; // 시작 연도
+const endYear = currentYear; // 현재 연도
+
+for (let year = startYear; year <= endYear; year++) {
+  yearItems.push({
+    id: year,
+    text: `${year}년`,
+    value: year,
+  });
+}
+
+export const dayItems: SelectItemType[] = [];
+
+for (let day = 1; day <= 31; day++) {
+  dayItems.push({
+    id: day,
+    text: `${day}일`,
+    value: day,
+  });
+}
+
 export default function FifthForm() {
   const [email, setEmail] = useState<string>('');
   const [confirmNum, setConfirmNum] = useState<Number | null>(null);
   const [gender, setGender] = useState<string>('');
+
+  const [year, setYear] = useState<string>('');
+  const [month, setMonth] = useState<string>('');
+  const [day, setDay] = useState<string>('');
 
   const handleGender = (gender: string) => {
     setGender(gender);
   };
 
   return (
-    <div className="m-auto border border-black w-full max-w-[800px] flex flex-col justify-center items-center">
+    <div className="m-auto w-full max-w-[800px] flex flex-col justify-center items-center">
       <Image
         src={'/assets/signup/form5.png'}
         width={618}
@@ -42,9 +87,24 @@ export default function FifthForm() {
           <span className="pl-5 text-gray-11 text-h3">생년월일</span>
 
           <div className="flex gap-[6px] mt-1">
-            <div>{/* TODO: 생년월일 넣기 */}ss</div>
-            <div>{/* TODO: 생년월일 넣기 */}ss</div>
-            <div>{/* TODO: 생년월일 넣기 */}ss</div>
+            <SelectBox
+              initText="년"
+              items={yearItems}
+              size="md"
+              setParams={setYear}
+            />
+            <SelectBox
+              initText="월"
+              items={monthItems}
+              size="md"
+              setParams={setMonth}
+            />
+            <SelectBox
+              initText="일"
+              items={dayItems}
+              size="md"
+              setParams={setDay}
+            />
           </div>
         </div>
 
