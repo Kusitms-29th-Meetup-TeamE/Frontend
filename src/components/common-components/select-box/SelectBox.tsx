@@ -44,35 +44,28 @@ export default function SelectBox({
     initText ?? items[0].text,
   );
 
-  const handleBlur = useCallback(() => {
+  const handleBlur = () => {
     setIsOpenMenu(false);
-  }, []);
-
-  const toggleMenu = useCallback(() => {
-    setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu);
-  }, []);
-
-  const handleItemClick = useCallback(
-    (item: SelectItemType) => {
-      setSelectedItem(item.text);
-      setParams(item.value);
-      toggleMenu();
-    },
-    [setParams, toggleMenu],
-  );
+  };
 
   return (
     <div className={clsx(className, 'w-full relative')}>
       <button
         type="button"
         className={clsx(style.sizes[size], '')}
-        onMouseDown={toggleMenu}
+        onMouseDown={() => setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu)}
         onBlur={handleBlur}
       >
         <div>
-          {selectedItem ? `${selectedItem}` : initText ?? `${items[0].text}`}
+          {selectedItem ? (
+            <span className="text-gray-10">{selectedItem}</span>
+          ) : (
+            initText ?? `${items[0].text}`
+          )}
         </div>
-        {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        <span className={clsx(selectedItem && 'text-gray-10')}>
+          {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        </span>
       </button>
       {
         <Transition show={isOpenMenu} as={Fragment}>
@@ -97,7 +90,11 @@ export default function SelectBox({
                 return (
                   <div
                     key={idx}
-                    onClick={() => handleItemClick(item)}
+                    onClick={() => {
+                      setSelectedItem(item.text);
+                      setParams(item.value);
+                      setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu);
+                    }}
                     onMouseEnter={() => setHoverMenu(item.value)}
                     onMouseLeave={() => setHoverMenu(null)}
                     className={clsx(
