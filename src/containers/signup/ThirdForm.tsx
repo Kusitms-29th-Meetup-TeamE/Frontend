@@ -41,7 +41,7 @@ export default function ThirdForm(props: ThirdFormProps) {
   };
 
   return (
-    <div className="m-auto border border-black w-full max-w-[800px] flex flex-col justify-center items-center">
+    <div className="m-auto w-full max-w-[800px] flex flex-col justify-center items-center">
       <Image
         src={'/assets/signup/form3.png'}
         width={618}

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BsPerson } from 'react-icons/bs';
 import { MdOutlineLock } from 'react-icons/md';
-import { TfiEmail } from 'react-icons/tfi';
 
 import Input from '@/components/common-components/input';
 
