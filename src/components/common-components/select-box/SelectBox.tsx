@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useCallback, useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 import { Transition } from '@headlessui/react';
@@ -44,16 +44,29 @@ export default function SelectBox({
     initText ?? items[0].text,
   );
 
-  const handleBlur = () => {
+  const handleBlur = useCallback(() => {
     setIsOpenMenu(false);
-  };
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu);
+  }, []);
+
+  const handleItemClick = useCallback(
+    (item: SelectItemType) => {
+      setSelectedItem(item.text);
+      setParams(item.value);
+      toggleMenu();
+    },
+    [setParams, toggleMenu],
+  );
 
   return (
     <div className={clsx(className, 'w-full relative')}>
       <button
         type="button"
         className={clsx(style.sizes[size], '')}
-        onMouseDown={() => setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu)}
+        onMouseDown={toggleMenu}
         onBlur={handleBlur}
       >
         <div>
@@ -84,11 +97,7 @@ export default function SelectBox({
                 return (
                   <div
                     key={idx}
-                    onClick={() => {
-                      setSelectedItem(item.text);
-                      setParams(item.value);
-                      setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu);
-                    }}
+                    onClick={() => handleItemClick(item)}
                     onMouseEnter={() => setHoverMenu(item.value)}
                     onMouseLeave={() => setHoverMenu(null)}
                     className={clsx(
