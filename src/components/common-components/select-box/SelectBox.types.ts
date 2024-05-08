@@ -2,7 +2,7 @@ export type SelectBoxProps = {
   items: SelectItemType[];
   // selectedItem: string;
   setParams: (text: string) => void;
-  size: SelectBoxSize;
+  size?: SelectBoxSize;
   className?: string;
   initText?: string;
 };
