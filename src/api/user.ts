@@ -43,6 +43,7 @@ export const postLocalUserInfo = async ({
   gender,
   birthYear,
   location,
+  password,
 }: UserInfoProps) => {
   await fetch(`${BASE_URL}/register`, {
     method: 'POST',
@@ -54,9 +55,30 @@ export const postLocalUserInfo = async ({
     body: JSON.stringify({
       name: name,
       email: email,
+      password: password,
       gender: gender,
       birthyear: birthYear,
       location: location,
+    }),
+  })
+    .then((res) => {
+      console.log(res.json);
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// [register] 로컬 - 이메일 인증 번호 발송
+export const postEmailAuth = async ({ email }: { email: string }) => {
+  await fetch(`${BASE_URL}/send-email`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: email,
     }),
   })
     .then((res) => {
