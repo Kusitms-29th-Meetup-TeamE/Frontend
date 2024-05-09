@@ -14,7 +14,7 @@ export const CustomSkeleton = ({
   className,
   width = 50,
   height,
-  borderRadius,
+  borderRadius = 20,
 }: SkeletonProps) => {
   return (
     <div className="inline-flex">

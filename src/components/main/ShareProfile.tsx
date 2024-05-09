@@ -1,6 +1,7 @@
 import { UserProps } from '@/types/user';
 
 import Chip from '../common-components/chip';
+import Skeleton from '../common-components/skeleton';
 
 import clsx from 'clsx';
 
@@ -8,6 +9,7 @@ export interface ShareProfileProps extends UserProps {
   message: string;
   className?: string;
   type: string;
+  isLoading?: boolean;
 }
 
 const style = {
@@ -16,8 +18,17 @@ const style = {
 };
 
 export default function ShareProfile(props: ShareProfileProps) {
-  const { message, name, age, type, gender, location, imgUrl, className } =
-    props;
+  const {
+    message,
+    isLoading,
+    name,
+    age,
+    type,
+    gender,
+    location,
+    imgUrl,
+    className,
+  } = props;
 
   return (
     <div
@@ -26,29 +37,40 @@ export default function ShareProfile(props: ShareProfileProps) {
         className,
       )}
     >
-      <div
-        className="rounded-[20px] h-[282px] object-cover py-[10px] px-[10px]"
-        style={{
-          backgroundImage: `url(${imgUrl})`,
-          backgroundSize: 'cover',
-        }}
-      >
-        <Chip type={type} />
-      </div>
-
-      <div className="flex justify-between mt-5 px-5">
-        <div className="text-footer-bold text-gray-09">{name}</div>
-        <div className="flex gap-[15px] px-[14px] py-1 bg-gray-03 rounded-[18px] text-footer-regular text-gray-08">
-          <span>{age}세</span>
-          <span>|</span>
-          <span>{gender}</span>
-          <span>|</span>
-          <span>{location}</span>
+      {isLoading ? (
+        <Skeleton width={302} height={282} />
+      ) : (
+        <div
+          className="rounded-[20px] h-[282px] object-cover py-[10px] px-[10px]"
+          style={{
+            backgroundImage: `url(${imgUrl ?? 'assets/main/main_banner.png'})`,
+            backgroundSize: 'cover',
+          }}
+        >
+          <Chip type={type} />
         </div>
-      </div>
+      )}
+
+      {isLoading ? (
+        <div className="flex justify-center">
+          <Skeleton width={280} height={25} className="mt-5" />
+        </div>
+      ) : (
+        <div className="flex justify-between items-center gap-2 mt-5 px-5">
+          <div className="text-footer-bold text-gray-09">{name}</div>
+          <div className="flex gap-2 px-[14px] py-1 bg-gray-03 rounded-[18px] text-footer-regular text-gray-08">
+            <span>{age}세</span>
+            <span>|</span>
+            <span>{gender}</span>
+            <span>|</span>
+            <span>{location}</span>
+          </div>
+        </div>
+      )}
+
       <div className={clsx(style.triangle, 'mx-[10px] mt-1 ml-[30px]')} />
       <div className="bg-gray-03 rounded-[20px] mx-[10px] p-4 text-body3 text-gray-07 overflow-hidden text-ellipsis">
-        {message}
+        {isLoading ? <Skeleton width={250} height={20} /> : message}
       </div>
     </div>
   );
