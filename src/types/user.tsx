@@ -9,4 +9,5 @@ export interface UserProps {
 export interface UserInfoProps extends UserProps {
   email?: string;
   birthYear?: string;
+  password?: string;
 }
