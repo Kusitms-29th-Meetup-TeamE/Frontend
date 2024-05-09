@@ -5,3 +5,8 @@ export interface UserProps {
   location: string;
   imgUrl?: string;
 }
+
+export interface UserInfoProps extends UserProps {
+  email?: string;
+  birthYear?: string;
+}
