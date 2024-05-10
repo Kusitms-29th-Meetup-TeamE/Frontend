@@ -17,7 +17,6 @@ const FirstStep = () => {
         subTitle={
           '또바가 추천해주는 사회활동을 통해 새로운 인연, 다양한 취미를 만들어보세요!'
         }
-        btnMt={-89}
       >
         <Image
           src="/assets/onboarding/first_center_img.png"

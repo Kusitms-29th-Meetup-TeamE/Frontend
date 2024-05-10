@@ -4,9 +4,13 @@ import Button from '@/components/common-components/button/Button';
 
 import OnboardingFrame from '@/components/onBoarding/OnboardingFrame';
 
+import useStepStore from '@/utils/onboardingStepStore';
+
 import Image from 'next/image';
 
 const ZeroStep = () => {
+  const setNextStep = useStepStore((state) => state.setNextStep);
+
   return (
     <div className="relative flex flex-col h-screen items-center overflow-y-hidden">
       <div className="mt-[74px] flex gap-4 items-end">
@@ -35,7 +39,11 @@ const ZeroStep = () => {
       <div className="w-screen h-full absolute top-[129px]">
         <Image src="/assets/onboarding/zero_step_background.svg" alt="" fill />
       </div>
-      <Button size="lg" className="absolute top-[85%]">
+      <Button
+        size="lg"
+        className="absolute top-[85%]"
+        onClick={() => setNextStep()}
+      >
         또바와 함께하기
       </Button>
     </div>
