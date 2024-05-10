@@ -26,7 +26,7 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
       <div className="h-[100%] display justify-center relative">{children}</div>
       <div
         className={clsx(
-          'w-full h-fit flex justify-center gap-[24px] mt-[-89px]',
+          'w-full h-fit flex justify-center gap-[24px]',
           `mt-[${btnMt}px]`,
         )}
       >

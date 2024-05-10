@@ -1,10 +1,5 @@
 import React from 'react';
 
-import Chip from '@/components/common-components/chip';
-
-import PointItem from '@/components/main/PointItem';
-import FourthChip from '@/components/onBoarding/FourthChip';
-
 import Notice from '@/containers/main/Notice';
 import Point from '@/containers/main/Point';
 import SubBannerSlider from '@/containers/main/SubBannerSlider';
