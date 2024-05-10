@@ -1,41 +1,22 @@
+'use client';
+
+import { useMemo } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 import MainTitle from '@/components/main/MainTitle';
-import RecommendItem from '@/components/main/RecommendItem';
+import RecommendItem, {
+  RecommendItemProps,
+} from '@/components/main/RecommendItem';
+
+import { useMainDataList } from '@/hooks/useMain';
 
 export default function RecommendActivity() {
-  const data = [
-    {
-      title: '안녕하세요 타이틀이요',
-      location: '서브타이틀인데요하하하하하',
-      img: '/assets/main/main_banner.png',
-      currentParticipants: 2,
-      maxParticipants: 11,
-      time: '4월 30일 화요일',
-      isLiked: false,
-      personalities: ['활발한'],
-    },
-    {
-      title: '안녕하세요 타이틀이요',
-      location: '서브타이틀인데요하하하하하',
-      img: '/assets/main/main_banner.png',
-      currentParticipants: 2,
-      maxParticipants: 11,
-      time: '4월 30일 화요일',
-      isLiked: false,
-      personalities: ['학문적인', '예술적인'],
-    },
-    {
-      title: '안녕하세요 타이틀이요',
-      location: '서브타이틀인데요하하하하하',
-      img: '/assets/main/main_banner.png',
-      currentParticipants: 2,
-      maxParticipants: 11,
-      time: '4월 30일 화요일',
-      isLiked: false,
-      personalities: ['자연친화적인', '창의적인'],
-    },
-  ];
+  const { data: mainData, isLoading, error } = useMainDataList();
+
+  const mainDataList: RecommendItemProps[] = useMemo(
+    () => mainData?.activities ?? [],
+    [mainData],
+  );
 
   return (
     <div className="max-w-[1200px] w-full mx-auto">
@@ -46,9 +27,10 @@ export default function RecommendActivity() {
       />
 
       <div className="flex gap-6 justify-center">
-        {data.map((item, idx) => {
+        {mainDataList.map((item, idx) => {
           return (
             <RecommendItem
+              isLoading={isLoading}
               key={idx}
               title={item.title}
               location={item.location}

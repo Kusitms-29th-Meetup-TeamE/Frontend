@@ -8,6 +8,8 @@ import { TfiEmail } from 'react-icons/tfi';
 import Button from '@/components/common-components/button';
 import { useGlobalModal } from '@/components/common-components/global-modal';
 import Input from '@/components/common-components/input';
+import { SelectItemType } from '@/components/common-components/select-box';
+import SelectBox from '@/components/common-components/select-box/SelectBox';
 import Skeleton from '@/components/common-components/skeleton';
 
 import MainTitle from '@/components/main/MainTitle';
@@ -17,6 +19,8 @@ import {
   useNotifySuccess,
   useNotifyToast,
 } from '@/hooks/useToast';
+
+import { postEmailAuth } from '@/api/user';
 
 export default function TestPage() {
   const isTempLoading = true; // tanstack-query 데이터 패칭 시 가져올 isLoading
@@ -39,8 +43,109 @@ export default function TestPage() {
 
   const [value, setValue] = useState<string>('');
 
+  const tempItems: SelectItemType[] = [
+    {
+      id: 1,
+      text: '채민',
+      value: 'a',
+    },
+    {
+      id: 2,
+      text: 'ㅁㄴㅇㄹ',
+      value: 'b',
+    },
+    {
+      id: 3,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'c',
+    },
+    {
+      id: 4,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'd',
+    },
+    {
+      id: 5,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'e',
+    },
+    {
+      id: 6,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fs',
+    },
+    {
+      id: 7,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fsf',
+    },
+    {
+      id: 8,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fvv',
+    },
+    {
+      id: 9,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fxx',
+    },
+    {
+      id: 10,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fqq',
+    },
+    {
+      id: 11,
+      text: 'ㅁㅁㅁㄴㅇㄹ',
+      value: 'fzzzz',
+    },
+  ];
+
+  const [selectItem, setSelectItem] = useState<string>();
+
+  const [authAnswer, setAuthAnswer] = useState<string | void>('');
+  const [authInput, setAuthInput] = useState<string>('');
+
+  const sendAuthNumber = async () => {
+    await postEmailAuth('chamny20@naver.com').then((res) => {
+      console.log('res:', res);
+      setAuthAnswer(`${res}`);
+    });
+  };
+
+  const checkAuthNum = (input: any) => {
+    if (input === authAnswer) console.log('인증성공');
+    else console.log('실패');
+  };
+
   return (
     <>
+      <button
+        onClick={() => {
+          useNotifySuccess('인증번호가 발송되었습니다.');
+          sendAuthNumber();
+        }}
+      >
+        인증 번호 발송 버튼
+      </button>
+
+      <input
+        placeholder="인증번호 입력"
+        value={authInput}
+        onChange={(e) => setAuthInput(e.currentTarget.value)}
+      />
+      <button onClick={() => checkAuthNum(authInput)}>인증 확인 버튼</button>
+
+      <div className="flex flex-col w-[200px]">
+        <SelectBox items={tempItems} size="md" setParams={setSelectItem} />
+        <SelectBox
+          initText="이름"
+          items={tempItems}
+          size="md"
+          setParams={setSelectItem}
+        />
+      </div>
+
       <div className="flex flex-col gap-2 py-6 px-2">
         <Input
           defaultValue={value}
@@ -201,7 +306,6 @@ export default function TestPage() {
         <div className="bg-secondary-violet7 inline-flex">color test</div>
         <div className="bg-secondary-violet8 inline-flex">color test</div>
         <div className="bg-secondary-violet9 inline-flex">color test</div>
-        <div className="bg-secondary-violet10 inline-flex">color test</div>
       </>
     </>
   );
