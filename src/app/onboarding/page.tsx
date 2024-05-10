@@ -4,6 +4,7 @@ import React, { use } from 'react';
 
 import useStepStore from '@/utils/onboardingStepStore';
 
+import FifthStep from '@/containers/onBoarding/FifthStep';
 import FirstStep from '@/containers/onBoarding/FirstStep';
 import FourthStep from '@/containers/onBoarding/FourthStep';
 import SecondStep from '@/containers/onBoarding/SecondStep';
@@ -29,6 +30,7 @@ const page = () => {
       {step === 2 && <SecondStep />}
       {step === 3 && <ThirdStep />}
       {step === 4 && <FourthStep />}
+      {step === 5 && <FifthStep />}
     </div>
   );
 };

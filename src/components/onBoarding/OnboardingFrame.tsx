@@ -12,13 +12,13 @@ export type OnboardingFrameProps = {
   stepImg: string;
   title: string;
   subTitle: string;
-  isLast?: boolean;
   children?: React.ReactNode;
 };
 
 const OnboardingFrame = (props: OnboardingFrameProps) => {
-  const { stepImg, title, subTitle, isLast, children } = props;
+  const { stepImg, title, subTitle, children } = props;
   // step 별 화면 전환
+  const currentStep = useStepStore((state) => state.currentStep);
   const setPrevStep = useStepStore((state) => state.setPrevStep);
   const setNextStep = useStepStore((state) => state.setNextStep);
 
@@ -33,7 +33,7 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
             이전
           </Button>
           <Button size="lg" onClick={() => setNextStep()}>
-            {isLast ? '시작하기' : '다음'}
+            {currentStep === 5 ? '시작하기' : '다음'}
           </Button>
         </div>
         <div className="text-body3 text-gray-06 underline underline-offset-6 cursor-pointer">
