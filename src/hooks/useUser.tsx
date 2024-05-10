@@ -56,18 +56,3 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
   });
   return { mutate, isPending, error };
 };
-
-export const useEmailAuth = (email: { email: string }) => {
-  const { mutate, isPending, error } = useMutation({
-    mutationFn: () => postEmailAuth(email),
-    onSuccess: (res) => {
-      //   console.log(res);
-      useNotifySuccess('인증번호가 발송되었습니다.');
-    },
-    onError: (err: any) => {
-      console.log(err);
-      useNotifyError('예기치 못한 에러가 발생하였습니다.');
-    },
-  });
-  return { mutate, isPending, error };
-};
