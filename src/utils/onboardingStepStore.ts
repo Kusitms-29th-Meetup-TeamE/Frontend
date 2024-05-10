@@ -11,11 +11,11 @@ interface OnboardingStepState {
   // getCurrentChips: () => string[];
 }
 
-const initialStep = { currentStep: 0 };
+const initialStep = { currentStep: 0, currentChips: [] };
 
 export const useStepStore = create<OnboardingStepState>((set) => ({
   currentStep: initialStep.currentStep,
-  currentChips: [],
+  currentChips: initialStep.currentChips,
 
   setPrevStep: () => set((state) => ({ currentStep: state.currentStep - 1 })),
   setNextStep: () =>

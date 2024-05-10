@@ -3,8 +3,6 @@ import React from 'react';
 import FourthChipCloud from '@/components/onBoarding/FourthItems/FourthChipCloud';
 import OnboardingFrame from '@/components/onBoarding/OnboardingFrame';
 
-import Image from 'next/image';
-
 const FourthStep = () => {
   return (
     <>
@@ -14,7 +12,6 @@ const FourthStep = () => {
         subTitle={
           '선호하시는 활동 성격을 선택해주세요. 또바가 꼭 맞는 활동을 추천해드릴게요.'
         }
-        btnMt={0}
       ></OnboardingFrame>
       <div className="absolute w-screen top-0">
         <FourthChipCloud />

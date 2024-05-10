@@ -18,7 +18,7 @@ const FifthStep = () => {
           src="/assets/onboarding/fifth_center_img.png"
           width={688}
           height={739}
-          className="mt-[-100px] z-[-1]"
+          className="mt-[-100px] z-[-1] h-auto"
           alt={''}
         />
       </OnboardingFrame>

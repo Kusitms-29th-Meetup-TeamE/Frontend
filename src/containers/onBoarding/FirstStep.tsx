@@ -1,8 +1,5 @@
 import React from 'react';
 
-import Button from '@/components/common-components/button/Button';
-
-import FirstChip from '@/components/onBoarding/FirstItems/FirstChip';
 import FirstSlider from '@/components/onBoarding/FirstItems/FirstSlider';
 import OnboardingFrame from '@/components/onBoarding/OnboardingFrame';
 
