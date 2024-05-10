@@ -22,6 +22,8 @@ import {
   useNotifyToast,
 } from '@/hooks/useToast';
 
+import { postEmailAuth } from '@/api/user';
+
 export default function TestPage() {
   const isTempLoading = true; // tanstack-query 데이터 패칭 시 가져올 isLoading
 
@@ -117,6 +119,21 @@ export default function TestPage() {
     setIsOpen((prev) => !prev);
   };
 
+  const [authAnswer, setAuthAnswer] = useState<string | void>('');
+  const [authInput, setAuthInput] = useState<string>('');
+
+  const sendAuthNumber = async () => {
+    await postEmailAuth('chamny20@naver.com').then((res) => {
+      console.log('res:', res);
+      setAuthAnswer(`${res}`);
+    });
+  };
+
+  const checkAuthNum = (input: any) => {
+    if (input === authAnswer) console.log('인증성공');
+    else console.log('실패');
+  };
+
   return (
     <>
       {/* 주소 검색 테스트 */}
@@ -131,6 +148,22 @@ export default function TestPage() {
       <div>
         <h2>{location}</h2>
       </div>
+
+      <button
+        onClick={() => {
+          useNotifySuccess('인증번호가 발송되었습니다.');
+          sendAuthNumber();
+        }}
+      >
+        인증 번호 발송 버튼
+      </button>
+
+      <input
+        placeholder="인증번호 입력"
+        value={authInput}
+        onChange={(e) => setAuthInput(e.currentTarget.value)}
+      />
+      <button onClick={() => checkAuthNum(authInput)}>인증 확인 버튼</button>
 
       <div className="flex flex-col w-[200px]">
         <SelectBox items={tempItems} size="md" setParams={setSelectItem} />

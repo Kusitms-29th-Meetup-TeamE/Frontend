@@ -1,67 +1,43 @@
+'use client';
+
+import { useMemo } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 import MainTitle from '@/components/main/MainTitle';
-import ShareProfile from '@/components/main/ShareProfile';
+import ShareProfile, {
+  ShareProfileProps,
+} from '@/components/main/ShareProfile';
 
-const data = [
-  {
-    img: '/assets/main/main_banner.png',
-    name: '김또바',
-    age: 24,
-    gender: '남',
-    address: '청계동',
-    content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
-    type: '운동',
-  },
-  {
-    img: '/assets/main/how1.png',
-    name: '김또바',
-    age: 24,
-    gender: '남',
-    address: '청계동',
-    content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
-    type: '운동',
-  },
-  {
-    img: '/assets/main/main_banner.png',
-    name: '김또바',
-    age: 24,
-    gender: '남',
-    address: '청계동',
-    content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
-    type: '운동',
-  },
-  {
-    img: '/assets/main/main_banner.png',
-    name: '김또바',
-    age: 24,
-    gender: '남',
-    address: '청계동',
-    content: '안녕하세요 저는 실뜨기할래요 푸항항항항항',
-    type: '운동',
-  },
-];
+import { useMainDataList } from '@/hooks/useMain';
 
 export default function ShareExperience() {
+  const { data: mainData, isLoading, error } = useMainDataList();
+
+  const mainProfileList: ShareProfileProps[] = useMemo(
+    () => mainData?.experiences ?? [],
+    [mainData],
+  );
+
   return (
     <div className="max-w-[1200px] w-full mx-auto">
       <MainTitle
-        title="또바 추천 경험 나누기"
-        subTitle="우리 동네 선생님을 추천해드려요."
+        title="또바 추천 배움 나누기"
+        subTitle="우리 동네 배움 선생님을 추천해드려요."
         className="mb-[50px]"
       />
 
       <div className="flex gap-4">
-        {data.map((item, idx) => {
+        {mainProfileList.map((item, idx) => {
           return (
-            <div key={idx}>
+            <div key={idx} className="w-full">
               <ShareProfile
+                isLoading={isLoading}
                 name={item.name}
                 age={item.age}
                 gender={item.gender}
-                message={item.content}
-                location={item.address}
-                imgUrl={item.img}
+                message={item.message}
+                location={item.location}
+                imgUrl={item.imgUrl}
                 type={item.type}
                 className="bg-white transition-transform duration-300 ease-in-out transform-gpu hover:rounded-[20px] hover:p-[6px] hover:bg-white hover:shadow-[0_4px_30px_20px_rgba(0,0,0,0.08)]"
               />
