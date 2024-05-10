@@ -45,10 +45,22 @@ type Schema = z.infer<typeof schema>;
 export type FourthFormProps = {
   // onSubmit: (data: any) => void;
   setCheckForm: Dispatch<SetStateAction<boolean>>;
+  // TODO: 추후 sign-up api 머지되면 데이터 타입 수정 필요
+  setUserInfo: Dispatch<
+    SetStateAction<{
+      email: string;
+      name: string;
+      password: string;
+      confirmPassword: string;
+      gender: string;
+      birthYear: string;
+      location: string;
+    }>
+  >;
 };
 
 export default function FourthForm(props: FourthFormProps) {
-  const { setCheckForm } = props;
+  const { setCheckForm, setUserInfo } = props;
 
   const {
     register,
@@ -69,12 +81,32 @@ export default function FourthForm(props: FourthFormProps) {
   // console.log('isValid:', isValid); // disabled 여부 판단
   setCheckForm(!isValid);
 
+  setValue('name', getValues('name'));
+  setValue('password', getValues('password'));
+  setValue('confirmPassword', getValues('confirmPassword'));
+
+  console.log('getValues:', getValues());
+
+  if (isValid) {
+    // setUserInfo((prev) => ({
+    //   ...prev,
+    //   name: getValues('name'),
+    //   password: getValues('password'),
+    //   confirmPassword: getValues('confirmPassword'),
+    // }));
+  }
+
   const onSubmitForm = (data: Schema) => {
     // onSubmit(data);
+    console.log('onSubmitForm함수 실행됨');
     // TODO: 전역 상태에 데이터 저장 필요
-    console.log('name', getValues('name'));
-    console.log('pwd', getValues('password'));
-    console.log(getValues('confirmPassword'));
+
+    // setUserInfo((prev) => ({
+    //   ...prev,
+    //   name: getValues('name'),
+    //   password: getValues('password'),
+    //   confirmPassword: getValues('confirmPassword'),
+    // }));
   };
 
   const [nameNotiVisible, setNameNotiVisible] = useState(true);

@@ -70,6 +70,19 @@ export default function SignUp() {
     // 필요한 로직 수행
   };
 
+  const [userInfo, setUserInfo] = useState({
+    // third-form
+    email: '',
+    // fourth-form
+    name: '',
+    password: '',
+    confirmPassword: '',
+    // fifth-form
+    gender: '',
+    birthYear: '',
+    location: '',
+  });
+
   return (
     <main className="pt-[70px]">
       {step === 0 && (
@@ -84,7 +97,9 @@ export default function SignUp() {
       {step === 2 && (
         <ThirdForm authEmail={authEmail} setAuthEmail={setAuthEmail} />
       )}
-      {step === 3 && <FourthForm setCheckForm={setCheckForm} />}
+      {step === 3 && (
+        <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
+      )}
       {step === 4 && <FifthForm />}
 
       <div
