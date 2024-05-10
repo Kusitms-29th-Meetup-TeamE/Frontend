@@ -1,4 +1,8 @@
-import React from 'react';
+'use client';
+
+import React, { use } from 'react';
+
+import useStepStore from '@/utils/onboardingStepStore';
 
 import FirstStep from '@/containers/onBoarding/FirstStep';
 import FourthStep from '@/containers/onBoarding/FourthStep';
@@ -9,6 +13,8 @@ import ZeroStep from '@/containers/onBoarding/ZeroStep';
 import Image from 'next/image';
 
 const page = () => {
+  const step = useStepStore((state) => state.currentStep);
+
   return (
     <div>
       <Image
@@ -18,11 +24,11 @@ const page = () => {
         width={86}
         height={30}
       />
-      <ZeroStep />
-      {/* <FirstStep /> */}
-      {/* <SecondStep /> */}
-      {/* <ThirdStep /> */}
-      {/* <FourthStep /> */}
+      {step === 0 && <ZeroStep />}
+      {step === 1 && <FirstStep />}
+      {step === 2 && <SecondStep />}
+      {step === 3 && <ThirdStep />}
+      {step === 4 && <FourthStep />}
     </div>
   );
 };
