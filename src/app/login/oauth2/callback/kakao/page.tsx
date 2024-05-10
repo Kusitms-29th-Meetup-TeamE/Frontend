@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { kakaoLogin } from '@/api/login/kakaoLoginApi';
+import { getKakaoToken } from '@/api/login/kakaoLoginApi';
 import { useQuery } from '@tanstack/react-query';
 
 import { useRouter, usePathname } from 'next/navigation';
@@ -21,7 +21,7 @@ const page = () => {
   if (kakaoCode) {
     const { data } = useQuery({
       queryKey: ['KAKAO_CODE', kakaoCode],
-      queryFn: () => kakaoLogin(kakaoCode),
+      queryFn: () => getKakaoToken(kakaoCode),
     });
 
     useEffect(() => {
