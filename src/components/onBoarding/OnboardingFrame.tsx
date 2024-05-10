@@ -22,6 +22,20 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
   const setPrevStep = useStepStore((state) => state.setPrevStep);
   const setNextStep = useStepStore((state) => state.setNextStep);
 
+  // 임시 추가
+  const currentChips = useStepStore((state) => state.currentChips);
+
+  const handleNextStep = () => {
+    if (currentStep === 5) {
+      console.log('마지막 스텝');
+    } else if (currentStep === 4) {
+      console.log(currentChips);
+      setNextStep();
+    } else {
+      setNextStep();
+    }
+  };
+
   return (
     <div className="w-full h-screen flex flex-col items-center pt-20 pb-20">
       <Image src={stepImg} width={300} height={12} alt={''} className="mb-10" />
@@ -32,7 +46,7 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
           <Button size="lg" color="gray" onClick={() => setPrevStep()}>
             이전
           </Button>
-          <Button size="lg" onClick={() => setNextStep()}>
+          <Button size="lg" onClick={handleNextStep}>
             {currentStep === 5 ? '시작하기' : '다음'}
           </Button>
         </div>

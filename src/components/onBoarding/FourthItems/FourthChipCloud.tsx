@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import FourthChip from '@/components/onBoarding/FourthItems/FourthChip';
+
+import useStepStore from '@/utils/onboardingStepStore';
 
 import Image from 'next/image';
 
@@ -11,6 +13,18 @@ const SecondLine = ['창의적인', '자연친화적인', '평화로운'];
 const ThirdLine = ['배울 수 있는', '예술적인'];
 
 const FourthChipCloud = () => {
+  const currentChips = useStepStore((state) => state.currentChips);
+  const setCurrentChips = useStepStore((state) => state.setCurrentChips);
+
+  // 선택한 성격 칩 전역 상태로 저장
+  const handleChipClick = (text: string) => {
+    if (currentChips.includes(text)) {
+      setCurrentChips(currentChips.filter((chip) => chip !== text));
+    } else {
+      setCurrentChips([...currentChips, text]);
+    }
+  };
+
   return (
     <div className="relative w-full flex justify-center items-center mt-72">
       <Image
@@ -22,18 +36,18 @@ const FourthChipCloud = () => {
       />
       <div className="flex flex-col max-w-[920px] w-full gap-[49px]">
         <div className="flex justify-center gap-[10px]">
-          {FirstLine.map((data, index) => (
-            <FourthChip text={data} />
+          {FirstLine.map((data) => (
+            <FourthChip text={data} onClick={handleChipClick} key={data} />
           ))}
         </div>
         <div className="flex justify-center gap-[10px]">
-          {SecondLine.map((data, index) => (
-            <FourthChip text={data} />
+          {SecondLine.map((data) => (
+            <FourthChip text={data} onClick={handleChipClick} key={data} />
           ))}
         </div>
         <div className="flex justify-center gap-[10px]">
-          {ThirdLine.map((data, index) => (
-            <FourthChip text={data} />
+          {ThirdLine.map((data) => (
+            <FourthChip text={data} onClick={handleChipClick} key={data} />
           ))}
         </div>
       </div>
