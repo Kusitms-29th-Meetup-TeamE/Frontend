@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BsPerson } from 'react-icons/bs';
 import { MdOutlineLock } from 'react-icons/md';
@@ -43,16 +43,17 @@ const schema = z
 type Schema = z.infer<typeof schema>;
 
 export type FourthFormProps = {
-  onSubmit: (data: any) => void;
+  // onSubmit: (data: any) => void;
+  setCheckForm: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function FourthForm() {
-  // const { onSubmit } = props;
+export default function FourthForm(props: FourthFormProps) {
+  const { setCheckForm } = props;
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     getValues,
     setValue,
   } = useForm<Schema>({
@@ -64,6 +65,9 @@ export default function FourthForm() {
       confirmPassword: '',
     },
   });
+
+  // console.log('isValid:', isValid); // disabled 여부 판단
+  setCheckForm(!isValid);
 
   const onSubmitForm = (data: Schema) => {
     // onSubmit(data);
