@@ -15,6 +15,11 @@ export default function OnboardingModal({ modalState, setModalState }: Props) {
     setModalState((prev) => ({ ...prev, open: false }));
   };
 
+  const confirmModal = () => {
+    modalState.onConfirm && modalState.onConfirm();
+    closeModal();
+  };
+
   return (
     <Modal className="w-[460px]" open={modalState.open} onClose={closeModal}>
       <Modal.Title>{modalState.title}</Modal.Title>
@@ -24,7 +29,7 @@ export default function OnboardingModal({ modalState, setModalState }: Props) {
         <Button color="gray" onClick={closeModal} className="text-nowrap">
           설명 읽기
         </Button>
-        <Button color="default" onClick={closeModal}>
+        <Button color="default" onClick={confirmModal}>
           건너뛰기
         </Button>
       </Modal.Footer>

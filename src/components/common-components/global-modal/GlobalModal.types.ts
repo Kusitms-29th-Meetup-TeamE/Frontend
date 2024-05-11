@@ -15,4 +15,5 @@ export type OnboardingModalProps = {
   // subText?: string | JSX.Element;
   title: string;
   content: string;
+  onConfirm?: () => void;
 };
