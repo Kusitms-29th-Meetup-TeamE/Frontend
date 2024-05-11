@@ -12,10 +12,11 @@ const FourthStep = () => {
         subTitle={
           '선호하시는 활동 성격을 선택해주세요. 또바가 꼭 맞는 활동을 추천해드릴게요.'
         }
-      ></OnboardingFrame>
-      <div className="absolute w-screen top-0">
+      >
+        {/* <div className="w-screen"> */}
         <FourthChipCloud />
-      </div>
+        {/* </div> */}
+      </OnboardingFrame>
     </>
   );
 };

@@ -26,7 +26,7 @@ const FourthChipCloud = () => {
   };
 
   return (
-    <div className="relative w-full flex justify-center items-center mt-72">
+    <div className="relative w-screen flex justify-center items-center mt-[82px]">
       <Image
         src="/assets/onboarding/fourth_center_img.png"
         width={1076}

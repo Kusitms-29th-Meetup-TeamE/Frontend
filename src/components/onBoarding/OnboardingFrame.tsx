@@ -40,7 +40,7 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
     <div className="w-full h-screen flex flex-col items-center pt-20 pb-20">
       <Image src={stepImg} width={300} height={12} alt={''} className="mb-10" />
       <SignUpTitle title={title} subTitle={subTitle} />
-      <div className="display justify-center relative">{children}</div>
+      <div className="flex justify-center relative">{children}</div>
       <div className="absolute bottom-[110px] w-full h-fit flex flex-col justify-center items-center gap-7">
         <div className="w-full flex justify-center gap-6">
           <Button size="lg" color="gray" onClick={() => setPrevStep()}>
