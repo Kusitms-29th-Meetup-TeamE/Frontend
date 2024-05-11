@@ -2,7 +2,7 @@ import React from 'react';
 
 import FourthChip from '@/components/onBoarding/FourthItems/FourthChip';
 
-import useStepStore from '@/utils/onboardingStepStore';
+import useStepStore from '@/store/onboardingStepStore';
 
 import Image from 'next/image';
 

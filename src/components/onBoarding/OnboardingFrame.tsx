@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '@/components/common-components/button/Button';
 
-import useStepStore from '@/utils/onboardingStepStore';
+import useStepStore from '@/store/onboardingStepStore';
 
 import SignUpTitle from '../signUp/SignUpTitle';
 
