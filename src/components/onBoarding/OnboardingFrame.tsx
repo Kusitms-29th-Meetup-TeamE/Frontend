@@ -4,6 +4,7 @@ import Button from '@/components/common-components/button/Button';
 
 import useStepStore from '@/store/onboardingStepStore';
 
+import { useGlobalModal } from '../common-components/global-modal';
 import SignUpTitle from '../signUp/SignUpTitle';
 
 import Image from 'next/image';
@@ -36,6 +37,16 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
     }
   };
 
+  const { setOnboardingModal } = useGlobalModal();
+
+  const handleOnboardingModal = () => {
+    setOnboardingModal({
+      open: true,
+      title: '모든 과정을 건너뛸까요?',
+      content: '또바 서비스에 대한 설명을 모두 읽으면\n또바 포인트 100원을 받을 수 있어요!',
+    });
+  };
+
   return (
     <div className="w-full h-screen flex flex-col items-center pt-20 pb-20">
       <Image src={stepImg} width={300} height={12} alt={''} className="mb-10" />
@@ -50,7 +61,10 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
             {currentStep === 5 ? '시작하기' : '다음'}
           </Button>
         </div>
-        <div className="text-body3 text-gray-06 underline underline-offset-6 cursor-pointer">
+        <div
+          className="text-body3 text-gray-06 underline underline-offset-6 cursor-pointer"
+          onClick={handleOnboardingModal}
+        >
           모든 과정 건너뛰기
         </div>
       </div>

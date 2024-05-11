@@ -9,3 +9,10 @@ export type ErrorModalProps = {
   text?: string;
   subText?: string | JSX.Element;
 };
+
+export type OnboardingModalProps = {
+  open: boolean;
+  // subText?: string | JSX.Element;
+  title: string;
+  content: string;
+};

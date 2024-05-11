@@ -1,8 +1,9 @@
 'use client';
 
+import SuccessModal from './SuccessModal';
 import ErrorModal from './ErrorModal';
 import { useGlobalModal } from './GlobalModalContext';
-import SuccessModal from './SuccessModal';
+import OnboardingModal from './OnboardingModal';
 
 export default function GlobalModal() {
   const modalContext = useGlobalModal();
@@ -16,6 +17,10 @@ export default function GlobalModal() {
       <ErrorModal
         modalState={modalContext.errorModal}
         setModalState={modalContext.setErrorModal}
+      />
+      <OnboardingModal
+        modalState={modalContext.onboardingModal}
+        setModalState={modalContext.setOnboardingModal}
       />
     </>
   );
