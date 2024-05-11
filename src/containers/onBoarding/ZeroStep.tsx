@@ -15,7 +15,7 @@ const ZeroStep = () => {
     <div className="relative flex flex-col h-screen items-center overflow-y-hidden">
       <div className="mt-[74px] flex gap-4 items-end">
         <Image
-          src="/assets/onboarding/zero_step_left.svg"
+          src="/assets/onboarding/zero_step_left.png"
           alt=""
           width={99}
           height={102}
@@ -23,14 +23,14 @@ const ZeroStep = () => {
         <div className="text-h2 text-black">
           또바에 오신 것을 환영합니다!
           <Image
-            src="/assets/onboarding/zero_step_underline.svg"
+            src="/assets/onboarding/zero_step_underline.png"
             alt=""
             width={342}
             height={12}
           />
         </div>
         <Image
-          src="/assets/onboarding/zero_step_right.svg"
+          src="/assets/onboarding/zero_step_right.png"
           alt=""
           width={99}
           height={102}

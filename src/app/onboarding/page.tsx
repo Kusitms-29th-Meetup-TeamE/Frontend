@@ -19,7 +19,7 @@ const page = () => {
     <div>
       <Image
         className="absolute top-10 left-[50px]"
-        src="/assets/ddoba_logo_text.svg"
+        src="/assets/ddoba_logo_text.png"
         alt=""
         width={86}
         height={30}
