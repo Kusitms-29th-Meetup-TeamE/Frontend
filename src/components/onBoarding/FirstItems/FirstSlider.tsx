@@ -2,6 +2,8 @@ import React from 'react';
 
 import FirstChip from './FirstChip';
 
+import Image from 'next/image';
+
 const FirstSlider = () => {
   const data = [
     { 활발한: '매주 한 번 테니스' },
@@ -13,8 +15,15 @@ const FirstSlider = () => {
   ];
 
   return (
-    <>
-      <div className="absolute max-w-[1200px] w-full h-fit mt-[-200px] mx-auto flex gap-6">
+    <div className="relative w-full mx-auto flex flex-col items-center">
+      <Image
+        src="/assets/onboarding/first_center_img.png"
+        width={889}
+        height={662}
+        alt={''}
+      />
+      <div className="relative mt-[-151px] max-w-[1200px] w-full h-fit mx-auto flex gap-6">
+        <div className="absolute top-0 h-24 bg-gradient-to-r from-white to-transparent max-w-[478px] w-full left-[0%] mx-auto" />
         {data.map((item, idx) => (
           <FirstChip
             key={idx}
@@ -22,10 +31,9 @@ const FirstSlider = () => {
             content={Object.values(item)[0]}
           />
         ))}
+        <div className="absolute top-0 h-24 bg-gradient-to-r from-transparent to-white max-w-[478px] w-full right-[0%] mx-auto" />
       </div>
-      <div className="h-24 absolute bg-gradient-to-r from-white to-transparent max-w-[478px] w-full left-[0%] mt-[-200px] mx-auto" />
-      <div className="h-24 absolute bg-gradient-to-l from-white to-transparent max-w-[478px] w-full right-[0%] mt-[-200px] mx-auto" />
-    </>
+    </div>
   );
 };
 
