@@ -30,6 +30,7 @@ const style: {
     active: 'text-white',
     default: 'bg-primary-orange6 text-white',
     gray: 'bg-gray-03 text-gray-07',
+    disabled: 'bg-primary-orange6 opacity-60 text-white',
   },
 };
 
