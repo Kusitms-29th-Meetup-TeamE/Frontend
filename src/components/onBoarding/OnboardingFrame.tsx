@@ -8,6 +8,7 @@ import { useGlobalModal } from '../common-components/global-modal';
 import SignUpTitle from '../signUp/SignUpTitle';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export type OnboardingFrameProps = {
   stepImg: string;
@@ -18,6 +19,8 @@ export type OnboardingFrameProps = {
 
 const OnboardingFrame = (props: OnboardingFrameProps) => {
   const { stepImg, title, subTitle, children } = props;
+  const router = useRouter();
+
   // step 별 화면 전환
   const currentStep = useStepStore((state) => state.currentStep);
   const setPrevStep = useStepStore((state) => state.setPrevStep);
@@ -43,7 +46,9 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
     setOnboardingModal({
       open: true,
       title: '모든 과정을 건너뛸까요?',
-      content: '또바 서비스에 대한 설명을 모두 읽으면\n또바 포인트 100원을 받을 수 있어요!',
+      content:
+        '또바 서비스에 대한 설명을 모두 읽으면\n또바 포인트 100원을 받을 수 있어요!',
+      onConfirm: () => router.push('/'),
     });
   };
 
