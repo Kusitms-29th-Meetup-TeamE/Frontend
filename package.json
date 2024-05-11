@@ -10,12 +10,27 @@
     "cz": "./node_modules/cz-customizable/standalone.js"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.19",
+    "@hookform/resolvers": "^3.3.4",
+    "@tanstack/react-query": "^5.29.2",
+    "@tanstack/react-query-devtools": "^5.29.2",
+    "clsx": "^2.1.0",
     "cz-customizable": "^7.0.0",
     "next": "14.2.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-daum-postcode": "3.1.3",
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.4",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.1.0",
+    "react-loading-skeleton": "^3.4.0",
+    "swiper": "^11.1.1",
+    "tailwind-merge": "^2.3.0",
+    "zod": "^3.23.6",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
