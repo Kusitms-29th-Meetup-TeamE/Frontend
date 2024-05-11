@@ -7,8 +7,9 @@ const style: {
   base: string;
   color: Record<string, string>;
   selectedColor: Record<string, string>;
+  notSelectedColor: string;
 } = {
-  base: 'relative max-w-[300px] w-full max-h-[100px] inline-flex justify-center items-center rounded-[50px] py-[25px] text-chip-semibold border-2 bg-white/[.54]',
+  base: 'relative max-w-[300px] w-full max-h-[100px] inline-flex justify-center items-center rounded-[50px] py-[25px] text-chip-semibold border-2',
   color: {
     활발한: 'gap-[14px] border border-chip-active text-chip-active',
     학문적인: 'gap-[10px] border border-chip-scholar text-chip-scholar',
@@ -26,8 +27,9 @@ const style: {
     예술적인: 'bg-chip-artistic/[.20]',
     자연친화적인: 'bg-chip-natural/[.16]',
     '배울 수 있는': 'bg-chip-learnable/[.16]',
-    창의적인: 'bg-chip-creative/[.20]',
+    창의적인: 'bg-chip-creative/[.16]',
   },
+  notSelectedColor: 'bg-white/[.54]',
 };
 
 export type FourthChipProps = {
@@ -56,7 +58,9 @@ const FourthChip = forwardRef<
         style.base,
         className,
         style.color[text as string],
-        isSelected ? style.selectedColor[text as string] : '',
+        isSelected
+          ? style.selectedColor[text as string]
+          : style.notSelectedColor,
       )}
       onClick={handleSelected}
     >
