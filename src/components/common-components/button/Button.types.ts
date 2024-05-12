@@ -18,6 +18,7 @@ export const buttonColors = {
   active: 'active',
   default: 'default',
   gray: 'gray',
+  disabled: 'disabled',
 } as const;
 export type ButtonColor = (typeof buttonColors)[keyof typeof buttonColors];
 

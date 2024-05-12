@@ -12,13 +12,12 @@ export const variants = {
   container:
     'p-[30px] rounded-[20px] overflow-hidden flex flex-col ml-auto mr-auto bg-white border border-gray-40',
   title:
-    'p-[20px] flex items-center justify-center text-notification-h1 text-primary-orange6 ',
+    'p-[20px] pt-0 flex items-center justify-center text-notification-h1 text-primary-orange6 ',
   // subTitle: 'pt-[16px] flex items-center justify-center text-body2',
   description:
     'px-[60px] pb-[25px] text-gray-08 text-notification-b1 text-center',
   footer: 'h-[50px] flex justify-center items-center',
-  close:
-    'cursor-pointer w-8 h-8 items-center rounded-lg p-[6px] text-h2 text-white',
+  close: 'cursor-pointer items-center rounded-lg p-[6px] text-gray-11',
 };
 
 function ModalContainer({

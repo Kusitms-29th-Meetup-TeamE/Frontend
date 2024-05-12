@@ -18,5 +18,5 @@ export type SelectBoxSize =
 export type SelectItemType = {
   id: number;
   text: string;
-  value: string;
+  value: string | number;
 };

@@ -27,9 +27,11 @@ export default function SuccessModal({
 
   return (
     <Modal className="w-[400px]" open={modalState.open} onClose={closeModal}>
-      <Modal.Title>{title ?? '알림'}</Modal.Title>
       <Modal.Close onClick={closeModal} />
+      <Modal.Title>{title ?? '알림'}</Modal.Title>
+
       <Modal.Description>{modalState.text}</Modal.Description>
+
       <Modal.Footer className="flex gap-5">
         <Button size="md" color="default" onClick={closeModal}>
           확인
