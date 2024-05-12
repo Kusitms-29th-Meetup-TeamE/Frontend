@@ -40,7 +40,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     const [value, setValue] = useState(defaultValue);
 
     return (
-      <div className="relative">
+      <div className="relative w-full">
         {search ? (
           <IoIosSearch
             className={clsx(
