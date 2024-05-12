@@ -1,4 +1,6 @@
-import { PropsWithChildren, forwardRef } from 'react';
+import { PropsWithChildren, forwardRef, useState } from 'react';
+
+import useSelectedJoinChipStore from '@/store/selectedJoinChipStore';
 
 import { ChipProps } from '.';
 
@@ -18,21 +20,22 @@ const style: {
   },
   focus: {
     abled: 'text-white bg-primary-orange6',
-    disabled: 'border-none text-gray-07 bg-gray-04',
+    disabled: 'border-gray-04 text-gray-07 !bg-gray-04',
   },
   color: {
-    활발한: 'bg-[rgba(253,143,42,0.1)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
+    활발한: 'bg-[rgba(253,143,42,0.10)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
     학문적인:
-      'border border-[#E78751] bg-[rgba(231, 135, 81, 0.10)] text-[#E78751]', // 학문적인
+      'border border-[#E78751] bg-[rgba(231,135,81,0.10)] text-[#E78751]', // 학문적인
     평화로운:
-      'border border-[#8598FC] bg-[rgba(133, 152, 252, 0.10)] text-[#8598FC]',
+      'border border-[#8598FC] bg-[rgba(133,152,252,0.10)] text-[#8598FC]',
     예술적인:
-      'border border-[#A954DD] bg-[rgba(169, 84, 221, 0.10)] text-[#A954DD]',
+      'border border-[#A954DD] bg-[rgba(169,84,221,0.10)] text-[#A954DD]',
     자연친화적인:
-      'border border-chip-natural bg-chip-natural text-chip-natural',
+      'border border-chip-natural bg-[rgba(75,171,90,0.1)] text-chip-natural',
     '배울 수 있는':
-      'border border-chip-learnable bg-chip-learnable text-chip-learnable',
-    창의적인: 'border border-chip-creative bg-chip-creative text-chip-creative',
+      'border border-chip-learnable bg-[rgba(234,112,156,0.1)] text-chip-learnable',
+    창의적인:
+      'border border-chip-creative bg-[rgba(255,199,0,0.1)] text-chip-creative',
   },
   // 활동 타입은 아래 type 색상만 사용합니다.
   type: '!px-[16px] !rounded-[30px] text-white text-chip-bold bg-primary-orange4 bg-opacity-80',
@@ -51,9 +54,20 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       text,
       type,
       isBtn = false,
-      isSelected,
       isPersonality = true,
     } = props;
+
+    const [isSelected, setIsSelected] = useState<boolean>(false);
+    const setCurrentChip = useSelectedJoinChipStore(
+      (state) => state.setCurrentChips,
+    );
+
+    const handleClick = () => {
+      if (isBtn && text) {
+        setIsSelected((prev) => !prev);
+        setCurrentChip(text);
+      }
+    };
 
     return (
       <div
@@ -68,6 +82,7 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
           text ? style.color[text as string] : style.type,
           style.size[size],
         )}
+        onClick={handleClick}
       >
         {text ?? type}
       </div>
