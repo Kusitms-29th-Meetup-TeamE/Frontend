@@ -39,7 +39,7 @@ export default function Header() {
         </Link>
 
         <div className={variants.menubar}>
-          <Link href="#">
+          <Link href="/join">
             <div className={variants.centerMenu}>활동 참여하기</div>
           </Link>
           <Link href="#">
