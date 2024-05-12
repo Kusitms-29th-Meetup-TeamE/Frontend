@@ -124,6 +124,14 @@ const config: Config = {
             letterSpacing: '2%',
           },
         ],
+        'chip-semibold': [
+          '1rem', // 16px
+          {
+            fontWeight: '600',
+            lineHeight: '22px',
+            letterSpacing: '4%',
+          },
+        ],
         'chip-medium': [
           '0.875rem', // 14px
           {
