@@ -14,7 +14,7 @@ export const RoomList = (props: RoomListProps) => {
   const handlePrevClick = () => {};
 
   return (
-    <aside className="border border-red-500 w-full max-w-[486px]">
+    <aside className="w-full max-w-[486px]">
       <div
         className="text-gray-08 text-body2 flex items-center gap-2 cursor-pointer"
         onClick={handlePrevClick}
@@ -25,7 +25,7 @@ export const RoomList = (props: RoomListProps) => {
       <div className="text-black text-h2 mt-5 mb-[6px]">{title}</div>
       <span className="text-black text-h4 mt-[6px]">{subTitle}</span>
 
-      <div className="mt-[30px] flex flex-col gap-4 max-h-[806px] overflow-y-auto">
+      <div className="mt-[30px] flex flex-col gap-4 max-h-[806px] overflow-y-auto gray-scroll-container">
         {children}
       </div>
     </aside>

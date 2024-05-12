@@ -56,14 +56,14 @@ export const dummyData: RoomItemProps[] = [
 
 export default function ChatActivity() {
   return (
-    <div className="w-full mx-auto pt-[40px] max-w-[1200px] border border-black flex">
+    <div className="w-full mx-auto pt-[40px] max-w-[1200px] flex">
       <RoomList
         title="활동 대화방"
         subTitle="활동 대화방에서 약속을 또 잡아보아요!"
       >
         {dummyData.map((item, idx) => {
           return (
-            <div key={idx}>
+            <div key={idx} className="pr-[5px]">
               <RoomItem data={item as RoomItemProps} />
             </div>
           );
