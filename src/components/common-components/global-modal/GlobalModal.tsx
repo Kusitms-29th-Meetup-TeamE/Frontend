@@ -1,6 +1,5 @@
 'use client';
 
-import OnboardingModal from '../../onboarding/OnboardingModal';
 import ErrorModal from './ErrorModal';
 import { useGlobalModal } from './GlobalModalContext';
 import SuccessModal from './SuccessModal';

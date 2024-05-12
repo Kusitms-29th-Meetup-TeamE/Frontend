@@ -28,8 +28,8 @@ export default function OnboardingModal(props: OnboardingModalProps) {
 
   return (
     <Modal className="w-[460px]" open={isOpen} onClose={handleClose}>
-      <Modal.Title>{title}</Modal.Title>
       <Modal.Close onClick={handleClose} />
+      <Modal.Title>{title}</Modal.Title>
       <Modal.Description>{content}</Modal.Description>
       <Modal.Footer className="flex gap-5">
         <Button color="gray" onClick={handleClose} className="text-nowrap">
