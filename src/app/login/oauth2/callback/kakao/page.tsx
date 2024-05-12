@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
+import { useKakaoToken } from '@/hooks/useUser';
 import { KakaoUserProps } from '@/types/user';
 
 import { getKakaoToken } from '@/api/login/kakaoLoginApi';
@@ -21,10 +22,7 @@ const page = () => {
 
   if (kakaoCode) {
     // 인가 코드가 유효한 경우
-    const { data } = useQuery({
-      queryKey: ['KAKAO_CODE', kakaoCode],
-      queryFn: () => getKakaoToken(kakaoCode),
-    });
+    const { data } = useKakaoToken(kakaoCode);
 
     useEffect(() => {
       if (data) {
