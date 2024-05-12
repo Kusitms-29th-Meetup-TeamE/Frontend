@@ -15,6 +15,7 @@ import SelectBox from '@/components/common-components/select-box/SelectBox';
 import Skeleton from '@/components/common-components/skeleton';
 
 import { AppointmentModal } from '@/components/chat/AppointmentModal';
+import { RoomItem } from '@/components/chat/RoomItem';
 import MainTitle from '@/components/main/MainTitle';
 
 import {
@@ -139,6 +140,12 @@ export default function TestPage() {
 
   return (
     <>
+      {/* <RoomItem /> */}
+
+      <br />
+      <br />
+      <br />
+
       <Button onClick={() => setAppointmentOpen(true)}>
         약속잡기모달테스트
       </Button>
