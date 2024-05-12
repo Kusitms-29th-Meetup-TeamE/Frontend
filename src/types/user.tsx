@@ -10,4 +10,5 @@ export interface UserInfoProps extends UserProps {
   email?: string;
   birthYear?: string;
   password?: string;
+  nickname?: string;
 }
