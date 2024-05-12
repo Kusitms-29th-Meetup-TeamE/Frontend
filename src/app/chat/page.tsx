@@ -8,6 +8,7 @@ import SignUpTitle from '@/components/signUp/SignUpTitle';
 
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const style = {
   title: 'text-primary-orange6 text-h2 text-center',
@@ -18,13 +19,16 @@ const style = {
 };
 
 export default function Chat() {
+  const router = useRouter();
   const [room, setRoom] = useState<string>('');
 
   const handleClick = (option: string) => {
     setRoom(option);
   };
 
-  const handleNextClick = () => {};
+  const handleNextClick = () => {
+    router.push(`/chat/${room}`);
+  };
 
   const disabledBtn = () => {
     if (room !== 'activity' && room !== 'share') return true;
