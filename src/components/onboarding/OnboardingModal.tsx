@@ -1,35 +1,41 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import Button from '../common-components/button';
-import { OnboardingModalProps } from '../common-components/global-modal/GlobalModal.types';
 import { Modal } from '../common-components/modal';
 
-type Props = {
-  modalState: OnboardingModalProps;
-  setModalState: Dispatch<SetStateAction<OnboardingModalProps>>;
+import { useRouter } from 'next/navigation';
+
+export type OnboardingModalProps = {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  title: string;
+  content: string;
 };
 
 // 온보딩 모달 컴포넌트
-export default function OnboardingModal({ modalState, setModalState }: Props) {
-  const closeModal = () => {
-    setModalState((prev) => ({ ...prev, open: false }));
+export default function OnboardingModal(props: OnboardingModalProps) {
+  const { isOpen, setIsOpen, title, content } = props;
+  const router = useRouter();
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
-  const confirmModal = () => {
-    modalState.onConfirm && modalState.onConfirm();
-    closeModal();
+  const handleSkip = () => {
+    setIsOpen(false);
+    router.push('/');
   };
 
   return (
-    <Modal className="w-[460px]" open={modalState.open} onClose={closeModal}>
-      <Modal.Title>{modalState.title}</Modal.Title>
-      <Modal.Close onClick={closeModal} />
-      <Modal.Description>{modalState.content}</Modal.Description>
+    <Modal className="w-[460px]" open={isOpen} onClose={handleClose}>
+      <Modal.Title>{title}</Modal.Title>
+      <Modal.Close onClick={handleClose} />
+      <Modal.Description>{content}</Modal.Description>
       <Modal.Footer className="flex gap-5">
-        <Button color="gray" onClick={closeModal} className="text-nowrap">
+        <Button color="gray" onClick={handleClose} className="text-nowrap">
           설명 읽기
         </Button>
-        <Button color="default" onClick={confirmModal}>
+        <Button color="default" onClick={handleSkip}>
           건너뛰기
         </Button>
       </Modal.Footer>

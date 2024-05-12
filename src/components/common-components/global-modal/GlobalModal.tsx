@@ -18,10 +18,6 @@ export default function GlobalModal() {
         modalState={modalContext.errorModal}
         setModalState={modalContext.setErrorModal}
       />
-      <OnboardingModal
-        modalState={modalContext.onboardingModal}
-        setModalState={modalContext.setOnboardingModal}
-      />
     </>
   );
 }

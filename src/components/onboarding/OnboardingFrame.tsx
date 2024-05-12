@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '@/components/common-components/button/Button';
 
@@ -6,10 +6,9 @@ import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import useStepStore from '@/store/onboardingStepStore';
 
-import { useGlobalModal } from '../common-components/global-modal';
+import OnboardingModal from './OnboardingModal';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 export type OnboardingFrameProps = {
   stepImg: string;
@@ -20,7 +19,7 @@ export type OnboardingFrameProps = {
 
 const OnboardingFrame = (props: OnboardingFrameProps) => {
   const { stepImg, title, subTitle, children } = props;
-  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // step 별 화면 전환
   const currentStep = useStepStore((state) => state.currentStep);
@@ -33,24 +32,14 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
   const handleNextStep = () => {
     if (currentStep === 5) {
       console.log('마지막 스텝');
-    } else if (currentStep === 4) {
-      console.log(currentChips);
-      setNextStep();
     } else {
+      console.log(currentChips);
       setNextStep();
     }
   };
 
-  const { setOnboardingModal } = useGlobalModal();
-
-  const handleOnboardingModal = () => {
-    setOnboardingModal({
-      open: true,
-      title: '모든 과정을 건너뛸까요?',
-      content:
-        '또바 서비스에 대한 설명을 모두 읽으면\n또바 포인트 100원을 받을 수 있어요!',
-      onConfirm: () => router.push('/'),
-    });
+  const handleModal = () => {
+    setIsModalOpen((prev) => !prev);
   };
 
   return (
@@ -71,11 +60,19 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
         </div>
         <div
           className="text-body3 text-gray-06 underline underline-offset-6 cursor-pointer"
-          onClick={handleOnboardingModal}
+          onClick={handleModal}
         >
           모든 과정 건너뛰기
         </div>
       </div>
+      <OnboardingModal
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+        title={'모든 과정을 건너뛸까요?'}
+        content={
+          '또바 서비스에 대한 설명을 모두 읽으면\n또바 포인트 100원을 받을 수 있어요!'
+        }
+      />
     </div>
   );
 };

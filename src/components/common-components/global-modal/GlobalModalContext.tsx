@@ -11,7 +11,6 @@ import {
 
 import {
   ErrorModalProps,
-  OnboardingModalProps,
   SuccessModalProps,
 } from './GlobalModal.types';
 
@@ -24,23 +23,15 @@ const initialGlobalModalState = {
     open: false,
     text: '',
   },
-  onboardingModal: {
-    open: false,
-    title: '',
-    content: '',
-  },
   setSuccessModal: () => {},
   setErrorModal: () => {},
-  setOnboardingModal: () => {},
 };
 
 const GlobalModalContext = createContext<{
   successModal: SuccessModalProps;
   errorModal: ErrorModalProps;
-  onboardingModal: OnboardingModalProps;
   setSuccessModal: Dispatch<SetStateAction<SuccessModalProps>>;
   setErrorModal: Dispatch<SetStateAction<ErrorModalProps>>;
-  setOnboardingModal: Dispatch<SetStateAction<OnboardingModalProps>>;
 }>(initialGlobalModalState);
 
 GlobalModalContext.displayName = 'GlobalModalContext';
@@ -60,28 +51,18 @@ export function GlobalModalProvider({
     text: '',
   });
 
-  const [onboardingModal, setOnboardingModal] = useState<OnboardingModalProps>({
-    open: false,
-    title: '',
-    content: '',
-  });
-
   const value = useMemo(
     () => ({
       successModal,
       errorModal,
-      onboardingModal,
       setSuccessModal,
       setErrorModal,
-      setOnboardingModal,
     }),
     [
       successModal,
       errorModal,
-      onboardingModal,
       setSuccessModal,
       setErrorModal,
-      setOnboardingModal,
     ],
   );
 
