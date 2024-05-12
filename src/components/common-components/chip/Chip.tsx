@@ -11,10 +11,10 @@ const style: {
   color: Record<string, string>;
   type: string;
 } = {
-  base: 'max-h-[32px] inline-flex justify-center items-center rounded-[20px] px-[20px] py-[6px] text-chip-bold',
+  base: 'inline-flex justify-center items-center',
   size: {
-    sm: '', // 활동 정보 컴포넌트에서 사용하는 칩
-    md: 'max-h-9 rounded-[22px] px-[22px] py-[6px] !text-chip-semibold-sm cursor-pointer', // 필터링에서 사용하는 칩
+    sm: 'max-h-[32px] rounded-[20px] px-[20px] py-[6px] text-chip-bold', // 활동 정보 컴포넌트에서 사용하는 칩
+    md: 'max-h-9 rounded-[22px] px-[22px] py-[6px] text-chip-semibold-sm cursor-pointer', // 필터링에서 사용하는 칩
   },
   focus: {
     abled: 'text-white bg-primary-orange6',
