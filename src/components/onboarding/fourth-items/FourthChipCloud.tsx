@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FourthChip from '@/components/onBoarding/FourthItems/FourthChip';
+import FourthChip from '@/components/onboarding/fourth-items/FourthChip';
 
 import useStepStore from '@/store/onboardingStepStore';
 

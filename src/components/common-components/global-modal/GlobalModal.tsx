@@ -1,9 +1,9 @@
 'use client';
 
-import SuccessModal from './SuccessModal';
+import OnboardingModal from '../../onboarding/OnboardingModal';
 import ErrorModal from './ErrorModal';
 import { useGlobalModal } from './GlobalModalContext';
-import OnboardingModal from './OnboardingModal';
+import SuccessModal from './SuccessModal';
 
 export default function GlobalModal() {
   const modalContext = useGlobalModal();

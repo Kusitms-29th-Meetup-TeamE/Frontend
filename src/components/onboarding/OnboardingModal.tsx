@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import Button from '../button';
-import { Modal } from '../modal';
-import { OnboardingModalProps } from './GlobalModal.types';
+import Button from '../common-components/button';
+import { OnboardingModalProps } from '../common-components/global-modal/GlobalModal.types';
+import { Modal } from '../common-components/modal';
 
 type Props = {
   modalState: OnboardingModalProps;
