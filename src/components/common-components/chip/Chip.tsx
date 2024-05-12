@@ -6,15 +6,24 @@ import clsx from 'clsx';
 
 const style: {
   base: string;
+  size: Record<string, string>;
+  focus: Record<string, string>;
   color: Record<string, string>;
   type: string;
 } = {
   base: 'max-h-[32px] inline-flex justify-center items-center rounded-[20px] px-[20px] py-[6px] text-chip-bold',
+  size: {
+    sm: '', // 활동 정보 컴포넌트에서 사용하는 칩
+    md: 'max-h-9 rounded-[22px] px-[22px] py-[6px] !text-chip-semibold cursor-pointer', // 필터링에서 사용하는 칩
+  },
+  focus: {
+    abled: 'text-white bg-primary-orange6',
+    disabled: 'border-none text-gray-07 bg-gray-04',
+  },
   color: {
     활발한: 'bg-[rgba(253,143,42,0.1)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
     학문적인:
       'border border-[#E78751] bg-[rgba(231, 135, 81, 0.10)] text-[#E78751]', // 학문적인
-
     평화로운:
       'border border-[#8598FC] bg-[rgba(133, 152, 252, 0.10)] text-[#8598FC]',
     예술적인:
@@ -37,14 +46,28 @@ const style: {
  */
 const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
   (props, ref) => {
-    const { className, text, type } = props;
+    const {
+      className,
+      size = 'sm',
+      text,
+      type,
+      isBtn = false,
+      isSelected,
+      isPersonality = true,
+    } = props;
 
     return (
       <div
         className={clsx(
           style.base,
           className,
+          isBtn
+            ? isSelected
+              ? (!isPersonality && style.focus['abled'])
+              : style.focus['disabled']
+            : '',
           text ? style.color[text as string] : style.type,
+          style.size[size],
         )}
       >
         {text ?? type}
