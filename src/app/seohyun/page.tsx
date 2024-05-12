@@ -3,6 +3,7 @@
 import React from 'react';
 import { IoIosSearch } from 'react-icons/io';
 
+import Chip from '@/components/common-components/chip';
 import Input from '@/components/common-components/input';
 
 import ActivityHeader from '@/components/join/ActivityHeader';
@@ -26,6 +27,24 @@ const TestPage = () => {
         shape={'rounded'}
         size={'sm'}
       />
+      <Chip text="활발한" />
+      <Chip
+        text="전체"
+        size="md"
+        isBtn={true}
+        isSelected={false}
+        isPersonality={false}
+      />
+      <Chip
+        text="전체"
+        size="md"
+        isBtn={true}
+        isSelected={true}
+        isPersonality={false}
+      />
+      <Chip text="활발한" size="md" isBtn={true} isSelected={false} />
+      <Chip text="활발한" size="md" isBtn={true} isSelected={true} />
+
       <div className="flex gap-2 p-2"></div>
       <Notice />
       <div className="h-[30px]"></div>
