@@ -38,7 +38,7 @@ export default function SelectBox({
   initText,
 }: SelectBoxProps) {
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
-  const [hoverMenu, setHoverMenu] = useState<string | null>(null);
+  const [hoverMenu, setHoverMenu] = useState<string | number | null>(null);
 
   const [selectedItem, setSelectedItem] = useState<string>(
     initText ?? items[0].text,

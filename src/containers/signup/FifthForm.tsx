@@ -25,9 +25,9 @@ export default function FifthForm() {
   const [confirmNum, setConfirmNum] = useState<Number | null>(null);
   const [gender, setGender] = useState<string>('');
 
-  const [year, setYear] = useState<string>('');
-  const [month, setMonth] = useState<string>('');
-  const [day, setDay] = useState<string>('');
+  const [year, setYear] = useState<string | number>('');
+  const [month, setMonth] = useState<string | number>('');
+  const [day, setDay] = useState<string | number>('');
 
   // 주소 검색 모달
   const [isOpen, setIsOpen] = useState<boolean>(false);
