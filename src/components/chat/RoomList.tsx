@@ -16,7 +16,7 @@ export const RoomList = (props: RoomListProps) => {
   return (
     <aside className="w-full max-w-[486px]">
       <div
-        className="text-gray-08 text-body2 flex items-center gap-2 cursor-pointer"
+        className="text-gray-08 text-body2 inline-flex items-center gap-2 cursor-pointer hover:bg-gray-03 px-2 py-1 rounded-[10px] box-border"
         onClick={handlePrevClick}
       >
         <IoIosArrowBack />

@@ -1,3 +1,4 @@
+import { EmptyChat } from '@/components/chat/EmptyChat';
 import { RoomItem, RoomItemProps } from '@/components/chat/RoomItem';
 import { RoomList } from '@/components/chat/RoomList';
 
@@ -70,7 +71,9 @@ export default function ChatActivity() {
         })}
       </RoomList>
 
-      <section className="flex-1 border border-blue-500">asdfadsf</section>
+      <section className="flex-1">
+        <EmptyChat />
+      </section>
     </div>
   );
 }
