@@ -1,16 +1,31 @@
-import React from 'react';
+'use client';
 
+import React from 'react';
+import { IoIosSearch } from 'react-icons/io';
+
+import Input from '@/components/common-components/input';
+
+import ActivityHeader from '@/components/join/ActivityHeader';
 import PointItem from '@/components/main/PointItem';
 
 import Notice from '@/containers/main/Notice';
 import Point from '@/containers/main/Point';
 import SubBannerSlider from '@/containers/main/SubBannerSlider';
-import ActivityHeader from '@/components/join/ActivityHeader';
 
 const TestPage = () => {
   return (
     <div className="p-5">
-      <ActivityHeader title={"활동 참여하기"} content={"취향에 맞는 활동을 찾고 참여하세요!"}/>
+      <ActivityHeader
+        title={'활동 참여하기'}
+        content={'취향에 맞는 활동을 찾고 참여하세요!'}
+      />
+      <Input
+        onChange={() => console.log('input 클릭')}
+        placeholder={'찾으시는 활동을 검색해보세요!'}
+        search={true}
+        shape={'rounded'}
+        size={'sm'}
+      />
       <div className="flex gap-2 p-2"></div>
       <Notice />
       <div className="h-[30px]"></div>
