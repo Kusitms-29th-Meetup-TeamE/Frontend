@@ -49,7 +49,7 @@ const config: Config = {
         'gray-chip': '#e1e8ef',
 
         // error color
-        'error-main': '#FF465C',
+        'error-main': '#FF0000',
       },
       fontSize: {
         h1: [
