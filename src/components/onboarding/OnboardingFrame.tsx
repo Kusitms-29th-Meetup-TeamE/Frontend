@@ -9,6 +9,7 @@ import useStepStore from '@/store/onboardingStepStore';
 import OnboardingModal from './OnboardingModal';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export type OnboardingFrameProps = {
   stepImg: string;
@@ -19,6 +20,8 @@ export type OnboardingFrameProps = {
 
 const OnboardingFrame = (props: OnboardingFrameProps) => {
   const { stepImg, title, subTitle, children } = props;
+  const router = useRouter();
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // step 별 화면 전환
@@ -32,6 +35,7 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
   const handleNextStep = () => {
     if (currentStep === 5) {
       console.log('마지막 스텝');
+      router.push('/');
     } else {
       console.log(currentChips);
       setNextStep();
@@ -46,11 +50,9 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
     <div className="w-full h-screen flex flex-col items-center pt-20 pb-20">
       <Image src={stepImg} width={300} height={12} alt={''} className="mb-10" />
       <SignUpTitle title={title} subTitle={subTitle} />
-      <div className="flex justify-center border-2 border-black ">
-        {children}
-      </div>
-      <div className="border border-red-500 mt-[56px] w-full h-fit flex flex-col justify-center items-center gap-7">
-        <div className="w-full flex justify-center gap-6 border border-blue-500">
+      <div className="flex justify-center">{children}</div>
+      <div className="mt-[56px] w-full h-fit flex flex-col justify-center items-center gap-7">
+        <div className="w-full flex justify-center gap-6">
           <Button size="lg" color="gray" onClick={() => setPrevStep()}>
             이전
           </Button>
