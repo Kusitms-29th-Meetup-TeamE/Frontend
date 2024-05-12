@@ -50,6 +50,15 @@ const config: Config = {
 
         // error color
         'error-main': '#FF465C',
+
+        // chip color
+        'chip-scholar': '#E78751',
+        'chip-active': '#FD8F2A',
+        'chip-creative': '#FFC700',
+        'chip-learnable': '#E85087',
+        'chip-artistic': '#A954DD',
+        'chip-peaceful': '#8598FC',
+        'chip-natural': '#52BD63',
       },
       fontSize: {
         h1: [
@@ -122,6 +131,14 @@ const config: Config = {
             fontWeight: 'bold',
             lineHeight: '20px',
             letterSpacing: '2%',
+          },
+        ],
+        'chip-semibold': [
+          '1.625rem', // 26px
+          {
+            fontWeight: '600',
+            lineHeight: '50px',
+            letterSpacing: '4%',
           },
         ],
         'chip-medium': [

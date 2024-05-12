@@ -8,7 +8,7 @@ import Button from '@/components/common-components/button';
 import Checkbox from '@/components/common-components/check-box/Checkbox';
 import Input from '@/components/common-components/input';
 
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import Image from 'next/image';
 
