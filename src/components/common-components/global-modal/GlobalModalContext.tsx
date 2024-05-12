@@ -9,7 +9,10 @@ import {
   useState,
 } from 'react';
 
-import { ErrorModalProps, SuccessModalProps } from './GlobalModal.types';
+import {
+  ErrorModalProps,
+  SuccessModalProps,
+} from './GlobalModal.types';
 
 const initialGlobalModalState = {
   successModal: {
@@ -51,11 +54,16 @@ export function GlobalModalProvider({
   const value = useMemo(
     () => ({
       successModal,
-      setSuccessModal,
       errorModal,
+      setSuccessModal,
       setErrorModal,
     }),
-    [successModal, errorModal, setSuccessModal, setErrorModal],
+    [
+      successModal,
+      errorModal,
+      setSuccessModal,
+      setErrorModal,
+    ],
   );
 
   return (

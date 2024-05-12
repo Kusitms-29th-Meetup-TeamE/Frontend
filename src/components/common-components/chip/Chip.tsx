@@ -14,7 +14,7 @@ const style: {
   base: 'max-h-[32px] inline-flex justify-center items-center rounded-[20px] px-[20px] py-[6px] text-chip-bold',
   size: {
     sm: '', // 활동 정보 컴포넌트에서 사용하는 칩
-    md: 'max-h-9 rounded-[22px] px-[22px] py-[6px] !text-chip-semibold cursor-pointer', // 필터링에서 사용하는 칩
+    md: 'max-h-9 rounded-[22px] px-[22px] py-[6px] !text-chip-semibold-sm cursor-pointer', // 필터링에서 사용하는 칩
   },
   focus: {
     abled: 'text-white bg-primary-orange6',
@@ -29,11 +29,10 @@ const style: {
     예술적인:
       'border border-[#A954DD] bg-[rgba(169, 84, 221, 0.10)] text-[#A954DD]',
     자연친화적인:
-      'border border-[#4BAB5A] bg-[rgba(75, 171, 90, 0.10)] text-[#4BAB5A]',
+      'border border-chip-natural bg-chip-natural text-chip-natural',
     '배울 수 있는':
-      'border border-[#EA709C] bg-[rgba(234, 112, 156, 0.10)] text-[#EA709C]',
-    창의적인:
-      'border border-[#FFC700] bg-[rgba(255, 199, 0, 0.10)] text-[#FFC700]',
+      'border border-chip-learnable bg-chip-learnable text-chip-learnable',
+    창의적인: 'border border-chip-creative bg-chip-creative text-chip-creative',
   },
   // 활동 타입은 아래 type 색상만 사용합니다.
   type: '!px-[16px] !rounded-[30px] text-white text-chip-bold bg-primary-orange4 bg-opacity-80',
@@ -63,7 +62,7 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
           className,
           isBtn
             ? isSelected
-              ? (!isPersonality && style.focus['abled'])
+              ? !isPersonality && style.focus['abled']
               : style.focus['disabled']
             : '',
           text ? style.color[text as string] : style.type,

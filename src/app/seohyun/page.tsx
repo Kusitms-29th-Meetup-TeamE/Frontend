@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { IoIosSearch } from 'react-icons/io';
 
 import Chip from '@/components/common-components/chip';
 import Input from '@/components/common-components/input';
