@@ -47,6 +47,7 @@ const config: Config = {
         'gray-10': '#303539',
         'gray-11': '#272b30',
         'gray-chip': '#e1e8ef',
+        black: '#14191E',
 
         // error color
         'error-main': '#FF0000',
@@ -113,6 +114,14 @@ const config: Config = {
           {
             fontWeight: '500',
             lineHeight: '26px',
+            letterSpacing: '2%',
+          },
+        ],
+        body4: [
+          '1.125rem', // 18px
+          {
+            fontWeight: '700',
+            lineHeight: '30px',
             letterSpacing: '2%',
           },
         ],
