@@ -10,7 +10,10 @@ import RecommendItem, {
 
 import { useMainDataList } from '@/hooks/useMain';
 
+import { useRouter } from 'next/navigation';
+
 export default function RecommendActivity() {
+  const router = useRouter();
   const { data: mainData, isLoading, error } = useMainDataList();
 
   const mainDataList: RecommendItemProps[] = useMemo(
@@ -47,7 +50,10 @@ export default function RecommendActivity() {
         })}
       </div>
 
-      <div className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10">
+      <div
+        className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10"
+        onClick={() => router.push('/join')}
+      >
         <div className="inline-flex items-center gap-[2px] cursor-pointer px-3 py-1 rounded-lg hover:bg-gray-02">
           더 많은 활동 보기
           <IoIosArrowForward />
