@@ -1,5 +1,6 @@
 import { RoomItem, RoomItemProps } from '@/components/chat/RoomItem';
 
+import { ChatRoom } from '@/containers/chat/ChatRoom';
 import { EmptyChat } from '@/containers/chat/EmptyChat';
 import { RoomList } from '@/containers/chat/RoomList';
 
@@ -73,7 +74,8 @@ export default function ChatActivity() {
       </RoomList>
 
       <section className="flex-1">
-        <EmptyChat />
+        {/* <EmptyChat /> */}
+        <ChatRoom />
       </section>
     </div>
   );
