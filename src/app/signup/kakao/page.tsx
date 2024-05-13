@@ -46,7 +46,7 @@ export const SignUpKakao = () => {
 
   return (
     <main className="pt-[70px]">
-      <div className="m-auto w-full max-w-[800px] flex flex-col justify-center items-center">
+      <section className="m-auto w-full max-w-[800px] flex flex-col justify-center items-center">
         <Image
           src={`/assets/signup/${step === 0 ? 'form1' : 'form2'}.png`}
           width={618}
@@ -116,7 +116,13 @@ export const SignUpKakao = () => {
           </div>
         )}
 
-        <div className="flex gap-6 w-full justify-center">
+        <div
+          className={clsx(
+            'flex gap-6 w-full justify-center',
+            step === 0 && 'mt-[104px]',
+            step === 1 && 'mt-[400px]',
+          )}
+        >
           {step !== 0 && (
             <Button
               color="gray"
@@ -139,7 +145,7 @@ export const SignUpKakao = () => {
             {step === 0 ? '다음' : '완료'}
           </Button>
         </div>
-      </div>
+      </section>
 
       {/* 주소 검색 모달 */}
       <SearchAddressModal
