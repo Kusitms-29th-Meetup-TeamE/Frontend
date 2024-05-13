@@ -4,20 +4,28 @@ import React, { useEffect, useState } from 'react';
 import { FaHeart } from 'react-icons/fa6';
 
 import Input from '@/components/common-components/input';
+import Pagination from '@/components/common-components/pagination/Pagination';
 
 import ActivityHeader from '@/components/join/ActivityHeader';
 
 import ChipContainer from '@/containers/join/ChipContainer';
+import useSelectedJoinChipStore from '@/store/selectedJoinChipStore';
 
 import clsx from 'clsx';
 
 const page = () => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const [selectedChips, setSelectedChips] = useState<string[]>([]);
+  const initCurrentChips = useSelectedJoinChipStore(
+    (state) => state.initCurrentChips,
+  );
 
   useEffect(() => {
-    console.log(selectedChips);
-  }, [isLiked, selectedChips]);
+    // 관심활동 클릭 시 선택된 태그 초기화
+    if (isLiked) {
+      initCurrentChips();
+    }
+  }, [isLiked]);
 
   return (
     <>
@@ -51,8 +59,12 @@ const page = () => {
             <span>관심활동 모아보기</span>
           </div>
         </div>
-        {/* chip container */}
-        <ChipContainer handleChange={setSelectedChips} />
+        <ChipContainer className="mb-10" />
+        <Pagination
+          totalPages={8}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </>
   );
