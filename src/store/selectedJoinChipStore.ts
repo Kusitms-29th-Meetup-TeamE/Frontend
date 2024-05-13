@@ -2,15 +2,21 @@ import create from 'zustand';
 
 interface SelectedJoinChipState {
   currentChips: string[];
+  isInit: boolean;
+  initCurrentChips: () => void;
   setCurrentChips: (chip: string) => void;
   getCurrentChips: () => string[];
 }
 
-const initialChip = { currentChips: [] };
+const initialChip = { currentChips: [], isInit: false };
 
 export const useSelectedJoinChipStore = create<SelectedJoinChipState>(
   (set, get) => ({
     currentChips: initialChip.currentChips,
+    isInit: initialChip.isInit,
+
+    initCurrentChips: () =>
+      set(() => ({ currentChips: initialChip.currentChips, isInit: true })),
 
     setCurrentChips: (newChip: string) =>
       set((state) => {
@@ -18,10 +24,10 @@ export const useSelectedJoinChipStore = create<SelectedJoinChipState>(
 
         if (!currentChips.includes(newChip)) {
           currentChips.push(newChip); // 선택돼있지 않은 경우 선택
-          return { currentChips };
+          return { currentChips, isInit: false };
         } else {
           const filteredChips = currentChips.filter((chip) => chip !== newChip); // 선택돼있는 경우 선택 해제
-          return { currentChips: filteredChips };
+          return { currentChips: filteredChips, isInit: false };
         }
       }),
 

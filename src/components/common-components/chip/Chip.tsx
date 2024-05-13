@@ -1,4 +1,4 @@
-import { PropsWithChildren, forwardRef, useState } from 'react';
+import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
 import useSelectedJoinChipStore from '@/store/selectedJoinChipStore';
 
@@ -58,16 +58,29 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
     } = props;
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
-    const setCurrentChip = useSelectedJoinChipStore(
+    const isInit = useSelectedJoinChipStore((state) => state.isInit);
+    const currentChips = useSelectedJoinChipStore(
+      (state) => state.currentChips,
+    );
+    const setCurrentChips = useSelectedJoinChipStore(
       (state) => state.setCurrentChips,
+    );
+    const getCurrentChips = useSelectedJoinChipStore(
+      (state) => state.getCurrentChips,
     );
 
     const handleClick = () => {
       if (isBtn && text) {
         setIsSelected((prev) => !prev);
-        setCurrentChip(text);
+        setCurrentChips(text);
       }
     };
+
+    useEffect(() => {
+      if (isInit) {
+        setIsSelected(false);
+      }
+    }, [currentChips]);
 
     return (
       <div
