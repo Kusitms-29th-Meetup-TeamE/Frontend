@@ -8,6 +8,8 @@ import { MdKeyboardArrowLeft, MdOutlinePersonOutline } from 'react-icons/md';
 
 import Button from '@/components/common-components/button';
 
+import JoinActivityModal from '@/components/join/JoinActivityModal';
+
 import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -24,9 +26,15 @@ const page = () => {
   // TODO: 활동 아이디로 api 연동 예정
   const paramId = useSearchParams();
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // 활동 내용 중 필터링 위함
   const [content, setContent] = useState<string>('');
+
+  const handleJoin = () => {
+    setIsOpen(true);
+    console.log('신청하기');
+  };
 
   return (
     <div className="max-w-[1200px] w-full h-full mx-auto pt-8 flex flex-col">
@@ -93,10 +101,11 @@ const page = () => {
         ></textarea>
       </div>
       <div className="w-full flex justify-center">
-        <Button size={'lg'} shape={'rounded'}>
+        <Button size={'lg'} shape={'rounded'} onClick={handleJoin}>
           활동 신청하기
         </Button>
       </div>
+      <JoinActivityModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
