@@ -33,6 +33,7 @@ const page = () => {
       imageUrl: '/assets/main/main_banner.png',
       personalities: ['활발한'],
       isLiked: false,
+      id: '1',
     },
     {
       //2
@@ -42,6 +43,7 @@ const page = () => {
       imageUrl: '/assets/main/main_banner.png',
       personalities: ['활발한'],
       isLiked: false,
+      id: '2',
     },
     {
       //3
@@ -148,7 +150,7 @@ const page = () => {
         title={'활동 참여하기'}
         content={'취향에 맞는 활동을 찾고 참여하세요!'}
       />
-      <div className="max-w-[1210px] w-full mx-auto border">
+      <div className="max-w-[1210px] w-full mx-auto">
         <div className="mt-[60px] flex justify-between">
           <Input
             onChange={() => console.log('input 클릭')}
