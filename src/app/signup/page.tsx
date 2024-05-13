@@ -4,6 +4,9 @@ import { useState } from 'react';
 
 import Button from '@/components/common-components/button';
 
+import { useLocalUserInfo } from '@/hooks/useUser';
+import { UserInfoProps } from '@/types/user';
+
 import FifthForm from '@/containers/signup/FifthForm';
 import FirstForm from '@/containers/signup/FirstForm';
 import FourthForm from '@/containers/signup/FourthForm';
@@ -40,15 +43,6 @@ export default function SignUp() {
     }
   };
 
-  const handleNextClick = () => {
-    if (step < 4) {
-      setStep(step + 1);
-    }
-    if (step === 4) {
-      // TODO: onSubmit?
-    }
-  };
-
   const allRequiredChecked = checkItems.slice(0, 3).every(Boolean); // 필수항목 체크 여부 확인
 
   const disabledBtn = () => {
@@ -71,7 +65,7 @@ export default function SignUp() {
     // 필요한 로직 수행
   };
 
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserInfoProps>({
     // third-form
     email: '',
     // fourth-form
@@ -83,6 +77,20 @@ export default function SignUp() {
     birthYear: '',
     location: '',
   });
+
+  console.log('userinfo', userInfo);
+
+  const { mutate, isPending } = useLocalUserInfo(userInfo);
+
+  const handleNextClick = () => {
+    if (step < 4) {
+      setStep(step + 1);
+    }
+    if (step === 4) {
+      // TODO: onSubmit?
+      // mutate();
+    }
+  };
 
   return (
     <main className="pt-[70px]">
@@ -96,12 +104,17 @@ export default function SignUp() {
         <SecondForm checkItems={checkItems} setCheckItems={setCheckItems} />
       )}
       {step === 2 && (
-        <ThirdForm authEmail={authEmail} setAuthEmail={setAuthEmail} />
+        <ThirdForm
+          authEmail={authEmail}
+          setAuthEmail={setAuthEmail}
+          setUserInfo={setUserInfo}
+        />
       )}
       {step === 3 && (
-        <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
+        <></>
+        // <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
       )}
-      {step === 4 && <FifthForm />}
+      {step === 4 && <FifthForm setUserInfo={setUserInfo} />}
 
       <div
         className={clsx(
@@ -129,7 +142,7 @@ export default function SignUp() {
           shape="rounded"
           size="lg"
           onClick={handleNextClick}
-          disabled={disabledBtn()}
+          // disabled={disabledBtn()}
           type="submit"
         >
           {step !== 4 ? '다음' : '완료'}
