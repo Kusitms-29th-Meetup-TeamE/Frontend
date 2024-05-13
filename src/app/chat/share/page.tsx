@@ -1,6 +1,7 @@
 import { OneRoomItem } from '@/components/chat/OneRoomItem';
 import { RoomItem } from '@/components/chat/RoomItem';
-import { RoomList } from '@/components/chat/RoomList';
+
+import { RoomList } from '@/containers/chat/RoomList';
 
 import { dummyData } from '../activity/page';
 

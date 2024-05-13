@@ -1,6 +1,7 @@
-import { EmptyChat } from '@/components/chat/EmptyChat';
 import { RoomItem, RoomItemProps } from '@/components/chat/RoomItem';
-import { RoomList } from '@/components/chat/RoomList';
+
+import { EmptyChat } from '@/containers/chat/EmptyChat';
+import { RoomList } from '@/containers/chat/RoomList';
 
 export const dummyData: RoomItemProps[] = [
   {

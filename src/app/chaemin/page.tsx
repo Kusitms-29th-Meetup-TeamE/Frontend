@@ -15,6 +15,8 @@ import SelectBox from '@/components/common-components/select-box/SelectBox';
 import Skeleton from '@/components/common-components/skeleton';
 
 import { AppointmentModal } from '@/components/chat/AppointmentModal';
+import { MyMsgItem } from '@/components/chat/MyMsgItem';
+import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { RoomItem } from '@/components/chat/RoomItem';
 import MainTitle from '@/components/main/MainTitle';
 
@@ -141,6 +143,10 @@ export default function TestPage() {
   return (
     <>
       {/* <RoomItem /> */}
+      <div className="flex flex-col gap-[30px]">
+        <OtherMsgItem />
+        <MyMsgItem />
+      </div>
 
       <br />
       <br />
