@@ -143,10 +143,11 @@ export default function TestPage() {
   return (
     <>
       {/* <RoomItem /> */}
-      <div className="flex flex-col gap-[30px]">
+      {/* <div className="flex flex-col gap-[30px]">
         <OtherMsgItem />
         <MyMsgItem />
-      </div>
+        <OtherMsgItem />
+      </div> */}
 
       <br />
       <br />
