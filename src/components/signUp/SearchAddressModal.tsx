@@ -19,7 +19,7 @@ export default function SearchAddressModal(props: SearchAddressModalProps) {
 
   const handleComplete = (data: any) => {
     console.log(data);
-    setLocation(data.roadAddress);
+    setLocation(data.roadAddress + ' ' + `(${data.buildingName})`);
     // setIsOpen((prev) => !prev);
     onToggleModal();
   };
