@@ -7,6 +7,7 @@ import Input from '@/components/common-components/input';
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import { useNotifyError, useNotifySuccess } from '@/hooks/useToast';
+import { UserInfoProps } from '@/types/user';
 
 import { postEmailAuth } from '@/api/user';
 
@@ -22,10 +23,11 @@ export const inputStyle = {
 export type ThirdFormProps = {
   authEmail: boolean;
   setAuthEmail: Dispatch<SetStateAction<boolean>>;
+  setUserInfo: Dispatch<SetStateAction<UserInfoProps>>;
 };
 
 export default function ThirdForm(props: ThirdFormProps) {
-  const { authEmail, setAuthEmail } = props;
+  const { authEmail, setAuthEmail, setUserInfo } = props;
   const [email, setEmail] = useState<string>('');
 
   const disabledBtn = () => {
@@ -58,6 +60,10 @@ export default function ThirdForm(props: ThirdFormProps) {
       console.log('인증성공');
       useNotifySuccess('인증이 완료되었습니다.');
       setAuthEmail(true);
+      setUserInfo((prev) => ({
+        ...prev,
+        email: email,
+      }));
     } else {
       console.log('실패');
       useNotifyError('인증에 실패하였습니다. 다시 시도해주세요.');

@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import Input from '@/components/common-components/input';
 import SelectBox from '@/components/common-components/select-box/SelectBox';
 
 import SearchAddressModal from '@/components/signUp/SearchAddressModal';
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import { dayItems, monthItems, yearItems } from '@/constants/object';
+import { UserInfoProps } from '@/types/user';
 
 import { inputStyle } from './ThirdForm';
 
@@ -20,9 +21,11 @@ const style = {
     'bg-primary-orange1 border border-primary-orange6 !text-h3 text-primary-orange6',
 };
 
-export default function FifthForm() {
-  const [email, setEmail] = useState<string>('');
-  const [confirmNum, setConfirmNum] = useState<Number | null>(null);
+export type FifthFormProps = {
+  setUserInfo: Dispatch<SetStateAction<UserInfoProps>>;
+};
+
+export default function FifthForm({ setUserInfo }: FifthFormProps) {
   const [gender, setGender] = useState<string>('');
 
   const [year, setYear] = useState<string | number>('');
@@ -33,11 +36,18 @@ export default function FifthForm() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [location, setLocation] = useState<string>('');
 
-  const handleGender = (gender: string) => {
-    setGender(gender);
+  const handleGender = (genderText: string) => {
+    setGender(genderText);
   };
 
-  console.log('loc', location);
+  useEffect(() => {
+    setUserInfo((prev) => ({
+      ...prev,
+      location: location,
+      gender: gender,
+      birthYear: year.toString(),
+    }));
+  }, [location, gender, year]);
 
   return (
     <>
@@ -89,7 +99,9 @@ export default function FifthForm() {
                   style.genderBase,
                   gender === 'male' && style.genderClicked,
                 )}
-                onClick={() => handleGender('male')}
+                onClick={() => {
+                  handleGender('male');
+                }}
               >
                 남자
               </div>
@@ -98,7 +110,9 @@ export default function FifthForm() {
                   style.genderBase,
                   gender === 'female' && style.genderClicked,
                 )}
-                onClick={() => handleGender('female')}
+                onClick={() => {
+                  handleGender('female');
+                }}
               >
                 여자
               </div>
