@@ -8,6 +8,9 @@ import Pagination from '@/components/common-components/pagination/Pagination';
 
 import ActivityHeader from '@/components/join/ActivityHeader';
 
+import ActivityContainer, {
+  ActivityType,
+} from '@/containers/join/ActivityContainer';
 import ChipContainer from '@/containers/join/ChipContainer';
 import useSelectedJoinChipStore from '@/store/selectedJoinChipStore';
 
@@ -19,6 +22,118 @@ const page = () => {
   const initCurrentChips = useSelectedJoinChipStore(
     (state) => state.initCurrentChips,
   );
+
+  // API response 받고 수정 예정
+  const data: ActivityType[] = [
+    {
+      //1
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //2
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //3
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //4
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //5
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //6
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //7
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //8
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //9
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //10
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //11
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+    {
+      //12
+      title: '자연의 맛 요리 배우기',
+      location: '서대문노인종합복지관',
+      time: '4월 20일 토요일',
+      imageUrl: '/assets/main/main_banner.png',
+      personalities: ['활발한'],
+      isLiked: false,
+    },
+  ];
 
   useEffect(() => {
     // 관심활동 클릭 시 선택된 태그 초기화
@@ -60,6 +175,7 @@ const page = () => {
           </div>
         </div>
         <ChipContainer className="mb-10" />
+        <ActivityContainer data={data} className="mb-[100px]" />
         <Pagination
           totalPages={8}
           currentPage={currentPage}
