@@ -54,8 +54,8 @@ export const SignUpKakao = () => {
     <main className="pt-[70px]">
       <section className="m-auto w-full max-w-[800px] flex flex-col justify-center items-center">
         <Image
-          src={`/assets/signup/${step === 0 ? 'form1' : 'form2'}.png`}
-          width={618}
+          src={`/assets/signup/kakao/${step === 0 ? 'step1' : 'step2'}.png`}
+          width={232}
           height={42}
           alt=""
           className="mb-[96px]"
