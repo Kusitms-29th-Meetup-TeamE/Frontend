@@ -14,6 +14,7 @@ import SecondForm, { checkData } from '@/containers/signup/SecondForm';
 import ThirdForm from '@/containers/signup/ThirdForm';
 
 import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
 
 const btnStyle = {
   form1: 'mt-[104px]',
@@ -24,6 +25,8 @@ const btnStyle = {
 };
 
 export default function SignUp() {
+  const router = useRouter();
+
   const [step, setStep] = useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -87,8 +90,8 @@ export default function SignUp() {
       setStep(step + 1);
     }
     if (step === 4) {
-      // TODO: onSubmit?
-      // mutate();
+      mutate();
+      // router.push('/login');
     }
   };
 
@@ -111,8 +114,7 @@ export default function SignUp() {
         />
       )}
       {step === 3 && (
-        <></>
-        // <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
+        <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
       )}
       {step === 4 && <FifthForm setUserInfo={setUserInfo} />}
 
@@ -142,7 +144,7 @@ export default function SignUp() {
           shape="rounded"
           size="lg"
           onClick={handleNextClick}
-          // disabled={disabledBtn()}
+          disabled={disabledBtn()}
           type="submit"
         >
           {step !== 4 ? '다음' : '완료'}
