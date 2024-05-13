@@ -9,18 +9,18 @@ export const postKakaoUserInfo = async ({
   imgUrl,
   gender,
   birthYear,
+  password,
   location,
 }: UserInfoProps) => {
   await fetch(`${BASE_URL}/api/sign-up`, {
     method: 'POST',
     headers: {
-      // 임의로 작성
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       name: name,
       email: email,
+      password: password,
       imageUrl: imgUrl,
       gender: gender,
       birthyear: birthYear,
@@ -48,8 +48,6 @@ export const postLocalUserInfo = async ({
   await fetch(`${BASE_URL}/register`, {
     method: 'POST',
     headers: {
-      // 임의로 작성
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -62,11 +60,14 @@ export const postLocalUserInfo = async ({
     }),
   })
     .then((res) => {
-      console.log(res.json);
-      return res.json();
+      // console.log('res:', res);
+      // if (res.status === 200) {
+      //   console.log('res.status', res.status);
+      // }
+      // return res.status;
     })
     .catch((err) => {
-      console.log(err);
+      console.log('err', err);
     });
 };
 

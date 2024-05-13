@@ -12,6 +12,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { useNotifyError, useNotifySuccess } from './useToast';
 
+import { useRouter } from 'next/navigation';
+
 export const useKakaoToken = (kakaoCode: string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['KAKAO_CODE', kakaoCode],
@@ -45,15 +47,17 @@ export const useKakaoUserInfo = (data: UserInfoProps) => {
 
 export const useLocalUserInfo = (data: UserInfoProps) => {
   const { setSuccessModal, setErrorModal } = useGlobalModal();
+  const router = useRouter();
 
-  const { mutate, isPending, error } = useMutation({
+  const { mutate, isPending, error, isSuccess } = useMutation({
     mutationFn: () => postLocalUserInfo(data),
     onSuccess: (res) => {
-      console.log(res);
       setSuccessModal({
         open: true,
         text: '회원 정보가 등록되었습니다.',
       });
+      // TODO: 회원가입 성공 시에만
+      router.push('/login');
     },
     onError: (err: any) => {
       console.log(err);
