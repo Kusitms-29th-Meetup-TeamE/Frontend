@@ -30,10 +30,6 @@ function ModalContainer({
   return <div className={clsx(variants.container, className)}>{children}</div>;
 }
 
-ModalContainer.defaultProps = {
-  className: '',
-};
-
 // 모달 오픈 시 배경 흐려지게 하는 컴포넌트
 function BackDrop() {
   return (
