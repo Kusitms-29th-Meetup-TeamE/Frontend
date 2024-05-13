@@ -1,3 +1,5 @@
+'use client';
+
 import './globals.css';
 
 import React from 'react';
@@ -13,21 +15,31 @@ import wantedSans from '@/utils/font';
 
 import Providers from './providers';
 
+import { usePathname } from 'next/navigation';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
+  const isGuest =
+    pathname.includes('/login') ||
+    pathname.includes('/signup') ||
+    pathname.includes('/onboarding');
+
   return (
     <html>
       {/* TOFIX: body 제거 필요 */}
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           <GlobalModalProvider>
-            <Header />
-            {/* TOFIX: container 작업 필요 */}
-            <div className="mt-[70px] mb-[160px]">{children}</div>
-            <Footer />
+            {!isGuest && <Header />}
+            <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>
+              {children}
+            </div>
+            {!isGuest && <Footer />}
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />

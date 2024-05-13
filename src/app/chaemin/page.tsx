@@ -107,7 +107,7 @@ export default function TestPage() {
     },
   ];
 
-  const [selectItem, setSelectItem] = useState<string>();
+  const [selectItem, setSelectItem] = useState<string | number>();
 
   const [location, setLocation] = useState<string>('');
 

@@ -2,14 +2,23 @@ import { useGlobalModal } from '@/components/common-components/global-modal';
 
 import { UserInfoProps } from '@/types/user';
 
+import { getKakaoToken } from '@/api/login/kakaoLoginApi';
 import {
   postEmailAuth,
   postKakaoUserInfo,
   postLocalUserInfo,
 } from '@/api/user';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { useNotifyError, useNotifySuccess } from './useToast';
+
+export const useKakaoToken = (kakaoCode: string) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['KAKAO_CODE', kakaoCode],
+    queryFn: () => getKakaoToken(kakaoCode),
+  });
+  return { data, isLoading, error };
+};
 
 export const useKakaoUserInfo = (data: UserInfoProps) => {
   const { setSuccessModal, setErrorModal } = useGlobalModal();

@@ -10,11 +10,5 @@ export default function ModalSubTitle({
   className?: string;
   children: React.ReactNode;
 }) {
-  return (
-    <div className={twMerge(variants.subTitle, className)}>{children}</div>
-  );
+  return <div className={twMerge(className)}>{children}</div>;
 }
-
-ModalSubTitle.defaultProps = {
-  className: '',
-};
