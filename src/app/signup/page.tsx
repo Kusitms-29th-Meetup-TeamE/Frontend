@@ -91,7 +91,6 @@ export default function SignUp() {
     }
     if (step === 4) {
       mutate();
-      // router.push('/login');
     }
   };
 
