@@ -22,7 +22,3 @@ export default function ModalTitle({
     </div>
   );
 }
-
-ModalTitle.defaultProps = {
-  className: '',
-};
