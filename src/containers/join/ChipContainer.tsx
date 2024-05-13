@@ -5,15 +5,18 @@ import Chip from '@/components/common-components/chip';
 
 import { agentItmes, personalityItmes } from '@/constants/object';
 
+import clsx from 'clsx';
+
 type ChipContainerProps = {
-  handleChange: Dispatch<SetStateAction<string[]>>;
+  className?: string;
 };
 
 const ChipContainer = (props: ChipContainerProps) => {
-  const { handleChange } = props;
-
+  const { className } = props;
   return (
-    <div className="py-[33px] pl-10 flex flex-col gap-7 border">
+    <div
+      className={clsx('py-[33px] pl-10 flex flex-col gap-7 border', className)}
+    >
       <div className="flex gap-10">
         <div className="text-h3">활동 기관</div>
         <div className="flex gap-[29px]">
