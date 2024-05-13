@@ -65,9 +65,6 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
     const setCurrentChips = useSelectedJoinChipStore(
       (state) => state.setCurrentChips,
     );
-    const getCurrentChips = useSelectedJoinChipStore(
-      (state) => state.getCurrentChips,
-    );
 
     const handleClick = () => {
       if (isBtn && text) {
