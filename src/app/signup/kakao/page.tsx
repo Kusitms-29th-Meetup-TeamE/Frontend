@@ -40,8 +40,14 @@ export const SignUpKakao = () => {
   };
 
   const disabledBtn = () => {
-    //
-    return false;
+    if (
+      step === 0 &&
+      selectedOption !== 'general' &&
+      selectedOption !== 'organization'
+    )
+      return true;
+    if (step === 1 && !location) return true;
+    else return false;
   };
 
   return (
