@@ -4,7 +4,11 @@ import { TfiEmail } from 'react-icons/tfi';
 
 import Input from '@/components/common-components/input';
 
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
+
+import { useNotifyError, useNotifySuccess } from '@/hooks/useToast';
+
+import { postEmailAuth } from '@/api/user';
 
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -24,20 +28,40 @@ export default function ThirdForm(props: ThirdFormProps) {
   const { authEmail, setAuthEmail } = props;
   const [email, setEmail] = useState<string>('');
 
-  const [confirmAuthNum, setConfirmAuthNum] = useState<Number | null>(null);
-
   const disabledBtn = () => {
     const regExp =
       /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     if (regExp.test(email)) {
       // TODO: 아래 setter 삭제 필요 (임시로 작성해놓음)
-      setAuthEmail(false);
+      // setAuthEmail(false);
       return false;
     } else return true;
   };
 
   const requestAuthNumber = () => {
-    // TODO: 인증 요청 api 통신 필요
+    sendAuthNumber();
+    useNotifySuccess('인증번호가 발송되었습니다.');
+  };
+
+  const [authAnswer, setAuthAnswer] = useState<string | void>('');
+  const [authInput, setAuthInput] = useState<string>('');
+
+  const sendAuthNumber = async () => {
+    await postEmailAuth(email).then((res) => {
+      console.log('res:', res);
+      setAuthAnswer(`${res}`);
+    });
+  };
+
+  const checkAuthNum = (input: any) => {
+    if (input === authAnswer) {
+      console.log('인증성공');
+      useNotifySuccess('인증이 완료되었습니다.');
+      setAuthEmail(true);
+    } else {
+      console.log('실패');
+      useNotifyError('인증에 실패하였습니다. 다시 시도해주세요.');
+    }
   };
 
   return (
@@ -82,15 +106,20 @@ export default function ThirdForm(props: ThirdFormProps) {
         <div className="relative">
           <Input
             startIcon={<MdOutlineLock />}
-            onChange={() => {
-              // console.log(emailInputRef.current?.value);
-            }}
+            onChange={(e) => setAuthInput(e.currentTarget.value)}
             size="lg"
-            // defaultValue={confirmNum as number}
             placeholder="인증번호를 입력해주세요."
             shape="square"
+            value={authInput}
           />
-          <span className={clsx(inputStyle.inputBtn)} aria-disabled={true}>
+          <span
+            onClick={() => checkAuthNum(authInput)}
+            className={clsx(
+              inputStyle.inputBtn,
+              authInput.length !== 0 && inputStyle.activeBtn,
+            )}
+            aria-disabled={authInput.length === 0}
+          >
             인증 확인
           </span>
         </div>

@@ -28,7 +28,7 @@ export default function SignUp() {
     return checkData.map(() => false);
   });
 
-  const [authEmail, setAuthEmail] = useState<boolean>(true);
+  const [authEmail, setAuthEmail] = useState<boolean>(false);
 
   // 네 번째 폼 - disabled state
   const [checkForm, setCheckForm] = useState<boolean>(true);
@@ -36,6 +36,7 @@ export default function SignUp() {
   const handlePrevClick = () => {
     if (step > 0) {
       setStep(step - 1);
+      if (step === 2) setAuthEmail(false);
     }
   };
 
@@ -58,7 +59,7 @@ export default function SignUp() {
     )
       return true;
     if (step === 1 && !allRequiredChecked) return true;
-    if (step === 2 && authEmail) return true;
+    if (step === 2 && !authEmail) return true;
     if (step === 3 && checkForm) return true;
 
     return false;
