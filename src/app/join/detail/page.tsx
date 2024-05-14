@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FiHeart, FiShare2 } from 'react-icons/fi';
 import { GrLocation } from 'react-icons/gr';
 import { LuCalendarClock } from 'react-icons/lu';
 import { MdKeyboardArrowLeft, MdOutlinePersonOutline } from 'react-icons/md';
 
 import Button from '@/components/common-components/button';
+import TextArea from '@/components/common-components/text-area';
 
 import JoinActivityModal from '@/components/join/JoinActivityModal';
 import JoinSlider from '@/components/join/JoinSlider';
 
-import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const variants = {
@@ -19,7 +19,7 @@ const variants = {
   headerBtn:
     'flex gap-2 justify-center items-center text-gray-08 text-body3 px-[14px] py-2 bg-gray-03 rounded-[30px]',
   info: 'w-full h-[70px] flex justify-between items-center px-[30px] rounded-[20px] mb-[50px] bg-primary-orange6 text-white text-body2',
-  textArea:
+  content:
     'bg-gray-02 rounded-[20px] px-6 py-[23px] whitespace-pre-wrap text-gray-10 text-body3 leading-[30px]',
 };
 
@@ -28,9 +28,12 @@ const page = () => {
   const paramId = useSearchParams();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
   // 활동 내용 중 필터링 위함
   const [content, setContent] = useState<string>('');
+
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleJoin = () => {
     setIsOpen(true);
@@ -86,7 +89,7 @@ const page = () => {
       </div>
       <div className="flex flex-col gap-3 mb-[40px]">
         <span className="text-black text-h3 text-[22px]">활동 설명</span>
-        <div className={variants.textArea}>
+        <div className={variants.content}>
           안녕하세요! 서대문노인종합복지관 담당자입니다.
           <br />
           저희 복지관에서 진행하는 프로그램인 ‘일본문화 산책’을 3월 14일
@@ -99,16 +102,25 @@ const page = () => {
       </div>
       <div className="flex flex-col gap-3 mb-[100px]">
         <span className="text-black text-h3 text-[22px]">요청사항</span>
-        <textarea
-          className={clsx(
-            variants.textArea,
-            'placeholder:text-h5 placeholder:text-gray-06 focus-visible:outline-primary-orange6',
-          )}
-          placeholder="관리자에게 전달하고 싶은 요청사항을 적어주세요. (500자 이내)"
-        ></textarea>
+        <TextArea
+          placeHolder="관리자에게 전달하고 싶은 요청사항을 적어주세요. (500자 이내)"
+          size="md"
+          ref={textAreaRef}
+          onChange={() => {
+            console.log(textAreaRef.current?.value);
+            if (textAreaRef.current?.value) setIsDisabled(false);
+            else setIsDisabled(true);
+          }}
+        />
       </div>
       <div className="w-full flex justify-center">
-        <Button size={'lg'} shape={'rounded'} onClick={handleJoin}>
+        <Button
+          color={!isDisabled ? 'default' : 'disabled'}
+          size={'lg'}
+          shape={'rounded'}
+          onClick={handleJoin}
+          disabled={isDisabled}
+        >
           활동 신청하기
         </Button>
       </div>
