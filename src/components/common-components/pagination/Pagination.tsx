@@ -3,13 +3,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
-import Image from 'next/image';
+import { PaginationProps } from './Pagination.types';
 
-export type PaginationProps = {
-  totalPages: number;
-  currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
-};
 const Pagination = ({
   totalPages,
   currentPage,
@@ -33,11 +28,11 @@ const Pagination = ({
   };
 
   const handlePrevGroup = () => {
-    setCurrentPage(currentPage - 1);
+    setCurrentPage(firstIndex - 1);
   };
 
   const handleNextGroup = () => {
-    setCurrentPage(currentPage + 1);
+    setCurrentPage(lastIndex + 1);
   };
 
   return (
@@ -58,7 +53,7 @@ const Pagination = ({
           return pageNumber !== currentPage ? (
             <button
               key={index}
-              className="w-[34px] h-[34px]  text-gray-08"
+              className="w-[34px] h-[34px] rounded-full text-gray-08 hover:bg-gray-02 box-border"
               onClick={() => handlePageChange(pageNumber)}
             >
               {pageNumber}
@@ -77,7 +72,10 @@ const Pagination = ({
       {pageGroup === Math.ceil(totalPages / 5) ? (
         ''
       ) : (
-        <button onClick={handleNextGroup}>
+        <button
+          onClick={handleNextGroup}
+          className="w-[34px] h-[34px] flex justify-center items-center rounded-full bg-white hover:bg-gray-02 box-border"
+        >
           <MdKeyboardArrowRight className="w-5 h-5 text-gray-10" />
         </button>
       )}

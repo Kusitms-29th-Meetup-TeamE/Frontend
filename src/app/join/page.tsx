@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FaHeart } from 'react-icons/fa6';
 
 import Input from '@/components/common-components/input';
-import Pagination from '@/components/common-components/pagination/Pagination';
+import Pagination from '@/components/common-components/pagination';
 
 import ActivityBanner from '@/components/join/ActivityBanner';
 
@@ -149,7 +149,7 @@ const page = () => {
       <ActivityBanner
         title={'활동 참여하기'}
         content={'취향에 맞는 활동을 찾고 참여하세요!'}
-        // imgUrl={'/assets/components/activity-top-banner.png'}
+        imgUrl={'/assets/components/activity-top-banner.png'}
       />
       <div className="max-w-[1210px] w-full mx-auto">
         <div className="mt-[60px] flex justify-between">

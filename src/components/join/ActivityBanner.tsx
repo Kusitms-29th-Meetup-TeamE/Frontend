@@ -10,14 +10,16 @@ export type ActivityBannerProps = {
 };
 const ActivityBanner = (props: ActivityBannerProps) => {
   const { title, content, imgUrl } = props;
-  const backgroundColor = imgUrl ? `url(${imgUrl})` : 'none';
+  const backgroundColor = imgUrl
+    ? `url(${imgUrl})`
+    : 'url(/assets/main/main_banner.png)';
 
   return (
     <div
       className={clsx(
         'w-full h-60 flex flex-col justify-center items-center border bg-center bg-cover',
       )}
-      style={{ backgroundImage: backgroundColor, background: 'gray' }}
+      style={{ backgroundImage: backgroundColor }}
     >
       <div className="text-white text-h2 mb-4">{title}</div>
       <div className="text-gray-02 text-h3">{content}</div>
