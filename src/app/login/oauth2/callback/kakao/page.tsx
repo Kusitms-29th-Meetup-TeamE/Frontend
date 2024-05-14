@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { useKakaoToken } from '@/hooks/useUser';
+import { useKakaoToken } from '@/hooks/api/useUser';
 import { KakaoUserProps } from '@/types/user';
 
 import { getKakaoToken } from '@/api/login/kakaoLoginApi';
