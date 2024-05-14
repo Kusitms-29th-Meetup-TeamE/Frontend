@@ -9,6 +9,7 @@ import { MdKeyboardArrowLeft, MdOutlinePersonOutline } from 'react-icons/md';
 import Button from '@/components/common-components/button';
 
 import JoinActivityModal from '@/components/join/JoinActivityModal';
+import JoinSlider from '@/components/join/JoinSlider';
 
 import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -58,8 +59,14 @@ const page = () => {
           </button>
         </div>
       </div>
-      <div className="w-full h-[487px] rounded-[20px] border mb-[10px]">
-        slider
+      <div className="w-full h-[487px] mb-[10px]">
+        <JoinSlider
+          imgs={[
+            '/assets/main/main_banner.png',
+            '/assets/main/main_banner.png',
+            '/assets/main/main_banner.png',
+          ]}
+        />
       </div>
       <div className={variants.info}>
         <div className="flex gap-[30px]">
