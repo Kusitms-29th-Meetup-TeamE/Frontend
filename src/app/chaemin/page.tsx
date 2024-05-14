@@ -14,6 +14,10 @@ import { SelectItemType } from '@/components/common-components/select-box';
 import SelectBox from '@/components/common-components/select-box/SelectBox';
 import Skeleton from '@/components/common-components/skeleton';
 
+import { AppointmentModal } from '@/components/chat/AppointmentModal';
+import { MyMsgItem } from '@/components/chat/MyMsgItem';
+import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
+import { RoomItem } from '@/components/chat/RoomItem';
 import MainTitle from '@/components/main/MainTitle';
 
 import {
@@ -134,8 +138,30 @@ export default function TestPage() {
     else console.log('실패');
   };
 
+  const [appointmentOpen, setAppointmentOpen] = useState<boolean>(false);
+
   return (
     <>
+      {/* <RoomItem /> */}
+      {/* <div className="flex flex-col gap-[30px]">
+        <OtherMsgItem />
+        <MyMsgItem />
+        <OtherMsgItem />
+      </div> */}
+
+      <br />
+      <br />
+      <br />
+
+      <Button onClick={() => setAppointmentOpen(true)}>
+        약속잡기모달테스트
+      </Button>
+
+      <AppointmentModal
+        isOpen={appointmentOpen}
+        setIsOpen={setAppointmentOpen}
+      />
+
       {/* 주소 검색 테스트 */}
       <Button size="lg" onClick={() => setIsOpen(true)}>
         주소 검색
