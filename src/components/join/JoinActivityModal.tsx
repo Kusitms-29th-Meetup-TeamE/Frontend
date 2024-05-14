@@ -27,7 +27,6 @@ const JoinActivityModal = ({ isOpen, setIsOpen }: JoinActivityModalProps) => {
       open={isOpen}
       onClose={handleClose}
     >
-      <Modal.Close onClick={handleClose} isNotClosed={true} />
       <Modal.Title className="pb-[26px]">신청 완료!</Modal.Title>
       <Modal.Description className="whitespace-pre-wrap pb-[34px]">
         캘린더에 일정이 등록되었어요.

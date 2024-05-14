@@ -7,26 +7,20 @@ import clsx from 'clsx';
 export default function ModalClose({
   className,
   onClick,
-  isNotClosed,
 }: {
   className?: string;
   onClick: () => void;
-  isNotClosed?: boolean;
 }) {
   return (
     <div className="flex justify-end cursor-pointer">
-      {!isNotClosed ? (
-        <IoClose
-          type="button"
-          className={
-            (clsx(variants.close, className),
-            'text-gray-09 hover:bg-gray-03 hover:rounded !text-h2')
-          }
-          onClick={onClick}
-        />
-      ) : (
-        ''
-      )}
+      <IoClose
+        type="button"
+        className={
+          (clsx(variants.close, className),
+          'text-gray-09 hover:bg-gray-03 hover:rounded !text-h2')
+        }
+        onClick={onClick}
+      />
     </div>
   );
 }

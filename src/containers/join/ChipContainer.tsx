@@ -14,9 +14,7 @@ type ChipContainerProps = {
 const ChipContainer = (props: ChipContainerProps) => {
   const { className } = props;
   return (
-    <div
-      className={clsx('py-[33px] pl-10 flex flex-col gap-7 border', className)}
-    >
+    <div className={clsx('py-[33px] pl-10 flex flex-col gap-7', className)}>
       <div className="flex gap-10">
         <div className="text-h3">활동 기관</div>
         <div className="flex gap-[29px]">
