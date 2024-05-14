@@ -5,7 +5,7 @@ import React from 'react';
 import Chip from '@/components/common-components/chip';
 import Input from '@/components/common-components/input';
 
-import ActivityHeader from '@/components/join/ActivityHeader';
+import ActivityBanner from '@/components/join/ActivityBanner';
 import PointItem from '@/components/main/PointItem';
 
 import Notice from '@/containers/main/Notice';
@@ -15,7 +15,7 @@ import SubBannerSlider from '@/containers/main/SubBannerSlider';
 const TestPage = () => {
   return (
     <div className="p-5">
-      <ActivityHeader
+      <ActivityBanner
         title={'활동 참여하기'}
         content={'취향에 맞는 활동을 찾고 참여하세요!'}
       />
