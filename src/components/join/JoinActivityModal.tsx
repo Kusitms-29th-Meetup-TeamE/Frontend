@@ -12,20 +12,29 @@ const JoinActivityModal = ({ isOpen, setIsOpen }: JoinActivityModalProps) => {
     setIsOpen(false);
   };
   const handleSchedule = () => {
-    setIsOpen(false);
+    // TODO: 일정 확인 페이지로 이동
+    handleClose();
   };
 
-  const handleChat = () => {};
+  const handleChat = () => {
+    // TODO: 대화방으로 이동
+    handleClose();
+  };
+
   return (
-    <Modal className="w-[460px]" open={isOpen} onClose={handleClose}>
+    <Modal
+      className="w-[460px] pt-[46px] pb-[34px]"
+      open={isOpen}
+      onClose={handleClose}
+    >
       <Modal.Close onClick={handleClose} isNotClosed={true} />
-      <Modal.Title>신청 완료!</Modal.Title>
-      <Modal.Description className="whitespace-pre-wrap">
+      <Modal.Title className="pb-[26px]">신청 완료!</Modal.Title>
+      <Modal.Description className="whitespace-pre-wrap pb-[34px]">
         캘린더에 일정이 등록되었어요.
         <br />
         또바 활동과 함께 즐거운 시간 보내봐요!
       </Modal.Description>
-      <Modal.Footer className="flex gap-5">
+      <Modal.Footer className="flex gap-[22px]">
         <Button
           color="gray"
           onClick={handleSchedule}
