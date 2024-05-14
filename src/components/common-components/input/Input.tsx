@@ -14,7 +14,7 @@ const style: {
   sizes: {
     sm: '',
     md: '',
-    lg: 'py-5 px-7 w-full max-w-[588px] h-[68px] text-h4', // 회원가입, 로그인에서 사용
+    lg: 'py-5 px-7 w-full max-w-[588px] h-full max-h-[68px] text-h4', // 회원가입, 로그인에서 사용
   },
   shapes: {
     square: 'rounded-[20px]', // 회원가입, 로그인에서 사용

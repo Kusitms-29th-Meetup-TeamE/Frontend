@@ -40,7 +40,7 @@ export const ChatRoom = () => {
           placeholder="메시지를 입력하세요."
           shape="square"
           type="text"
-          className="!bg-gray-02 border-gray-04 h-[58px]"
+          className="!bg-gray-02 border-gray-04"
         />
         <Button
           size="sm"
