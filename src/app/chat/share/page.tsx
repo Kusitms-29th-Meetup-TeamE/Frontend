@@ -1,6 +1,7 @@
 import { OneRoomItem } from '@/components/chat/OneRoomItem';
 import { RoomItem } from '@/components/chat/RoomItem';
 
+import { ChatRoom } from '@/containers/chat/ChatRoom';
 import { RoomList } from '@/containers/chat/RoomList';
 
 import { dummyData } from '../activity/page';
@@ -21,14 +22,17 @@ export default function ChatShare() {
         <RoomItem /> */}
         {dummyData.map((item, idx) => {
           return (
-            <div key={idx}>
+            <div key={idx} className="pr-[5px]">
               <OneRoomItem data={item} />
             </div>
           );
         })}
       </RoomList>
 
-      <section className="flex-1 border border-blue-500">asdfadsf</section>
+      <section className="flex-1">
+        {/* <EmptyChat /> */}
+        <ChatRoom />
+      </section>
     </div>
   );
 }
