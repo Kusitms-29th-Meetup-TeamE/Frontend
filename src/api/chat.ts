@@ -41,3 +41,48 @@ export const getChatRoomsDirect = async () => {
     throw error;
   }
 };
+
+// [chatrooms] 활동 대화방 참여
+export const postChatRoomsGroup = async (activityId: number) => {
+  try {
+    const response = await fetch(`${BASE_URL}/chatrooms/group/${activityId}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+// [chatrooms] 배움 나누기 대화방 참여
+export const postChatRoomsDirect = async (experienceId: number) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/chatrooms/group/${experienceId}`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${sessionStorage.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
