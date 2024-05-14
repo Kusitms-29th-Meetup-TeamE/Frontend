@@ -10,7 +10,7 @@ import {
 } from '@/api/user';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { useNotifyError, useNotifySuccess } from './useToast';
+import { useNotifyError, useNotifySuccess } from '../useToast';
 
 export const useKakaoToken = (kakaoCode: string) => {
   const { data, isLoading, error } = useQuery({
