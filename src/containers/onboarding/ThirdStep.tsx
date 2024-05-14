@@ -13,7 +13,13 @@ const ThirdStep = () => {
         '스치듯 지나가는 새로운 인연들, 만남을 계속 이어가볼까요? 함께 대화하기로 또 만나봐요!'
       }
     >
-      사진자리
+      <Image
+        src={'/assets/onboarding/third_center_img.png'}
+        alt=""
+        width={715}
+        height={590}
+        className="mb-[-90px]"
+      />
     </OnboardingFrame>
   );
 };
