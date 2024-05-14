@@ -7,6 +7,7 @@ import {
   postEmailAuth,
   postKakaoUserInfo,
   postLocalUserInfo,
+  postOnboardingInfo,
 } from '@/api/user';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -61,6 +62,17 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
         open: true,
         text: '예상치 못한 에러가 발생하였습니다.',
       });
+    },
+  });
+  return { mutate, isPending, error };
+};
+
+export const useOnboardingInfo = (data: string[]) => {
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: () => postOnboardingInfo(data),
+    onSuccess: (res) => {
+      console.log(data);
+      console.log(res);
     },
   });
   return { mutate, isPending, error };
