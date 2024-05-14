@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import { BsPerson } from 'react-icons/bs';
 import { MdOutlineLock } from 'react-icons/md';
@@ -16,12 +16,14 @@ import Skeleton from '@/components/common-components/skeleton';
 
 import MainTitle from '@/components/main/MainTitle';
 
+import { useChatRoomsDirect, useChatRoomsGroup } from '@/hooks/api/useChat';
 import {
   useNotifyError,
   useNotifySuccess,
   useNotifyToast,
 } from '@/hooks/useToast';
 
+import { getChatRoomsGroup } from '@/api/chat';
 import { postEmailAuth } from '@/api/user';
 
 export default function TestPage() {
@@ -133,6 +135,14 @@ export default function TestPage() {
     if (input === authAnswer) console.log('인증성공');
     else console.log('실패');
   };
+
+  // chat-api test - 05.14 기준 연결 성공
+
+  const { data, isLoading } = useChatRoomsGroup();
+  const { data: directData } = useChatRoomsDirect();
+
+  console.log('data:', data);
+  console.log('dir', directData);
 
   return (
     <>
