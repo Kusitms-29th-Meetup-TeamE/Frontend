@@ -1,5 +1,7 @@
 import { MdAccessTime } from 'react-icons/md';
 
+import { GroupChatRoom } from '@/types/chat';
+
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -14,18 +16,7 @@ const appointmentStyle = {
   orange: 'text-primary-orange6',
 };
 
-export type RoomItemProps = {
-  myId: number;
-  roomId: number;
-  imageUrl: string;
-  title: string;
-  lastMeetingDate: number;
-  appointmentDate: string | null;
-  lastMessage?: string;
-  lastMessageTime?: string;
-};
-
-export const RoomItem = (props: { data: RoomItemProps }) => {
+export const RoomItem = (props: { data: GroupChatRoom }) => {
   const appointmentDate = true;
   const lastMeetingDate = 5;
 
@@ -35,7 +26,6 @@ export const RoomItem = (props: { data: RoomItemProps }) => {
     <div className="border w-full max-w-[486px] min-h-[170px] rounded-[20px] flex flex-col">
       <div className="flex gap-5 p-5">
         <Image
-          // TODO: imageUrl로 수정 필요
           src={data.imageUrl ?? '/assets/main/main_banner.png'}
           width={76}
           height={76}
@@ -60,7 +50,7 @@ export const RoomItem = (props: { data: RoomItemProps }) => {
               오랜만에 보고 싶네요
               하하ss하하ajslfiajelifjalsiejflaiejflaiefjiljalsdfjalefjaliejfellipsisaljsdlifjadijf
             </span>
-            <span className="text-gray-06 text-h5">{data.lastMessageTime}</span>
+            <span className="text-gray-06 text-h5">{data.lastChatTime}</span>
           </div>
         </div>
       </div>
