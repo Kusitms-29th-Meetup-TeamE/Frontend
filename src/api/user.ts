@@ -95,3 +95,24 @@ export const postEmailAuth = async (email: string) => {
     console.error('오류 발생:', error);
   }
 };
+
+// [user] 유저 - 온보딩 정보 등록
+export const postOnboardingInfo = async (personalities: string[]) => {
+  await fetch(`${BASE_URL}/users/onboarding`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+    },
+    body: JSON.stringify({
+      personalities,
+    }),
+  })
+    .then((res) => {
+      console.log('status-code on postOnboardingInfo: ', res.status);
+      return res;
+    })
+    .catch((err) => {
+      console.log('Error patching Onboarding Info:', err);
+    });
+};
