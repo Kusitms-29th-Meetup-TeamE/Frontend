@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { useKakaoToken } from '@/hooks/useUser';
 import { KakaoUserProps } from '@/types/user';
 
-import { getKakaoToken } from '@/api/login/kakaoLoginApi';
 import { useQuery } from '@tanstack/react-query';
 
 import { useRouter, usePathname } from 'next/navigation';

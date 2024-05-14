@@ -2,8 +2,8 @@ import { useGlobalModal } from '@/components/common-components/global-modal';
 
 import { UserInfoProps } from '@/types/user';
 
-import { getKakaoToken } from '@/api/login/kakaoLoginApi';
 import {
+  getKakaoToken,
   postEmailAuth,
   postKakaoUserInfo,
   postLocalUserInfo,
