@@ -12,7 +12,7 @@ import ActivityContainer, {
   ActivityType,
 } from '@/containers/join/ActivityContainer';
 import ChipContainer from '@/containers/join/ChipContainer';
-import useSelectedJoinChipStore from '@/store/selectedJoinChipStore';
+import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 
 import clsx from 'clsx';
 

@@ -4,7 +4,7 @@ import Button from '@/components/common-components/button/Button';
 
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
-import useStepStore from '@/store/onboardingStepStore';
+import useStepStore from '@/store/onboarding/onboardingStepStore';
 
 import OnboardingModal from './OnboardingModal';
 

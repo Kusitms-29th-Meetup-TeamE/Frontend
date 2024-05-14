@@ -1,6 +1,6 @@
 import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
-import useSelectedJoinChipStore from '@/store/selectedJoinChipStore';
+import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 
 import { ChipProps } from '.';
 

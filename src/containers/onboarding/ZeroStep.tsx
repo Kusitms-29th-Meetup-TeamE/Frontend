@@ -4,7 +4,7 @@ import Button from '@/components/common-components/button/Button';
 
 import OnboardingFrame from '@/components/onboarding/OnboardingFrame';
 
-import useStepStore from '@/store/onboardingStepStore';
+import useStepStore from '@/store/onboarding/onboardingStepStore';
 
 import Image from 'next/image';
 
