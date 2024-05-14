@@ -1,23 +1,26 @@
-// groupChatRoomResList의 항목들을 정의하는 인터페이스
-interface GroupChatRoom {
+interface ChatRoomRes {
   id: number;
   imageUrl: string;
-  title: string;
   lastMeetingDate: number;
   appointmentDate: string;
 }
 
-// directChatRoomResList의 항목들을 정의하는 인터페이스
-interface DirectChatRoom {
-  id: number;
-  imageUrl: string;
-  opponent: string;
-  lastMessage: string;
-  appointmentDate: string;
+// groupChatRoomResList의 항목들을 정의하는 인터페이스
+interface GroupChatRoom extends ChatRoomRes {
+  title: string;
 }
 
-interface ChatRoomsResponse {
+// directChatRoomResList의 항목들을 정의하는 인터페이스
+interface DirectChatRoom extends ChatRoomRes {
+  opponent: string;
+}
+
+interface GroupChatRoomsResponse {
   myId: number;
   groupChatRoomResList: GroupChatRoom[];
+}
+
+interface DirectChatRoomsResponse {
+  myId: number;
   directChatRoomResList: DirectChatRoom[];
 }
