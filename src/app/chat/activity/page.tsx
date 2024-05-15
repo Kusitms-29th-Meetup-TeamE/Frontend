@@ -110,7 +110,8 @@ export default function ChatActivity() {
       </RoomList>
 
       <section className="flex-1">
-        {groupRoomId !== null ? <ChatRoom /> : <EmptyChat />}
+        <ChatRoom />
+        {/* {groupRoomId !== null ? <ChatRoom /> : <EmptyChat />} */}
       </section>
     </div>
   );
