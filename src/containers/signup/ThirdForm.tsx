@@ -21,14 +21,13 @@ export const inputStyle = {
 };
 
 export type ThirdFormProps = {
-  authEmail: boolean;
   setAuthEmail: Dispatch<SetStateAction<boolean>>;
-  setUserInfo: Dispatch<SetStateAction<UserInfoProps>>;
+  email: string;
+  setEmail: Dispatch<SetStateAction<string>>;
 };
 
 export default function ThirdForm(props: ThirdFormProps) {
-  const { authEmail, setAuthEmail, setUserInfo } = props;
-  const [email, setEmail] = useState<string>('');
+  const { setAuthEmail, email, setEmail } = props;
 
   const disabledBtn = () => {
     const regExp =
@@ -50,7 +49,6 @@ export default function ThirdForm(props: ThirdFormProps) {
 
   const sendAuthNumber = async () => {
     await postEmailAuth(email).then((res) => {
-      console.log('res:', res);
       setAuthAnswer(`${res}`);
     });
   };
@@ -60,10 +58,6 @@ export default function ThirdForm(props: ThirdFormProps) {
       console.log('인증성공');
       useNotifySuccess('인증이 완료되었습니다.');
       setAuthEmail(true);
-      setUserInfo((prev) => ({
-        ...prev,
-        email: email,
-      }));
     } else {
       console.log('실패');
       useNotifyError('인증에 실패하였습니다. 다시 시도해주세요.');
@@ -93,7 +87,7 @@ export default function ThirdForm(props: ThirdFormProps) {
               setEmail(e.target.value);
             }}
             size="lg"
-            defaultValue={email}
+            value={email}
             placeholder="이메일을 입력해주세요."
             shape="square"
           />

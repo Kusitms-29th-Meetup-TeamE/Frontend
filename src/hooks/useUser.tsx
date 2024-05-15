@@ -57,7 +57,7 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
         text: '회원 정보가 등록되었습니다.',
       });
       // TODO: 회원가입 성공 시에만
-      router.push('/login');
+      // router.push('/login');
     },
     onError: (err: any) => {
       console.log(err);

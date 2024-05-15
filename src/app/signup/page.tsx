@@ -62,12 +62,6 @@ export default function SignUp() {
     return false;
   };
 
-  const onSubmitFourthForm = (data: any) => {
-    // FourthForm의 onSubmit에 전달할 로직 구현
-    console.log('Submitted from FourthForm:', data);
-    // 필요한 로직 수행
-  };
-
   const [userInfo, setUserInfo] = useState<UserInfoProps>({
     // third-form
     email: '',
@@ -88,11 +82,20 @@ export default function SignUp() {
   const handleNextClick = () => {
     if (step < 4) {
       setStep(step + 1);
+      if (step === 2) {
+        setUserInfo((prev) => ({
+          ...prev,
+          email: email,
+        }));
+      }
     }
+
     if (step === 4) {
       mutate();
     }
   };
+
+  const [email, setEmail] = useState<string>('');
 
   return (
     <main className="pt-[70px]">
@@ -107,9 +110,9 @@ export default function SignUp() {
       )}
       {step === 2 && (
         <ThirdForm
-          authEmail={authEmail}
           setAuthEmail={setAuthEmail}
-          setUserInfo={setUserInfo}
+          email={email}
+          setEmail={setEmail}
         />
       )}
       {step === 3 && (
@@ -143,7 +146,7 @@ export default function SignUp() {
           shape="rounded"
           size="lg"
           onClick={handleNextClick}
-          disabled={disabledBtn()}
+          // disabled={disabledBtn()}
           type="submit"
         >
           {step !== 4 ? '다음' : '완료'}
