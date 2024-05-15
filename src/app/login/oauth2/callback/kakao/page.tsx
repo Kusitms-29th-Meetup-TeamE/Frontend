@@ -3,14 +3,10 @@
 import React, { useEffect, useState } from 'react';
 
 import { useKakaoToken } from '@/hooks/useUser';
-import { KakaoUserProps } from '@/types/user';
-
-import { useQuery } from '@tanstack/react-query';
 
 import { useRouter, usePathname } from 'next/navigation';
 
 const page = () => {
-  const pathname = usePathname();
   const router = useRouter();
 
   let kakaoCode: string = '';
@@ -31,8 +27,8 @@ const page = () => {
         sessionStorage.setItem('email', data.email || '');
         sessionStorage.setItem('birthyear', data.birthyear || '');
         sessionStorage.setItem('gender', data.gender);
-        sessionStorage.setItem('profileImage', data.profileImage || '');
-        router.push('/signup');
+        sessionStorage.setItem('imgUrl', data.profileImage || '');
+        router.push('/signup/kakao');
       } else {
         // 로그인
         router.push('/');
