@@ -1,4 +1,4 @@
-import { UserInfoProps } from '@/types/user';
+import { KakaoUserProps, UserInfoProps } from '@/types/user';
 
 import { BASE_URL } from '.';
 
@@ -11,6 +11,7 @@ export const getKakaoToken = async (code: string) => {
       throw new Error(`HTTP error in Kakao! Status: ${res.status}`);
     }
 
+    // 로그인
     if (res.headers) {
       let jwtToken = res.headers.get('Authorization');
       jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
@@ -21,8 +22,8 @@ export const getKakaoToken = async (code: string) => {
         return null;
       }
     }
-    const data = await res.json();
-    return data;
+    // 회원가입
+    return res.json();
   } catch (error) {
     console.error('Error fetching Kakao token:', error);
     throw error;
@@ -33,30 +34,40 @@ export const getKakaoToken = async (code: string) => {
 export const postKakaoUserInfo = async ({
   email,
   name,
-  imgUrl,
+  profileImage,
   gender,
-  birthYear,
+  birthyear,
   location,
-}: UserInfoProps) => {
-  await fetch(`${BASE_URL}/api/sign-up`, {
+}: KakaoUserProps) => {
+  await fetch(`${BASE_URL}/sign-up`, {
     method: 'POST',
     headers: {
-      // 임의로 작성
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
+      // // 임의로 작성
+      // Authorization: `Bearer ${sessionStorage.accessToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: name,
-      email: email,
-      imageUrl: imgUrl,
-      gender: gender,
-      birthyear: birthYear,
-      location: location,
+      name,
+      email,
+      imageUrl: profileImage,
+      gender,
+      birthyear,
+      location,
     }),
   })
     .then((res) => {
-      console.log(res.json);
-      return res.json();
+      if (res.headers) {
+        let jwtToken = res.headers.get('Authorization');
+        jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
+
+        if (jwtToken) {
+          sessionStorage.clear();
+          sessionStorage.setItem('accessToken', jwtToken);
+          return null;
+        }
+      }
+      console.log(res.status);
+      return res;
     })
     .catch((err) => {
       console.log(err);
@@ -68,7 +79,7 @@ export const postLocalUserInfo = async ({
   email,
   name,
   gender,
-  birthYear,
+  birthyear,
   location,
   password,
 }: UserInfoProps) => {
@@ -84,7 +95,7 @@ export const postLocalUserInfo = async ({
       email: email,
       password: password,
       gender: gender,
-      birthyear: birthYear,
+      birthyear: birthyear,
       location: location,
     }),
   })
