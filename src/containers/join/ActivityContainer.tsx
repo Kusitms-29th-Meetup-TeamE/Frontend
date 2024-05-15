@@ -38,7 +38,7 @@ const ActivityContainer = (props: ActivityContainerProps) => {
     >
       {data.map((item, key) => (
         <Link
-          href={{ pathname: '/join/detail', query: { id: item.id } }}
+          href={{ pathname: `/join/detail/${item.id}` }}
           // as={'/join/detail'}
         >
           <RecommendItem

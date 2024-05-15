@@ -12,7 +12,7 @@ import TextArea from '@/components/common-components/text-area';
 import JoinActivityModal from '@/components/join/JoinActivityModal';
 import JoinSlider from '@/components/join/JoinSlider';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const variants = {
   prev: 'w-fit h-fit px-[5px] pr-[10px] py-[5px] flex gap-[5px] items-center text-body2 text-gray-08 mb-[14px] hover:bg-gray-02 border-box rounded-[20px]',
@@ -23,9 +23,12 @@ const variants = {
     'bg-gray-02 rounded-[20px] px-6 py-[23px] whitespace-pre-wrap text-gray-10 text-body3 leading-[30px]',
 };
 
-const page = () => {
+type ActivityDetailProps = {
+  params: { id: string };
+};
+
+const page = ({ params }: ActivityDetailProps) => {
   // TODO: 활동 아이디로 api 연동 예정
-  const paramId = useSearchParams();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
