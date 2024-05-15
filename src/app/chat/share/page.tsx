@@ -17,7 +17,7 @@ export default function ChatShare() {
       >
         {data?.directChatRoomResList.map((item, idx) => {
           return (
-            <div key={idx} className="pr-[5px]">
+            <div key={idx} className="mr-[5px]">
               <OneRoomItem data={item} />
             </div>
           );
