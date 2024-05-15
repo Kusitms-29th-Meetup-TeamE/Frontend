@@ -115,7 +115,7 @@ export const postOnboardingInfo = async (personalities: string[]) => {
     }
     return res;
   } catch (err) {
-    console.error('Error fetching Onboarding Info:', err);
+    // console.error('Error fetching Onboarding Info:', err);
     throw err;
   }
 };
