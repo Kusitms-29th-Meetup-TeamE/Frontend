@@ -1,6 +1,6 @@
-export type TextAreaProps = {
+export type TextareaProps = {
   className?: string;
   size: string;
-  placeHolder: string;
+  placeholder: string;
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
