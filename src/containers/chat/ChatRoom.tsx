@@ -10,7 +10,7 @@ import {
   MsgLogProps,
 } from '@/components/chat/AppointmentMsgItem';
 import { MyAppointmentMsgItem } from '@/components/chat/MyAppointmentMsgItem';
-import { MsgItemProps, MyMsgItem } from '@/components/chat/MyMsgItem';
+import { MyMsgItem } from '@/components/chat/MyMsgItem';
 import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 
 import { useChatStore } from '@/store/chatStore';
@@ -35,27 +35,20 @@ export const ChatRoom = () => {
     }
   };
 
-  const disabledBtn = () => {
-    if (value.length === 0) return true;
-    else return false;
-  };
+  const disabledBtn = () => value.length === 0;
 
   // socket 관련 로직 설계 시작
   const [stompClient, setStompClient] = useState<CompatClient | null>(null);
   const chatroomId = 10;
 
-  useEffect(() => {
+  const connectToWebSocket = () => {
     const socket = new SockJS(`${SOCKET_URL}`);
     const stompClient = Stomp.over(socket);
 
     stompClient.connect(
       {},
-      () => {
-        console.log('connection success');
-      },
-      () => {
-        console.log('connection failed');
-      },
+      () => console.log('connection success'),
+      () => console.log('connection failed'),
     );
 
     stompClient.onConnect = () => {
@@ -69,7 +62,9 @@ export const ChatRoom = () => {
         stompClient.disconnect();
       }
     };
-  }, []);
+  };
+
+  useEffect(connectToWebSocket, []);
 
   const [logData, setLogData] = useState<any[]>([]);
   const [chatList, setChatList] = useState<any[]>([]); // 채팅 기록
@@ -85,12 +80,10 @@ export const ChatRoom = () => {
     }
   };
 
-  console.log('logdata', logData);
+  // console.log('logdata', logData);
 
   const sendChat = () => {
-    if (value === '') {
-      return;
-    }
+    if (value === '') return;
 
     const messageObject = {
       senderId: 5,
@@ -102,15 +95,55 @@ export const ChatRoom = () => {
       {},
       JSON.stringify(messageObject),
     );
-    console.log('object', messageObject);
     setValue('');
   };
 
-  console.log('chatlist', chatList);
+  // console.log('chatlist', chatList);
 
   useEffect(() => {
     scrollToBottom();
   }, [chatList]);
+
+  const renderMessageItem = (item: any, idx: number) => {
+    switch (item.type) {
+      case 'TEXT':
+        return (
+          <div
+            key={idx}
+            className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
+          >
+            {item.senderId === myId ? (
+              <MyMsgItem message={item.text} time={item.createdAt} />
+            ) : (
+              <OtherMsgItem data={item} />
+            )}
+          </div>
+        );
+      case 'APPOINTMENT':
+        return (
+          <div
+            key={idx}
+            className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
+          >
+            {item.senderId === myId ? (
+              <MyAppointmentMsgItem data={item as MsgLogProps} />
+            ) : (
+              <AppointmentMsgItem data={item as MsgLogProps} />
+            )}
+          </div>
+        );
+      case 'EMOTICON':
+        return (
+          <div key={idx} className="inline-flex">
+            <span className="bg-yellow-300 py-2 px-5 rounded-lg">
+              {item.emoticon === '안녕' ? '😃' : '😃'}
+            </span>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="flex flex-col ml-[5px] rounded-[20px] border border-gray-04 w-full max-w-[690px] h-[940px]">
@@ -133,86 +166,11 @@ export const ChatRoom = () => {
         className="flex-1 p-[30px] overflow-y-auto gray-scroll-container"
       >
         <div className="flex flex-col gap-[10px]">
-          {/* 로그데이터 */}
-          {logData?.map((item, idx) => {
-            if (item.type === 'TEXT' && item.senderId === myId)
-              return (
-                <div key={idx} className="inline-flex justify-end">
-                  <MyMsgItem message={item.text} time={item.createdAt} />
-                </div>
-              );
-            if (item.type === 'TEXT' && item.senderId !== myId)
-              return (
-                <div key={idx} className="inline-flex">
-                  <OtherMsgItem data={item} />
-                </div>
-              );
-            if (item.type === 'APPOINTMENT' && item.senderId === myId)
-              return (
-                <div key={idx} className="inline-flex justify-end">
-                  <MyAppointmentMsgItem data={item as MsgLogProps} />
-                </div>
-              );
-            if (item.type === 'APPOINTMENT' && item.senderId !== myId)
-              return (
-                <div key={idx} className="inline-flex">
-                  <AppointmentMsgItem data={item as MsgLogProps} />
-                </div>
-              );
-            if (item.type === 'EMOTICON')
-              return (
-                <div key={idx} className="inline-flex">
-                  <span className="bg-yellow-300 py-2 px-5 rounded-lg">
-                    {item.emoticon === '안녕' && '😃'}
-                    {item.emoticon === '슬픔' && '😃'}
-                  </span>
-                </div>
-              );
-          })}
-          {/* new messages */}
-          {chatList?.map((item: any, idx: number) => {
-            if (idx !== 0 && item.type === 'TEXT' && item.senderId === myId)
-              return (
-                <div key={idx} className="inline-flex justify-end">
-                  <MyMsgItem message={item.text} time={item.createdAt} />
-                </div>
-              );
-            if (idx !== 0 && item.type === 'TEXT' && item.senderId !== myId)
-              return (
-                <div key={idx} className="inline-flex">
-                  <OtherMsgItem data={item} />
-                </div>
-              );
-            if (
-              idx !== 0 &&
-              item.type === 'APPOINTMENT' &&
-              item.senderId === myId
-            )
-              return (
-                <div key={idx} className="inline-flex justify-end">
-                  <MyAppointmentMsgItem data={item as MsgLogProps} />
-                </div>
-              );
-            if (
-              idx !== 0 &&
-              item.type === 'APPOINTMENT' &&
-              item.senderId !== myId
-            )
-              return (
-                <div key={idx} className="inline-flex">
-                  <AppointmentMsgItem data={item as MsgLogProps} />
-                </div>
-              );
-            if (idx !== 0 && item.type === 'EMOTICON')
-              return (
-                <div key={idx} className="inline-flex">
-                  <span className="bg-yellow-300 py-2 px-5 rounded-lg">
-                    {item.emoticon === '안녕' && '😃'}
-                    {item.emoticon === '슬픔' && '😃'}
-                  </span>
-                </div>
-              );
-          })}
+          {logData?.map((item, idx) => renderMessageItem(item, idx))}
+          {chatList?.map(
+            (item: any, idx: number) =>
+              idx !== 0 && renderMessageItem(item, idx),
+          )}
         </div>
       </div>
 
