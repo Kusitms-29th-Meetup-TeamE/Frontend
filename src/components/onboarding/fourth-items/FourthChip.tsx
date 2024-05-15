@@ -34,9 +34,9 @@ const style: {
 
 export type FourthChipProps = {
   className?: string;
-  icon?: string;
   text: string;
   type?: string;
+  emoji?: string;
   onClick: (text: string) => void;
 };
 
@@ -44,7 +44,7 @@ const FourthChip = forwardRef<
   HTMLDivElement,
   PropsWithChildren<FourthChipProps>
 >((props, ref) => {
-  const { className, icon, text, type, onClick } = props;
+  const { className, text, type, emoji, onClick } = props;
   const [isSelected, setIsSelected] = useState<Boolean>(false);
 
   const handleSelected = () => {
@@ -64,7 +64,7 @@ const FourthChip = forwardRef<
       )}
       onClick={handleSelected}
     >
-      {icon && <Image src={icon} width={40} height={50} alt={''} />}
+      <span className="text-[40px]">{emoji}</span>
       <span>{text ?? type}</span>
       {isSelected ? (
         <Image
