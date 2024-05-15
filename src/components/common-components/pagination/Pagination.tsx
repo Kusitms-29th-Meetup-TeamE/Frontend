@@ -53,7 +53,7 @@ const Pagination = ({
           return pageNumber !== currentPage ? (
             <button
               key={index}
-              className="w-[34px] h-[34px] rounded-full text-gray-08 hover:bg-gray-02 box-border"
+              className="w-[34px] h-[34px] rounded-full text-gray-08 hover:bg-gray-03 box-border"
               onClick={() => handlePageChange(pageNumber)}
             >
               {pageNumber}
@@ -74,7 +74,7 @@ const Pagination = ({
       ) : (
         <button
           onClick={handleNextGroup}
-          className="w-[34px] h-[34px] flex justify-center items-center rounded-full bg-white hover:bg-gray-02 box-border"
+          className="w-[34px] h-[34px] flex justify-center items-center rounded-full bg-white hover:bg-gray-03 box-border"
         >
           <MdKeyboardArrowRight className="w-5 h-5 text-gray-10" />
         </button>

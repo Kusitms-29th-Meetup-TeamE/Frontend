@@ -7,7 +7,7 @@ import { LuCalendarClock } from 'react-icons/lu';
 import { MdKeyboardArrowLeft, MdOutlinePersonOutline } from 'react-icons/md';
 
 import Button from '@/components/common-components/button';
-import TextArea from '@/components/common-components/text-area';
+import Textarea from '@/components/common-components/textarea';
 
 import JoinActivityModal from '@/components/join/JoinActivityModal';
 import JoinSlider from '@/components/join/JoinSlider';
@@ -15,7 +15,7 @@ import JoinSlider from '@/components/join/JoinSlider';
 import { useRouter } from 'next/navigation';
 
 const variants = {
-  prev: 'w-fit h-fit px-[5px] pr-[10px] py-[5px] flex gap-[5px] items-center text-body2 text-gray-08 mb-[14px] hover:bg-gray-02 border-box rounded-[20px]',
+  prev: 'w-fit h-fit px-[5px] pr-[10px] py-[5px] flex gap-[5px] items-center text-body2 text-gray-08 mb-[14px] hover:bg-gray-02 border-box rounded-[10px]',
   headerBtn:
     'flex gap-2 justify-center items-center text-gray-08 text-body3 px-[14px] py-2 bg-gray-03 rounded-[30px]',
   info: 'w-full h-[70px] flex justify-between items-center px-[30px] rounded-[20px] mb-[50px] bg-primary-orange6 text-white text-body2',
@@ -105,8 +105,8 @@ const page = ({ params }: ActivityDetailProps) => {
       </div>
       <div className="flex flex-col gap-3 mb-[100px]">
         <span className="text-black text-h3 text-[22px]">요청사항</span>
-        <TextArea
-          placeHolder="관리자에게 전달하고 싶은 요청사항을 적어주세요. (500자 이내)"
+        <Textarea
+          placeholder="관리자에게 전달하고 싶은 요청사항을 적어주세요. (500자 이내)"
           size="md"
           ref={textAreaRef}
           onChange={() => {

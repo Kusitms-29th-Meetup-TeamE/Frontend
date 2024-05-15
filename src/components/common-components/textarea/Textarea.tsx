@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, forwardRef, useState } from 'react';
 
-import { TextAreaProps } from './TextArea.types';
+import { TextareaProps } from '.';
 
 import { clsx } from 'clsx';
 
@@ -17,9 +17,9 @@ const style: {
 };
 const TextArea = forwardRef<
   HTMLTextAreaElement,
-  PropsWithChildren<TextAreaProps>
+  PropsWithChildren<TextareaProps>
 >((props, ref) => {
-  const { className, size, placeHolder, onChange } = props;
+  const { className, size, placeholder, onChange } = props;
 
   const [value, setValue] = useState('');
 
@@ -28,7 +28,7 @@ const TextArea = forwardRef<
       <textarea
         ref={ref}
         className={clsx(style.base, style.size[size], className)}
-        placeholder={placeHolder}
+        placeholder={placeholder}
         onChange={(e) => {
           onChange?.(e);
           setValue(e.target.value);

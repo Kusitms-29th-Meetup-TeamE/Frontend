@@ -1,13 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { ModalDefaultProps } from '@/types/modal';
+
 import Button from '../common-components/button';
 import { Modal } from '../common-components/modal';
 
-export type JoinActivityModalProps = {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-};
-const JoinActivityModal = ({ isOpen, setIsOpen }: JoinActivityModalProps) => {
+const JoinActivityModal = ({ isOpen, setIsOpen }: ModalDefaultProps) => {
   const handleClose = () => {
     setIsOpen(false);
   };
