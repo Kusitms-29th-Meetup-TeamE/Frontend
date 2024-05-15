@@ -36,7 +36,7 @@ export default function RootLayout({
         <Providers>
           <GlobalModalProvider>
             {!isGuest && <Header />}
-            <div className={`${!isGuest && 'mt-[90px] mb-[160px]'}`}>
+            <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>
               {children}
             </div>
             {!isGuest && <Footer />}
