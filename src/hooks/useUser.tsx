@@ -13,6 +13,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { useNotifyError, useNotifySuccess } from './useToast';
 
+import { useRouter } from 'next/navigation';
+
 export const useKakaoToken = (kakaoCode: string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['KAKAO_CODE', kakaoCode],
@@ -68,11 +70,24 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
 };
 
 export const useOnboardingInfo = (data: string[]) => {
+  const { setSuccessModal, setErrorModal } = useGlobalModal();
+  const router = useRouter();
+
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => postOnboardingInfo(data),
-    onSuccess: (res) => {
+    onSuccess: () => {
+      setSuccessModal({
+        open: true,
+        text: '온보딩 정보가 등록되었습니다',
+      });
       console.log(data);
-      console.log(res);
+    },
+    onError: () => {
+      setErrorModal({
+        open: true,
+        text: '회원가입 후 이용할 수 있는 서비스입니다',
+      });
+      router.push('/login');
     },
   });
   return { mutate, isPending, error };
