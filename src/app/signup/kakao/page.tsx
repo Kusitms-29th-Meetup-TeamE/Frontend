@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react';
 import Button from '@/components/common-components/button';
 import Input from '@/components/common-components/input';
 
-import SearchAddressModal from '@/components/signUp/SearchAddressModal';
+import SearchAddressModal from '@/components/signup/SearchAddressModal';
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
-import { useKakaoUserInfo } from '@/hooks/useUser';
+import { useKakaoUserInfo } from '@/hooks/api/useUser';
 import { KakaoUserProps } from '@/types/user';
 
 import { style } from '@/containers/signup/FirstForm';
@@ -18,7 +18,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export const SignUpKakao = () => {
+const SignUpKakaoPage = () => {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [step, setStep] = useState<number>(0);
@@ -186,4 +186,4 @@ export const SignUpKakao = () => {
   );
 };
 
-export default SignUpKakao;
+export default SignUpKakaoPage;

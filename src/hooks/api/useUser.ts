@@ -11,7 +11,7 @@ import {
 } from '@/api/user';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { useNotifyError, useNotifySuccess } from './useToast';
+import { useNotifyError, useNotifySuccess } from '../useToast';
 
 import { useRouter } from 'next/navigation';
 

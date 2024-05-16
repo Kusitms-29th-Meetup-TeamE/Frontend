@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 import Button from '@/components/common-components/button';
 
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export const style = {
+const style = {
   title: 'text-primary-orange6 text-h2 text-center',
   content: 'text-gray-08 text-body2 text-center',
   background:
