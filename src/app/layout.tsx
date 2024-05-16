@@ -29,6 +29,8 @@ export default function RootLayout({
     pathname.includes('/signup') ||
     pathname.includes('/onboarding');
 
+  const isMyPage = pathname.startsWith('/mypage');
+
   return (
     <html>
       {/* TOFIX: body 제거 필요 */}
@@ -39,7 +41,7 @@ export default function RootLayout({
             <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>
               {children}
             </div>
-            {!isGuest && <Footer />}
+            {!isGuest && !isMyPage && <Footer />}
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />
