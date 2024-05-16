@@ -92,7 +92,7 @@ export const useLocalLogin = ({
           open: true,
           text: '비밀번호를 다시 입력해주세요.',
         });
-      } else if (res === '로그인 성공') {
+      } else {
         console.log(res);
         router.push('/');
       }
