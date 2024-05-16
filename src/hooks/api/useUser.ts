@@ -6,6 +6,7 @@ import {
   getKakaoToken,
   postEmailAuth,
   postKakaoUserInfo,
+  postLocalLogin,
   postLocalUserInfo,
   postOnboardingInfo,
 } from '@/api/user';
@@ -62,6 +63,45 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
       setErrorModal({
         open: true,
         text: '예상치 못한 에러가 발생하였습니다.',
+      });
+    },
+  });
+  return { mutate, isPending, error };
+};
+
+export const useLocalLogin = ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  const router = useRouter();
+  const { setSuccessModal, setErrorModal } = useGlobalModal();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: () => postLocalLogin({ email, password }),
+    onSuccess: (res) => {
+      if (res === '등록되지 않은 이메일입니다.') {
+        setErrorModal({
+          open: true,
+          text: '가입되지 않은 이메일입니다.',
+        });
+      } else if (res === '잘못된 비밀번호입니다.') {
+        setErrorModal({
+          open: true,
+          text: '비밀번호를 다시 입력해주세요.',
+        });
+      } else if (res === '로그인 성공') {
+        console.log(res);
+        router.push('/');
+      }
+    },
+    onError: (err: any) => {
+      console.log(err);
+      setErrorModal({
+        open: true,
+        text: '로그인에 실패하였습니다.',
       });
     },
   });
