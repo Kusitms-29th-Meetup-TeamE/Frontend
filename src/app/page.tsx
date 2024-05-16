@@ -30,7 +30,7 @@ export default function Home() {
             <Image
               src="/assets/main/banner_tail.svg"
               alt=""
-              className="absolute right-[420px] top-[220px]"
+              className="absolute right-0 top-[-100px]"
               width={65}
               height={57}
             />
