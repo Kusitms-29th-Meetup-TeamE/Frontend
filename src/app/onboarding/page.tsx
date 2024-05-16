@@ -8,7 +8,7 @@ import FourthStep from '@/containers/onboarding/FourthStep';
 import SecondStep from '@/containers/onboarding/SecondStep';
 import ThirdStep from '@/containers/onboarding/ThirdStep';
 import ZeroStep from '@/containers/onboarding/ZeroStep';
-import useStepStore from '@/store/onboardingStepStore';
+import useStepStore from '@/store/onboarding/onboardingStepStore';
 
 import Image from 'next/image';
 
