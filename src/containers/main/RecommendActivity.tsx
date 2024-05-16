@@ -27,7 +27,7 @@ export default function RecommendActivity() {
       />
 
       <div className="flex gap-6 justify-center">
-        {mainDataList.map((item, idx) => {
+        {mainDataList.slice(0, 3).map((item, idx) => {
           return (
             <RecommendItem
               isLoading={isLoading}
