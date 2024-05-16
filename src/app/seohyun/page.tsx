@@ -1,12 +1,10 @@
-import React from 'react';
-
 import Notice from '@/containers/main/Notice';
 import Point from '@/containers/main/Point';
 import SubBannerSlider from '@/containers/main/SubBannerSlider';
-import FirstStep from '@/containers/onBoarding/FirstStep';
-import FourthStep from '@/containers/onBoarding/FourthStep';
-import SecondStep from '@/containers/onBoarding/SecondStep';
-import ThirdStep from '@/containers/onBoarding/ThirdStep';
+import FirstStep from '@/containers/onboarding/FirstStep';
+import FourthStep from '@/containers/onboarding/FourthStep';
+import SecondStep from '@/containers/onboarding/SecondStep';
+import ThirdStep from '@/containers/onboarding/ThirdStep';
 
 const TestPage = () => {
   return (

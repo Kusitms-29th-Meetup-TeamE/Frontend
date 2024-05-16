@@ -4,7 +4,7 @@ import { TfiEmail } from 'react-icons/tfi';
 
 import Input from '@/components/common-components/input';
 
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import clsx from 'clsx';
 import Image from 'next/image';

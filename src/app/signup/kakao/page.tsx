@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Button from '@/components/common-components/button';
 import Input from '@/components/common-components/input';
 
-import SearchAddressModal from '@/components/signUp/SearchAddressModal';
+import SearchAddressModal from '@/components/signup/SearchAddressModal';
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import { style } from '@/containers/signup/FirstForm';
@@ -14,7 +14,7 @@ import { inputStyle } from '@/containers/signup/ThirdForm';
 import clsx from 'clsx';
 import Image from 'next/image';
 
-export const SignUpKakao = () => {
+const SignUpKakao = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [step, setStep] = useState<number>(0);
 

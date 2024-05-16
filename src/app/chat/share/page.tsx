@@ -1,14 +1,14 @@
 import { OneRoomItem } from '@/components/chat/OneRoomItem';
-import { RoomItem } from '@/components/chat/RoomItem';
 
 import { useChatRoomsDirect } from '@/hooks/api/useChat';
 
 import { ChatRoom } from '@/containers/chat/ChatRoom';
 import { RoomList } from '@/containers/chat/RoomList';
 
-export default function ChatShare() {
+export default function ChatSharePage() {
   const { data, isLoading } = useChatRoomsDirect();
-  console.log('data:', data);
+  // console.log('data:', data);
+
   return (
     <div className="w-full mx-auto pt-[40px] max-w-[1200px] border border-black flex">
       <RoomList
