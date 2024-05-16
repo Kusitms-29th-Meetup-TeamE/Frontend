@@ -104,20 +104,23 @@ const page = () => {
           shape={'square'}
           className="mb-3"
         />
-        <Input
-          ref={passwordInputRef}
-          startIcon={<TfiLock />}
-          onChange={() => {
-            setUserInput({
-              ...userInput,
-              password: passwordInputRef.current?.value || '',
-            });
-          }}
-          placeholder={'비밀번호를 입력해주세요'}
-          type="password"
-          shape={'square'}
-          className="mb-5"
-        />
+        <form>
+          <Input
+            ref={passwordInputRef}
+            startIcon={<TfiLock />}
+            onChange={() => {
+              setUserInput({
+                ...userInput,
+                password: passwordInputRef.current?.value || '',
+              });
+            }}
+            placeholder={'비밀번호를 입력해주세요'}
+            type="password"
+            autoComplete="true"
+            shape={'square'}
+            className="mb-5"
+          />
+        </form>
         <div className={variants.checkboxContainer} onClick={handleCheck}>
           <Checkbox
             width={19}
