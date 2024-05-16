@@ -21,6 +21,11 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
   const accessToken =
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
+  const handleLogout = () => {
+    sessionStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <div className="w-full flex items-center fixed z-50 top-0 h-[70px] bg-white">
       {isGuest ? (
@@ -86,7 +91,9 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
                   <span className="pl-[4px]">포인트</span>
                 </span>
               </Link>
-              <span className={variants.rightMenu}>로그아웃</span>
+              <span onClick={handleLogout} className={variants.rightMenu}>
+                로그아웃
+              </span>
             </div>
           ) : (
             <div className={variants.rightBar}>
