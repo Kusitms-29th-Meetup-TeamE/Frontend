@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@/components/common-components/button';
 import Input from '@/components/common-components/input';
@@ -8,15 +8,22 @@ import Input from '@/components/common-components/input';
 import SearchAddressModal from '@/components/signUp/SearchAddressModal';
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
+import { useKakaoUserInfo } from '@/hooks/useUser';
+import { KakaoUserProps } from '@/types/user';
+
 import { style } from '@/containers/signup/FirstForm';
 import { inputStyle } from '@/containers/signup/ThirdForm';
 
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const SignUpKakao = () => {
+  const router = useRouter();
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [step, setStep] = useState<number>(0);
+  const [userInfo, setUserInfo] = useState<KakaoUserProps>();
+  const { mutate } = useKakaoUserInfo(userInfo!);
 
   // 주소 검색 모달
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -35,9 +42,25 @@ export const SignUpKakao = () => {
   const handleSubmit = () => {
     if (step === 0) setStep(1);
     if (step === 1) {
-      //
+      setUserInfo({
+        name: sessionStorage.name,
+        email: sessionStorage.email,
+        profileImage: sessionStorage.imgUrl,
+        gender: sessionStorage.gender,
+        birthyear: sessionStorage.birthyear,
+        location: location,
+      });
     }
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      // 제출 버튼 클릭 시 api 요청
+      mutate();
+      router.push('/onboarding');
+      console.log(userInfo);
+    }
+  }, [userInfo]);
 
   const disabledBtn = () => {
     if (

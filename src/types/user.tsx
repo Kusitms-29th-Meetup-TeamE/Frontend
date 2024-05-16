@@ -8,7 +8,7 @@ export interface UserProps {
 
 export interface UserInfoProps extends UserProps {
   email?: string;
-  birthYear?: string;
+  birthyear?: string;
   password?: string;
   nickname?: string;
 }
@@ -20,4 +20,5 @@ export interface KakaoUserProps {
   email: string;
   gender: string;
   profileImage: string;
+  location?: string;
 }

@@ -1,9 +1,9 @@
 import { useGlobalModal } from '@/components/common-components/global-modal';
 
-import { UserInfoProps } from '@/types/user';
+import { KakaoUserProps, UserInfoProps } from '@/types/user';
 
-import { getKakaoToken } from '@/api/login/kakaoLoginApi';
 import {
+  getKakaoToken,
   postEmailAuth,
   postKakaoUserInfo,
   postLocalUserInfo,
@@ -23,13 +23,12 @@ export const useKakaoToken = (kakaoCode: string) => {
   return { data, isLoading, error };
 };
 
-export const useKakaoUserInfo = (data: UserInfoProps) => {
+export const useKakaoUserInfo = (data: KakaoUserProps) => {
   const { setSuccessModal, setErrorModal } = useGlobalModal();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => postKakaoUserInfo(data),
-    onSuccess: (res) => {
-      console.log(res);
+    onSuccess: () => {
       setSuccessModal({
         open: true,
         text: '회원 정보가 등록되었습니다.',
