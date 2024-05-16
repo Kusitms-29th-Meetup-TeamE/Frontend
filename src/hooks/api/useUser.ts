@@ -77,7 +77,7 @@ export const useLocalLogin = ({
   password: string;
 }) => {
   const router = useRouter();
-  const { setSuccessModal, setErrorModal } = useGlobalModal();
+  const { setErrorModal } = useGlobalModal();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => postLocalLogin({ email, password }),
