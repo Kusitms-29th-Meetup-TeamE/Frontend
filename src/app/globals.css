@@ -10,6 +10,11 @@
   --swiper-pagination-color: white;
 }
 
+#joinSlider .swiper-button-next,
+#joinSlider .swiper-button-prev {
+  --swiper-navigation-color: white;
+}
+
 .scroll-container {
   width: 100%;
   border-radius: 20px;

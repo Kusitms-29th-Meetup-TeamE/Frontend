@@ -62,13 +62,6 @@ const page = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <Image
-        className="absolute top-[40px] left-[50px]"
-        src="/assets/ddoba_logo_text.svg"
-        alt=""
-        width={86}
-        height={30}
-      />
       <div className={variants.login}>
         <Image
           className="h-min"

@@ -29,17 +29,19 @@ export default function RootLayout({
     pathname.includes('/signup') ||
     pathname.includes('/onboarding');
 
+  const isMyPage = pathname.startsWith('/mypage');
+
   return (
     <html>
       {/* TOFIX: body 제거 필요 */}
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           <GlobalModalProvider>
-            {!isGuest && <Header />}
+            <Header isGuest={isGuest} />
             <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>
               {children}
             </div>
-            {!isGuest && <Footer />}
+            {!isGuest && !isMyPage && <Footer />}
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />
