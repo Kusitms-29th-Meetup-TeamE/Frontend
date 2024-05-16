@@ -18,7 +18,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export const SignUpKakao = () => {
+const SignUpKakao = () => {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [step, setStep] = useState<number>(0);
