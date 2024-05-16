@@ -2,22 +2,11 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { IoLocationOutline } from 'react-icons/io5';
 import { LuCalendarClock } from 'react-icons/lu';
 
+import { MsgLogProps } from '@/types/chat';
+
 import { trimDateString } from '@/utils';
 
 import Image from 'next/image';
-
-export type MsgLogProps = {
-  type: string;
-  createdAt: string;
-  text: string | null;
-  emoticon: null;
-  experienceType: string | null;
-  appointmentTime: string | null;
-  location: string | null;
-  senderId: number;
-  senderName: string;
-  senderImageUrl: string;
-};
 
 export const AppointmentMsgItem = (props: { data: MsgLogProps }) => {
   const { data } = props;

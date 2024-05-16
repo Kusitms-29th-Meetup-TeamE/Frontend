@@ -1,7 +1,6 @@
-import { trimDateString } from '@/utils';
+import { MsgLogProps } from '@/types/chat';
 
-import { MsgLogProps } from './AppointmentMsgItem';
-import { MsgItemProps } from './MyMsgItem';
+import { trimDateString } from '@/utils';
 
 import Image from 'next/image';
 

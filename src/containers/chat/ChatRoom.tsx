@@ -5,13 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 import Button from '@/components/common-components/button';
 import Input from '@/components/common-components/input';
 
-import {
-  AppointmentMsgItem,
-  MsgLogProps,
-} from '@/components/chat/AppointmentMsgItem';
+import { AppointmentMsgItem } from '@/components/chat/AppointmentMsgItem';
 import { MyAppointmentMsgItem } from '@/components/chat/MyAppointmentMsgItem';
 import { MyMsgItem } from '@/components/chat/MyMsgItem';
 import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
+
+import { MsgLogProps } from '@/types/chat';
 
 import { useChatStore } from '@/store/chatStore';
 import { Client, CompatClient, Stomp } from '@stomp/stompjs';
@@ -66,6 +65,7 @@ export const ChatRoom = () => {
 
   useEffect(connectToWebSocket, []);
 
+  // TODO: 타입 수정하기 any (x)
   const [logData, setLogData] = useState<any[]>([]);
   const [chatList, setChatList] = useState<any[]>([]); // 채팅 기록
 
@@ -104,7 +104,7 @@ export const ChatRoom = () => {
     scrollToBottom();
   }, [chatList]);
 
-  const renderMessageItem = (item: any, idx: number) => {
+  const renderMessageItem = (item: MsgLogProps, idx: number) => {
     switch (item.type) {
       case 'TEXT':
         return (
@@ -113,7 +113,7 @@ export const ChatRoom = () => {
             className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
           >
             {item.senderId === myId ? (
-              <MyMsgItem message={item.text} time={item.createdAt} />
+              <MyMsgItem data={item} />
             ) : (
               <OtherMsgItem data={item} />
             )}
@@ -136,7 +136,7 @@ export const ChatRoom = () => {
         return (
           <div key={idx} className="inline-flex">
             <span className="bg-yellow-300 py-2 px-5 rounded-lg">
-              {item.emoticon === '안녕' ? '😃' : '😃'}
+              {item.emoticon && item.emoticon === '안녕' ? '😃' : '😃'}
             </span>
           </div>
         );

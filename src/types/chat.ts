@@ -28,3 +28,16 @@ export interface DirectChatRoomsResponse {
   myId: number;
   directChatRoomResList: DirectChatRoom[];
 }
+
+export type MsgLogProps = {
+  type?: string;
+  createdAt: string;
+  text: string | null;
+  emoticon?: null;
+  experienceType?: string | null;
+  appointmentTime?: string | null;
+  location?: string | null;
+  senderId?: number;
+  senderName?: string;
+  senderImageUrl?: string;
+};

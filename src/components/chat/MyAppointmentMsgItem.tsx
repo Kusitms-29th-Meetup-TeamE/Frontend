@@ -2,9 +2,9 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { IoLocationOutline } from 'react-icons/io5';
 import { LuCalendarClock } from 'react-icons/lu';
 
-import { trimDateString } from '@/utils';
+import { MsgLogProps } from '@/types/chat';
 
-import { MsgLogProps } from './AppointmentMsgItem';
+import { trimDateString } from '@/utils';
 
 export const MyAppointmentMsgItem = (props: { data: MsgLogProps }) => {
   const { data } = props;
