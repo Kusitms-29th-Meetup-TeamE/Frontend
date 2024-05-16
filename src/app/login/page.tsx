@@ -11,6 +11,7 @@ import Input from '@/components/common-components/input';
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const variants = {
   login: 'flex justify-center items-end gap-[38px] pt-[124px] pb-[54px]',
@@ -121,9 +122,9 @@ const page = () => {
           <div className="text-footer-medium text-gray-08">
             아직 회원이 아니신가요?
           </div>
-          <div className="text-chip-bold text-primary-orange6 cursor-pointer">
+          <Link href="/signup" className="text-chip-bold text-primary-orange6">
             회원가입
-          </div>
+          </Link>
         </div>
         <div className="flex items-center gap-[12px] text-footer-medium text-gray-08">
           <span className="cursor-pointer">아이디 찾기</span>
