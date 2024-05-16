@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           <GlobalModalProvider>
-            {!isGuest && <Header />}
+            <Header isGuest={isGuest} />
             <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>
               {children}
             </div>
