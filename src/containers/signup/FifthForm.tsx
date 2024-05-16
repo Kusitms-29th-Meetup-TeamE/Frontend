@@ -3,8 +3,8 @@ import { useState } from 'react';
 import Input from '@/components/common-components/input';
 import SelectBox from '@/components/common-components/select-box/SelectBox';
 
-import SearchAddressModal from '@/components/signUp/SearchAddressModal';
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SearchAddressModal from '@/components/signup/SearchAddressModal';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import { dayItems, monthItems, yearItems } from '@/constants/object';
 

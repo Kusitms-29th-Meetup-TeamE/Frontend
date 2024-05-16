@@ -47,9 +47,19 @@ const config: Config = {
         'gray-10': '#303539',
         'gray-11': '#272b30',
         'gray-chip': '#e1e8ef',
+        black: '#14191E',
 
         // error color
-        'error-main': '#FF465C',
+        'error-main': '#FF0000',
+
+        // chip color
+        'chip-scholar': '#E78751',
+        'chip-active': '#FD8F2A',
+        'chip-creative': '#FFC700',
+        'chip-learnable': '#E85087',
+        'chip-artistic': '#A954DD',
+        'chip-peaceful': '#8598FC',
+        'chip-natural': '#52BD63',
       },
       fontSize: {
         h1: [
@@ -116,12 +126,28 @@ const config: Config = {
             letterSpacing: '2%',
           },
         ],
+        body4: [
+          '1.125rem', // 18px
+          {
+            fontWeight: '700',
+            lineHeight: '30px',
+            letterSpacing: '2%',
+          },
+        ],
         'chip-bold': [
           '0.875rem', // 14px
           {
             fontWeight: 'bold',
             lineHeight: '20px',
             letterSpacing: '2%',
+          },
+        ],
+        'chip-semibold': [
+          '1.625rem', // 26px
+          {
+            fontWeight: '600',
+            lineHeight: '50px',
+            letterSpacing: '4%',
           },
         ],
         'chip-medium': [

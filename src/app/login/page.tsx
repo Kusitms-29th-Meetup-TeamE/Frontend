@@ -8,7 +8,7 @@ import Button from '@/components/common-components/button';
 import Checkbox from '@/components/common-components/check-box/Checkbox';
 import Input from '@/components/common-components/input';
 
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import Image from 'next/image';
 
@@ -25,11 +25,16 @@ const variants = {
 };
 
 const page = () => {
+  // oauth 요청 URL
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}&response_type=code`;
   const [isCheck, setIsCheck] = useState<boolean>(false);
 
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
+  const handleKakaoLogin = () => {
+    window.location.href = kakaoURL;
+  };
   const handleCheck = () => {
     setIsCheck(!isCheck);
   };
@@ -102,7 +107,7 @@ const page = () => {
         <div className="w-full h-[1px] bg-gray-05" />
         <div className={variants.seperatorLabel}>또는</div>
       </div>
-      <button className={variants.kakao}>
+      <button className={variants.kakao} onClick={handleKakaoLogin}>
         <Image
           src="/assets/components/kakao.svg"
           alt=""

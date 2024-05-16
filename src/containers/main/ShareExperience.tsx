@@ -8,7 +8,7 @@ import ShareProfile, {
   ShareProfileProps,
 } from '@/components/main/ShareProfile';
 
-import { useMainDataList } from '@/hooks/useMain';
+import { useMainDataList } from '@/hooks/api/useMain';
 
 export default function ShareExperience() {
   const { data: mainData, isLoading, error } = useMainDataList();

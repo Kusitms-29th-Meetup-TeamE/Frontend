@@ -24,7 +24,3 @@ export default function ModalClose({
     </div>
   );
 }
-
-ModalClose.defaultProps = {
-  className: '',
-};
