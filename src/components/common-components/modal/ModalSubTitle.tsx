@@ -12,7 +12,3 @@ export default function ModalSubTitle({
 }) {
   return <div className={twMerge(className)}>{children}</div>;
 }
-
-ModalSubTitle.defaultProps = {
-  className: '',
-};

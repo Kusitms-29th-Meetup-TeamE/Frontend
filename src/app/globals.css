@@ -37,3 +37,21 @@
   margin: 10px 0px;
   /* box-shadow: inset 0px 0px 5px white; */
 }
+
+// gray-scroll
+.gray-scroll-container {
+  width: 100%;
+}
+
+.gray-scroll-container::-webkit-scrollbar {
+  width: 14px;
+}
+
+.gray-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #dcdddd;
+  border-radius: 8.5px;
+}
+
+.gray-scroll-container::-webkit-scrollbar-track {
+  border-radius: 8.5px;
+}

@@ -31,24 +31,48 @@ const FourthChipCloud = () => {
         src="/assets/onboarding/fourth_center_img.png"
         width={1076}
         height={745}
-        className="absolute -z-10" // step에서부터 91px
+        className="absolute -z-10"
         alt={''}
       />
       <div className="flex flex-col max-w-[920px] w-full gap-[49px]">
         <div className="flex justify-center gap-[10px]">
-          {FirstLine.map((data) => (
-            <FourthChip text={data} onClick={handleChipClick} key={data} />
-          ))}
+          {FirstLine.map((data, key) => {
+            const emoji = ['💃', '✏️'];
+            return (
+              <FourthChip
+                text={data}
+                emoji={emoji[key]}
+                onClick={handleChipClick}
+                key={data}
+              />
+            );
+          })}
         </div>
         <div className="flex justify-center gap-[10px]">
-          {SecondLine.map((data) => (
-            <FourthChip text={data} onClick={handleChipClick} key={data} />
-          ))}
+          {SecondLine.map((data, key) => {
+            const emoji = ['💡', '🍀', '🧘'];
+            return (
+              <FourthChip
+                text={data}
+                emoji={emoji[key]}
+                onClick={handleChipClick}
+                key={data}
+              />
+            );
+          })}
         </div>
         <div className="flex justify-center gap-[10px]">
-          {ThirdLine.map((data) => (
-            <FourthChip text={data} onClick={handleChipClick} key={data} />
-          ))}
+          {ThirdLine.map((data, key) => {
+            const emoji = ['🧑‍🏫', '🎨'];
+            return (
+              <FourthChip
+                text={data}
+                emoji={emoji[key]}
+                onClick={handleChipClick}
+                key={data}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

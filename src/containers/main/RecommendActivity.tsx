@@ -8,7 +8,7 @@ import RecommendItem, {
   RecommendItemProps,
 } from '@/components/main/RecommendItem';
 
-import { useMainDataList } from '@/hooks/useMain';
+import { useMainDataList } from '@/hooks/api/useMain';
 
 import { useRouter } from 'next/navigation';
 

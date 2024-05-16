@@ -1,50 +1,17 @@
-'use client';
-
-import React from 'react';
-
-import Chip from '@/components/common-components/chip';
-import Input from '@/components/common-components/input';
-
-import ActivityBanner from '@/components/join/ActivityBanner';
-import PointItem from '@/components/main/PointItem';
-
 import Notice from '@/containers/main/Notice';
 import Point from '@/containers/main/Point';
 import SubBannerSlider from '@/containers/main/SubBannerSlider';
+import FirstStep from '@/containers/onboarding/FirstStep';
+import FourthStep from '@/containers/onboarding/FourthStep';
+import SecondStep from '@/containers/onboarding/SecondStep';
+import ThirdStep from '@/containers/onboarding/ThirdStep';
 
 const TestPage = () => {
   return (
-    <div className="p-5">
-      <ActivityBanner
-        title={'활동 참여하기'}
-        content={'취향에 맞는 활동을 찾고 참여하세요!'}
-      />
-      <Input
-        onChange={() => console.log('input 클릭')}
-        placeholder={'찾으시는 활동을 검색해보세요!'}
-        search={true}
-        shape={'rounded'}
-        size={'sm'}
-      />
-      <Chip text="활발한" />
-      <Chip
-        text="전체"
-        size="md"
-        isBtn={true}
-        isSelected={false}
-        isPersonality={false}
-      />
-      <Chip
-        text="전체"
-        size="md"
-        isBtn={true}
-        isSelected={true}
-        isPersonality={false}
-      />
-      <Chip text="활발한" size="md" isBtn={true} isSelected={false} />
-      <Chip text="활발한" size="md" isBtn={true} isSelected={true} />
-
-      <div className="flex gap-2 p-2"></div>
+    <div className="w-full pr-[10px] pl-[10px]">
+      {/* <div className="flex gap-2 p-2"></div>
+   
+      <FourthStep />
       <Notice />
       <div className="h-[30px]"></div>
       <SubBannerSlider
@@ -55,7 +22,7 @@ const TestPage = () => {
         ]}
       />
       <div className="h-[30px]"></div>
-      <Point />
+      <Point /> */}
     </div>
   );
 };

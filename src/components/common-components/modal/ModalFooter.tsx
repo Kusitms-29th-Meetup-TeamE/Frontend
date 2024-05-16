@@ -12,7 +12,3 @@ export default function ModalFooter({
 }) {
   return <div className={clsx(variants.footer, className)}>{children}</div>;
 }
-
-ModalFooter.defaultProps = {
-  className: '',
-};

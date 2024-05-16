@@ -3,7 +3,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import Checkbox from '@/components/common-components/check-box/Checkbox';
 
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import clsx from 'clsx';
 import Image from 'next/image';

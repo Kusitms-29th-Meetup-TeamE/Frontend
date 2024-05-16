@@ -14,7 +14,3 @@ export default function ModalDescription({
     <div className={clsx(variants.description, className)}>{children}</div>
   );
 }
-
-ModalDescription.defaultProps = {
-  className: '',
-};

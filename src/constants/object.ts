@@ -15,7 +15,7 @@ export const monthItems: SelectItemType[] = [
   { id: 12, text: '12월', value: 12 },
 ];
 
-export const yearItems: SelectItemType[] = [];
+export const yearItems: SelectItemType[] = []; //
 
 const currentYear = new Date().getFullYear();
 const startYear = 1900; // 시작 연도
@@ -36,6 +36,18 @@ for (let day = 1; day <= 31; day++) {
     id: day,
     text: `${day}일`,
     value: day,
+  });
+}
+
+// 약속잡기에 필요한 연도 설정
+
+export const AppointmentYearItems: SelectItemType[] = []; //
+
+for (let year = currentYear; year <= currentYear + 10; year++) {
+  AppointmentYearItems.push({
+    id: year,
+    text: `${year}년`,
+    value: year,
   });
 }
 
