@@ -55,10 +55,8 @@ const page = () => {
     setIsCheck(!isCheck);
   };
 
-  const isBtnDisable = () => {
-    if (userInput.email === '' || userInput.password === '') return true;
-    else return false;
-  };
+  const isBtnDisable = () =>
+    userInput.email === '' || userInput.password === '';
 
   return (
     <div className="flex flex-col items-center">
