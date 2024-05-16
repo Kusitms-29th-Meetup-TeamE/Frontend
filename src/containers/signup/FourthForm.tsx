@@ -5,7 +5,7 @@ import { MdOutlineLock } from 'react-icons/md';
 
 import Input from '@/components/common-components/input';
 
-import SignUpTitle from '@/components/signUp/SignUpTitle';
+import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 

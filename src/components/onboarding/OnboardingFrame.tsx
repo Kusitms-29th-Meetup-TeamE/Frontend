@@ -4,12 +4,11 @@ import React, { useState } from 'react';
 
 import Button from '@/components/common-components/button/Button';
 
-import SignUpTitle from '@/components/signup/SignUpTitle';
-
-import { useOnboardingInfo } from '@/hooks/useUser';
+import { useOnboardingInfo } from '@/hooks/api/useUser';
 
 import useStepStore from '@/store/onboardingStepStore';
 
+import SignUpTitle from '../signup/SignUpTitle';
 import OnboardingModal from './OnboardingModal';
 
 import Image from 'next/image';

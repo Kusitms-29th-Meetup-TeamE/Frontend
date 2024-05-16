@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "https://api.yeongjin.site/:path*"
+    }
+  ]
+}
