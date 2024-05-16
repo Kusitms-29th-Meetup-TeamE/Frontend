@@ -67,5 +67,6 @@ export const personalityItmes: string[] = [
   '창의적인',
   '배울 수 있는',
   '평화로운',
+  '예술적인',
   '자연친화적인',
 ];
