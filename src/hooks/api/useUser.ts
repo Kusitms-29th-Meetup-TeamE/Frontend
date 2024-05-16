@@ -93,7 +93,6 @@ export const useLocalLogin = ({
           text: '비밀번호를 다시 입력해주세요.',
         });
       } else {
-        console.log(res);
         router.push('/');
       }
     },
@@ -119,7 +118,6 @@ export const useOnboardingInfo = (data: string[]) => {
         open: true,
         text: '온보딩 정보가 등록되었습니다',
       });
-      console.log(data);
     },
     onError: () => {
       setErrorModal({

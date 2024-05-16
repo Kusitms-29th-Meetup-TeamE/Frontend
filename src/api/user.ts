@@ -42,8 +42,6 @@ export const postKakaoUserInfo = async ({
   await fetch(`${BASE_URL}/sign-up`, {
     method: 'POST',
     headers: {
-      // // 임의로 작성
-      // Authorization: `Bearer ${sessionStorage.accessToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -66,7 +64,6 @@ export const postKakaoUserInfo = async ({
           return null;
         }
       }
-      console.log(res.status);
       return res;
     })
     .catch((err) => {
@@ -100,7 +97,6 @@ export const postLocalUserInfo = async ({
     }),
   })
     .then((res) => {
-      console.log(res.json);
       return res.json();
     })
     .catch((err) => {
