@@ -22,7 +22,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
   const handleLogout = () => {
-    sessionStorage.removeItem('accessToken');
+    sessionStorage.clear();
     window.location.reload();
   };
 
