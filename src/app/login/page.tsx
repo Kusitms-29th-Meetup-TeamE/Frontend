@@ -10,6 +10,8 @@ import Input from '@/components/common-components/input';
 
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
+import { useLocalLogin } from '@/hooks/api/useUser';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -30,14 +32,32 @@ const page = () => {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}&response_type=code`;
   const [isCheck, setIsCheck] = useState<boolean>(false);
 
+  const [userInput, setUserInput] = useState<{
+    email: string;
+    password: string;
+  }>({ email: '', password: '' });
+  const { mutate } = useLocalLogin(userInput);
+
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const handleKakaoLogin = () => {
     window.location.href = kakaoURL;
   };
+
+  const handleLocalLogin = () => {
+    if (userInput.email !== '' && userInput.password !== '') {
+      mutate();
+    }
+  };
+
   const handleCheck = () => {
     setIsCheck(!isCheck);
+  };
+
+  const isBtnDisable = () => {
+    if (userInput.email === '' || userInput.password === '') return true;
+    else return false;
   };
 
   return (
@@ -74,9 +94,13 @@ const page = () => {
           ref={emailInputRef}
           startIcon={<TfiEmail />}
           onChange={() => {
-            console.log(emailInputRef.current?.value);
+            setUserInput({
+              ...userInput,
+              email: emailInputRef.current?.value || '',
+            });
           }}
           placeholder={'이메일을 입력해주세요'}
+          type="text"
           shape={'square'}
           className="mb-3"
         />
@@ -84,9 +108,13 @@ const page = () => {
           ref={passwordInputRef}
           startIcon={<TfiLock />}
           onChange={() => {
-            console.log(passwordInputRef.current?.value);
+            setUserInput({
+              ...userInput,
+              password: passwordInputRef.current?.value || '',
+            });
           }}
           placeholder={'비밀번호를 입력해주세요'}
+          type="password"
           shape={'square'}
           className="mb-5"
         />
@@ -101,7 +129,14 @@ const page = () => {
           <div className={variants.checkboxLabel}>로그인 상태 유지</div>
         </div>
       </div>
-      <Button size="xl" shape="square" className="mb-10">
+      <Button
+        size="xl"
+        shape="square"
+        className="mb-10"
+        color={isBtnDisable() ? 'disabled' : 'default'}
+        disabled={isBtnDisable()}
+        onClick={handleLocalLogin}
+      >
         로그인
       </Button>
       <div className={variants.seperator}>
