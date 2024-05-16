@@ -9,10 +9,8 @@ import ThirdStep from '@/containers/onboarding/ThirdStep';
 const TestPage = () => {
   return (
     <div className="w-full pr-[10px] pl-[10px]">
-      <div className="flex gap-2 p-2"></div>
-      {/* <FirstStep /> */}
-      {/* <SecondStep /> */}
-      {/* <ThirdStep /> */}
+      {/* <div className="flex gap-2 p-2"></div>
+   
       <FourthStep />
       <Notice />
       <div className="h-[30px]"></div>
@@ -24,7 +22,7 @@ const TestPage = () => {
         ]}
       />
       <div className="h-[30px]"></div>
-      <Point />
+      <Point /> */}
     </div>
   );
 };

@@ -18,7 +18,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-const SignUpKakao = () => {
+const SignUpKakaoPage = () => {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [step, setStep] = useState<number>(0);
@@ -186,4 +186,4 @@ const SignUpKakao = () => {
   );
 };
 
-export default SignUpKakao;
+export default SignUpKakaoPage;

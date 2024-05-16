@@ -1,3 +1,5 @@
+'use client';
+
 import { OneRoomItem } from '@/components/chat/OneRoomItem';
 
 import { useChatRoomsDirect } from '@/hooks/api/useChat';
