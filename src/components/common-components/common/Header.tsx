@@ -21,6 +21,11 @@ export default function Header() {
   const accessToken =
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('accessToken');
+    window.location.reload();
+  };
+
   return (
     <div className="w-full border border-b-gray-04 flex items-center fixed z-50 top-0 h-[70px] bg-white shadow-md">
       <div className="w-4/5 flex justify-between m-auto">
@@ -75,7 +80,9 @@ export default function Header() {
                 <span className="pl-[4px]">포인트</span>
               </span>
             </Link>
-            <span className={variants.rightMenu}>로그아웃</span>
+            <span onClick={handleLogout} className={variants.rightMenu}>
+              로그아웃
+            </span>
           </div>
         ) : (
           <div className={variants.rightBar}>
