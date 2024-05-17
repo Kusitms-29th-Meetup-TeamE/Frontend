@@ -53,8 +53,8 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
             <Link href="/join">
               <div className={variants.centerMenu}>활동 참여하기</div>
             </Link>
-            <Link href="#">
-              <div className={variants.centerMenu}>경험 나누기</div>
+            <Link href="/share">
+              <div className={variants.centerMenu}>배움 나누기</div>
             </Link>
 
             <Link
