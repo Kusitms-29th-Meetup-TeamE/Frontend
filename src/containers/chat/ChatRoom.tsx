@@ -68,18 +68,21 @@ export const ChatRoom = (props: { roomId: number }) => {
     };
   };
 
-  // roomId를 의존성배열에..?
+  // TODO: 타입 수정하기 any (x)
+  const [logData, setLogData] = useState<any[]>([]);
+  const [chatList, setChatList] = useState<any[]>([]); // 채팅 기록
+
+  // 첫 소켓 연결
   useEffect(connectToWebSocket, []);
 
   useEffect(() => {
     if (stompClient?.connect) {
+      setChatList([]);
+      setLogData([]);
       stompClient.subscribe(`/topic/chatting/${roomId}`, callback);
     }
+    stompClient?.unsubscribe(`/topic/chatting/${roomId}`);
   }, [roomId]);
-
-  // TODO: 타입 수정하기 any (x)
-  const [logData, setLogData] = useState<any[]>([]);
-  const [chatList, setChatList] = useState<any[]>([]); // 채팅 기록
 
   const callback = (message: any) => {
     if (message.body) {
@@ -92,7 +95,7 @@ export const ChatRoom = (props: { roomId: number }) => {
     }
   };
 
-  // console.log('logdata', logData);
+  console.log('logdata', logData);
 
   const sendChat = (id: number) => {
     if (value === '') return;
@@ -110,7 +113,7 @@ export const ChatRoom = (props: { roomId: number }) => {
     setValue('');
   };
 
-  // console.log('chatlist', chatList);
+  console.log('chatlist', chatList);
 
   useEffect(() => {
     scrollToBottom();
