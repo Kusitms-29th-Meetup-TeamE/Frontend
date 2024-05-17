@@ -17,7 +17,7 @@ import SockJS from 'sockjs-client';
 export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 export default function ChatActivity() {
-  const { data, isLoading } = useChatRoomsGroup();
+  const { data } = useChatRoomsGroup();
 
   const { setMyId } = useChatStore();
 
@@ -28,6 +28,7 @@ export default function ChatActivity() {
     setGroupRoomId(id); // roomId 담아주기
   };
   const [stompClient, setStompClient] = useState<CompatClient | null>(null);
+  const [isSocketLoading, setIsSocketLoading] = useState<boolean>(true); // 추가
 
   const connectToWebSocket = () => {
     const socket = new SockJS(`${SOCKET_URL}`);
@@ -37,8 +38,12 @@ export default function ChatActivity() {
       {},
       () => {
         console.log('Connection success');
+        setIsSocketLoading(false);
       },
-      () => console.log('Connection failed'),
+      () => {
+        console.log('Connection failed');
+        // setIsSocketLoading(false);
+      },
     );
 
     setStompClient(client);
@@ -73,7 +78,10 @@ export default function ChatActivity() {
       </RoomList>
 
       <section className="flex-1">
-        {groupRoomId !== null ? (
+        {isSocketLoading ? (
+          // TODO: 로딩 컴포넌트 넣기
+          <div>로딩중입니다요</div>
+        ) : groupRoomId !== null ? (
           <ChatRoom roomId={groupRoomId} stompClient={stompClient} />
         ) : (
           <EmptyChat />
