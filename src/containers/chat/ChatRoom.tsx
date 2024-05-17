@@ -21,8 +21,9 @@ import Image from 'next/image';
 export const ChatRoom = (props: {
   roomId: number;
   stompClient: CompatClient | null;
+  isGroup?: boolean;
 }) => {
-  const { roomId, stompClient } = props;
+  const { roomId, stompClient, isGroup = true } = props;
 
   const { myId } = useChatStore();
   // console.log('roomid', roomId);
@@ -157,8 +158,11 @@ export const ChatRoom = (props: {
             />
             <p className="text-black text-body1">서울 근교 등산 동호회</p>
           </div>
-          <button onClick={handleAppointment} className="border border-red-500">
-            약속 잡기
+          <button
+            onClick={handleAppointment}
+            className="border border-gray-05 text-body3 bg-white rounded-[6px] text-gray-09 py-[5px] px-4 hover:bg-gray-02"
+          >
+            {isGroup ? '약속 잡기' : '배움 나누기 확정하기'}
           </button>
         </div>
 

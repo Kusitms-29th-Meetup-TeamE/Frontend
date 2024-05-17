@@ -90,7 +90,11 @@ export default function ChatSharePage() {
           // TODO: 로딩 컴포넌트 넣기
           <div>로딩중입니다요</div>
         ) : directRoomId !== null ? (
-          <ChatRoom roomId={directRoomId} stompClient={stompClient} />
+          <ChatRoom
+            isGroup={false}
+            roomId={directRoomId}
+            stompClient={stompClient}
+          />
         ) : (
           <EmptyChat />
         )}
