@@ -6,6 +6,11 @@ import {
   monthItems,
   yearItems,
 } from '@/constants/object';
+import { ModalDefaultProps } from '@/types/modal';
+
+import { useChatStore } from '@/store/chatStore';
+import { dateToUTC } from '@/utils';
+import { CompatClient } from '@stomp/stompjs';
 
 import Button from '../common-components/button';
 import Input from '../common-components/input';
@@ -14,18 +19,19 @@ import SelectBox from '../common-components/select-box/SelectBox';
 
 import clsx from 'clsx';
 
-export type AppointmentModalProps = {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-};
+interface AppointmentModalProps extends ModalDefaultProps {
+  //
+  stompClient?: CompatClient | null;
+  roomId: number;
+}
 
 export const AppointmentModal = (props: AppointmentModalProps) => {
-  const { isOpen, setIsOpen } = props;
+  const { isOpen, setIsOpen, stompClient, roomId } = props;
+  const { myId } = useChatStore();
 
   const [year, setYear] = useState<string | number>('');
   const [month, setMonth] = useState<string | number>('');
   const [day, setDay] = useState<string | number>('');
-  4;
 
   const [location, setLocation] = useState<string>('');
 
@@ -47,7 +53,38 @@ export const AppointmentModal = (props: AppointmentModalProps) => {
     );
   };
 
-  const handleSubmit = () => {};
+  console.log('hihi', year, month, day);
+
+  // 약속잡기
+  const sendAppointment = (id: number) => {
+    const messageObject = {
+      senderId: myId,
+      experienceType: '요리',
+      appointmentTime: dateToUTC(
+        year as number,
+        month as number,
+        day as number,
+      ),
+      location: location,
+    };
+
+    stompClient?.send(
+      `/app/chatting/${id}/appointment`,
+      {},
+      JSON.stringify(messageObject),
+    );
+
+    console.log('object', messageObject);
+  };
+
+  const handleSubmit = () => {
+    sendAppointment(roomId);
+    setIsOpen(false);
+    setLocation('');
+    setYear('');
+    setMonth('');
+    setDay('');
+  };
 
   return (
     <Modal
