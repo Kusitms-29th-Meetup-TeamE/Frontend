@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { LuCalendarDays } from 'react-icons/lu';
 
 import Button from '@/components/common-components/button';
 import Input from '@/components/common-components/input';
@@ -156,13 +157,15 @@ export const ChatRoom = (props: {
               alt=""
               className="object-cover w-[76px] h-[76px] rounded-[10px]"
             />
+            {/* TODO: title 수정하기 */}
             <p className="text-black text-body1">서울 근교 등산 동호회</p>
           </div>
           <button
             onClick={handleAppointment}
-            className="border border-gray-05 text-body3 bg-white rounded-[6px] text-gray-09 py-[5px] px-4 hover:bg-gray-02"
+            className="flex gap-2 items-center border border-gray-05 text-body3 bg-white rounded-[6px] text-gray-09 py-[5px] px-4 hover:bg-gray-02"
           >
-            {isGroup ? '약속 잡기' : '배움 나누기 확정하기'}
+            <LuCalendarDays />
+            <span>{isGroup ? '약속 잡기' : '배움 나누기 확정하기'}</span>
           </button>
         </div>
 
