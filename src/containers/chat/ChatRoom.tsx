@@ -20,9 +20,14 @@ import SockJS from 'sockjs-client';
 
 export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
-export const ChatRoom = () => {
-  // const { myId } = useChatStore();
-  const myId = 5;
+export const ChatRoom = (props: { roomId: number }) => {
+  const { roomId } = props;
+
+  const { myId } = useChatStore();
+  // const myId = 5;
+
+  console.log('myid와 roomid', myId, roomId);
+
   const [value, setValue] = useState<string>('');
 
   // scrollToBottom을 위한 ref
@@ -38,7 +43,7 @@ export const ChatRoom = () => {
 
   // socket 관련 로직 설계 시작
   const [stompClient, setStompClient] = useState<CompatClient | null>(null);
-  const chatroomId = 10;
+  // const chatroomId = 10;
 
   const connectToWebSocket = () => {
     const socket = new SockJS(`${SOCKET_URL}`);
@@ -51,7 +56,7 @@ export const ChatRoom = () => {
     );
 
     stompClient.onConnect = () => {
-      stompClient.subscribe(`/topic/chatting/${chatroomId}`, callback);
+      stompClient.subscribe(`/topic/chatting/${roomId}`, callback);
     };
 
     setStompClient(stompClient);
@@ -63,7 +68,14 @@ export const ChatRoom = () => {
     };
   };
 
+  // roomId를 의존성배열에..?
   useEffect(connectToWebSocket, []);
+
+  useEffect(() => {
+    if (stompClient?.connect) {
+      stompClient.subscribe(`/topic/chatting/${roomId}`, callback);
+    }
+  }, [roomId]);
 
   // TODO: 타입 수정하기 any (x)
   const [logData, setLogData] = useState<any[]>([]);
@@ -82,16 +94,16 @@ export const ChatRoom = () => {
 
   // console.log('logdata', logData);
 
-  const sendChat = () => {
+  const sendChat = (id: number) => {
     if (value === '') return;
 
     const messageObject = {
-      senderId: 5,
+      senderId: myId,
       text: value,
     };
 
     stompClient?.send(
-      `/app/chatting/${chatroomId}/text`,
+      `/app/chatting/${id}/text`,
       {},
       JSON.stringify(messageObject),
     );
@@ -185,7 +197,7 @@ export const ChatRoom = () => {
           className="!bg-gray-02 border-gray-04"
           onKeyDown={(ev) => {
             if (ev.keyCode === 13) {
-              sendChat();
+              sendChat(roomId);
             }
           }}
         />
@@ -194,7 +206,7 @@ export const ChatRoom = () => {
           shape="square"
           color={disabledBtn() ? 'disabled' : 'default'}
           disabled={disabledBtn()}
-          onClick={() => sendChat()}
+          onClick={() => sendChat(roomId)}
         >
           전송
         </Button>
