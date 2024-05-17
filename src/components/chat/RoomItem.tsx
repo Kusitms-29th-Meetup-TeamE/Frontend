@@ -25,7 +25,8 @@ export const RoomItem = (props: {
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const currentBgStyle = isSelected ? bgStyle.clicked : bgStyle.default;
+  const currentBgStyle =
+    isSelected || isHovered ? bgStyle.clicked : bgStyle.default;
 
   return (
     <div
