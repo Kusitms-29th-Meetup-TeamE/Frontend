@@ -28,6 +28,7 @@ export default function ChatActivity() {
     setMyId(data?.myId as number);
     setGroupRoomId(id); // roomId 담아주기
   };
+
   const [stompClient, setStompClient] = useState<CompatClient | null>(null);
   const [isSocketLoading, setIsSocketLoading] = useState<boolean>(true); // 추가
 

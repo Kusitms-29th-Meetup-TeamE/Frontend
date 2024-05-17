@@ -60,7 +60,7 @@ export default function ChatSharePage() {
   useEffect(connectToWebSocket, []);
 
   return (
-    <div className="w-full mx-auto pt-[40px] max-w-[1200px] border border-black flex">
+    <div className="w-full mx-auto pt-[40px] max-w-[1200px] flex">
       <RoomList
         title="배움 나누기 대화방"
         subTitle="1:1 대화를 통해 만남을 확정해보아요!"
