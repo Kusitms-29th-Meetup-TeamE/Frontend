@@ -118,7 +118,11 @@ export default function SignUp() {
         />
       )}
       {step === 3 && (
-        <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
+        <FourthForm
+          userInfo={userInfo}
+          setCheckForm={setCheckForm}
+          setUserInfo={setUserInfo}
+        />
       )}
       {step === 4 && (
         <FifthForm userInfo={userInfo} setUserInfo={setUserInfo} />

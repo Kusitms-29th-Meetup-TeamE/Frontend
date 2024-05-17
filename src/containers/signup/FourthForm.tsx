@@ -48,10 +48,11 @@ export type FourthFormProps = {
   // onSubmit: (data: any) => void;
   setCheckForm: Dispatch<SetStateAction<boolean>>;
   setUserInfo: Dispatch<SetStateAction<UserInfoProps>>;
+  userInfo: UserInfoProps;
 };
 
 export default function FourthForm(props: FourthFormProps) {
-  const { setCheckForm, setUserInfo } = props;
+  const { setCheckForm, setUserInfo, userInfo } = props;
 
   const {
     register,
@@ -59,36 +60,67 @@ export default function FourthForm(props: FourthFormProps) {
     formState: { errors, isValid },
     getValues,
     setValue,
+    watch,
   } = useForm<Schema>({
     resolver: zodResolver(schema),
     mode: 'onChange',
     defaultValues: {
-      name: '',
-      password: '',
-      confirmPassword: '',
+      name: userInfo.name,
+      password: userInfo.password,
+      confirmPassword: userInfo.confirmPassword,
     },
   });
 
-  setCheckForm(!isValid);
-
-  setValue('name', getValues('name'));
-  setValue('password', getValues('password'));
-  setValue('confirmPassword', getValues('confirmPassword'));
+  // setCheckForm(!isValid);
 
   useEffect(() => {
-    if (isValid) {
+    setCheckForm(!isValid);
+  }, [isValid, setCheckForm]);
+
+  // useEffect(() => {
+  //   setUserInfo((prev) => ({
+  //     ...prev,
+  //     name: getValues('name'),
+  //     password: getValues('password'),
+  //     confirmPassword: getValues('confirmPassword'),
+  //   }));
+  // }, [getValues, setUserInfo]);
+
+  // useEffect(() => {
+  //   const subscirbe = watch((data, { name }) => console.log(data, name));
+  //   return () => subscirbe.unsubscribe();
+  // }, [watch]);
+
+  useEffect(() => {
+    const subscription = watch((value: any) => {
       setUserInfo((prev) => ({
         ...prev,
-        name: getValues('name'),
-        password: getValues('password'),
-        confirmPassword: getValues('confirmPassword'),
+        name: value.name,
+        password: value.password,
+        confirmPassword: value.confirmPassword,
       }));
-    }
-  }, [isValid]);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setUserInfo]);
+
+  // setValue('name', getValues('name'));
+  // setValue('password', getValues('password'));
+  // setValue('confirmPassword', getValues('confirmPassword'));
+
+  // useEffect(() => {
+  //   if (isValid) {
+  //     setUserInfo((prev) => ({
+  //       ...prev,
+  //       name: getValues('name'),
+  //       password: getValues('password'),
+  //       confirmPassword: getValues('confirmPassword'),
+  //     }));
+  //   }
+  // }, [isValid]);
 
   const onSubmitForm = (data: Schema) => {
     // onSubmit(data);
-    console.log('onSubmitForm함수 실행됨');
+    // console.log('onSubmitForm함수 실행됨');
   };
 
   const [nameNotiVisible, setNameNotiVisible] = useState(true);
@@ -115,7 +147,6 @@ export default function FourthForm(props: FourthFormProps) {
           <Input
             startIcon={<BsPerson />}
             size="lg"
-            // defaultValue={name}
             placeholder="이름을 입력해주세요."
             shape="square"
             onFocus={(e) => setNameNotiVisible(false)}
