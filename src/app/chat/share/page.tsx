@@ -28,7 +28,7 @@ export default function ChatSharePage() {
 
       <section className="flex-1">
         {/* <EmptyChat /> */}
-        <ChatRoom />
+        {/* <ChatRoom /> */}
       </section>
     </div>
   );
