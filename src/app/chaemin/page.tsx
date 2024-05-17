@@ -19,6 +19,7 @@ import { MyMsgItem } from '@/components/chat/MyMsgItem';
 import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { RoomItem } from '@/components/chat/RoomItem';
 import MainTitle from '@/components/main/MainTitle';
+import MyPageTitle from '@/components/mypage/MypageTItle';
 
 import { useChatRoomsDirect, useChatRoomsGroup } from '@/hooks/api/useChat';
 import {
@@ -29,6 +30,7 @@ import {
 
 import { getChatRoomsGroup } from '@/api/chat';
 import { postEmailAuth } from '@/api/user';
+import LearnProfile from '@/containers/mypage/LearnProfile';
 
 export default function TestPage() {
   const isTempLoading = true; // tanstack-query 데이터 패칭 시 가져올 isLoading
@@ -158,6 +160,13 @@ export default function TestPage() {
         <MyMsgItem />
         <OtherMsgItem />
       </div> */}
+      <div className="flex flex-col">
+        <MyPageTitle
+          title="배움 프로필 수정하기"
+          content="배움 나누기 활동을 통해 얻은 경험 내역을 확인해보세요"
+        />
+        <LearnProfile />
+      </div>
 
       <br />
       <br />
