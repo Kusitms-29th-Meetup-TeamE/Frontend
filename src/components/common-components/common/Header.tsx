@@ -55,15 +55,25 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
           </Link>
 
           <div className={variants.menubar}>
-            <Link href="/join">
+            <Link
+              href="/join"
+              onClick={() => {
+                if (!accessToken) useNotifyLogin();
+              }}
+            >
               <div className={variants.centerMenu}>활동 참여하기</div>
             </Link>
-            <Link href="#">
-              <div className={variants.centerMenu}>경험 나누기</div>
+            <Link
+              href="#"
+              onClick={() => {
+                if (!accessToken) useNotifyLogin();
+              }}
+            >
+              <div className={variants.centerMenu}>배움 나누기</div>
             </Link>
 
             <Link
-              href={accessToken ? '#' : '#'}
+              href={accessToken ? '/chat' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -79,13 +89,13 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
                 <VscBell width={20} height={20} />
                 <span className="pl-[4px]">알림</span>
               </div>
-              <Link href="#">
+              <Link href="/mypage">
                 <span className={variants.rightMenu}>
                   <CgProfile width={20} height={20} />
                   <span className="pl-[4px]">마이페이지</span>
                 </span>
               </Link>
-              <Link href="#">
+              <Link href="/mypage/point">
                 <span className={variants.rightMenu}>
                   <HiOutlineCurrencyDollar />
                   <span className="pl-[4px]">포인트</span>
