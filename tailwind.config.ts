@@ -142,11 +142,19 @@ const config: Config = {
             letterSpacing: '2%',
           },
         ],
-        'chip-semibold': [
+        'chip-semibold-lg': [
           '1.625rem', // 26px
           {
             fontWeight: '600',
             lineHeight: '50px',
+            letterSpacing: '4%',
+          },
+        ],
+        'chip-semibold-sm': [
+          '1rem', // 16px
+          {
+            fontWeight: '600',
+            lineHeight: '22px',
             letterSpacing: '4%',
           },
         ],

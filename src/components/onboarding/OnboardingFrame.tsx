@@ -6,7 +6,7 @@ import Button from '@/components/common-components/button/Button';
 
 import { useOnboardingInfo } from '@/hooks/api/useUser';
 
-import useStepStore from '@/store/onboardingStepStore';
+import useStepStore from '@/store/onboarding/onboardingStepStore';
 
 import SignUpTitle from '../signup/SignUpTitle';
 import OnboardingModal from './OnboardingModal';

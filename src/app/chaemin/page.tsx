@@ -167,11 +167,6 @@ export default function TestPage() {
         약속잡기모달테스트
       </Button>
 
-      <AppointmentModal
-        isOpen={appointmentOpen}
-        setIsOpen={setAppointmentOpen}
-      />
-
       {/* 주소 검색 테스트 */}
       <Button size="lg" onClick={() => setIsOpen(true)}>
         주소 검색

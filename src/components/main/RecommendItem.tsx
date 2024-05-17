@@ -13,14 +13,15 @@ import Image from 'next/image';
 export type RecommendItemProps = {
   title: string;
   location: string;
-  maxParticipants: number;
-  currentParticipants: number;
+  maxParticipants?: number;
+  currentParticipants?: number;
   time: string;
   img: string;
   isLiked: boolean;
   className?: string;
   personalities: string[];
   isLoading?: boolean;
+  isHoverSet?: boolean;
 };
 
 export default function RecommendItem(props: RecommendItemProps) {
@@ -35,6 +36,7 @@ export default function RecommendItem(props: RecommendItemProps) {
     isLiked,
     className,
     isLoading,
+    isHoverSet = true,
   } = props;
 
   const [hover, setHover] = useState<boolean>(false);
@@ -91,7 +93,7 @@ export default function RecommendItem(props: RecommendItemProps) {
             </span>
           </div>
 
-          {hover && (
+          {isHoverSet && hover && (
             <div className="text-gray-11 text-h5">
               참여 인원: {currentParticipants}/{maxParticipants}
             </div>
