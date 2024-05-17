@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import Skeleton from '@/components/common-components/skeleton';
+
 import { RoomItem } from '@/components/chat/RoomItem';
 
 import { useChatRoomsGroup } from '@/hooks/api/useChat';
@@ -14,10 +16,10 @@ import { CompatClient, Stomp } from '@stomp/stompjs';
 
 import SockJS from 'sockjs-client';
 
-export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 export default function ChatActivity() {
-  const { data } = useChatRoomsGroup();
+  const { data, isLoading } = useChatRoomsGroup();
 
   const { setMyId } = useChatStore();
 
@@ -68,10 +70,14 @@ export default function ChatActivity() {
           return (
             <div
               key={idx}
-              className="mr-[5px]"
+              className="mr-[10px]"
               onClick={() => handleClick(item.id)}
             >
-              <RoomItem data={item} isSelected={groupRoomId === item.id} />
+              {isLoading ? (
+                <Skeleton width={470} height={170} />
+              ) : (
+                <RoomItem data={item} isSelected={groupRoomId === item.id} />
+              )}
             </div>
           );
         })}
