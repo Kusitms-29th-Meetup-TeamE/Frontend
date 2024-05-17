@@ -97,7 +97,17 @@ export const postLocalUserInfo = async ({
     }),
   })
     .then((res) => {
-      return res.json();
+      if (res.headers) {
+        let jwtToken = res.headers.get('Authorization');
+        jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
+
+        if (jwtToken) {
+          sessionStorage.clear();
+          sessionStorage.setItem('accessToken', jwtToken);
+          return null;
+        }
+      }
+      return res;
     })
     .catch((err) => {
       console.log(err);
