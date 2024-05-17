@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import Button from '@/components/common-components/button';
 
-import { useLocalUserInfo } from '@/hooks/useUser';
+import { useLocalUserInfo } from '@/hooks/api/useUser';
 import { UserInfoProps } from '@/types/user';
 
 import FifthForm from '@/containers/signup/FifthForm';
@@ -71,8 +71,10 @@ export default function SignUp() {
     confirmPassword: '',
     // fifth-form
     gender: '',
-    birthYear: '',
+    birthyear: '',
     location: '',
+    month: '',
+    day: '',
   });
 
   console.log('userinfo', userInfo);
@@ -118,7 +120,9 @@ export default function SignUp() {
       {step === 3 && (
         <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
       )}
-      {step === 4 && <FifthForm setUserInfo={setUserInfo} />}
+      {step === 4 && (
+        <FifthForm userInfo={userInfo} setUserInfo={setUserInfo} />
+      )}
 
       <div
         className={clsx(

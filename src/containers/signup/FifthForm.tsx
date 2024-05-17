@@ -23,18 +23,19 @@ const style = {
 
 export type FifthFormProps = {
   setUserInfo: Dispatch<SetStateAction<UserInfoProps>>;
+  userInfo: UserInfoProps;
 };
 
-export default function FifthForm({ setUserInfo }: FifthFormProps) {
-  const [gender, setGender] = useState<string>('');
+export default function FifthForm({ setUserInfo, userInfo }: FifthFormProps) {
+  const [gender, setGender] = useState<string>(userInfo.gender);
 
-  const [year, setYear] = useState<string | number>('');
-  const [month, setMonth] = useState<string | number>('');
-  const [day, setDay] = useState<string | number>('');
+  const [year, setYear] = useState<string | number>(userInfo.birthyear ?? '');
+  const [month, setMonth] = useState<string | number>(userInfo.month ?? '');
+  const [day, setDay] = useState<string | number>(userInfo.day ?? '');
 
   // 주소 검색 모달
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [location, setLocation] = useState<string>('');
+  const [location, setLocation] = useState<string>(userInfo.location);
 
   const handleGender = (genderText: string) => {
     setGender(genderText);
@@ -45,9 +46,11 @@ export default function FifthForm({ setUserInfo }: FifthFormProps) {
       ...prev,
       location: location,
       gender: gender,
-      birthYear: year.toString(),
+      birthyear: year.toString(),
+      month: month,
+      day: day,
     }));
-  }, [location, gender, year]);
+  }, [location, gender, year, month, day]);
 
   return (
     <>
@@ -71,19 +74,20 @@ export default function FifthForm({ setUserInfo }: FifthFormProps) {
 
             <div className="flex gap-[6px] mt-1">
               <SelectBox
-                initText="년"
+                initText={userInfo.birthyear ? `${year.toString()}년` : '년'}
                 items={yearItems}
                 size="md"
                 setParams={setYear}
               />
               <SelectBox
-                initText="월"
+                // initText="월"
+                initText={userInfo.month ? `${month.toString()}월` : '월'}
                 items={monthItems}
                 size="md"
                 setParams={setMonth}
               />
               <SelectBox
-                initText="일"
+                initText={userInfo.day ? `${day.toString()}일` : '일'}
                 items={dayItems}
                 size="md"
                 setParams={setDay}
