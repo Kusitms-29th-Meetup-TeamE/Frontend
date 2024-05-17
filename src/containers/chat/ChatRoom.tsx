@@ -22,15 +22,16 @@ export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 export const ChatRoom = (props: { roomId: number }) => {
   const { roomId } = props;
-
   const { myId } = useChatStore();
-  // const myId = 5;
-
-  console.log('myid와 roomid', myId, roomId);
-
+  console.log('roomid', roomId);
   const [value, setValue] = useState<string>('');
 
-  // scrollToBottom을 위한 ref
+  const [stompClient, setStompClient] = useState<CompatClient | null>(null);
+  const [subscription, setSubscription] = useState<any>(null);
+
+  const [logData, setLogData] = useState<any[]>([]);
+  const [chatList, setChatList] = useState<any[]>([]);
+
   const msgBoxRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -41,61 +42,68 @@ export const ChatRoom = (props: { roomId: number }) => {
 
   const disabledBtn = () => value.length === 0;
 
-  // socket 관련 로직 설계 시작
-  const [stompClient, setStompClient] = useState<CompatClient | null>(null);
-  // const chatroomId = 10;
-
   const connectToWebSocket = () => {
     const socket = new SockJS(`${SOCKET_URL}`);
-    const stompClient = Stomp.over(socket);
+    const client = Stomp.over(socket);
 
-    stompClient.connect(
+    client.connect(
       {},
-      () => console.log('connection success'),
-      () => console.log('connection failed'),
+      () => {
+        console.log('Connection success');
+      },
+      () => console.log('Connection failed'),
     );
 
-    stompClient.onConnect = () => {
-      stompClient.subscribe(`/topic/chatting/${roomId}`, callback);
-    };
-
-    setStompClient(stompClient);
+    setStompClient(client);
 
     return () => {
-      if (stompClient) {
-        stompClient.disconnect();
+      if (client) {
+        client.disconnect();
       }
     };
   };
 
-  // TODO: 타입 수정하기 any (x)
-  const [logData, setLogData] = useState<any[]>([]);
-  const [chatList, setChatList] = useState<any[]>([]); // 채팅 기록
-
-  // 첫 소켓 연결
-  useEffect(connectToWebSocket, []);
-
+  // useEffect(connectToWebSocket, []);
   useEffect(() => {
-    if (stompClient?.connect) {
-      setChatList([]);
-      setLogData([]);
+    connectToWebSocket();
+    if (stompClient?.connected) {
+      console.log('여기에 실행이안됨');
       stompClient.subscribe(`/topic/chatting/${roomId}`, callback);
     }
-    stompClient?.unsubscribe(`/topic/chatting/${roomId}`);
-  }, [roomId]);
+  }, []);
+
+  useEffect(() => {
+    if (stompClient?.connected) {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+
+      const newSubscription = stompClient.subscribe(
+        `/topic/chatting/${roomId}`,
+        callback,
+      );
+      setSubscription(newSubscription);
+      console.log('here', stompClient?.connected);
+      setChatList([]);
+      setLogData([]);
+    }
+
+    return () => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    };
+  }, [roomId, stompClient]);
 
   const callback = (message: any) => {
     if (message.body) {
       const msg = JSON.parse(message.body);
       if (msg.chatMessageLog) {
-        console.log('msg.chatMessageLog', msg.chatMessageLog);
         setLogData(msg.chatMessageLog);
       }
       setChatList((chats) => [...chats, msg]);
     }
   };
-
-  console.log('logdata', logData);
 
   const sendChat = (id: number) => {
     if (value === '') return;
@@ -112,8 +120,6 @@ export const ChatRoom = (props: { roomId: number }) => {
     );
     setValue('');
   };
-
-  console.log('chatlist', chatList);
 
   useEffect(() => {
     scrollToBottom();
