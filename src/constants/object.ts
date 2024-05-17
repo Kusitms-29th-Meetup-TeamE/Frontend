@@ -50,3 +50,23 @@ for (let year = currentYear; year <= currentYear + 10; year++) {
     value: year,
   });
 }
+
+export const agentItmes: string[] = [
+  '전체',
+  '문화센터',
+  '복지관',
+  '동호회',
+  '자원봉사',
+  '원데이 클래스',
+  '기타',
+];
+
+export const personalityItmes: string[] = [
+  '활발한',
+  '학문적인',
+  '창의적인',
+  '배울 수 있는',
+  '평화로운',
+  '예술적인',
+  '자연친화적인',
+];

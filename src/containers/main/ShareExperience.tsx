@@ -8,7 +8,7 @@ import ShareProfile, {
   ShareProfileProps,
 } from '@/components/main/ShareProfile';
 
-import { useMainDataList } from '@/hooks/useMain';
+import { useMainDataList } from '@/hooks/api/useMain';
 
 export default function ShareExperience() {
   const { data: mainData, isLoading, error } = useMainDataList();
@@ -27,7 +27,7 @@ export default function ShareExperience() {
       />
 
       <div className="flex gap-4">
-        {mainProfileList.map((item, idx) => {
+        {mainProfileList.slice(0, 4).map((item, idx) => {
           return (
             <div key={idx} className="w-full">
               <ShareProfile

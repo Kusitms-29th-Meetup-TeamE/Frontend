@@ -22,9 +22,9 @@ export type AppointmentModalProps = {
 export const AppointmentModal = (props: AppointmentModalProps) => {
   const { isOpen, setIsOpen } = props;
 
-  const [year, setYear] = useState<string>('');
-  const [month, setMonth] = useState<string>('');
-  const [day, setDay] = useState<string>('');
+  const [year, setYear] = useState<string | number>('');
+  const [month, setMonth] = useState<string | number>('');
+  const [day, setDay] = useState<string | number>('');
   4;
 
   const [location, setLocation] = useState<string>('');

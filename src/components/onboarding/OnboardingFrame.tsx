@@ -1,11 +1,14 @@
+'use client';
+
 import React, { useState } from 'react';
 
 import Button from '@/components/common-components/button/Button';
 
-import SignUpTitle from '@/components/signup/SignUpTitle';
+import { useOnboardingInfo } from '@/hooks/api/useUser';
 
-import useStepStore from '@/store/onboardingStepStore';
+import useStepStore from '@/store/onboarding/onboardingStepStore';
 
+import SignUpTitle from '../signup/SignUpTitle';
 import OnboardingModal from './OnboardingModal';
 
 import Image from 'next/image';
@@ -29,15 +32,14 @@ const OnboardingFrame = (props: OnboardingFrameProps) => {
   const setPrevStep = useStepStore((state) => state.setPrevStep);
   const setNextStep = useStepStore((state) => state.setNextStep);
 
-  // 임시 추가
   const currentChips = useStepStore((state) => state.currentChips);
+  const { mutate } = useOnboardingInfo(currentChips);
 
   const handleNextStep = () => {
     if (currentStep === 5) {
-      console.log('마지막 스텝');
+      mutate();
       router.push('/');
     } else {
-      console.log(currentChips);
       setNextStep();
     }
   };

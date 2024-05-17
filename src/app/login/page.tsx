@@ -10,7 +10,10 @@ import Input from '@/components/common-components/input';
 
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
+import { useLocalLogin } from '@/hooks/api/useUser';
+
 import Image from 'next/image';
+import Link from 'next/link';
 
 const variants = {
   login: 'flex justify-center items-end gap-[38px] pt-[124px] pb-[54px]',
@@ -29,25 +32,34 @@ const page = () => {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}&response_type=code`;
   const [isCheck, setIsCheck] = useState<boolean>(false);
 
+  const [userInput, setUserInput] = useState<{
+    email: string;
+    password: string;
+  }>({ email: '', password: '' });
+  const { mutate } = useLocalLogin(userInput);
+
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const handleKakaoLogin = () => {
     window.location.href = kakaoURL;
   };
+
+  const handleLocalLogin = () => {
+    if (userInput.email !== '' && userInput.password !== '') {
+      mutate();
+    }
+  };
+
   const handleCheck = () => {
     setIsCheck(!isCheck);
   };
 
+  const isBtnDisable = () =>
+    userInput.email === '' || userInput.password === '';
+
   return (
     <div className="flex flex-col items-center">
-      <Image
-        className="absolute top-[40px] left-[50px]"
-        src="/assets/ddoba_logo_text.svg"
-        alt=""
-        width={86}
-        height={30}
-      />
       <div className={variants.login}>
         <Image
           className="h-min"
@@ -73,22 +85,33 @@ const page = () => {
           ref={emailInputRef}
           startIcon={<TfiEmail />}
           onChange={() => {
-            console.log(emailInputRef.current?.value);
+            setUserInput({
+              ...userInput,
+              email: emailInputRef.current?.value || '',
+            });
           }}
           placeholder={'이메일을 입력해주세요'}
+          type="text"
           shape={'square'}
           className="mb-3"
         />
-        <Input
-          ref={passwordInputRef}
-          startIcon={<TfiLock />}
-          onChange={() => {
-            console.log(passwordInputRef.current?.value);
-          }}
-          placeholder={'비밀번호를 입력해주세요'}
-          shape={'square'}
-          className="mb-5"
-        />
+        <form>
+          <Input
+            ref={passwordInputRef}
+            startIcon={<TfiLock />}
+            onChange={() => {
+              setUserInput({
+                ...userInput,
+                password: passwordInputRef.current?.value || '',
+              });
+            }}
+            placeholder={'비밀번호를 입력해주세요'}
+            type="password"
+            autoComplete="true"
+            shape={'square'}
+            className="mb-5"
+          />
+        </form>
         <div className={variants.checkboxContainer} onClick={handleCheck}>
           <Checkbox
             width={19}
@@ -100,7 +123,14 @@ const page = () => {
           <div className={variants.checkboxLabel}>로그인 상태 유지</div>
         </div>
       </div>
-      <Button size="xl" shape="square" className="mb-10">
+      <Button
+        size="xl"
+        shape="square"
+        className="mb-10"
+        color={isBtnDisable() ? 'disabled' : 'default'}
+        disabled={isBtnDisable()}
+        onClick={handleLocalLogin}
+      >
         로그인
       </Button>
       <div className={variants.seperator}>
@@ -121,9 +151,9 @@ const page = () => {
           <div className="text-footer-medium text-gray-08">
             아직 회원이 아니신가요?
           </div>
-          <div className="text-chip-bold text-primary-orange6 cursor-pointer">
+          <Link href="/signup" className="text-chip-bold text-primary-orange6">
             회원가입
-          </div>
+          </Link>
         </div>
         <div className="flex items-center gap-[12px] text-footer-medium text-gray-08">
           <span className="cursor-pointer">아이디 찾기</span>

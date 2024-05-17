@@ -1,3 +1,5 @@
+import { DirectChatRoom } from '@/types/chat';
+
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -12,28 +14,13 @@ const appointmentStyle = {
   orange: 'text-primary-orange6',
 };
 
-export type RoomItemProps = {
-  myId: number;
-  roomId: number;
-  imageUrl: string;
-  title: string;
-  lastMeetingDate?: number;
-  appointmentDate: string | null;
-  lastMessage?: string;
-  lastMessageTime?: string;
-};
-
-export const OneRoomItem = (props: { data: RoomItemProps }) => {
-  const appointmentDate = true;
-  const lastMeetingDate = 5;
-
+export const OneRoomItem = (props: { data: DirectChatRoom }) => {
   const { data } = props;
 
   return (
     <div className="border w-full max-w-[486px] rounded-[20px] flex flex-col">
       <div className="flex gap-5 p-5">
         <Image
-          // TODO: imageUrl로 수정 필요
           src={data.imageUrl ?? '/assets/main/main_banner.png'}
           width={76}
           height={76}
@@ -43,9 +30,9 @@ export const OneRoomItem = (props: { data: RoomItemProps }) => {
         <div className="flex flex-col justify-around w-full max-w-[350px]">
           <div className="flex items-center justify-between">
             <p className="text-black text-footer-bold">
-              {data.title ?? '초급 영어 회화 배우기'}
+              {data.experienceType ?? '초급 영어 회화 배우기'}
             </p>
-            {appointmentDate && (
+            {data.appointmentDate && (
               <span className="px-4 py-1 rounded-[20px] bg-primary-orange4 text-chip-medium text-white">
                 약속 {data.appointmentDate ?? '3월 18일'}
               </span>
@@ -58,7 +45,7 @@ export const OneRoomItem = (props: { data: RoomItemProps }) => {
               오랜만에 보고 싶네요
               하하ss하하ajslfiajelifjalsiejflaiejflaiefjiljalsdfjalefjaliejfellipsisaljsdlifjadijf
             </span>
-            <span className="text-gray-06 text-h5">{data.lastMessageTime}</span>
+            <span className="text-gray-06 text-h5">{data.lastChatTime}</span>
           </div>
         </div>
       </div>

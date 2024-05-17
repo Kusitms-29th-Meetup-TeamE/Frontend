@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import { BsPerson } from 'react-icons/bs';
 import { MdOutlineLock } from 'react-icons/md';
@@ -20,12 +20,14 @@ import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { RoomItem } from '@/components/chat/RoomItem';
 import MainTitle from '@/components/main/MainTitle';
 
+import { useChatRoomsDirect, useChatRoomsGroup } from '@/hooks/api/useChat';
 import {
   useNotifyError,
   useNotifySuccess,
   useNotifyToast,
 } from '@/hooks/useToast';
 
+import { getChatRoomsGroup } from '@/api/chat';
 import { postEmailAuth } from '@/api/user';
 
 export default function TestPage() {
@@ -139,6 +141,14 @@ export default function TestPage() {
   };
 
   const [appointmentOpen, setAppointmentOpen] = useState<boolean>(false);
+
+  // chat-api test - 05.14 기준 연결 성공
+
+  const { data, isLoading } = useChatRoomsGroup();
+  const { data: directData } = useChatRoomsDirect();
+
+  console.log('data:', data);
+  console.log('dir', directData);
 
   return (
     <>

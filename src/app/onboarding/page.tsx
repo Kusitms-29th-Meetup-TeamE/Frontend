@@ -2,13 +2,13 @@
 
 import React, { use } from 'react';
 
-import FifthStep from '@/containers/onBoarding/FifthStep';
-import FirstStep from '@/containers/onBoarding/FirstStep';
-import FourthStep from '@/containers/onBoarding/FourthStep';
-import SecondStep from '@/containers/onBoarding/SecondStep';
-import ThirdStep from '@/containers/onBoarding/ThirdStep';
-import ZeroStep from '@/containers/onBoarding/ZeroStep';
-import useStepStore from '@/store/onboardingStepStore';
+import FifthStep from '@/containers/onboarding/FifthStep';
+import FirstStep from '@/containers/onboarding/FirstStep';
+import FourthStep from '@/containers/onboarding/FourthStep';
+import SecondStep from '@/containers/onboarding/SecondStep';
+import ThirdStep from '@/containers/onboarding/ThirdStep';
+import ZeroStep from '@/containers/onboarding/ZeroStep';
+import useStepStore from '@/store/onboarding/onboardingStepStore';
 
 import Image from 'next/image';
 
