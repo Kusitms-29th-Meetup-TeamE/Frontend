@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MdAccessTime } from 'react-icons/md';
 
 import { GroupChatRoom } from '@/types/chat';
@@ -16,14 +17,30 @@ const appointmentStyle = {
   orange: 'text-primary-orange6',
 };
 
-export const RoomItem = (props: { data: GroupChatRoom }) => {
-  const { data } = props;
+export const RoomItem = (props: {
+  data: GroupChatRoom;
+  isSelected: boolean;
+}) => {
+  const { data, isSelected } = props;
+
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
+  const currentBgStyle =
+    isSelected || isHovered ? bgStyle.clicked : bgStyle.default;
 
   return (
-    <div className="border w-full max-w-[486px] min-h-[170px] rounded-[20px] flex flex-col">
+    <div
+      className={clsx(
+        'cursor-pointer border w-full max-w-[486px] min-h-[170px] rounded-[20px] flex flex-col',
+        currentBgStyle,
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="flex gap-5 p-5">
         <Image
           src={'/assets/main/main_banner.png'}
+          // TODO: 바꿔야함
           // src={`${data.imageUrl}` ?? '/assets/main/main_banner.png'}
           width={76}
           height={76}
