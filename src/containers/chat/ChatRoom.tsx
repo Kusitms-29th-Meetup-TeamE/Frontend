@@ -17,6 +17,7 @@ import { MsgLogProps } from '@/types/chat';
 import { useChatStore } from '@/store/chatStore';
 import { CompatClient } from '@stomp/stompjs';
 
+import clsx from 'clsx';
 import Image from 'next/image';
 
 export const ChatRoom = (props: {
@@ -96,6 +97,19 @@ export const ChatRoom = (props: {
     setValue('');
   };
 
+  const sendEmoticon = (id: number) => {
+    const messageObject = {
+      senderId: myId,
+      emoticon: '안녕',
+    };
+
+    stompClient?.send(
+      `/app/chatting/${id}/emoticon`,
+      {},
+      JSON.stringify(messageObject),
+    );
+  };
+
   useEffect(() => {
     scrollToBottom();
   }, [chatList]);
@@ -130,10 +144,17 @@ export const ChatRoom = (props: {
         );
       case 'EMOTICON':
         return (
-          <div key={idx} className="inline-flex">
-            <span className="bg-yellow-300 py-2 px-5 rounded-lg">
-              {item.emoticon && item.emoticon === '안녕' ? '😃' : '😃'}
-            </span>
+          <div
+            key={idx}
+            className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
+          >
+            <Image
+              src={'/assets/chat/emoticon.png'}
+              alt=""
+              width={300}
+              height={300}
+              className="object-cover m-3 rounded-[20px]"
+            />
           </div>
         );
       default:
@@ -183,6 +204,12 @@ export const ChatRoom = (props: {
         </div>
 
         <div className="flex gap-4 h-[94px] px-[30px] py-[18px]">
+          <button
+            onClick={() => sendEmoticon(roomId)}
+            className="w-[120px] rounded-full border-2 text-gray-09 text-h3 border-primary-orange6 hover:bg-primary-orange1"
+          >
+            또바 :D
+          </button>
           <Input
             value={value}
             onChange={(e) => setValue(e.target.value)}
