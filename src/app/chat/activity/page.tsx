@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { RoomItem } from '@/components/chat/RoomItem';
 
@@ -10,6 +10,11 @@ import { ChatRoom } from '@/containers/chat/ChatRoom';
 import { EmptyChat } from '@/containers/chat/EmptyChat';
 import { RoomList } from '@/containers/chat/RoomList';
 import { useChatStore } from '@/store/chatStore';
+import { CompatClient, Stomp } from '@stomp/stompjs';
+
+import SockJS from 'sockjs-client';
+
+export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 export default function ChatActivity() {
   const { data, isLoading } = useChatRoomsGroup();
@@ -22,6 +27,30 @@ export default function ChatActivity() {
     setMyId(data?.myId as number);
     setGroupRoomId(id); // roomId 담아주기
   };
+  const [stompClient, setStompClient] = useState<CompatClient | null>(null);
+
+  const connectToWebSocket = () => {
+    const socket = new SockJS(`${SOCKET_URL}`);
+    const client = Stomp.over(socket);
+
+    client.connect(
+      {},
+      () => {
+        console.log('Connection success');
+      },
+      () => console.log('Connection failed'),
+    );
+
+    setStompClient(client);
+
+    return () => {
+      if (client) {
+        client.disconnect();
+      }
+    };
+  };
+
+  useEffect(connectToWebSocket, []);
 
   return (
     <div className="w-full mx-auto pt-[40px] max-w-[1200px] flex">
@@ -45,7 +74,7 @@ export default function ChatActivity() {
 
       <section className="flex-1">
         {groupRoomId !== null ? (
-          <ChatRoom roomId={groupRoomId} />
+          <ChatRoom roomId={groupRoomId} stompClient={stompClient} />
         ) : (
           <EmptyChat />
         )}

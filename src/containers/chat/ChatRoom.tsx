@@ -13,20 +13,21 @@ import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { MsgLogProps } from '@/types/chat';
 
 import { useChatStore } from '@/store/chatStore';
-import { Client, CompatClient, Stomp } from '@stomp/stompjs';
+import { CompatClient } from '@stomp/stompjs';
 
 import Image from 'next/image';
-import SockJS from 'sockjs-client';
 
-export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
+export const ChatRoom = (props: {
+  roomId: number;
+  stompClient: CompatClient | null;
+}) => {
+  const { roomId, stompClient } = props;
 
-export const ChatRoom = (props: { roomId: number }) => {
-  const { roomId } = props;
   const { myId } = useChatStore();
-  console.log('roomid', roomId);
+  // console.log('roomid', roomId);
+
   const [value, setValue] = useState<string>('');
 
-  const [stompClient, setStompClient] = useState<CompatClient | null>(null);
   const [subscription, setSubscription] = useState<any>(null);
 
   const [logData, setLogData] = useState<any[]>([]);
@@ -41,36 +42,6 @@ export const ChatRoom = (props: { roomId: number }) => {
   };
 
   const disabledBtn = () => value.length === 0;
-
-  const connectToWebSocket = () => {
-    const socket = new SockJS(`${SOCKET_URL}`);
-    const client = Stomp.over(socket);
-
-    client.connect(
-      {},
-      () => {
-        console.log('Connection success');
-      },
-      () => console.log('Connection failed'),
-    );
-
-    setStompClient(client);
-
-    return () => {
-      if (client) {
-        client.disconnect();
-      }
-    };
-  };
-
-  // useEffect(connectToWebSocket, []);
-  useEffect(() => {
-    connectToWebSocket();
-    if (stompClient?.connected) {
-      console.log('여기에 실행이안됨');
-      stompClient.subscribe(`/topic/chatting/${roomId}`, callback);
-    }
-  }, []);
 
   useEffect(() => {
     if (stompClient?.connected) {
