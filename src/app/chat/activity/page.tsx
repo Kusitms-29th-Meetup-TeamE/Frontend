@@ -8,6 +8,7 @@ import { RoomItem } from '@/components/chat/RoomItem';
 
 import { useChatRoomsGroup } from '@/hooks/api/useChat';
 
+import { SOCKET_URL } from '@/api';
 import { ChatRoom } from '@/containers/chat/ChatRoom';
 import { EmptyChat } from '@/containers/chat/EmptyChat';
 import { RoomList } from '@/containers/chat/RoomList';
@@ -15,8 +16,6 @@ import { useChatStore } from '@/store/chatStore';
 import { CompatClient, Stomp } from '@stomp/stompjs';
 
 import SockJS from 'sockjs-client';
-
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 export default function ChatActivity() {
   const { data, isLoading } = useChatRoomsGroup();
