@@ -52,7 +52,7 @@ export default function SelectBox({
     <div className={clsx(className, 'w-full relative')}>
       <button
         type="button"
-        className={clsx(style.sizes[size], '')}
+        className={clsx(style.sizes[size], className, '')}
         onMouseDown={() => setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu)}
         onBlur={handleBlur}
       >
