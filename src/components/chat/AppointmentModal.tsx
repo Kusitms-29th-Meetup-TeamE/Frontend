@@ -53,8 +53,6 @@ export const AppointmentModal = (props: AppointmentModalProps) => {
     );
   };
 
-  console.log('hihi', year, month, day);
-
   // 약속잡기
   const sendAppointment = (id: number) => {
     const messageObject = {
@@ -74,7 +72,7 @@ export const AppointmentModal = (props: AppointmentModalProps) => {
       JSON.stringify(messageObject),
     );
 
-    console.log('object', messageObject);
+    // console.log('object', messageObject);
   };
 
   const handleSubmit = () => {
