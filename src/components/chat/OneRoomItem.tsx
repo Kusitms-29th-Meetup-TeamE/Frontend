@@ -43,7 +43,7 @@ export const OneRoomItem = (props: {
         <div className="flex flex-col justify-around w-full max-w-[350px]">
           <div className="flex items-center justify-between">
             <p className="text-black text-footer-bold">
-              {data.experienceType ?? '초급 영어 회화 배우기'}
+              {data.opponentName ?? '초급 영어 회화 배우기'}
             </p>
             {data.appointmentDate && (
               <span className="px-4 py-1 rounded-[20px] bg-primary-orange4 text-chip-medium text-white">
