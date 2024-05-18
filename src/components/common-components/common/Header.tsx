@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { CgProfile } from 'react-icons/cg';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { VscBell } from 'react-icons/vsc';
@@ -25,6 +26,10 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
     sessionStorage.clear();
     window.location.reload();
   };
+
+  useEffect(() => {
+    window.location.reload();
+  }, [accessToken]);
 
   return (
     <div className="w-full flex items-center fixed z-50 top-0 h-[70px] bg-white">
