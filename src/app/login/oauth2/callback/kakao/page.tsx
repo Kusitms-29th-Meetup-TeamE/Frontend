@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
 import { useKakaoToken } from '@/hooks/api/useUser';
 
@@ -17,6 +17,11 @@ const page = () => {
 
   const { data } = useKakaoToken(kakaoCode);
   console.log('회원가입 시 데이터: ', data);
+
+  useEffect(() => {
+    console.log('hi');
+    console.log(data);
+  }, []);
 
   useEffect(() => {
     if (data) {
