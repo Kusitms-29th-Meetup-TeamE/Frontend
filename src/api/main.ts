@@ -9,6 +9,6 @@ export const getMainData = async () => {
 
   console.log(res);
   console.log(res.body);
-  console.log(res.json());
+  // console.log(res.json());
   return res.json();
 };
