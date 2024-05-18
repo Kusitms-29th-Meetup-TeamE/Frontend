@@ -19,6 +19,7 @@ import { MyMsgItem } from '@/components/chat/MyMsgItem';
 import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { RoomItem } from '@/components/chat/RoomItem';
 import MainTitle from '@/components/main/MainTitle';
+import MyExperienceItem from '@/components/mypage/MyExperienceItem';
 import MyPageTitle from '@/components/mypage/MypageTItle';
 
 import { useChatRoomsDirect, useChatRoomsGroup } from '@/hooks/api/useChat';
@@ -166,6 +167,7 @@ export default function TestPage() {
           content="배움 나누기 활동을 통해 얻은 경험 내역을 확인해보세요"
         />
         <LearnProfile />
+        <MyExperienceItem />
       </div>
 
       <br />
