@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { CgProfile } from 'react-icons/cg';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { VscBell } from 'react-icons/vsc';
@@ -21,10 +22,9 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
   const accessToken =
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
-  const handleLogout = () => {
-    sessionStorage.clear();
+  useEffect(() => {
     window.location.reload();
-  };
+  }, [accessToken]);
 
   return (
     <div className="w-full flex items-center fixed z-50 top-0 h-[70px] bg-white">
@@ -55,25 +55,15 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
           </Link>
 
           <div className={variants.menubar}>
-            <Link
-              href="/join"
-              onClick={() => {
-                if (!accessToken) useNotifyLogin();
-              }}
-            >
+            <Link href="/join">
               <div className={variants.centerMenu}>활동 참여하기</div>
             </Link>
-            <Link
-              href="#"
-              onClick={() => {
-                if (!accessToken) useNotifyLogin();
-              }}
-            >
+            <Link href="/share">
               <div className={variants.centerMenu}>배움 나누기</div>
             </Link>
 
             <Link
-              href={accessToken ? '/chat' : '#'}
+              href={accessToken ? '#' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -89,21 +79,19 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
                 <VscBell width={20} height={20} />
                 <span className="pl-[4px]">알림</span>
               </div>
-              <Link href="/mypage">
+              <Link href="#">
                 <span className={variants.rightMenu}>
                   <CgProfile width={20} height={20} />
                   <span className="pl-[4px]">마이페이지</span>
                 </span>
               </Link>
-              <Link href="/mypage/point">
+              <Link href="#">
                 <span className={variants.rightMenu}>
                   <HiOutlineCurrencyDollar />
                   <span className="pl-[4px]">포인트</span>
                 </span>
               </Link>
-              <span onClick={handleLogout} className={variants.rightMenu}>
-                로그아웃
-              </span>
+              <span className={variants.rightMenu}>로그아웃</span>
             </div>
           ) : (
             <div className={variants.rightBar}>
