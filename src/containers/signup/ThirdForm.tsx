@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 export const inputStyle = {
   inputBtn:
-    'absolute right-7 top-4 px-[10px] py-[9px] rounded-[6px] items-center flex justify-center text-gray-06 text-h5 bg-gray-03 h-[36px] w-full max-w-[90px]',
+    'absolute right-7 top-3.5 px-[10px] py-[9px] rounded-[6px] items-center flex justify-center text-gray-06 text-h5 bg-gray-03 h-[36px] w-full max-w-[90px]',
   activeBtn: 'bg-primary-orange1 text-primary-orange6 cursor-pointer',
 };
 

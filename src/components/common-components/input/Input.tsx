@@ -52,7 +52,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
         ) : (
           <div
             className={clsx(
-              'text-[20px] absolute top-[25px] left-[18px]',
+              'text-[20px] absolute top-[22px] left-[18px]',
               value ? 'text-gray-10' : 'text-gray-06',
             )}
           >
