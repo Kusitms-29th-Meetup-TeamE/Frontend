@@ -24,7 +24,7 @@ export const getKakaoToken = async (code: string) => {
   // 회원가입
   // console.log(res);
   // console.log(res.body);
-  console.log(res.json);
+  // console.log(res.json);
   // console.log(res.json());
   return res.json();
   //  catch (error) {
