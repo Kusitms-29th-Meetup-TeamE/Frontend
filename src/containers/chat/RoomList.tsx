@@ -2,6 +2,8 @@
 
 import { IoIosArrowBack } from 'react-icons/io';
 
+import { useRouter } from 'next/navigation';
+
 export type RoomListProps = {
   title: string;
   subTitle: string;
@@ -10,8 +12,11 @@ export type RoomListProps = {
 
 export const RoomList = (props: RoomListProps) => {
   const { title, subTitle, children } = props;
+  const router = useRouter();
 
-  const handlePrevClick = () => {};
+  const handlePrevClick = () => {
+    router.back();
+  };
 
   return (
     <aside className="w-full max-w-[486px]">

@@ -23,6 +23,8 @@ export const getKakaoToken = async (code: string) => {
       }
     }
     // 회원가입
+    console.log(res);
+    console.log(res.json);
     return res.json();
   } catch (error) {
     console.error('Error fetching Kakao token:', error);
@@ -42,8 +44,6 @@ export const postKakaoUserInfo = async ({
   await fetch(`${BASE_URL}/sign-up`, {
     method: 'POST',
     headers: {
-      // // 임의로 작성
-      // Authorization: `Bearer ${sessionStorage.accessToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -66,7 +66,6 @@ export const postKakaoUserInfo = async ({
           return null;
         }
       }
-      console.log(res.status);
       return res;
     })
     .catch((err) => {
@@ -100,8 +99,17 @@ export const postLocalUserInfo = async ({
     }),
   })
     .then((res) => {
-      console.log(res.json);
-      return res.json();
+      if (res.headers) {
+        let jwtToken = res.headers.get('Authorization');
+        jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
+
+        if (jwtToken) {
+          sessionStorage.clear();
+          sessionStorage.setItem('accessToken', jwtToken);
+          return null;
+        }
+      }
+      return res;
     })
     .catch((err) => {
       console.log(err);
@@ -127,10 +135,57 @@ export const postEmailAuth = async (email: string) => {
     // 텍스트로 변환
     const text = new TextDecoder().decode(content?.value);
 
-    // console.log('응답 데이터:', text);
     return text;
   } catch (error) {
     console.error('오류 발생:', error);
+  }
+};
+
+// [login] 로컬 - 사용자 로그인 요청
+export const postLocalLogin = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  try {
+    const res = await fetch(`${BASE_URL}/login/local`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error in Login! Status: ${res.status}`);
+    }
+
+    // 로그인
+    if (res.headers) {
+      let jwtToken = res.headers.get('Authorization');
+      jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
+
+      if (jwtToken) {
+        sessionStorage.clear();
+        sessionStorage.setItem('accessToken', jwtToken);
+        return null;
+      }
+    }
+    const reader = res.body?.getReader();
+    const content = await reader?.read();
+
+    // 텍스트로 변환
+    const text = new TextDecoder().decode(content?.value);
+
+    return text;
+  } catch (error) {
+    console.error('Error fetching Local Login:', error);
+    throw error;
   }
 };
 
@@ -153,7 +208,6 @@ export const postOnboardingInfo = async (personalities: string[]) => {
     }
     return res;
   } catch (err) {
-    // console.error('Error fetching Onboarding Info:', err);
     throw err;
   }
 };

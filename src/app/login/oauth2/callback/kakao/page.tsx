@@ -16,6 +16,7 @@ const page = () => {
   }
 
   const { data } = useKakaoToken(kakaoCode);
+  console.log(data);
 
   useEffect(() => {
     if (data) {

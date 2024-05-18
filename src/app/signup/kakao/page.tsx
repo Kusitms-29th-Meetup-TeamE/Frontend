@@ -58,7 +58,6 @@ const SignUpKakaoPage = () => {
       // 제출 버튼 클릭 시 api 요청
       mutate();
       router.push('/onboarding');
-      console.log(userInfo);
     }
   }, [userInfo]);
 
