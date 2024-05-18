@@ -16,7 +16,7 @@ const page = () => {
   }
 
   const { data } = useKakaoToken(kakaoCode);
-  console.log(data);
+  console.log('회원가입 시 데이터: ', data);
 
   useEffect(() => {
     if (data) {
