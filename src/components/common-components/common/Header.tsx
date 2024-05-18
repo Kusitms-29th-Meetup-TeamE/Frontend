@@ -28,8 +28,8 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
   };
 
   useEffect(() => {
-    window.location.reload();
-  }, [accessToken]);
+    // window.location.reload();
+  }, []);
 
   return (
     <div className="w-full flex items-center fixed z-50 top-0 h-[70px] bg-white">
