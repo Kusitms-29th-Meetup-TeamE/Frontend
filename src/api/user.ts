@@ -4,33 +4,32 @@ import { BASE_URL } from '.';
 
 // [oauth] kakao - 사용자 로그인/회원가입 요청
 export const getKakaoToken = async (code: string) => {
-  try {
-    const res = await fetch(`${BASE_URL}/login/kakao?code=${code}`);
+  const res = await fetch(`${BASE_URL}/login/kakao?code=${code}`);
 
-    if (!res.ok) {
-      throw new Error(`HTTP error in Kakao! Status: ${res.status}`);
-    }
-
-    // 로그인
-    if (res.headers) {
-      let jwtToken = res.headers.get('Authorization');
-      jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
-
-      if (jwtToken) {
-        sessionStorage.clear();
-        sessionStorage.setItem('accessToken', jwtToken);
-        return null;
-      }
-    }
-    // 회원가입
-    console.log(res);
-    console.log(res.body);
-    console.log(res.json());
-    return res.json();
-  } catch (error) {
-    console.error('Error fetching Kakao token:', error);
-    throw error;
+  if (!res.ok) {
+    throw new Error(`HTTP error in Kakao! Status: ${res.status}`);
   }
+
+  // 로그인
+  if (res.headers) {
+    let jwtToken = res.headers.get('Authorization');
+    jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
+
+    if (jwtToken) {
+      sessionStorage.clear();
+      sessionStorage.setItem('accessToken', jwtToken);
+      return null;
+    }
+  }
+  // 회원가입
+  console.log(res);
+  console.log(res.body);
+  console.log(res.json());
+  return res.json();
+  //  catch (error) {
+  //   console.error('Error fetching Kakao token:', error);
+  //   throw error;
+  // }
 };
 
 // [oauth] kakao - 사용자 정보 등록
