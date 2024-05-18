@@ -7,5 +7,8 @@ export const getMainData = async () => {
     throw new Error('Failed to fetch main data');
   }
 
+  console.log(res);
+  console.log(res.body);
+  console.log(res.json());
   return res.json();
 };
