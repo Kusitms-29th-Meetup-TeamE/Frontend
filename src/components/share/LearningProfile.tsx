@@ -44,12 +44,12 @@ const LearningProfile = () => {
         {isMypage ? (
           ''
         ) : (
-          <li className="flex items-center px-4 py-[13px] bg-white rounded-[20px]">
+          <button className="flex items-center px-4 py-[13px] bg-white rounded-[20px]">
             <FaCirclePlus className="ml-[6px] mr-4 text-gray-06 w-5 h-5" />
             <span className="text-notification-chip-yes text-gray-07">
               경험 프로필 등록
             </span>
-          </li>
+          </button>
         )}
       </ul>
     </div>
