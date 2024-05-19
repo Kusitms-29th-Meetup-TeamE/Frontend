@@ -167,7 +167,7 @@ export default function TestPage() {
           content="배움 나누기 활동을 통해 얻은 경험 내역을 확인해보세요"
         />
         <LearnProfile />
-        <MyExperienceItem />
+        {/* <MyExperienceItem /> */}
       </div>
 
       <br />

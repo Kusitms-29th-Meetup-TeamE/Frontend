@@ -20,7 +20,9 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className={`${sidebarStyle.fixed} bg-gray-01 w-full max-w-[282px]`}>
+    <aside
+      className={`${sidebarStyle.fixed} bg-gray-01 w-full max-w-[282px] border border-red-500`}
+    >
       <div className="flex flex-col items-center justify-center pt-[50px] px-[66px]">
         <Image
           src={'/assets/main/main_banner.png'}

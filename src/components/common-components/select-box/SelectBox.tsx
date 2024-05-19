@@ -18,7 +18,7 @@ const style: {
 } = {
   base: 'absolute w-full mt-1 z-50 rounded-[20px] border border-1 border-gray-05 text-gray-06 bg-white',
   sizes: {
-    sm: 'text-white bg-[#FB8C4FCC] border border-primary-orange5 w-[85px] h-[28px] flex items-center gap-2 border border-red-500 rounded-[30px]',
+    sm: 'text-white bg-[#FB8C4FCC] border border-chip-active flex items-center justify-between gap-2 border border-red-500 rounded-[30px] px-4 py-1',
     // md - 회원가입 생년월일
     md: 'w-full max-w-[192px] text-h4 h-[68px] bg-white text-gray-06 flex flex-row items-center rounded-[20px] border cursor-pointer border-gray-05 py-5 px-7 justify-between',
     lg: '',
@@ -58,7 +58,11 @@ export default function SelectBox({
       >
         <div
           className={
-            initText === selectedItem ? 'text-gray-06' : 'text-gray-10'
+            size === 'sm'
+              ? 'text-white'
+              : initText === selectedItem
+                ? 'text-gray-06'
+                : 'text-gray-10'
           }
         >
           {selectedItem ? selectedItem : initText ?? `${items[0].text}`}
@@ -66,7 +70,11 @@ export default function SelectBox({
 
         <span
           className={clsx(
-            selectedItem === initText ? 'text-gray-06' : 'text-gray-10',
+            size === 'sm'
+              ? 'text-white'
+              : initText === selectedItem
+                ? 'text-gray-06'
+                : 'text-gray-10',
           )}
         >
           {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -103,8 +111,8 @@ export default function SelectBox({
                     onMouseEnter={() => setHoverMenu(item.value)}
                     onMouseLeave={() => setHoverMenu(null)}
                     className={clsx(
-                      // idx === 0 && 'rounded-t-[20px]',
-                      // idx === items.length - 1 && 'rounded-b-[20px]',
+                      idx === 0 && 'rounded-t-[20px]',
+                      idx === items.length - 1 && 'rounded-b-[20px]',
                       size === 'sm' &&
                         'cursor-pointer px-[17px] py-3 text-chip-medium box-border',
                       size === 'md' &&
