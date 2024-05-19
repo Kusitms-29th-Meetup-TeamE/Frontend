@@ -34,7 +34,7 @@ export default function MyPageEdit() {
         />
 
         <div className="flex gap-[52px]">
-          <div className="w-full max-w-[254px] flex flex-col justify-center">
+          <div className="w-full max-w-[254px] flex flex-col justify-start">
             <label className="text-h3 text-black">프로필 사진</label>
             <Image
               src={'/assets/main/main_banner.png'}
@@ -53,7 +53,7 @@ export default function MyPageEdit() {
           </div>
 
           <div className="w-full flex flex-col gap-[30px]">
-            <div>
+            <div className="flex flex-col gap-1">
               <label className="text-h3 text-black">이름</label>
               <Input
                 startIcon={<BsPerson />}
@@ -61,33 +61,34 @@ export default function MyPageEdit() {
                 value={userData.name}
                 placeholder="이름을 입력해주세요."
                 shape="square"
-                className="mt-1"
               />
             </div>
-            <div>
+            <div className="flex flex-col gap-1">
               <label className="text-h3 text-black">계정정보</label>
-              <Input
-                startIcon={<TfiEmail />}
-                size="lg"
-                value={userData.email}
-                placeholder=""
-                shape="square"
-                className="mt-1 bg-gray-03 text-gray-06"
-                disabled
-              />
 
-              <Input
-                startIcon={<MdOutlineLock />}
-                size="lg"
-                placeholder=""
-                shape="square"
-                type="password"
-                value="00000000000"
-                disabled
-                className="mt-[10px] bg-gray-03 text-gray-06"
-              />
+              <div className="flex flex-col gap-[10px]">
+                <Input
+                  startIcon={<TfiEmail />}
+                  size="lg"
+                  value={userData.email}
+                  placeholder=""
+                  shape="square"
+                  className="bg-gray-03 text-gray-06"
+                  disabled
+                />
+                <Input
+                  startIcon={<MdOutlineLock />}
+                  size="lg"
+                  placeholder=""
+                  shape="square"
+                  type="password"
+                  value="00000000000"
+                  disabled
+                  className="bg-gray-03 text-gray-06"
+                />
+              </div>
             </div>
-            <div>
+            <div className="flex flex-col gap-1">
               <label className="text-h3 text-black">거주지</label>
               <Input
                 startIcon={<IoLocationOutline />}
@@ -95,7 +96,6 @@ export default function MyPageEdit() {
                 value={userData.location}
                 placeholder=""
                 shape="square"
-                className="mt-1"
               />
             </div>
           </div>
