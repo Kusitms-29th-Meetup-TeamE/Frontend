@@ -1,11 +1,17 @@
-import { useState } from 'react';
+'use client';
 
+import { useEffect, useMemo, useState } from 'react';
+
+import Button from '@/components/common-components/button';
 import Input from '@/components/common-components/input';
 import SelectBox from '@/components/common-components/select-box/SelectBox';
 
+import MyExperienceItem from '@/components/mypage/MyExperienceItem';
 import SearchAddressModal from '@/components/signup/SearchAddressModal';
 
 import { dayItems, monthItems, yearItems } from '@/constants/object';
+import { useGetLearnProfile, usePostLearnProfile } from '@/hooks/api/useMyPage';
+import { LearnProfileProps } from '@/types/mypage';
 
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -17,7 +23,8 @@ const formStyle = {
 };
 
 export default function LearnProfile() {
-  const [name, setName] = useState<string>('이채민');
+  const [name, setName] = useState<string>('');
+  const [age, setAge] = useState<string>('');
 
   const [year, setYear] = useState<string | number>('');
   const [month, setMonth] = useState<string | number>('');
@@ -27,6 +34,40 @@ export default function LearnProfile() {
   const [statusMsg, setStatusMsg] = useState<string>('');
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { data, isLoading, error } = useGetLearnProfile();
+  // console.log('data', data);
+
+  const [exDataList, setExDataList] = useState<LearnProfileProps[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      setName(data.name);
+      setAge(data.age);
+      setLocation(data.location);
+      setStatusMsg(data.introduce);
+      setExDataList(data.experiences ?? []);
+    }
+  }, [data]);
+
+  const handleAddExperience = () => {
+    // Add a new empty experience to the list
+    const newExperience = {
+      // Define the structure of a new experience here
+      // For example, you might use empty strings or default values
+      id: exDataList.length + 1,
+      title: '',
+      description: '',
+      experienceType: '분야',
+    };
+    setExDataList((prevList) => [...prevList, newExperience]);
+  };
+
+  // const { mutate } = usePostLearnProfile();
+
+  const handleSubmit = () => {
+    //
+  };
 
   return (
     <>
@@ -47,6 +88,17 @@ export default function LearnProfile() {
           <Input
             value={name}
             onChange={(e) => setName(e.target.value)}
+            size="lg"
+            placeholder=""
+            shape="square"
+            className="h-[60px]"
+          />
+        </div>
+        <div>
+          <label className={formStyle.label}>나이</label>
+          <Input
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
             size="lg"
             placeholder=""
             shape="square"
@@ -111,8 +163,32 @@ export default function LearnProfile() {
         </div>
         <div>
           <label className={formStyle.label}>나의 경험 목록</label>
-          <div>컴포넌트 붙여넣기</div>
+          <div className="flex flex-col gap-[10px]">
+            {exDataList.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <MyExperienceItem data={item} />
+                </div>
+              );
+            })}
+            <button
+              onClick={handleAddExperience}
+              className="bg-white border border-gray-04 w-full rounded-[20px] h-[60px]"
+            >
+              + 나의 경험 목록 추가
+            </button>
+          </div>
         </div>
+      </div>
+      <div className="flex justify-center mt-[60px]">
+        <Button
+          onClick={handleSubmit}
+          size="lg"
+          color="default"
+          className="flex"
+        >
+          변경사항 저장
+        </Button>
       </div>
 
       {/* 주소 검색 모달 */}

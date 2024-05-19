@@ -1,30 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HiOutlineTrash } from 'react-icons/hi';
 
 import { categoryItem } from '@/constants/object';
 import { useNotifyLater } from '@/hooks/useToast';
+import { LearnProfileProps } from '@/types/mypage';
 
 import SelectBox from '../common-components/select-box/SelectBox';
 
-export default function MyExperienceItem() {
+export default function MyExperienceItem(props: { data?: LearnProfileProps }) {
+  const { data } = props;
+
   const [text, setText] = useState<string>('');
   const [title, setTitle] = useState<string>('탁구');
 
-  const [selectItem, setSelectItem] = useState<string | number>('');
+  const [experienceType, setExperienceType] = useState<string | number>('');
+
+  useEffect(() => {
+    if (data) {
+      setExperienceType(data.experienceType);
+      setTitle(data.title);
+      setText(data.description);
+    }
+  }, [data]);
 
   return (
     <div className="border border-gray-04 w-full max-w-[540px] rounded-[20px]">
       <div className="border-b border-gray-04 flex items-center justify-between px-6 py-4">
         <div className="flex items-center gap-[10px]">
           <SelectBox
-            initText="분야"
+            initText={experienceType as string}
             items={categoryItem}
             size="sm"
-            setParams={setSelectItem}
+            setParams={setExperienceType}
           />
 
           <input
-            className="text-body2 text-gray-09"
+            className="text-body2 text-gray-09 bg-gray-02  focus:outline-primary-orange5"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -46,7 +57,7 @@ export default function MyExperienceItem() {
             setText(e.target.value);
           }}
           value={text}
-          className="min-h-[56px] w-full h-full placeholder:text-h4 placeholder:text-gray-06 focus-visible:outline-primary-orange6"
+          className="bg-gray-02 min-h-[100px] w-full h-full placeholder:text-h4 placeholder:text-gray-06 focus-visible:outline-primary-orange6"
         />
       </div>
     </div>
