@@ -23,7 +23,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
           width={150}
           height={150}
           alt={''}
-          className="rounded-full mx-auto mb-[22px]"
+          className="rounded-full mx-auto mb-[22px] object-cover"
         />
       ) : (
         <Image
@@ -31,7 +31,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
           width={227}
           height={227}
           alt={''}
-          className="absolute top-[-13%] rounded-full"
+          className="absolute top-[-13%] rounded-full object-cover"
         />
       )}
       <div

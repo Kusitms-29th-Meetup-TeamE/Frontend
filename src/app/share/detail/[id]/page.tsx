@@ -55,14 +55,14 @@ const page = ({ params }: DetailProps) => {
             height={313}
             src={'/assets/share/profile.png'}
             alt={''}
-            className="absolute ml-[46px]"
+            className="absolute ml-[46px] object-cover"
           />
           <Image
             width={344}
             height={344}
             src={'/assets/main/main_banner.png'}
             alt={''}
-            className="w-[344px] h-[344px] ml-[146px] rounded-full border-primary-orange6 border-4"
+            className="w-[344px] h-[344px] ml-[146px] rounded-full border-primary-orange6 border-4 object-cover"
           />
           <section className="ml-[50px] flex flex-col gap-[22px]">
             <span className="ml-[38px] text-black text-notification-h1">

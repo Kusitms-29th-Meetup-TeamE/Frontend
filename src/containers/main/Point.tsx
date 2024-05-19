@@ -24,6 +24,7 @@ const Point = () => {
           alt=""
           width={96}
           height={60}
+          className="object-cover"
         />
         <div>
           <div className="text-footer-bold mb-[18px]">
@@ -39,6 +40,7 @@ const Point = () => {
           alt=""
           width={96}
           height={60}
+          className="object-cover"
         />
       </div>
       <div className="flex gap-[24px] w-full">
