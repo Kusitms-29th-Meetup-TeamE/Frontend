@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { useGetMyPageInfo } from '@/hooks/api/useMyPage';
 
 import Image from 'next/image';
 
@@ -15,9 +17,22 @@ export default function Sidebar() {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
+  const [imgUrl, setImgUrl] = useState<string>('');
+  const [name, setName] = useState<string>('');
+
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
+
+  const { data } = useGetMyPageInfo();
+  console.log('data', data);
+
+  useEffect(() => {
+    if (data) {
+      setImgUrl(data.imageUrl);
+      setName(data.name);
+    }
+  }, [data]);
 
   return (
     <aside
@@ -25,14 +40,15 @@ export default function Sidebar() {
     >
       <div className="flex flex-col items-center justify-center pt-[50px] px-[66px]">
         <Image
-          src={'/assets/main/main_banner.png'}
+          // src={'/assets/main/main_banner.png'}
+          src={imgUrl}
           width={150}
           height={150}
           alt=""
           className="border-2 border-primary-orange6 rounded-full object-cover w-[150px] h-[150px]"
         />
         <p className="my-[30px] text-notification-h1 text-primary-orange6">
-          이채민
+          {name ?? '또바기'}
         </p>
       </div>
 

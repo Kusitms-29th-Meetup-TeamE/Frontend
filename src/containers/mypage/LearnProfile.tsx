@@ -10,7 +10,11 @@ import MyExperienceItem from '@/components/mypage/MyExperienceItem';
 import SearchAddressModal from '@/components/signup/SearchAddressModal';
 
 import { dayItems, monthItems, yearItems } from '@/constants/object';
-import { useGetLearnProfile, usePostLearnProfile } from '@/hooks/api/useMyPage';
+import {
+  useGetLearnProfile,
+  useGetMyPageInfo,
+  usePostLearnProfile,
+} from '@/hooks/api/useMyPage';
 import { LearnProfileProps } from '@/types/mypage';
 
 import clsx from 'clsx';
@@ -25,6 +29,7 @@ const formStyle = {
 export default function LearnProfile() {
   const [name, setName] = useState<string>('');
   const [age, setAge] = useState<string>('');
+  const [img, setImg] = useState<string>('');
 
   const [year, setYear] = useState<string | number>('');
   const [month, setMonth] = useState<string | number>('');
@@ -35,6 +40,8 @@ export default function LearnProfile() {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const { data: userData } = useGetMyPageInfo();
+
   const { data, isLoading, error } = useGetLearnProfile();
   // console.log('data', data);
 
@@ -44,6 +51,7 @@ export default function LearnProfile() {
     if (data) {
       setName(data.name);
       setAge(data.age);
+      setImg(userData.imageUrl);
       setLocation(data.location);
       setStatusMsg(data.introduce);
       setExDataList(data.experiences ?? []);
@@ -51,10 +59,7 @@ export default function LearnProfile() {
   }, [data]);
 
   const handleAddExperience = () => {
-    // Add a new empty experience to the list
     const newExperience = {
-      // Define the structure of a new experience here
-      // For example, you might use empty strings or default values
       id: exDataList.length + 1,
       title: '',
       description: '',
@@ -76,11 +81,12 @@ export default function LearnProfile() {
           <label className={formStyle.label}>사진 등록하기</label>
           <Image
             //   TODO: 플러스 아이콘 넣기
-            src={'/assets/main/main_banner.png'}
+            // src={'/assets/main/main_banner.png'}
+            src={img}
             alt=""
             width={150}
             height={150}
-            className="rounded-full object-cover w-[150px] h-[150px]"
+            className="rounded-full object-cover w-[150px] h-[150px] border border-gray-04"
           />
         </div>
         <div>
