@@ -38,7 +38,7 @@ const LearningItem = ({
           <span>{location}</span>
         </p>
       </div>
-      <div className="mt-[14px] w-full h-[80px] pt-3 pl-[19px] pr-[22px] pb-4 rounded-[20px] bg-[#d9d9d9] text-body3 text-black">
+      <div className="mt-[14px] w-full h-[80px] pt-3 pl-[19px] pr-[22px] pb-4 rounded-[20px] bg-[#d9d9d9] text-body3 text-black text-ellipsis">
         {message}
       </div>
     </div>

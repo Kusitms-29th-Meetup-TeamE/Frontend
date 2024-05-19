@@ -112,7 +112,7 @@ const page = () => {
               />
             ))}
           </section>
-          <ActivityContainer className="grid-rows-2 grid-cols-3 gap-y-[60px] mb-[146px]">
+          <ActivityContainer className="grid !grid-rows-2 !grid-cols-3 !gap-y-[60px] !mb-[146px]">
             {data.map((item, key) => {
               return (
                 <Link
