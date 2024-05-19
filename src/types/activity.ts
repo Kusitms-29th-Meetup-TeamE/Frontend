@@ -23,3 +23,11 @@ export type LearningType = {
 export type DetailProps = {
   params: { id: string };
 };
+
+export type ReviewSliderProps = {
+  id?: string;
+  title: string;
+  content: string;
+  writer: string;
+  date: string;
+};
