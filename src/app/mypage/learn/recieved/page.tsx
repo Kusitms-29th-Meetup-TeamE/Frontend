@@ -19,7 +19,7 @@ export default function MyLearnRecieved() {
           content="배움 나누기 활동을 통해 얻은 배움 내역을 확인해보세요"
         />
 
-        {data.map((item: ReviewItemProps) => {
+        {data?.map((item: ReviewItemProps) => {
           return <ReviewItem key={item.id} data={item} />;
         })}
       </div>
