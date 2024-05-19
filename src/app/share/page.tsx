@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Chip from '@/components/common-components/chip';
 import Pagination from '@/components/common-components/pagination';
+import { SelectItemType } from '@/components/common-components/select-box';
+import SelectBox from '@/components/common-components/select-box/SelectBox';
 
 import ActivityBanner from '@/components/join/ActivityBanner';
 import LearningItem from '@/components/share/LearningItem';
@@ -90,6 +92,16 @@ const page = () => {
       title: '드립커피',
     },
   ];
+  const sortItems: SelectItemType[] = [
+    { id: 1, text: '최신순', value: '최신순' },
+    { id: 2, text: '거리순', value: '거리순' },
+    { id: 3, text: '후기순', value: '후기순' },
+  ];
+  const [selectItem, setSelectItem] = useState<string | number>();
+
+  useEffect(() => {
+    console.log(selectItem);
+  }, [selectItem]);
 
   return (
     <>
@@ -100,17 +112,25 @@ const page = () => {
       <div className="max-w-[1200px] w-full mx-auto pt-14 flex gap-6">
         <LearningProfile className="mt-[70px]" />
         <section className="flex flex-col">
-          <section className="w-full h-9 flex gap-5 mb-[34px]">
-            {learningCategoryItems.map((item, key) => (
-              <Chip
-                text={item}
-                key={item}
-                size="md"
-                isPersonality={false}
-                isBtn={true}
-                isLearning={true}
-              />
-            ))}
+          <section className="w-full flex justify-between">
+            <section className="h-9 flex gap-5 mb-[34px]">
+              {learningCategoryItems.map((item, key) => (
+                <Chip
+                  text={item}
+                  key={item}
+                  size="md"
+                  isPersonality={false}
+                  isBtn={true}
+                  isLearning={true}
+                />
+              ))}
+            </section>
+            <SelectBox
+              items={sortItems}
+              size="xs"
+              setParams={setSelectItem}
+              className="!w-fit text-chip-semibold-sm"
+            />
           </section>
           <ActivityContainer className="grid !grid-rows-2 !grid-cols-3 !gap-y-[60px] !mb-[146px]">
             {data.map((item, key) => {
