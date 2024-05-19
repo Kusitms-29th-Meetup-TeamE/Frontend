@@ -16,7 +16,7 @@ const LearningItem = ({
   title,
 }: LearningType) => {
   return (
-    <div className="max-w-[282px] w-full h-[452px] flex flex-col overflow-hidden rounded-[20px] border">
+    <div className="max-w-[282px] w-full h-[452px] flex flex-col overflow-hidden rounded-[20px] cursor-pointer border">
       <Image
         src={imageUrl}
         alt={''}
