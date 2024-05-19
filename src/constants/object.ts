@@ -70,3 +70,14 @@ export const personalityItmes: string[] = [
   '예술적인',
   '자연친화적인',
 ];
+
+export const learningCategoryItems: string[] = [
+  '전체',
+  '운동',
+  '요리',
+  '예술',
+  '창작',
+  '외국어',
+  '디지털',
+  '기타',
+];
