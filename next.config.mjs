@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: `www.gimhae.go.kr`,
       },
+      {
+        protocol: 'https',
+        hostname: `ddoba.s3.ap-northeast-2.amazonaws.com`,
+      },
     ],
   },
 };
