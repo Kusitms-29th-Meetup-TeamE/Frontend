@@ -148,3 +148,24 @@ export const getRecievedReviews = async (type?: string) => {
     throw error;
   }
 };
+
+// 마이페이지 - 내 활동 참여 목록 조회
+export const getMyActivities = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/activities`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};

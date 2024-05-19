@@ -4,6 +4,7 @@ import { LearnProfileProps, MyPageInfoProps } from '@/types/mypage';
 
 import {
   getLearnProfile,
+  getMyActivities,
   getMyPageInfo,
   getRecievedReviews,
   getReviewsByMe,
@@ -82,6 +83,14 @@ export const useGetRecievedReviews = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['recievedReviews'],
     queryFn: () => getRecievedReviews(),
+  });
+  return { data, isLoading, error };
+};
+
+export const useMyActivities = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['myActivities'],
+    queryFn: () => getMyActivities(),
   });
   return { data, isLoading, error };
 };
