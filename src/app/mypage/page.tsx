@@ -1,3 +1,5 @@
+'use client';
+
 import MyPageTitle from '@/components/mypage/MypageTItle';
 import Sidebar from '@/components/mypage/Sidebar';
 
