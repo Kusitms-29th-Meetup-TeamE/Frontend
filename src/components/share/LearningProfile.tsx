@@ -5,12 +5,18 @@ import { FaCirclePlus } from 'react-icons/fa6';
 
 import Chip from '../common-components/chip';
 
+import clsx from 'clsx';
 import Image from 'next/image';
 
-const LearningProfile = () => {
+const LearningProfile = ({ className }: { className?: string }) => {
   const isMypage = false;
   return (
-    <div className="relative max-w-[282px] w-full h-fit px-4 py-5 rounded-[20px] bg-gray-02">
+    <div
+      className={clsx(
+        'relative max-w-[282px] w-full h-fit px-4 py-5 rounded-[20px] bg-gray-02',
+        className,
+      )}
+    >
       {isMypage ? (
         ''
       ) : (
