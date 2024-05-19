@@ -19,3 +19,7 @@ export type LearningType = {
 
   title: string;
 };
+
+export type DetailProps = {
+  params: { id: string };
+};
