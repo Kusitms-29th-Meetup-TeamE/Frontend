@@ -17,7 +17,7 @@ export default function MyLearnListItem(props: { data: ReviewsByMeItem }) {
     <div className="bg-gray-02 w-full max-w-[894px] rounded-[20px]">
       <div className="border-b border-gray-04 flex items-center justify-between px-7 py-[14px]">
         <div className="flex gap-[10px] items-center">
-          <Chip type={data.type} />
+          <Chip type={data.type} className="border border-primary-orange5" />
           <span className="text-body2 text-gray-09">{data.title}</span>
         </div>
         <div className="flex gap-5">
