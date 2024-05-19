@@ -1,6 +1,7 @@
 import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
+import useSelectedLearningChipStore from '@/store/share/selectedLearningChipStore';
 
 import { ChipProps } from '.';
 
@@ -20,7 +21,8 @@ const style: {
   },
   focus: {
     abled: 'text-white bg-primary-orange6',
-    disabled: 'border-gray-04 text-gray-07 !bg-gray-04',
+    disabledActivity: 'border-gray-04 !text-gray-07 !bg-gray-04',
+    disabledLearning: 'border-gray-04 !text-gray-07 !bg-gray-03',
   },
   color: {
     활발한: 'bg-[rgba(253,143,42,0.10)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
@@ -55,9 +57,13 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       type,
       isBtn = false,
       isPersonality = true,
+      isActivity = false,
+      isLearning = false,
     } = props;
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
+
+    // 활동 참여하기
     const isInit = useSelectedJoinChipStore((state) => state.isInit);
     const currentChips = useSelectedJoinChipStore(
       (state) => state.currentChips,
@@ -66,18 +72,45 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       (state) => state.setCurrentChips,
     );
 
+    // 배움 나누기
+    const currentLearningChip = useSelectedLearningChipStore(
+      (state) => state.currentLearningChip,
+    );
+    const setCurrentLearningChip = useSelectedLearningChipStore(
+      (state) => state.setCurrentLearningChip,
+    );
+    const getCurrentLearningChip = useSelectedLearningChipStore(
+      (state) => state.getCurrentLearningChip,
+    );
+
     const handleClick = () => {
       if (isBtn && text) {
-        setIsSelected((prev) => !prev);
-        setCurrentChips(text);
+        if (isActivity) {
+          // 활동 참여하기
+          setIsSelected((prev) => !prev);
+          setCurrentChips(text);
+        }
+        if (isLearning) {
+          // 배움 나누기
+          setIsSelected(true);
+          setCurrentLearningChip(text);
+        }
       }
     };
 
     useEffect(() => {
-      if (isInit) {
+      // 활동 참여하기
+      if (isActivity && isInit) {
         setIsSelected(false);
       }
-    }, [currentChips]);
+
+      // 배움 나누기
+      if (getCurrentLearningChip() !== text) {
+        setIsSelected(false);
+      } else {
+        setIsSelected(true);
+      }
+    }, [currentChips, currentLearningChip]);
 
     return (
       <div
@@ -87,7 +120,9 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
           isBtn
             ? isSelected
               ? !isPersonality && style.focus['abled']
-              : style.focus['disabled']
+              : isActivity
+                ? style.focus['disabledActivity']
+                : style.focus['disabledLearning']
             : '',
           text ? style.color[text as string] : style.type,
           style.size[size],

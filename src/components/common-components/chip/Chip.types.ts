@@ -6,4 +6,6 @@ export type ChipProps = {
   isBtn?: boolean;
   isSelected?: boolean;
   isPersonality?: boolean;
+  isActivity?: boolean;
+  isLearning?: boolean;
 };
