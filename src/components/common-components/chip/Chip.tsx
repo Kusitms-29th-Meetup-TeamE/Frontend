@@ -21,8 +21,8 @@ const style: {
   },
   focus: {
     abled: 'text-white bg-primary-orange6',
-    disabledActivity: 'border-gray-04 !text-gray-07 !bg-gray-04',
-    disabledLearning: 'border-gray-04 !text-gray-07 !bg-gray-03',
+    disabledActivity: '!text-gray-07 !bg-gray-04',
+    disabledLearning: 'border border-gray-04 !text-gray-07 !bg-gray-03',
   },
   color: {
     활발한: 'bg-[rgba(253,143,42,0.10)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
@@ -85,12 +85,11 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
 
     const handleClick = () => {
       if (isBtn && text) {
-        if (isActivity) {
+        if (isActivity && !isLearning) {
           // 활동 참여하기
           setIsSelected((prev) => !prev);
           setCurrentChips(text);
-        }
-        if (isLearning) {
+        } else {
           // 배움 나누기
           setIsSelected(true);
           setCurrentLearningChip(text);
@@ -105,7 +104,7 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       }
 
       // 배움 나누기
-      if (getCurrentLearningChip() !== text) {
+      if (isLearning && getCurrentLearningChip() !== text) {
         setIsSelected(false);
       } else {
         setIsSelected(true);

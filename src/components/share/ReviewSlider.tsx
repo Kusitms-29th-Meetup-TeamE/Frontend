@@ -110,7 +110,6 @@ const ReviewSlider = () => {
               writer={item.writer}
               date={item.writeDate}
             />
-            {item.id}
           </SwiperSlide>
         );
       })}
