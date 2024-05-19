@@ -86,8 +86,6 @@ export const postLocalUserInfo = async ({
   await fetch(`${BASE_URL}/register`, {
     method: 'POST',
     headers: {
-      // 임의로 작성
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -113,7 +111,7 @@ export const postLocalUserInfo = async ({
       return res;
     })
     .catch((err) => {
-      console.log(err);
+      console.log('err', err);
     });
 };
 

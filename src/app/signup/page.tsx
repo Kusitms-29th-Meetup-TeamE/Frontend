@@ -4,6 +4,9 @@ import { useState } from 'react';
 
 import Button from '@/components/common-components/button';
 
+import { useLocalUserInfo } from '@/hooks/api/useUser';
+import { UserInfoProps } from '@/types/user';
+
 import FifthForm from '@/containers/signup/FifthForm';
 import FirstForm from '@/containers/signup/FirstForm';
 import FourthForm from '@/containers/signup/FourthForm';
@@ -11,6 +14,7 @@ import SecondForm, { checkData } from '@/containers/signup/SecondForm';
 import ThirdForm from '@/containers/signup/ThirdForm';
 
 import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
 
 const btnStyle = {
   form1: 'mt-[104px]',
@@ -21,6 +25,8 @@ const btnStyle = {
 };
 
 export default function SignUp() {
+  const router = useRouter();
+
   const [step, setStep] = useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -28,7 +34,7 @@ export default function SignUp() {
     return checkData.map(() => false);
   });
 
-  const [authEmail, setAuthEmail] = useState<boolean>(true);
+  const [authEmail, setAuthEmail] = useState<boolean>(false);
 
   // 네 번째 폼 - disabled state
   const [checkForm, setCheckForm] = useState<boolean>(true);
@@ -36,15 +42,7 @@ export default function SignUp() {
   const handlePrevClick = () => {
     if (step > 0) {
       setStep(step - 1);
-    }
-  };
-
-  const handleNextClick = () => {
-    if (step < 4) {
-      setStep(step + 1);
-    }
-    if (step === 4) {
-      // TODO: onSubmit?
+      if (step === 2) setAuthEmail(false);
     }
   };
 
@@ -58,19 +56,13 @@ export default function SignUp() {
     )
       return true;
     if (step === 1 && !allRequiredChecked) return true;
-    if (step === 2 && authEmail) return true;
+    if (step === 2 && !authEmail) return true;
     if (step === 3 && checkForm) return true;
 
     return false;
   };
 
-  const onSubmitFourthForm = (data: any) => {
-    // FourthForm의 onSubmit에 전달할 로직 구현
-    console.log('Submitted from FourthForm:', data);
-    // 필요한 로직 수행
-  };
-
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserInfoProps>({
     // third-form
     email: '',
     // fourth-form
@@ -79,9 +71,33 @@ export default function SignUp() {
     confirmPassword: '',
     // fifth-form
     gender: '',
-    birthYear: '',
+    birthyear: '',
     location: '',
+    month: '',
+    day: '',
   });
+
+  console.log('userinfo', userInfo);
+
+  const { mutate, isPending } = useLocalUserInfo(userInfo);
+
+  const handleNextClick = () => {
+    if (step < 4) {
+      setStep(step + 1);
+      if (step === 2) {
+        setUserInfo((prev) => ({
+          ...prev,
+          email: email,
+        }));
+      }
+    }
+
+    if (step === 4) {
+      mutate();
+    }
+  };
+
+  const [email, setEmail] = useState<string>('');
 
   return (
     <main className="pt-[70px]">
@@ -95,12 +111,22 @@ export default function SignUp() {
         <SecondForm checkItems={checkItems} setCheckItems={setCheckItems} />
       )}
       {step === 2 && (
-        <ThirdForm authEmail={authEmail} setAuthEmail={setAuthEmail} />
+        <ThirdForm
+          setAuthEmail={setAuthEmail}
+          email={email}
+          setEmail={setEmail}
+        />
       )}
       {step === 3 && (
-        <FourthForm setCheckForm={setCheckForm} setUserInfo={setUserInfo} />
+        <FourthForm
+          userInfo={userInfo}
+          setCheckForm={setCheckForm}
+          setUserInfo={setUserInfo}
+        />
       )}
-      {step === 4 && <FifthForm />}
+      {step === 4 && (
+        <FifthForm userInfo={userInfo} setUserInfo={setUserInfo} />
+      )}
 
       <div
         className={clsx(
@@ -128,7 +154,7 @@ export default function SignUp() {
           shape="rounded"
           size="lg"
           onClick={handleNextClick}
-          disabled={disabledBtn()}
+          // disabled={disabledBtn()}
           type="submit"
         >
           {step !== 4 ? '다음' : '완료'}

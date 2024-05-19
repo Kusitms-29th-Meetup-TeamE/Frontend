@@ -26,7 +26,7 @@ export default function ErrorModal({
   };
 
   return (
-    <Modal className="w-[400px]" open={modalState.open} onClose={closeModal}>
+    <Modal className="w-[440px]" open={modalState.open} onClose={closeModal}>
       <Modal.Close onClick={closeModal} />
       <Modal.Title>{title ?? '에러'}</Modal.Title>
 

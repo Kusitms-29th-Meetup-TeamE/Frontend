@@ -58,7 +58,8 @@ export default function SelectBox({
       >
         <div
           className={
-            initText === selectedItem ? 'text-gray-06' : 'text-gray-10'
+            selectedItem ? 'text-gray-10' : 'text-gray-06'
+            // initText === selectedItem ? 'text-gray-06' : 'text-gray-10'
           }
         >
           {selectedItem ? selectedItem : initText ?? `${items[0].text}`}
@@ -66,7 +67,8 @@ export default function SelectBox({
 
         <span
           className={clsx(
-            selectedItem === initText ? 'text-gray-06' : 'text-gray-10',
+            selectedItem ? 'text-gray-10' : 'text-gray-06',
+            // selectedItem === initText ? 'text-gray-06' : 'text-gray-10',
           )}
         >
           {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
