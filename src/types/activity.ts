@@ -31,3 +31,8 @@ export type ReviewSliderProps = {
   writer: string;
   date: string;
 };
+
+export type OthreLearningItemProps = {
+  type: string;
+  title: string;
+};
