@@ -94,7 +94,12 @@ export default function Sidebar() {
           )}
         </ul>
         <ul className={sidebarStyle.ul}>포인트 내역 보기</ul>
-        <ul className={sidebarStyle.ul}>기본정보 수정하기</ul>
+        <ul
+          onClick={() => router.push('/mypage/edit')}
+          className={sidebarStyle.ul}
+        >
+          기본정보 수정하기
+        </ul>
       </div>
     </aside>
   );
