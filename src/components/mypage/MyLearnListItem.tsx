@@ -5,18 +5,19 @@ import { SlPencil } from 'react-icons/sl';
 import { ReviewsByMeItem } from '@/types/mypage';
 
 import Button from '../common-components/button';
+import Chip from '../common-components/chip';
 
 import Image from 'next/image';
 
 export default function MyLearnListItem(props: { data: ReviewsByMeItem }) {
   const { data } = props;
-  console.log('props', data);
+  // console.log('props', data);
 
   return (
     <div className="bg-gray-02 w-full max-w-[894px] rounded-[20px]">
       <div className="border-b border-gray-04 flex items-center justify-between px-7 py-[14px]">
         <div className="flex gap-[10px] items-center">
-          <span>{data.type}</span>
+          <Chip type={data.type} />
           <span className="text-body2 text-gray-09">{data.title}</span>
         </div>
         <div className="flex gap-5">

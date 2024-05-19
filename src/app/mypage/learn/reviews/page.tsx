@@ -16,7 +16,7 @@ export default function MyLearnReviewsPage() {
     () => data?.reviews ?? [],
     [data],
   );
-  console.log('data', reviewsList);
+  // console.log('data', reviewsList);
 
   return (
     <div className="w-full m-auto max-w-[1200px] border border-black">

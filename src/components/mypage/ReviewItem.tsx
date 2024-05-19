@@ -1,3 +1,5 @@
+import Chip from '../common-components/chip';
+
 import Image from 'next/image';
 
 export interface ReviewItemProps {
@@ -17,10 +19,10 @@ export default function ReviewItem(props: { data: ReviewItemProps }) {
   return (
     <div>
       <div className="inline-flex items-center gap-[10px] bg-gray-02 rounded-[20px] py-3 px-4">
-        <div>{data.type}</div>
+        <Chip type={data.type} className="border border-primary-orange5" />
         <span className="text-body2 text-gray-09">{data.title}</span>
       </div>
-      <div className="-mt-7 pt-[30px] px-[30px] pb-[20px] flex gap-4 rounded-[20px] rounded-tl-none bg-gray-02 w-full max-w-[894px]">
+      <div className="-mt-7 pt-[40px] px-[30px] pb-[20px] flex gap-4 rounded-[20px] rounded-tl-none bg-gray-02 w-full max-w-[894px]">
         <Image
           src="/assets/main/main_banner.png"
           alt=""
