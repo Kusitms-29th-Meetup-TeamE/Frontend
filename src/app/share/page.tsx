@@ -98,7 +98,14 @@ const page = () => {
         <section className="flex flex-col">
           <section className="w-full h-9 flex gap-5 border mb-[34px]">
             {learningCategoryItems.map((item, key) => (
-              <Chip text={item} key={item} />
+              <Chip
+                text={item}
+                key={item}
+                size="md"
+                isPersonality={false}
+                isBtn={true}
+                isLearning={true}
+              />
             ))}
           </section>
           <ActivityContainer className="grid-rows-2 grid-cols-3 gap-y-[60px] mb-[146px]">
