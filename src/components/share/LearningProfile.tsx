@@ -29,7 +29,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
         />
       )}
       <div className="mt-[179px] mb-[18px] flex items-center justify-between">
-        <span className="text-black text-footer-bold">김복순</span>
+        <span className="ml-[13px] text-black text-footer-bold">김복순</span>
         <div className="w-fit h-fit rounded-[18.5px] flex gap-[10px] bg-white px-[14px] py-1 text-notification-chip-no text-gray-08">
           <span>62세</span>
           <span>|</span>

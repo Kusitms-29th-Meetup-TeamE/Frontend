@@ -93,10 +93,10 @@ const page = () => {
         title={'배움 나누기'}
         content={'다른 사람의 경험을 공유하고, 나의 경험을 나눠보세요.'}
       />
-      <div className="max-w-[1200px] w-full mx-auto pt-14 flex gap-6 border">
+      <div className="max-w-[1200px] w-full mx-auto pt-14 flex gap-6">
         <LearningProfile className="mt-[70px]" />
         <section className="flex flex-col">
-          <section className="w-full h-9 flex gap-5 border mb-[34px]">
+          <section className="w-full h-9 flex gap-5 mb-[34px]">
             {learningCategoryItems.map((item, key) => (
               <Chip
                 text={item}
