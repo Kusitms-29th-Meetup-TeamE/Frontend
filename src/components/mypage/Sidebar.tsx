@@ -28,7 +28,7 @@ export default function Sidebar() {
   };
 
   const { data } = useGetMyPageInfo();
-  console.log('data', data);
+  // console.log('data', data);
 
   useEffect(() => {
     if (data) {
@@ -72,8 +72,18 @@ export default function Sidebar() {
           </ul>
           {(isHovered || isClicked) && (
             <div className={sidebarStyle.liBox}>
-              <li className={sidebarStyle.li}>배움 프로필 수정하기</li>
-              <li className={sidebarStyle.li}>나의 후기 확인하기</li>
+              <li
+                onClick={() => router.push('/mypage/learn/profile')}
+                className={sidebarStyle.li}
+              >
+                배움 프로필 수정하기
+              </li>
+              <li
+                onClick={() => router.push('/mypage/learn/recieved')}
+                className={sidebarStyle.li}
+              >
+                나의 후기 확인하기
+              </li>
               <li
                 className={sidebarStyle.li}
                 onClick={() => router.push('/mypage/learn/reviews')}
