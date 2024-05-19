@@ -64,7 +64,7 @@ const page = ({ params }: DetailProps) => {
             alt={''}
             className="w-[344px] h-[344px] ml-[146px] rounded-full border-primary-orange6 border-4 object-cover"
           />
-          <section className="ml-[50px] flex flex-col gap-[22px]">
+          <section className="ml-[87px] flex flex-col gap-[22px]">
             <span className="ml-[38px] text-black text-notification-h1">
               정예진
             </span>
@@ -103,7 +103,7 @@ const page = ({ params }: DetailProps) => {
                 className="text-white w-[22px] h-[22px] mr-[6px]"
               />
             }
-            className="w-fit px-[14px] mx-auto whitespace-nowrap rounded-[30px]"
+            className="w-fit px-[14px] mx-auto whitespace-nowrap rounded-[30px] mt-5"
             onClick={handleClick}
           >
             1:1 대화나누기

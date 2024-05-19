@@ -20,7 +20,7 @@ const style: {
     md: 'max-h-9 rounded-[22px] px-[22px] py-[6px] text-chip-semibold-sm cursor-pointer', // 필터링에서 사용하는 칩
   },
   focus: {
-    abled: 'text-white bg-primary-orange6',
+    abled: 'text-white bg-primary-orange6 border border-primary-orange6',
     disabledActivity: '!text-gray-07 !bg-gray-04',
     disabledLearning: 'border border-gray-04 !text-gray-07 !bg-gray-03',
   },
