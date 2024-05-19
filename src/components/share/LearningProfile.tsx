@@ -10,7 +10,7 @@ import Image from 'next/image';
 const LearningProfile = () => {
   const isMypage = false;
   return (
-    <div className="relative max-w-[282px] w-full px-4 py-5 rounded-[20px] bg-gray-02">
+    <div className="relative max-w-[282px] w-full h-fit px-4 py-5 rounded-[20px] bg-gray-02">
       {isMypage ? (
         ''
       ) : (
