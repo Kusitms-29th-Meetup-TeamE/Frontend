@@ -5,6 +5,7 @@ import { LearnProfileProps, MyPageInfoProps } from '@/types/mypage';
 import {
   getLearnProfile,
   getMyPageInfo,
+  getReviewsByMe,
   postLearnProfile,
   putMyPageInfo,
 } from '@/api/mypage';
@@ -66,4 +67,12 @@ export const usePostLearnProfile = (data: LearnProfileProps) => {
     },
   });
   return { mutate, isPending, error };
+};
+
+export const useGetReviewsByMe = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['reviewsByme'],
+    queryFn: () => getReviewsByMe(),
+  });
+  return { data, isLoading, error };
 };

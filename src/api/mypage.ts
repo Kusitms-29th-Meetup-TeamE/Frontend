@@ -106,3 +106,24 @@ export const postLearnProfile = async ({
     throw err;
   }
 };
+
+// 마이페이지 - 나의 배움 내역 보기
+export const getReviewsByMe = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/reviews/byme`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
