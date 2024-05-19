@@ -28,10 +28,10 @@ export const categoryItem: SelectItemType[] = [
 export const yearItems: SelectItemType[] = []; //
 
 const currentYear = new Date().getFullYear();
-const startYear = 1900; // 시작 연도
-const endYear = currentYear; // 현재 연도
+const startYear = currentYear - 80; // 시작 연도
+const endYear = currentYear - 10; // 현재 연도
 
-for (let year = startYear; year <= endYear; year++) {
+for (let year = endYear; year >= startYear; year--) {
   yearItems.push({
     id: year,
     text: `${year}년`,

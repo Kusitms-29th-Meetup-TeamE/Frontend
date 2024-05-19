@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import Input from '@/components/common-components/input';
 import SelectBox from '@/components/common-components/select-box/SelectBox';
@@ -7,6 +7,7 @@ import SearchAddressModal from '@/components/signup/SearchAddressModal';
 import SignUpTitle from '@/components/signup/SignUpTitle';
 
 import { dayItems, monthItems, yearItems } from '@/constants/object';
+import { UserInfoProps } from '@/types/user';
 
 import { inputStyle } from './ThirdForm';
 
@@ -20,24 +21,36 @@ const style = {
     'bg-primary-orange1 border border-primary-orange6 !text-h3 text-primary-orange6',
 };
 
-export default function FifthForm() {
-  const [email, setEmail] = useState<string>('');
-  const [confirmNum, setConfirmNum] = useState<Number | null>(null);
-  const [gender, setGender] = useState<string>('');
+export type FifthFormProps = {
+  setUserInfo: Dispatch<SetStateAction<UserInfoProps>>;
+  userInfo: UserInfoProps;
+};
 
-  const [year, setYear] = useState<string | number>('');
-  const [month, setMonth] = useState<string | number>('');
-  const [day, setDay] = useState<string | number>('');
+export default function FifthForm({ setUserInfo, userInfo }: FifthFormProps) {
+  const [gender, setGender] = useState<string>(userInfo.gender);
+
+  const [year, setYear] = useState<string | number>(userInfo.birthyear ?? '');
+  const [month, setMonth] = useState<string | number>(userInfo.month ?? '');
+  const [day, setDay] = useState<string | number>(userInfo.day ?? '');
 
   // 주소 검색 모달
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [location, setLocation] = useState<string>('');
+  const [location, setLocation] = useState<string>(userInfo.location);
 
-  const handleGender = (gender: string) => {
-    setGender(gender);
+  const handleGender = (genderText: string) => {
+    setGender(genderText);
   };
 
-  console.log('loc', location);
+  useEffect(() => {
+    setUserInfo((prev) => ({
+      ...prev,
+      location: location,
+      gender: gender,
+      birthyear: year.toString(),
+      month: month,
+      day: day,
+    }));
+  }, [location, gender, year, month, day]);
 
   return (
     <>
@@ -61,19 +74,20 @@ export default function FifthForm() {
 
             <div className="flex gap-[6px] mt-1">
               <SelectBox
-                initText="년"
+                initText={userInfo.birthyear ? `${year.toString()}년` : '년'}
                 items={yearItems}
                 size="md"
                 setParams={setYear}
               />
               <SelectBox
-                initText="월"
+                // initText="월"
+                initText={userInfo.month ? `${month.toString()}월` : '월'}
                 items={monthItems}
                 size="md"
                 setParams={setMonth}
               />
               <SelectBox
-                initText="일"
+                initText={userInfo.day ? `${day.toString()}일` : '일'}
                 items={dayItems}
                 size="md"
                 setParams={setDay}
@@ -89,7 +103,9 @@ export default function FifthForm() {
                   style.genderBase,
                   gender === 'male' && style.genderClicked,
                 )}
-                onClick={() => handleGender('male')}
+                onClick={() => {
+                  handleGender('male');
+                }}
               >
                 남자
               </div>
@@ -98,7 +114,9 @@ export default function FifthForm() {
                   style.genderBase,
                   gender === 'female' && style.genderClicked,
                 )}
-                onClick={() => handleGender('female')}
+                onClick={() => {
+                  handleGender('female');
+                }}
               >
                 여자
               </div>
