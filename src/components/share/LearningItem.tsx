@@ -25,7 +25,7 @@ const LearningItem = ({
         className="w-[282px] h-[282px] bg-gray-03 rounded-[20px]"
       />
       <div className="flex gap-[10px] mt-2 items-center">
-        <Chip text="요리" />
+        <Chip type="요리" />
         <span className="text-primary-orange9 text-body2">{title}</span>
       </div>
       <div className="ml-[10px] mt-3 flex items-center">

@@ -40,11 +40,11 @@ const LearningProfile = ({ className }: { className?: string }) => {
       </div>
       <ul className="flex flex-col gap-2">
         <li className="flex items-center px-4 py-[13px] bg-white rounded-[20px]">
-          <Chip text="운동" className="mr-[10px]" />
+          <Chip type="운동" className="mr-[10px]" />
           <span className="text-body2 text-black">탁구</span>
         </li>
         <li className="flex items-center px-4 py-[13px] bg-white rounded-[20px]">
-          <Chip text="운동" className="mr-[10px]" />
+          <Chip type="운동" className="mr-[10px]" />
           <span className="text-body2 text-black">탁구</span>
         </li>
         {isMypage ? (
