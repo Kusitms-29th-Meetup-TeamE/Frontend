@@ -24,20 +24,20 @@ const LearningItem = ({
         height={282}
         className="w-[282px] h-[282px] bg-gray-03 rounded-[20px]"
       />
-      <p className="flex gap-[10px] mt-2 items-center">
+      <div className="flex gap-[10px] mt-2 items-center">
         <Chip text="요리" />
         <span className="text-primary-orange9 text-body2">{title}</span>
-      </p>
-      <p className="ml-[10px] mt-3 flex items-center">
+      </div>
+      <div className="ml-[10px] mt-3 flex items-center">
         <span className="mr-[10px] text-footer-bold text-black">{name}</span>
-        <div className="flex gap-3 text-gray-08 text-chip-medium">
+        <p className="flex gap-3 text-gray-08 text-chip-medium">
           <span>{age}</span>
           <span>|</span>
           <span>{gender}</span>
           <span>|</span>
           <span>{location}</span>
-        </div>
-      </p>
+        </p>
+      </div>
       <div className="mt-[14px] w-full h-[80px] pt-3 pl-[19px] pr-[22px] pb-4 rounded-[20px] bg-[#d9d9d9] text-body3 text-black">
         {message}
       </div>
