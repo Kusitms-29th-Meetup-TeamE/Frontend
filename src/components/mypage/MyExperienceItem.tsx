@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { HiOutlineTrash } from 'react-icons/hi';
 
 import { categoryItem } from '@/constants/object';
@@ -7,8 +7,12 @@ import { LearnProfileProps } from '@/types/mypage';
 
 import SelectBox from '../common-components/select-box/SelectBox';
 
-export default function MyExperienceItem(props: { data?: LearnProfileProps }) {
-  const { data } = props;
+export default function MyExperienceItem(props: {
+  data?: LearnProfileProps;
+  profileData?: any;
+  setProfileData?: Dispatch<SetStateAction<any>>;
+}) {
+  const { data, profileData, setProfileData } = props;
 
   const [text, setText] = useState<string>('');
   const [title, setTitle] = useState<string>('탁구');

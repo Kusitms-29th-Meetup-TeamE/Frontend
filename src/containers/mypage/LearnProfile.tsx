@@ -68,12 +68,14 @@ export default function LearnProfile() {
     setExDataList((prevList) => [...prevList, newExperience]);
   };
 
-  // const { mutate } = usePostLearnProfile();
+  const [profileData, setProfileData] = useState<any>([]);
+  const { mutate } = usePostLearnProfile(profileData);
 
   const handleSubmit = () => {
-    //
+    // mutate();
   };
 
+  console.log(exDataList, 'ss');
   return (
     <>
       <div className="w-full max-w-[588px] flex flex-col gap-[30px] py-5 px-6 rounded-[20px] bg-gray-02">
@@ -173,7 +175,11 @@ export default function LearnProfile() {
             {exDataList.map((item, idx) => {
               return (
                 <div key={idx}>
-                  <MyExperienceItem data={item} />
+                  <MyExperienceItem
+                    profileData={profileData}
+                    setProfileData={setProfileData}
+                    data={item}
+                  />
                 </div>
               );
             })}
