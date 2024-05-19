@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { IoLocationOutline } from 'react-icons/io5';
 import { MdOutlineLock } from 'react-icons/md';
@@ -12,10 +12,14 @@ import Input from '@/components/common-components/input';
 
 import MyPageTitle from '@/components/mypage/MypageTItle';
 import Sidebar from '@/components/mypage/Sidebar';
+import SearchAddressModal from '@/components/signup/SearchAddressModal';
 
-import { useGetMyPageInfo } from '@/hooks/api/useMyPage';
+import { useGetMyPageInfo, usePutMyPageInfo } from '@/hooks/api/useMyPage';
 import { MyPageInfoProps } from '@/types/mypage';
 
+import { inputStyle } from '@/containers/signup/ThirdForm';
+
+import clsx from 'clsx';
 import Image from 'next/image';
 
 export default function MyPageEdit() {
@@ -23,6 +27,29 @@ export default function MyPageEdit() {
   console.log('sdf', data);
 
   const userData: MyPageInfoProps = useMemo(() => data ?? [], [data]);
+
+  const [name, setName] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (data) {
+      setName(data.name);
+      setLocation(data.location);
+    }
+  }, [data]);
+
+  const { mutate } = usePutMyPageInfo({
+    name,
+    location,
+    email: userData.email,
+    imageUrl: userData.imageUrl,
+  });
+
+  const handleSubmit = () => {
+    mutate();
+  };
 
   return (
     <div className="w-full m-auto max-w-[1200px] border border-black">
@@ -37,7 +64,7 @@ export default function MyPageEdit() {
           <div className="w-full max-w-[254px] flex flex-col justify-start">
             <label className="text-h3 text-black">프로필 사진</label>
             <Image
-              src={'/assets/main/main_banner.png'}
+              src={userData.imageUrl}
               alt=""
               width={254}
               height={254}
@@ -58,7 +85,8 @@ export default function MyPageEdit() {
               <Input
                 startIcon={<BsPerson />}
                 size="lg"
-                value={userData.name}
+                value={name}
+                onChange={(e) => setName(e.currentTarget.value)}
                 placeholder="이름을 입력해주세요."
                 shape="square"
               />
@@ -90,20 +118,30 @@ export default function MyPageEdit() {
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-h3 text-black">거주지</label>
-              <Input
-                startIcon={<IoLocationOutline />}
-                size="lg"
-                value={userData.location}
-                placeholder=""
-                shape="square"
-              />
+
+              <div className="relative mt-1">
+                <Input
+                  startIcon={<IoLocationOutline />}
+                  onChange={(e) => {}}
+                  size="lg"
+                  value={location}
+                  placeholder="오른쪽 버튼을 눌러 주소를 검색해보세요."
+                  shape="square"
+                />
+                <span
+                  onClick={() => setIsOpen(true)}
+                  className={clsx(inputStyle.inputBtn, inputStyle.activeBtn)}
+                >
+                  주소 검색
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="flex justify-center">
           <Button
-            //   onClick={handleSubmit}
+            onClick={handleSubmit}
             size="md"
             color="default"
             className="my-[80px] flex justify-center !py-2 !px-[30px]"
@@ -119,6 +157,13 @@ export default function MyPageEdit() {
           </span>
         </div>
       </div>
+
+      {/* 주소 검색 모달 */}
+      <SearchAddressModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        setLocation={setLocation}
+      />
     </div>
   );
 }
