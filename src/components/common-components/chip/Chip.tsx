@@ -1,5 +1,7 @@
 import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
+import { useAllActivity } from '@/hooks/api/useActivity';
+
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 
 import { ChipProps } from '.';
@@ -65,11 +67,17 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
     const setCurrentChips = useSelectedJoinChipStore(
       (state) => state.setCurrentChips,
     );
+    const { data } = useAllActivity({
+      page: 0,
+      // agencyType: '문화센터',
+      personalities: ['배울 수 있는', '활발한'],
+    });
 
     const handleClick = () => {
       if (isBtn && text) {
         setIsSelected((prev) => !prev);
         setCurrentChips(text);
+        console.log(data);
       }
     };
 
