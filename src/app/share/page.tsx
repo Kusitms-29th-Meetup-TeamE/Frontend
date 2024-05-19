@@ -14,13 +14,16 @@ import { LearningType } from '@/types/activity';
 
 import ActivityContainer from '@/containers/join/ActivityContainer';
 
+import Link from 'next/link';
+
 const page = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // API response 받고 수정 예정
+  // TODO: API 연결 브랜치에서 작업 예정 (현재는 id 1, 2만 넣어놓음)
   const data: LearningType[] = [
     {
       //1
+      id: '1',
       imageUrl: '/assets/main/main_banner.png',
       name: '김또바',
       age: 62,
@@ -32,6 +35,7 @@ const page = () => {
     },
     {
       //2
+      id: '2',
       imageUrl: '/assets/main/main_banner.png',
       name: '김또바',
       age: 62,
@@ -111,16 +115,21 @@ const page = () => {
           <ActivityContainer className="grid-rows-2 grid-cols-3 gap-y-[60px] mb-[146px]">
             {data.map((item, key) => {
               return (
-                <LearningItem
-                  key={key + item.name}
-                  imageUrl={item.imageUrl}
-                  name={item.name}
-                  age={item.age}
-                  gender={item.gender}
-                  location={item.location}
-                  message={item.message}
-                  title={item.title}
-                />
+                <Link
+                  href={{ pathname: `/share/detail/${item.id}` }}
+                  // as={'/join/detail'}
+                >
+                  <LearningItem
+                    key={key + item.name}
+                    imageUrl={item.imageUrl}
+                    name={item.name}
+                    age={item.age}
+                    gender={item.gender}
+                    location={item.location}
+                    message={item.message}
+                    title={item.title}
+                  />
+                </Link>
               );
             })}
           </ActivityContainer>

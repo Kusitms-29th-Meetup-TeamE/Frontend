@@ -9,6 +9,7 @@ export type ActivityType = {
 };
 
 export type LearningType = {
+  id?: string;
   imageUrl: string;
   name: string;
   age: number;
