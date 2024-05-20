@@ -105,3 +105,33 @@ export const getActivityDetail = async (id: number) => {
   const data = res.json();
   return data;
 };
+
+export const postActivityLike = async (id: number) => {
+  const res = await fetch(`${BASE_URL}/activate-like/${id}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+    },
+  });
+
+  if (!res.ok) {
+    console.log('Error on posting Activity Like');
+  }
+
+  return res;
+};
+
+export const postActivityNotLike = async (id: number) => {
+  const res = await fetch(`${BASE_URL}/deactivate-like/${id}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+    },
+  });
+
+  if (!res.ok) {
+    console.log('Error on canceling Activity Like');
+  }
+
+  return res;
+};

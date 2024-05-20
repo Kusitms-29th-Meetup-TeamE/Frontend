@@ -3,8 +3,10 @@ import {
   getActivityDetail,
   getAllActivity,
   getLikedActivity,
+  postActivityLike,
+  postActivityNotLike,
 } from '@/api/join';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const useAllActivity = ({
   page,
@@ -36,4 +38,20 @@ export const useActivityDetail = (id: number) => {
     queryFn: () => getActivityDetail(id),
   });
   return { data, isLoading, error };
+};
+
+export const usePostActivityLike = (id: number) => {
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['LIKE', id],
+    mutationFn: () => postActivityLike(id),
+  });
+  return { mutate, isPending };
+};
+
+export const usePostActivityNotLike = (id: number) => {
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['NO_LIKE', id],
+    mutationFn: () => postActivityNotLike(id),
+  });
+  return { mutate, isPending };
 };
