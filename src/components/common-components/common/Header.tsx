@@ -46,7 +46,6 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
         </Link>
       ) : (
         <div className="w-4/5 flex justify-between m-auto">
-          {/* <div className="flex gap-[200px]"> */}
           <Link href="/">
             <div className="flex gap-[2px] items-center">
               <Image
@@ -62,7 +61,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
           <div className={variants.menubar}>
             <Link
-              href="/join"
+              href={accessToken ? '/join' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -70,7 +69,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
               <div className={variants.centerMenu}>활동 참여하기</div>
             </Link>
             <Link
-              href="#"
+              href={accessToken ? '/share' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -87,7 +86,6 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
               <div className={variants.centerMenu}>함께 대화하기</div>
             </Link>
           </div>
-          {/* </div> */}
 
           {accessToken ? (
             <div className={variants.rightBar}>
