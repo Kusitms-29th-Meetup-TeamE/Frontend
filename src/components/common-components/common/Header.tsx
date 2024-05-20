@@ -14,8 +14,7 @@ const variants = {
   menubar: 'w-1/2 max-w-[760px] flex text-gray-11 justify-between',
   centerMenu: 'text-h3 cursor-pointer',
   rightBar: 'flex items-center gap-[40px] text-gray-07 text-body3',
-  rightMenu:
-    'flex items-center text-gray-07 text-body3 hover:text-red-500 cursor-pointer',
+  rightMenu: 'flex items-center text-gray-07 text-body3 cursor-pointer',
 };
 
 export default function Header({ isGuest }: { isGuest: boolean }) {
@@ -111,7 +110,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
             </div>
           ) : (
             <div className={variants.rightBar}>
-              <div className="flex gap-1">
+              <div className="flex gap-2">
                 <Link href="/login">
                   <span>로그인</span>
                 </Link>
