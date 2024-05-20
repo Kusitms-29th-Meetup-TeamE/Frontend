@@ -34,6 +34,7 @@ export default function Sidebar() {
     if (data) {
       setImgUrl(data.imageUrl);
       setName(data.name);
+      localStorage.setItem('name', data.name);
     }
   }, [data]);
 
@@ -98,7 +99,12 @@ export default function Sidebar() {
             </div>
           )}
         </ul>
-        <ul className={sidebarStyle.ul}>포인트 내역 보기</ul>
+        <ul
+          className={sidebarStyle.ul}
+          onClick={() => router.push('/mypage/point')}
+        >
+          포인트 내역 보기
+        </ul>
         <ul
           onClick={() => router.push('/mypage/edit')}
           className={sidebarStyle.ul}
