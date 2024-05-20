@@ -32,3 +32,19 @@ export interface ReviewsByMeItem {
 export interface ReviewsByMeResponse {
   reviews: ReviewsByMeItem[];
 }
+
+export type CalendarParams = {
+  year: number;
+  month: number;
+};
+
+export interface MyCalendarListItem {
+  data: string;
+  tag: string;
+  description: string;
+  about: string;
+}
+
+export interface MyCalendarResponse {
+  appointments: MyCalendarListItem[];
+}
