@@ -56,12 +56,14 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       text,
       type,
       isBtn = false,
+      initialChip,
+      handleSelect,
       isPersonality = true,
       isActivity = false,
-      isLearning = false,
     } = props;
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
+    const [selectedChip, setSelectedChip] = useState<string>(initialChip || '');
 
     // 활동 참여하기
     const isInit = useSelectedJoinChipStore((state) => state.isInit);
@@ -72,30 +74,42 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       (state) => state.setCurrentChips,
     );
 
-    // 배움 나누기
-    const currentLearningChip = useSelectedLearningChipStore(
-      (state) => state.currentLearningChip,
-    );
-    const setCurrentLearningChip = useSelectedLearningChipStore(
-      (state) => state.setCurrentLearningChip,
-    );
-    const getCurrentLearningChip = useSelectedLearningChipStore(
-      (state) => state.getCurrentLearningChip,
-    );
+    // // 배움 나누기
+    // const currentLearningChip = useSelectedLearningChipStore(
+    //   (state) => state.currentLearningChip,
+    // );
+    // const setCurrentLearningChip = useSelectedLearningChipStore(
+    //   (state) => state.setCurrentLearningChip,
+    // );
+    // const getCurrentLearningChip = useSelectedLearningChipStore(
+    //   (state) => state.getCurrentLearningChip,
+    // );
 
     const handleClick = () => {
       if (isBtn && text) {
-        if (isActivity && !isLearning) {
-          // 활동 참여하기
+        // if (isActivity && !isLearning) {
+        // 활동 참여하기
+        if (isActivity) {
           setIsSelected((prev) => !prev);
           setCurrentChips(text);
-        } else {
-          // 배움 나누기
-          setIsSelected(true);
-          setCurrentLearningChip(text);
+        } else if (text !== selectedChip && handleSelect) {
+          setSelectedChip(text);
+          handleSelect(text);
         }
       }
+      // else {
+      //   // 배움 나누기
+      //   setIsSelected(true);
+      //   setCurrentLearningChip(text);
+      // }
     };
+
+    useEffect(() => {
+      if (handleSelect) {
+        handleSelect(selectedChip);
+        setIsSelected(selectedChip === text);
+      }
+    }, [selectedChip, text]);
 
     useEffect(() => {
       // 활동 참여하기
@@ -103,13 +117,13 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
         setIsSelected(false);
       }
 
-      // 배움 나누기
-      if (isLearning && getCurrentLearningChip() !== text) {
-        setIsSelected(false);
-      } else {
-        setIsSelected(true);
-      }
-    }, [currentChips, currentLearningChip]);
+      // // 배움 나누기
+      // if (isLearning && getCurrentLearningChip() !== text) {
+      //   setIsSelected(false);
+      // } else {
+      //   setIsSelected(true);
+      // }
+    }, [currentChips]);
 
     return (
       <div

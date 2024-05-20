@@ -92,16 +92,21 @@ const page = () => {
       title: '드립커피',
     },
   ];
+  const [selectedChip, setSelectedChip] = useState<string>('전체');
   const sortItems: SelectItemType[] = [
     { id: 1, text: '최신순', value: '최신순' },
     { id: 2, text: '거리순', value: '거리순' },
     { id: 3, text: '후기순', value: '후기순' },
   ];
-  const [selectItem, setSelectItem] = useState<string | number>();
+  const [selectDropbox, setSelectDropbox] = useState<string | number>();
 
   useEffect(() => {
-    console.log(selectItem);
-  }, [selectItem]);
+    console.log(selectDropbox);
+  }, [selectDropbox]);
+
+  useEffect(() => {
+    console.log(selectedChip);
+  }, [selectedChip]);
 
   return (
     <>
@@ -119,16 +124,17 @@ const page = () => {
                   text={item}
                   key={item}
                   size="md"
-                  isPersonality={false}
+                  initialChip={'전체'}
+                  handleSelect={setSelectedChip}
                   isBtn={true}
-                  isLearning={true}
+                  isPersonality={false}
                 />
               ))}
             </section>
             <SelectBox
               items={sortItems}
               size="xs"
-              setParams={setSelectItem}
+              setParams={setSelectDropbox}
               className="!w-fit text-chip-semibold-sm"
             />
           </section>
