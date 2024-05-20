@@ -7,6 +7,7 @@ import Skeleton from '@/components/common-components/skeleton';
 import { RoomItem } from '@/components/chat/RoomItem';
 
 import { useChatRoomsGroup } from '@/hooks/api/useChat';
+import { GroupChatRoom } from '@/types/chat';
 
 import { SOCKET_URL } from '@/api';
 import { ChatRoom } from '@/containers/chat/ChatRoom';
@@ -23,11 +24,6 @@ export default function ChatActivity() {
   const { setMyId } = useChatStore();
 
   const [groupRoomId, setGroupRoomId] = useState<number | null>(null);
-
-  const handleClick = (id: number) => {
-    setMyId(data?.myId as number);
-    setGroupRoomId(id); // roomId 담아주기
-  };
 
   const [stompClient, setStompClient] = useState<CompatClient | null>(null);
   const [isSocketLoading, setIsSocketLoading] = useState<boolean>(true); // 추가
@@ -59,6 +55,14 @@ export default function ChatActivity() {
 
   useEffect(connectToWebSocket, []);
 
+  const [roomInfo, setRoomInfo] = useState<GroupChatRoom>();
+
+  const handleClick = (item: GroupChatRoom) => {
+    setMyId(data?.myId as number);
+    setGroupRoomId(item.id); // roomId 담아주기
+    setRoomInfo(item);
+  };
+
   return (
     <div className="w-full mx-auto pt-[40px] max-w-[1200px] flex">
       <RoomList
@@ -67,11 +71,12 @@ export default function ChatActivity() {
       >
         {data?.groupChatRoomResList.map((item, idx) => {
           // 여기서 item.id가 roomId
+
           return (
             <div
               key={idx}
               className="mr-[10px]"
-              onClick={() => handleClick(item.id)}
+              onClick={() => handleClick(item)}
             >
               {isLoading ? (
                 <Skeleton width={470} height={170} />
@@ -88,7 +93,11 @@ export default function ChatActivity() {
           // TODO: 로딩 컴포넌트 넣기
           <div>로딩중입니다요</div>
         ) : groupRoomId !== null ? (
-          <ChatRoom roomId={groupRoomId} stompClient={stompClient} />
+          <ChatRoom
+            roomInfo={roomInfo as GroupChatRoom}
+            roomId={groupRoomId}
+            stompClient={stompClient}
+          />
         ) : (
           <EmptyChat />
         )}
