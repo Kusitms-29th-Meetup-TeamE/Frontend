@@ -131,7 +131,7 @@ export const getReviewsByMe = async () => {
 // 마이페이지 - 나의 후기 확인하기
 export const getRecievedReviews = async (type?: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/users/reviews?type=${type}`, {
+    const response = await fetch(`${BASE_URL}/users/reviews`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${sessionStorage.accessToken}`,
