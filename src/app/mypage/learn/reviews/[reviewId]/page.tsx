@@ -45,14 +45,14 @@ export default function MyLearnReviewsDetailPage() {
   return (
     <div className="w-full m-auto max-w-[1200px]">
       <Sidebar />
-      <div className="mt-[60px] flex flex-col gap-[30px] ml-[282px] pl-6">
+      <div className="pt-[60px] flex flex-col gap-[30px] ml-[282px] pl-6">
         <MyPageTitle
           title="후기 보내기"
           content="배움 나누기 활동에 대한 후기를 작성해보세요"
         />
         {data && <MyLearnListItem data={data} />}
 
-        <div className="my-[30px] border border-black">
+        <div className="my-[30px]">
           <p className="text-footer-bold">
             <span className="text-primary-orange6">'{data?.title}'</span> 배움에
             대한 후기
@@ -71,7 +71,7 @@ export default function MyLearnReviewsDetailPage() {
           />
         </div>
 
-        <div className="border border-blue-500">
+        <div className="">
           <div className="flex gap-[30px]">
             <span className="text-black text-h3">익명으로 작성할까요?</span>
             <div className="flex gap-5 items-center">

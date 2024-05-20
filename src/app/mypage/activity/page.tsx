@@ -13,7 +13,7 @@ export default function MyPageActivity() {
   return (
     <div className="w-full m-auto max-w-[1200px]">
       <Sidebar />
-      <div className="mt-[60px] flex flex-col gap-[30px] ml-[282px] pl-6">
+      <div className="pt-[60px] flex flex-col gap-[30px] ml-[282px] pl-6">
         <MyPageTitle
           title="활동 참여 내역 보기"
           content="또바에서 참여했던 활동을 한눈에 확인할 수 있어요"
