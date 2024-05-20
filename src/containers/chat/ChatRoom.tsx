@@ -12,7 +12,7 @@ import { MyAppointmentMsgItem } from '@/components/chat/MyAppointmentMsgItem';
 import { MyMsgItem } from '@/components/chat/MyMsgItem';
 import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 
-import { MsgLogProps } from '@/types/chat';
+import { DirectChatRoom, GroupChatRoom, MsgLogProps } from '@/types/chat';
 
 import { useChatStore } from '@/store/chatStore';
 import { CompatClient } from '@stomp/stompjs';
@@ -22,13 +22,13 @@ import Image from 'next/image';
 
 export const ChatRoom = (props: {
   roomId: number;
+  roomInfo: any;
   stompClient: CompatClient | null;
   isGroup?: boolean;
 }) => {
-  const { roomId, stompClient, isGroup = true } = props;
+  const { roomId, roomInfo, stompClient, isGroup = true } = props;
 
   const { myId } = useChatStore();
-  // console.log('roomid', roomId);
 
   const [value, setValue] = useState<string>('');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -148,28 +148,30 @@ export const ChatRoom = (props: {
             key={idx}
             className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
           >
-            {item.senderId !== myId && (
-              <div className="flex gap-3 items-center">
-                <Image
-                  src={item.senderImageUrl ?? '/assets/main/main_banner.png'}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="object-cover w-[48px] h-[48px] rounded-full"
-                />
-                <span className="text-black text-body2">
-                  {item.senderName ?? '또바기'}
-                </span>
-              </div>
-            )}
+            <div>
+              {item.senderId !== myId && (
+                <div className="flex gap-3 items-center">
+                  <Image
+                    src={item.senderImageUrl ?? '/assets/main/main_banner.png'}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="object-cover w-[48px] h-[48px] rounded-full"
+                  />
+                  <span className="text-black text-body2">
+                    {item.senderName ?? '또바기'}
+                  </span>
+                </div>
+              )}
 
-            <Image
-              src={'/assets/ddoba_emoticon.png'}
-              alt=""
-              width={200}
-              height={200}
-              className="object-cover m-3 rounded-[20px]"
-            />
+              <Image
+                src={'/assets/ddoba_emoticon.png'}
+                alt=""
+                width={200}
+                height={200}
+                className="object-cover m-3 rounded-[20px]"
+              />
+            </div>
           </div>
         );
       default:
@@ -187,14 +189,15 @@ export const ChatRoom = (props: {
         <div className="border-b border-b-gray-04 flex justify-between items-center max-h-[118px] px-[30px] py-[22px]">
           <div className="flex gap-5 items-center">
             <Image
-              src={'/assets/main/how3.png'}
+              src={roomInfo.imageUrl}
               width={76}
               height={76}
               alt=""
               className="object-cover w-[76px] h-[76px] rounded-[10px]"
             />
-            {/* TODO: title 수정하기 */}
-            <p className="text-black text-body1">서울 근교 등산 동호회</p>
+            <p className="text-black text-body1">
+              {isGroup ? roomInfo.title : roomInfo.opponentName}
+            </p>
           </div>
           <button
             onClick={handleAppointment}
