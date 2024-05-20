@@ -41,18 +41,39 @@ export const useSelectedJoinChipStore = create<SelectedJoinChipState>(
 
         if (isAgency) {
           // 활동 기관 선택 경우
-          if (!currentAgency.includes(newChip)) {
-            currentAgency.push(newChip); // 선택돼있지 않은 경우 선택
-            return { currentAgency, currentPersonality, isInit: false };
-          } else {
+          if (newChip === '전체') {
+            // '전체' 선택 시 다른 칩들을 모두 제거하고 '전체'만 남김
+            return {
+              currentAgency: initialChip.currentAgency,
+              currentPersonality,
+              isInit: false,
+            };
+          } else if (currentAgency.includes('전체')) {
+            // '전체'가 선택된 상태에서 다른 기관 선택 시 '전체' 제거하고 선택한 기관 추가
             const filteredAgency = currentAgency.filter(
-              (chip) => chip !== newChip,
-            ); // 선택돼있는 경우 선택 해제
+              (chip) => chip !== '전체',
+            );
+            filteredAgency.push(newChip);
             return {
               currentAgency: filteredAgency,
               currentPersonality,
               isInit: false,
             };
+          } else {
+            // 이미 선택된 기관이 있는 경우 해당 기관 선택/해제
+            if (currentAgency.includes(newChip)) {
+              const filteredAgency = currentAgency.filter(
+                (chip) => chip !== newChip,
+              );
+              return {
+                currentAgency: filteredAgency,
+                currentPersonality,
+                isInit: false,
+              };
+            } else {
+              currentAgency.push(newChip);
+              return { currentAgency, currentPersonality, isInit: false };
+            }
           }
         } else {
           if (!currentPersonality.includes(newChip)) {

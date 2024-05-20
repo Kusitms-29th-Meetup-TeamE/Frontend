@@ -91,6 +91,12 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
         // 관심활동 클릭 시 초기화
         setIsSelected(false);
       }
+      if (
+        !currentAgency.includes(text!) &&
+        !currentPersonality.includes(text!)
+      ) {
+        setIsSelected(false);
+      }
     }, [currentAgency, currentPersonality]);
 
     return (
