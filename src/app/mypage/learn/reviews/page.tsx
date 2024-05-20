@@ -9,6 +9,8 @@ import Sidebar from '@/components/mypage/Sidebar';
 import { useGetReviewsByMe } from '@/hooks/api/useMyPage';
 import { ReviewsByMeItem } from '@/types/mypage';
 
+import Link from 'next/link';
+
 export default function MyLearnReviewsPage() {
   const { data } = useGetReviewsByMe();
 
@@ -28,7 +30,11 @@ export default function MyLearnReviewsPage() {
         />
 
         {reviewsList.map((item) => {
-          return <MyLearnListItem key={item.id} data={item} />;
+          return (
+            <Link href={{ pathname: `/mypage/learn/reviews/${item.id}` }}>
+              <MyLearnListItem key={item.id} data={item} />;
+            </Link>
+          );
         })}
       </div>
     </div>
