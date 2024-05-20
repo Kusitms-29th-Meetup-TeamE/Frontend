@@ -10,7 +10,7 @@ import MyLearnListItem from '@/components/mypage/MyLearnListItem';
 import MyPageTitle from '@/components/mypage/MypageTItle';
 import Sidebar from '@/components/mypage/Sidebar';
 
-import { useMyReviews } from '@/hooks/api/useMyPage';
+import { useMyReviews, usePostMyReview } from '@/hooks/api/useMyPage';
 
 import { useParams } from 'next/navigation';
 
@@ -30,6 +30,9 @@ export default function MyLearnReviewsDetailPage() {
 
   const { data } = useMyReviews(Number(params.reviewId));
 
+  const [content, setContent] = useState<string>('');
+  const { mutate } = usePostMyReview(content, Number(params.reviewId));
+
   const handleYesClick = () => {
     setIsCheckedYes(true);
     setIsCheckedNo(false);
@@ -39,10 +42,9 @@ export default function MyLearnReviewsDetailPage() {
     setIsCheckedYes(false);
     setIsCheckedNo(true);
   };
-  console.log('ssss', data);
 
   const handleSubmit = () => {
-    //
+    mutate();
   };
 
   return (
@@ -66,6 +68,7 @@ export default function MyLearnReviewsDetailPage() {
             ref={textareaRef}
             onChange={() => {
               console.log(textareaRef.current?.value);
+              setContent(textareaRef.current?.value as string);
               if (textareaRef.current?.value) setIsDisabled(false);
               else setIsDisabled(true);
             }}
