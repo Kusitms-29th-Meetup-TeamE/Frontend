@@ -27,9 +27,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
     window.location.reload();
   };
 
-  useEffect(() => {
-    // window.location.reload();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="w-full flex items-center fixed z-50 top-0 h-[70px] bg-white">
@@ -69,7 +67,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
               <div className={variants.centerMenu}>활동 참여하기</div>
             </Link>
             <Link
-              href="#"
+              href="/share"
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
