@@ -148,11 +148,26 @@ export const ChatRoom = (props: {
             key={idx}
             className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
           >
+            {item.senderId !== myId && (
+              <div className="flex gap-3 items-center">
+                <Image
+                  src={item.senderImageUrl ?? '/assets/main/main_banner.png'}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="object-cover w-[48px] h-[48px] rounded-full"
+                />
+                <span className="text-black text-body2">
+                  {item.senderName ?? '또바기'}
+                </span>
+              </div>
+            )}
+
             <Image
               src={'/assets/ddoba_emoticon.png'}
               alt=""
-              width={300}
-              height={300}
+              width={200}
+              height={200}
               className="object-cover m-3 rounded-[20px]"
             />
           </div>
