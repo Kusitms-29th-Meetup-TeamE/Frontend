@@ -6,9 +6,11 @@ import {
   getLearnProfile,
   getMyActivities,
   getMyPageInfo,
+  getMyReviews,
   getRecievedReviews,
   getReviewsByMe,
   postLearnProfile,
+  postMyReview,
   putMyPageInfo,
 } from '@/api/mypage';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -93,4 +95,33 @@ export const useMyActivities = () => {
     queryFn: () => getMyActivities(),
   });
   return { data, isLoading, error };
+};
+
+export const useMyReviews = (id: number) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['myReviews'],
+    queryFn: () => getMyReviews(id),
+  });
+  return { data, isLoading, error };
+};
+
+export const usePostMyReview = (content: string, id: number) => {
+  const { setSuccessModal, setErrorModal } = useGlobalModal();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: () => postMyReview(content, id),
+    onSuccess: () => {
+      setSuccessModal({
+        open: true,
+        text: '후기가 등록되었습니다.',
+      });
+    },
+    onError: () => {
+      setErrorModal({
+        open: true,
+        text: '예기치 못한 에러가 발생하였습니다.',
+      });
+    },
+  });
+  return { mutate, isPending, error };
 };

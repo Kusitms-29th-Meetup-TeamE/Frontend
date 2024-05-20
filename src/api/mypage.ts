@@ -169,3 +169,48 @@ export const getMyActivities = async () => {
     throw error;
   }
 };
+
+// 마이페이지 - 후기 페이지에서 해당 배움 정보 확인
+export const getMyReviews = async (id: number) => {
+  try {
+    const response = await fetch(`${BASE_URL}/reviews/${id}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+// 마이페이지 - 후기 등록하기
+export const postMyReview = async (content: string, id: number) => {
+  try {
+    const res = await fetch(`${BASE_URL}/reviews/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+      },
+      body: JSON.stringify({
+        content,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to patch Onboarding Info');
+    }
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
