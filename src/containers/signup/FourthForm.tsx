@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BsPerson } from 'react-icons/bs';
 import { MdOutlineLock } from 'react-icons/md';
@@ -6,6 +6,8 @@ import { MdOutlineLock } from 'react-icons/md';
 import Input from '@/components/common-components/input';
 
 import SignUpTitle from '@/components/signup/SignUpTitle';
+
+import { UserInfoProps } from '@/types/user';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -45,22 +47,12 @@ type Schema = z.infer<typeof schema>;
 export type FourthFormProps = {
   // onSubmit: (data: any) => void;
   setCheckForm: Dispatch<SetStateAction<boolean>>;
-  // TODO: 추후 sign-up api 머지되면 데이터 타입 수정 필요
-  setUserInfo: Dispatch<
-    SetStateAction<{
-      email: string;
-      name: string;
-      password: string;
-      confirmPassword: string;
-      gender: string;
-      birthYear: string;
-      location: string;
-    }>
-  >;
+  setUserInfo: Dispatch<SetStateAction<UserInfoProps>>;
+  userInfo: UserInfoProps;
 };
 
 export default function FourthForm(props: FourthFormProps) {
-  const { setCheckForm, setUserInfo } = props;
+  const { setCheckForm, setUserInfo, userInfo } = props;
 
   const {
     register,
@@ -68,45 +60,67 @@ export default function FourthForm(props: FourthFormProps) {
     formState: { errors, isValid },
     getValues,
     setValue,
+    watch,
   } = useForm<Schema>({
     resolver: zodResolver(schema),
     mode: 'onChange',
     defaultValues: {
-      name: '',
-      password: '',
-      confirmPassword: '',
+      name: userInfo.name,
+      password: userInfo.password,
+      confirmPassword: userInfo.confirmPassword,
     },
   });
 
-  // console.log('isValid:', isValid); // disabled 여부 판단
-  setCheckForm(!isValid);
+  // setCheckForm(!isValid);
 
-  setValue('name', getValues('name'));
-  setValue('password', getValues('password'));
-  setValue('confirmPassword', getValues('confirmPassword'));
+  useEffect(() => {
+    setCheckForm(!isValid);
+  }, [isValid, setCheckForm]);
 
-  console.log('getValues:', getValues());
+  // useEffect(() => {
+  //   setUserInfo((prev) => ({
+  //     ...prev,
+  //     name: getValues('name'),
+  //     password: getValues('password'),
+  //     confirmPassword: getValues('confirmPassword'),
+  //   }));
+  // }, [getValues, setUserInfo]);
 
-  if (isValid) {
-    // setUserInfo((prev) => ({
-    //   ...prev,
-    //   name: getValues('name'),
-    //   password: getValues('password'),
-    //   confirmPassword: getValues('confirmPassword'),
-    // }));
-  }
+  // useEffect(() => {
+  //   const subscirbe = watch((data, { name }) => console.log(data, name));
+  //   return () => subscirbe.unsubscribe();
+  // }, [watch]);
+
+  useEffect(() => {
+    const subscription = watch((value: any) => {
+      setUserInfo((prev) => ({
+        ...prev,
+        name: value.name,
+        password: value.password,
+        confirmPassword: value.confirmPassword,
+      }));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setUserInfo]);
+
+  // setValue('name', getValues('name'));
+  // setValue('password', getValues('password'));
+  // setValue('confirmPassword', getValues('confirmPassword'));
+
+  // useEffect(() => {
+  //   if (isValid) {
+  //     setUserInfo((prev) => ({
+  //       ...prev,
+  //       name: getValues('name'),
+  //       password: getValues('password'),
+  //       confirmPassword: getValues('confirmPassword'),
+  //     }));
+  //   }
+  // }, [isValid]);
 
   const onSubmitForm = (data: Schema) => {
     // onSubmit(data);
-    console.log('onSubmitForm함수 실행됨');
-    // TODO: 전역 상태에 데이터 저장 필요
-
-    // setUserInfo((prev) => ({
-    //   ...prev,
-    //   name: getValues('name'),
-    //   password: getValues('password'),
-    //   confirmPassword: getValues('confirmPassword'),
-    // }));
+    // console.log('onSubmitForm함수 실행됨');
   };
 
   const [nameNotiVisible, setNameNotiVisible] = useState(true);
@@ -133,7 +147,6 @@ export default function FourthForm(props: FourthFormProps) {
           <Input
             startIcon={<BsPerson />}
             size="lg"
-            // defaultValue={name}
             placeholder="이름을 입력해주세요."
             shape="square"
             onFocus={(e) => setNameNotiVisible(false)}

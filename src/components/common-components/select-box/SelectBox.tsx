@@ -18,12 +18,14 @@ const style: {
 } = {
   base: 'absolute w-full mt-1 z-50 rounded-[20px] border border-1 border-gray-05 text-gray-06 bg-white',
   sizes: {
-    sm: '',
+    xs: 'text-gray-07 bg-gray-03 rounded-[22px] flex justify-center items-center gap-1 pl-[22px] pr-3 py-[6px] max-w-[97px] max-h-9 w-full h-full whitespace-pre-wrap',
+    sm: 'text-white bg-[#FB8C4FCC] border border-chip-active flex items-center justify-between gap-2 border border-red-500 rounded-[30px] px-4 py-1',
     // md - 회원가입 생년월일
     md: 'w-full max-w-[192px] text-h4 h-[68px] bg-white text-gray-06 flex flex-row items-center rounded-[20px] border cursor-pointer border-gray-05 py-5 px-7 justify-between',
     lg: '',
   },
   design: {
+    xs: '',
     sm: '',
     md: 'max-w-[192px] max-h-[268px] overflow-y-auto rounded-[20px]',
     lg: '',
@@ -52,13 +54,19 @@ export default function SelectBox({
     <div className={clsx(className, 'w-full relative')}>
       <button
         type="button"
-        className={clsx(style.sizes[size], '')}
+        className={clsx(style.sizes[size], className, '')}
         onMouseDown={() => setIsOpenMenu((prevIsOpenMenu) => !prevIsOpenMenu)}
         onBlur={handleBlur}
       >
         <div
           className={
-            initText === selectedItem ? 'text-gray-06' : 'text-gray-10'
+            size === 'xs'
+              ? 'text-gray-07'
+              : size === 'sm'
+                ? 'text-white'
+                : initText === selectedItem
+                  ? 'text-gray-06'
+                  : 'text-gray-10'
           }
         >
           {selectedItem ? selectedItem : initText ?? `${items[0].text}`}
@@ -66,7 +74,13 @@ export default function SelectBox({
 
         <span
           className={clsx(
-            selectedItem === initText ? 'text-gray-06' : 'text-gray-10',
+            size === 'xs'
+              ? 'text-gray-07'
+              : size === 'sm'
+                ? 'text-white'
+                : initText === selectedItem
+                  ? 'text-gray-06'
+                  : 'text-gray-10',
           )}
         >
           {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -103,11 +117,19 @@ export default function SelectBox({
                     onMouseEnter={() => setHoverMenu(item.value)}
                     onMouseLeave={() => setHoverMenu(null)}
                     className={clsx(
-                      // idx === 0 && 'rounded-t-[20px]',
-                      // idx === items.length - 1 && 'rounded-b-[20px]',
-                      'cursor-pointer px-7 py-[6px] text-h4 box-border',
+                      idx === 0 && 'rounded-t-[20px]',
+                      idx === items.length - 1 && 'rounded-b-[20px]',
+                      size === 'xs' && 'cursor-pointer pl-[22px] pr-3 py-2',
+                      size === 'sm' &&
+                        'cursor-pointer px-[17px] py-3 text-chip-medium box-border',
+                      size === 'md' &&
+                        'cursor-pointer px-7 py-[6px] text-h4 box-border',
                       hoverMenu === item.value &&
+                        size === 'md' &&
                         'bg-primary-orange1 !text-h3 text-primary-orange6',
+                      hoverMenu === item.value &&
+                        size === 'sm' &&
+                        'bg-primary-orange1 !text-chip-bold text-primary-orange6',
                     )}
                   >
                     {item.text}

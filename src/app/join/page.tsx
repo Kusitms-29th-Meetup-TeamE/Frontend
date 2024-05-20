@@ -7,14 +7,16 @@ import Input from '@/components/common-components/input';
 import Pagination from '@/components/common-components/pagination';
 
 import ActivityBanner from '@/components/join/ActivityBanner';
+import RecommendItem from '@/components/main/RecommendItem';
 
-import ActivityContainer, {
-  ActivityType,
-} from '@/containers/join/ActivityContainer';
+import { ActivityType } from '@/types/activity';
+
+import ActivityContainer from '@/containers/join/ActivityContainer';
 import ChipContainer from '@/containers/join/ChipContainer';
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 
 import clsx from 'clsx';
+import Link from 'next/link';
 
 const page = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -178,7 +180,25 @@ const page = () => {
           </div>
         </div>
         <ChipContainer className="mb-10" />
-        <ActivityContainer data={data} className="mb-[100px]" />
+        <ActivityContainer className="mb-[100px]">
+          {data.map((item, key) => (
+            <Link
+              href={{ pathname: `/join/detail/${item.id}` }}
+              // as={'/join/detail'}
+            >
+              <RecommendItem
+                key={key}
+                title={item.title}
+                location={item.location}
+                time={item.time}
+                img={item.imageUrl}
+                isLiked={false}
+                personalities={item.personalities}
+                isHoverSet={false}
+              />
+            </Link>
+          ))}
+        </ActivityContainer>
         <Pagination
           totalPages={8}
           currentPage={currentPage}
