@@ -15,13 +15,23 @@ export const monthItems: SelectItemType[] = [
   { id: 12, text: '12월', value: 12 },
 ];
 
+export const categoryItem: SelectItemType[] = [
+  { id: 1, text: '운동', value: 1 },
+  { id: 2, text: '요리', value: 2 },
+  { id: 3, text: '예술', value: 3 },
+  { id: 4, text: '창작', value: 4 },
+  { id: 5, text: '외국어', value: 5 },
+  { id: 6, text: '디지털', value: 6 },
+  { id: 7, text: '기타', value: 7 },
+];
+
 export const yearItems: SelectItemType[] = []; //
 
 const currentYear = new Date().getFullYear();
-const startYear = 1900; // 시작 연도
-const endYear = currentYear; // 현재 연도
+const startYear = currentYear - 80; // 시작 연도
+const endYear = currentYear - 10; // 현재 연도
 
-for (let year = startYear; year <= endYear; year++) {
+for (let year = endYear; year >= startYear; year--) {
   yearItems.push({
     id: year,
     text: `${year}년`,

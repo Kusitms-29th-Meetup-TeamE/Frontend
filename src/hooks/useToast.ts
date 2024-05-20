@@ -31,3 +31,10 @@ export const useNotifyLoading = (text: string, myPromise: Promise<any>) => {
 export const useNotifyLogin = () => {
   toast.success('로그인이 필요한 서비스입니다.', { duration: 800, icon: '🙂' });
 };
+
+export const useNotifyLater = () => {
+  toast.success('아직 준비되지 않은 기능입니다!', {
+    duration: 800,
+    icon: '🙂',
+  });
+};

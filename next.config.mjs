@@ -4,6 +4,18 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: `www.gimhae.go.kr`,
+      },
+      {
+        protocol: 'https',
+        hostname: `ddoba.s3.ap-northeast-2.amazonaws.com`,
+      },
+    ],
+  },
 };
 
 export default nextConfig;
