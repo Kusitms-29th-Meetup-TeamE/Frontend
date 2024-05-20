@@ -24,6 +24,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
   const handleLogout = () => {
     sessionStorage.clear();
+    localStorage.clear();
     window.location.href = '/';
   };
 
