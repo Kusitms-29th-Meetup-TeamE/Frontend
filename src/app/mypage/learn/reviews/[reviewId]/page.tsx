@@ -26,22 +26,15 @@ export default function MyLearnReviewsDetailPage() {
 
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
-  const [isCheckedYes, setIsCheckedYes] = useState<boolean>(true);
-  const [isCheckedNo, setIsCheckedNo] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(true);
 
   const { data } = useMyReviews(Number(params.reviewId));
 
   const [content, setContent] = useState<string>('');
   const { mutate } = usePostMyReview(content, Number(params.reviewId));
 
-  const handleYesClick = () => {
-    setIsCheckedYes(true);
-    setIsCheckedNo(false);
-  };
-
-  const handleNoClick = () => {
-    setIsCheckedYes(false);
-    setIsCheckedNo(true);
+  const handleClick = () => {
+    setIsChecked((prev) => !prev);
   };
 
   const handleSubmit = () => {
@@ -82,19 +75,13 @@ export default function MyLearnReviewsDetailPage() {
           <div className="flex gap-[30px]">
             <span className="text-black text-h3">익명으로 작성할까요?</span>
             <div className="flex gap-5 items-center">
-              <div
-                className={variants.checkboxContainer}
-                onClick={handleYesClick}
-              >
-                <Checkbox width={19} height={19} isChecked={isCheckedYes} />
+              <div className={variants.checkboxContainer} onClick={handleClick}>
+                <Checkbox width={19} height={19} isChecked={isChecked} />
                 <label className={variants.checkboxLabel}>네</label>
               </div>
 
-              <div
-                className={variants.checkboxContainer}
-                onClick={handleNoClick}
-              >
-                <Checkbox width={19} height={19} isChecked={isCheckedNo} />
+              <div className={variants.checkboxContainer} onClick={handleClick}>
+                <Checkbox width={19} height={19} isChecked={!isChecked} />
                 <label className={variants.checkboxLabel}>아니오</label>
               </div>
             </div>
