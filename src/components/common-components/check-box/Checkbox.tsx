@@ -7,7 +7,7 @@ export type CheckboxProps = {
   height: number;
   isLogin?: boolean;
   isChecked: boolean;
-  handleCheck: () => void;
+  handleCheck?: () => void;
 };
 
 const Checkbox = (props: CheckboxProps) => {

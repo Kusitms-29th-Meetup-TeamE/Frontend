@@ -19,7 +19,7 @@ export type RecommendItemProps = {
   img: string;
   isLiked: boolean;
   className?: string;
-  personalities: string[];
+  personalities?: string[] | string;
   isLoading?: boolean;
   isHoverSet?: boolean;
 };
@@ -65,7 +65,8 @@ export default function RecommendItem(props: RecommendItemProps) {
             {isLoading ? (
               <Skeleton count={1} height={32} width={200} borderRadius={20} />
             ) : (
-              personalities.map((item, idx) => <Chip text={item} key={idx} />)
+              <Chip text={personalities as string} />
+              // personalities?.map((item, idx) => <Chip text={item} key={idx} />)
             )}
           </div>
 

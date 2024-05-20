@@ -14,8 +14,7 @@ const variants = {
   menubar: 'w-1/2 max-w-[760px] flex text-gray-11 justify-between',
   centerMenu: 'text-h3 cursor-pointer',
   rightBar: 'flex items-center gap-[40px] text-gray-07 text-body3',
-  rightMenu:
-    'flex items-center text-gray-07 text-body3 hover:text-red-500 cursor-pointer',
+  rightMenu: 'flex items-center text-gray-07 text-body3 cursor-pointer',
 };
 
 export default function Header({ isGuest }: { isGuest: boolean }) {
@@ -24,7 +23,8 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
   const handleLogout = () => {
     sessionStorage.clear();
-    window.location.reload();
+    localStorage.clear();
+    window.location.href = '/';
   };
 
   useEffect(() => {}, []);
@@ -43,7 +43,6 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
         </Link>
       ) : (
         <div className="w-4/5 flex justify-between m-auto">
-          {/* <div className="flex gap-[200px]"> */}
           <Link href="/">
             <div className="flex gap-[2px] items-center">
               <Image
@@ -59,7 +58,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
           <div className={variants.menubar}>
             <Link
-              href="/join"
+              href={accessToken ? '/join' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -67,7 +66,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
               <div className={variants.centerMenu}>활동 참여하기</div>
             </Link>
             <Link
-              href="/share"
+              href={accessToken ? '/share' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -84,7 +83,6 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
               <div className={variants.centerMenu}>함께 대화하기</div>
             </Link>
           </div>
-          {/* </div> */}
 
           {accessToken ? (
             <div className={variants.rightBar}>
@@ -110,7 +108,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
             </div>
           ) : (
             <div className={variants.rightBar}>
-              <div className="flex gap-1">
+              <div className="flex gap-2">
                 <Link href="/login">
                   <span>로그인</span>
                 </Link>

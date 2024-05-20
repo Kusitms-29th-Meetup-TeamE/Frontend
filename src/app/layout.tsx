@@ -2,6 +2,8 @@
 
 import './globals.css';
 
+import wantedSans from '@/styles/font';
+
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -10,8 +12,6 @@ import Header from '@/components/common-components/common/Header';
 import GlobalModal, {
   GlobalModalProvider,
 } from '@/components/common-components/global-modal';
-
-import wantedSans from '@/utils/font';
 
 import Providers from './providers';
 
