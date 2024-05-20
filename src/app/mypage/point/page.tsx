@@ -19,7 +19,7 @@ export default function MyPoint() {
   }, []);
 
   return (
-    <div className="w-full m-auto max-w-[1200px] border border-black">
+    <div className="w-full m-auto max-w-[1200px]">
       <Sidebar />
       <div className="mt-[60px] flex flex-col gap-[30px] ml-[282px] pl-6">
         <MyPageTitle
