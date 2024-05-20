@@ -8,7 +8,7 @@ import Pagination from '@/components/common-components/pagination';
 
 import ActivityBanner from '@/components/join/ActivityBanner';
 
-import { useAllActivity } from '@/hooks/api/useActivity';
+import { useAllActivity, useLikedActivity } from '@/hooks/api/useActivity';
 
 import ActivityContainer from '@/containers/join/ActivityContainer';
 import ChipContainer from '@/containers/join/ChipContainer';
@@ -37,8 +37,18 @@ const page = () => {
     personalities: currentPersonality,
   });
 
+  const { data: likedData, refetch: likedRefetch } = useLikedActivity({
+    page: currentPage - 1,
+    agencyType:
+      currentAgency.length === 0 || currentAgency.includes('전체')
+        ? undefined
+        : currentAgency.join(','),
+    personalities: currentPersonality,
+  });
+
   useEffect(() => {
     refetch();
+    likedRefetch();
   }, [currentAgency, currentPersonality]);
 
   useEffect(() => {
@@ -83,7 +93,11 @@ const page = () => {
         </div>
         <ChipContainer className="mb-10" />
         <ActivityContainer
-          data={data && data.activitySummaries}
+          data={
+            !isLiked
+              ? data && data.activitySummaries
+              : likedData && likedData.activitySummaries
+          }
           className="mb-[100px]"
         />
         <Pagination

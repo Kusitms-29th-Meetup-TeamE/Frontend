@@ -1,5 +1,7 @@
 import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
+import { personalityItmes } from '@/constants/object';
+
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 
 import { ChipProps } from '.';
@@ -89,7 +91,11 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
     useEffect(() => {
       if (isInit) {
         // 관심활동 클릭 시 초기화
-        setIsSelected(false);
+        if (text === '전체') {
+          setIsSelected(true);
+        } else if (personalityItmes.includes(text!)) {
+          setIsSelected(true);
+        }
       }
       if (
         !currentAgency.includes(text!) &&
