@@ -10,4 +10,6 @@ export type ChipProps = {
   handleSelect?: Dispatch<SetStateAction<string>>;
   isPersonality?: boolean;
   isActivity?: boolean;
+  isLearning?: boolean;
+  isSelected?: boolean;
 };
