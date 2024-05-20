@@ -32,7 +32,7 @@ export default function MyLearnReviewsPage() {
         {reviewsList.map((item) => {
           return (
             <Link href={{ pathname: `/mypage/learn/reviews/${item.id}` }}>
-              <MyLearnListItem key={item.id} data={item} />;
+              <MyLearnListItem key={item.id} data={item} />
             </Link>
           );
         })}

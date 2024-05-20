@@ -12,7 +12,7 @@ import Sidebar from '@/components/mypage/Sidebar';
 
 import { useMyReviews, usePostMyReview } from '@/hooks/api/useMyPage';
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 const variants = {
   checkboxContainer: 'flex flex-row gap-[10px] ml-7 cursor-pointer',
@@ -22,6 +22,7 @@ const variants = {
 export default function MyLearnReviewsDetailPage() {
   const params = useParams();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
 
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
@@ -45,6 +46,7 @@ export default function MyLearnReviewsDetailPage() {
 
   const handleSubmit = () => {
     mutate();
+    router.back();
   };
 
   return (
