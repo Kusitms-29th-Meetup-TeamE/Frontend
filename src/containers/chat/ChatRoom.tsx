@@ -149,7 +149,7 @@ export const ChatRoom = (props: {
             className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
           >
             <Image
-              src={'/assets/chat/emoticon.png'}
+              src={'/assets/ddoba_emoticon.png'}
               alt=""
               width={300}
               height={300}
