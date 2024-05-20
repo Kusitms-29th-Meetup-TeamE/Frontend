@@ -6,9 +6,9 @@ export const useAllActivity = ({
   agencyType,
   personalities,
 }: AllActivityProps) => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['ALL_ACTIVITY'],
     queryFn: () => getAllActivity({ page, agencyType, personalities }),
   });
-  return { data, isLoading, error };
+  return { data, isLoading, error, refetch };
 };

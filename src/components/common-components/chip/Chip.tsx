@@ -1,7 +1,5 @@
 import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
-import { useAllActivity } from '@/hooks/api/useActivity';
-
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 
 import { ChipProps } from '.';
@@ -61,31 +59,39 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
     const isInit = useSelectedJoinChipStore((state) => state.isInit);
-    const currentChips = useSelectedJoinChipStore(
-      (state) => state.currentChips,
+    const currentAgency = useSelectedJoinChipStore(
+      (state) => state.currentAgency,
+    );
+    const currentPersonality = useSelectedJoinChipStore(
+      (state) => state.currentPersonality,
     );
     const setCurrentChips = useSelectedJoinChipStore(
       (state) => state.setCurrentChips,
     );
-    const { data } = useAllActivity({
-      page: 0,
-      // agencyType: '문화센터',
-      personalities: ['배울 수 있는', '활발한'],
-    });
 
     const handleClick = () => {
       if (isBtn && text) {
         setIsSelected((prev) => !prev);
         setCurrentChips(text);
-        console.log(data);
       }
     };
 
     useEffect(() => {
+      // 화면 첫 진입 시 초기화
+      if (
+        currentAgency.includes(text || '') ||
+        currentPersonality.includes(text || '')
+      ) {
+        setIsSelected(true);
+      }
+    }, []);
+
+    useEffect(() => {
       if (isInit) {
+        // 관심활동 클릭 시 초기화
         setIsSelected(false);
       }
-    }, [currentChips]);
+    }, [currentAgency, currentPersonality]);
 
     return (
       <div

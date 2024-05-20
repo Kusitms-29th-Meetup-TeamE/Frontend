@@ -1,5 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { State } from 'react-daum-postcode';
+import React from 'react';
 
 import Chip from '@/components/common-components/chip';
 
@@ -13,6 +12,7 @@ type ChipContainerProps = {
 
 const ChipContainer = (props: ChipContainerProps) => {
   const { className } = props;
+
   return (
     <div className={clsx('py-[33px] pl-10 flex flex-col gap-7', className)}>
       <div className="flex gap-10">
