@@ -19,6 +19,7 @@ const ZeroStep = () => {
           alt=""
           width={99}
           height={102}
+          className="object-cover"
         />
         <div className="text-h2 text-black">
           또바에 오신 것을 환영합니다!
@@ -27,6 +28,7 @@ const ZeroStep = () => {
             alt=""
             width={342}
             height={12}
+            className="object-cover"
           />
         </div>
         <Image
@@ -34,6 +36,7 @@ const ZeroStep = () => {
           alt=""
           width={99}
           height={102}
+          className="object-cover"
         />
       </div>
       <div className="w-screen h-full absolute top-[129px]">

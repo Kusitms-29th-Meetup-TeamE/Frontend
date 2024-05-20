@@ -18,7 +18,7 @@ const SecondStep = () => {
         width={1000}
         height={500}
         alt={''}
-        className="mt-[-100px]"
+        className="mt-[-100px] object-cover"
       />
     </OnboardingFrame>
   );

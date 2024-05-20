@@ -18,12 +18,14 @@ const style: {
 } = {
   base: 'absolute w-full mt-1 z-50 rounded-[20px] border border-1 border-gray-05 text-gray-06 bg-white',
   sizes: {
+    xs: 'text-gray-07 bg-gray-03 rounded-[22px] flex justify-center items-center gap-1 pl-[22px] pr-3 py-[6px] max-w-[97px] max-h-9 w-full h-full whitespace-pre-wrap',
     sm: 'text-white bg-[#FB8C4FCC] border border-chip-active flex items-center justify-between gap-2 border border-red-500 rounded-[30px] px-4 py-1',
     // md - 회원가입 생년월일
     md: 'w-full max-w-[192px] text-h4 h-[68px] bg-white text-gray-06 flex flex-row items-center rounded-[20px] border cursor-pointer border-gray-05 py-5 px-7 justify-between',
     lg: '',
   },
   design: {
+    xs: '',
     sm: '',
     md: 'max-w-[192px] max-h-[268px] overflow-y-auto rounded-[20px]',
     lg: '',
@@ -58,11 +60,13 @@ export default function SelectBox({
       >
         <div
           className={
-            size === 'sm'
-              ? 'text-white'
-              : initText === selectedItem
-                ? 'text-gray-06'
-                : 'text-gray-10'
+            size === 'xs'
+              ? 'text-gray-07'
+              : size === 'sm'
+                ? 'text-white'
+                : initText === selectedItem
+                  ? 'text-gray-06'
+                  : 'text-gray-10'
           }
         >
           {selectedItem ? selectedItem : initText ?? `${items[0].text}`}
@@ -70,11 +74,13 @@ export default function SelectBox({
 
         <span
           className={clsx(
-            size === 'sm'
-              ? 'text-white'
-              : initText === selectedItem
-                ? 'text-gray-06'
-                : 'text-gray-10',
+            size === 'xs'
+              ? 'text-gray-07'
+              : size === 'sm'
+                ? 'text-white'
+                : initText === selectedItem
+                  ? 'text-gray-06'
+                  : 'text-gray-10',
           )}
         >
           {isOpenMenu ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -113,6 +119,7 @@ export default function SelectBox({
                     className={clsx(
                       idx === 0 && 'rounded-t-[20px]',
                       idx === items.length - 1 && 'rounded-b-[20px]',
+                      size === 'xs' && 'cursor-pointer pl-[22px] pr-3 py-2',
                       size === 'sm' &&
                         'cursor-pointer px-[17px] py-3 text-chip-medium box-border',
                       size === 'md' &&

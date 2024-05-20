@@ -27,9 +27,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
     window.location.href = '/';
   };
 
-  useEffect(() => {
-    // window.location.reload();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="w-full flex items-center fixed z-50 top-0 h-[70px] bg-white">

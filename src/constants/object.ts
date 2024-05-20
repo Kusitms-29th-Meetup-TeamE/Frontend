@@ -81,6 +81,17 @@ export const personalityItmes: string[] = [
   '자연친화적인',
 ];
 
+export const learningCategoryItems: string[] = [
+  '전체',
+  '운동',
+  '요리',
+  '예술',
+  '창작',
+  '외국어',
+  '디지털',
+  '기타',
+];
+
 export const pointNotice = [
   {
     text: '‘활동참여하기’에서 활동을 신청했다면',
