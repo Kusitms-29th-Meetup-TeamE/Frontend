@@ -39,7 +39,7 @@ export type CalendarParams = {
 };
 
 export interface MyCalendarListItem {
-  data: string;
+  date: string;
   tag: string;
   description: string;
   about: string;
