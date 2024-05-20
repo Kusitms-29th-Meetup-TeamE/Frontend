@@ -1,37 +1,78 @@
+import { agentItmes, personalityItmes } from '@/constants/object';
+
 import { create } from 'zustand';
 
 interface SelectedJoinChipState {
-  currentChips: string[];
+  currentAgency: string[];
+  currentPersonality: string[];
   isInit: boolean;
-  initCurrentChips: () => void;
+  initChips: () => void;
   setCurrentChips: (chip: string) => void;
-  getCurrentChips: () => string[];
+  getCurrentAgency: () => string[];
+  getCurretPersonality: () => string[];
 }
 
-const initialChip = { currentChips: [], isInit: false };
+const initialChip = {
+  currentAgency: ['전체'],
+  currentPersonality: personalityItmes,
+  isInit: false,
+};
 
 export const useSelectedJoinChipStore = create<SelectedJoinChipState>(
   (set, get) => ({
-    currentChips: initialChip.currentChips,
+    currentAgency: initialChip.currentAgency,
+    currentPersonality: initialChip.currentPersonality,
     isInit: initialChip.isInit,
 
-    initCurrentChips: () =>
-      set(() => ({ currentChips: initialChip.currentChips, isInit: true })),
+    initChips: () =>
+      set(() => ({
+        currentAgency: initialChip.currentAgency,
+        currentPersonality: initialChip.currentPersonality,
+        isInit: true,
+      })),
 
     setCurrentChips: (newChip: string) =>
       set((state) => {
-        const currentChips = [...state.currentChips];
+        const currentAgency = [...state.currentAgency];
+        const currentPersonality = [...state.currentPersonality];
 
-        if (!currentChips.includes(newChip)) {
-          currentChips.push(newChip); // 선택돼있지 않은 경우 선택
-          return { currentChips, isInit: false };
+        // 활동 기관 / 활동 성격의 종류 구분
+        const isAgency = agentItmes.includes(newChip);
+
+        if (isAgency) {
+          // 활동 기관 선택 경우
+          if (!currentAgency.includes(newChip)) {
+            currentAgency.push(newChip); // 선택돼있지 않은 경우 선택
+            return { currentAgency, currentPersonality, isInit: false };
+          } else {
+            const filteredAgency = currentAgency.filter(
+              (chip) => chip !== newChip,
+            ); // 선택돼있는 경우 선택 해제
+            return {
+              currentAgency: filteredAgency,
+              currentPersonality,
+              isInit: false,
+            };
+          }
         } else {
-          const filteredChips = currentChips.filter((chip) => chip !== newChip); // 선택돼있는 경우 선택 해제
-          return { currentChips: filteredChips, isInit: false };
+          if (!currentPersonality.includes(newChip)) {
+            currentPersonality.push(newChip); // 선택돼있지 않은 경우 선택
+            return { currentAgency, currentPersonality, isInit: false };
+          } else {
+            const filteredPersonality = currentPersonality.filter(
+              (chip) => chip !== newChip,
+            ); // 선택돼있는 경우 선택 해제
+            return {
+              currentAgency,
+              currentPersonality: filteredPersonality,
+              isInit: false,
+            };
+          }
         }
       }),
 
-    getCurrentChips: () => get().currentChips,
+    getCurrentAgency: () => get().currentAgency,
+    getCurretPersonality: () => get().currentPersonality,
   }),
 );
 
