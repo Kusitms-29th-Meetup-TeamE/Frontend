@@ -11,11 +11,14 @@ import { pointNotice } from '@/constants/object';
 import { formatDate } from '@/utils';
 
 export default function MyPoint() {
-  const [today, setToday] = useState<Date>();
-  const name = localStorage.getItem('name');
+  const [today, setToday] = useState<Date | null>(null);
+  const [name, setName] = useState<string>('');
+
+  // const name = localStorage.getItem('name');
 
   useEffect(() => {
     setToday(new Date());
+    setName(localStorage.getItem('name') as string);
   }, []);
 
   return (
