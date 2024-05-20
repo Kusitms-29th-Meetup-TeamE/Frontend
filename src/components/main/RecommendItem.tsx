@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa6';
 import { FaHeart } from 'react-icons/fa6';
 
+import {
+  usePostActivityLike,
+  usePostActivityNotLike,
+} from '@/hooks/api/useActivity';
+
 import Chip from '../common-components/chip';
 import Skeleton from '../common-components/skeleton';
 
@@ -11,6 +16,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 
 export type RecommendItemProps = {
+  id?: number;
   title: string;
   location: string;
   maxParticipants?: number;
@@ -26,6 +32,7 @@ export type RecommendItemProps = {
 
 export default function RecommendItem(props: RecommendItemProps) {
   const {
+    id,
     title,
     personalities,
     location,
@@ -40,6 +47,13 @@ export default function RecommendItem(props: RecommendItemProps) {
   } = props;
 
   const [hover, setHover] = useState<boolean>(false);
+  const [isItemLiked, setIsItemLiked] = useState<boolean>(isLiked);
+
+  const { mutate: postMutate, isPending: postPending } = usePostActivityLike(
+    id!,
+  );
+  const { mutate: cancelMutate, isPending: cancelPending } =
+    usePostActivityNotLike(id!);
 
   return (
     <div
@@ -69,17 +83,25 @@ export default function RecommendItem(props: RecommendItemProps) {
             )}
           </div>
 
-          {isLiked ? (
+          {isItemLiked ? (
             <FaHeart
               width={25}
               height={25}
-              className="cursor-pointer text-primary-orange5 text-[24px]"
+              className="cursor-pointer text-primary-orange5 text-[24px] z-10"
+              onClick={() => {
+                cancelMutate();
+                setIsItemLiked(false);
+              }}
             />
           ) : (
             <FaRegHeart
               width={25}
               height={25}
-              className="cursor-pointer text-primary-orange5 text-[24px]"
+              className="cursor-pointer text-primary-orange5 text-[24px] z-10"
+              onClick={() => {
+                postMutate();
+                setIsItemLiked(true);
+              }}
             />
           )}
         </div>

@@ -51,11 +51,12 @@ const ActivityContainer = (props: ActivityContainerProps) => {
           >
             <RecommendItem
               key={key}
+              id={item.id}
               title={item.title}
               location={item.location}
               time={item.time}
               img={item.activityThumbnail}
-              isLiked={false}
+              isLiked={item.liked}
               personalities={[item.personality]}
               isHoverSet={false}
             />
