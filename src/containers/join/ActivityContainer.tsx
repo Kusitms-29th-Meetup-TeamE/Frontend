@@ -10,7 +10,7 @@ export type ActivityItem = {
   id: number;
   title: string;
   agency: string;
-  agencyType: string;
+  agencyTypes: string;
   location: string;
   personality: string;
   time: string;

@@ -2,18 +2,18 @@ import { BASE_URL } from './index';
 
 export type AllActivityProps = {
   page: number;
-  agencyType?: string;
+  agencyTypes?: string;
   personalities: string[];
 };
 
 export const getAllActivity = async ({
   page,
-  agencyType,
+  agencyTypes,
   personalities,
 }: AllActivityProps) => {
-  if (agencyType) {
+  if (agencyTypes) {
     const res = await fetch(
-      `${BASE_URL}/activities?page=${page}&agencyType=${agencyType}&personalities=${personalities}`,
+      `${BASE_URL}/activities?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`,
       {
         method: 'GET',
         headers: {
@@ -23,7 +23,7 @@ export const getAllActivity = async ({
     );
 
     if (!res.ok) {
-      console.log('Error on fetching ');
+      console.log('Error on fetching on All Activities');
     }
 
     const data = res.json();
@@ -40,7 +40,7 @@ export const getAllActivity = async ({
     );
 
     if (!res.ok) {
-      console.log('Error on fetching ');
+      console.log('Error on fetching on All Activities');
     }
 
     const data = res.json();
@@ -50,12 +50,12 @@ export const getAllActivity = async ({
 
 export const getLikedActivity = async ({
   page,
-  agencyType,
+  agencyTypes,
   personalities,
 }: AllActivityProps) => {
-  if (agencyType) {
+  if (agencyTypes) {
     const res = await fetch(
-      `${BASE_URL}/activities/liked?page=${page}&agencyType=${agencyType}&personalities=${personalities}`,
+      `${BASE_URL}/activities/liked?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`,
       {
         method: 'GET',
         headers: {
@@ -65,7 +65,7 @@ export const getLikedActivity = async ({
     );
 
     if (!res.ok) {
-      console.log('Error on fetching ');
+      console.log('Error on fetching on Liked Activities');
     }
 
     const data = res.json();
@@ -82,10 +82,26 @@ export const getLikedActivity = async ({
     );
 
     if (!res.ok) {
-      console.log('Error on fetching ');
+      console.log('Error on fetching on Liked Activities');
     }
 
     const data = res.json();
     return data;
   }
+};
+
+export const getActivityDetail = async (id: number) => {
+  const res = await fetch(`${BASE_URL}/${id}/activity-details`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+    },
+  });
+
+  if (!res.ok) {
+    console.log('Error on fetching Activity Detail');
+  }
+
+  const data = res.json();
+  return data;
 };

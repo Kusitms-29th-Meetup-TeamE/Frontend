@@ -30,7 +30,7 @@ const page = () => {
 
   const { data, refetch } = useAllActivity({
     page: currentPage - 1,
-    agencyType:
+    agencyTypes:
       currentAgency.length === 0 || currentAgency.includes('전체')
         ? undefined
         : currentAgency.join(','),
@@ -39,7 +39,7 @@ const page = () => {
 
   const { data: likedData, refetch: likedRefetch } = useLikedActivity({
     page: currentPage - 1,
-    agencyType:
+    agencyTypes:
       currentAgency.length === 0 || currentAgency.includes('전체')
         ? undefined
         : currentAgency.join(','),
