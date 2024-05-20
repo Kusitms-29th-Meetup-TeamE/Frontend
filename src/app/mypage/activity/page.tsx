@@ -30,7 +30,7 @@ export default function MyPageActivity() {
                 time={item.time}
                 isLiked={item.liked}
                 isHoverSet={false}
-                // personalities={item.personalities}
+                personalities={item.personality}
               />
             );
           })}
