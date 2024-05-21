@@ -23,10 +23,10 @@ const ChipContainer = (props: ChipContainerProps) => {
               key={key}
               text={item}
               size="md"
+              focusType="disabledDark"
               isBtn={true}
               isSelected={false}
               isPersonality={false}
-              isActivity={true}
             />
           ))}
         </div>
@@ -39,6 +39,7 @@ const ChipContainer = (props: ChipContainerProps) => {
               key={key}
               text={item}
               size="md"
+              focusType="disabledDark"
               isBtn={true}
               isSelected={false}
             />

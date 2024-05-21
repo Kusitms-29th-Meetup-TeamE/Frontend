@@ -51,7 +51,8 @@ const page = () => {
                   text={item}
                   key={item}
                   size="md"
-                  initialChip={'전체'}
+                  focusType="disabledLight"
+                  initialChip={selectedChip}
                   handleSelect={setSelectedChip}
                   isBtn={true}
                   isPersonality={false}
