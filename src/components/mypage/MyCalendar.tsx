@@ -19,8 +19,6 @@ export default function MyCalendar() {
   const month = Number(moment(date).format('MM'));
   const year = Number(moment(date).format('YYYY'));
 
-  console.log('date', month, year);
-
   const { data, isLoading, isPlaceholderData } = useMyCalendar({
     year: year,
     month: month,
@@ -42,7 +40,7 @@ export default function MyCalendar() {
     [data],
   );
 
-  console.log('toMeetList', toMeetList);
+  // console.log('toMeetList', toMeetList);
 
   const dateList = useMemo(
     () => toMeetList.map((appointment) => appointment.date),
@@ -69,7 +67,6 @@ export default function MyCalendar() {
                 moment(item.date).format('YYYY-MM-DD') ===
                 moment(date).format('YYYY-MM-DD'),
             );
-            console.log('sisi', toMeetItems);
             return (
               <div className="w-full flex flex-col items-center">
                 {toMeetItems.map((item, index) => {
@@ -117,7 +114,7 @@ export default function MyCalendar() {
                 {item?.tag}
               </span>
               <span className="text-body2 ml-4">{item?.description}</span>
-              <span> - </span>
+              <span className="text-body2"> - </span>
               <span className="text-body2">{item?.about}</span>
             </div>
           );

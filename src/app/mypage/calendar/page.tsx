@@ -9,7 +9,7 @@ export default function MyPageCalendar() {
       <div className="pt-[60px] inline-flex flex-col gap-[30px] ml-[282px] pl-6">
         <MyPageTitle
           title="나의 일정 확인하기"
-          content="요거 바꿔야함 통해 얻은 경험 내역을 확인해보세요"
+          content="활동, 배움 일정을 한 눈에 확인할 수 있어요"
         />
         <MyCalendar />
       </div>
