@@ -1,7 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCirclePlus } from 'react-icons/fa6';
+
+import { useMyLearningProfile } from '@/hooks/api/useLearning';
+import { LearningProfileType } from '@/types/learning';
 
 import Chip from '../common-components/chip';
 
@@ -12,6 +15,18 @@ import { usePathname } from 'next/navigation';
 const LearningProfile = ({ className }: { className?: string }) => {
   const pathname = usePathname();
   const isMypage = pathname.includes('mypage');
+
+  const [info, setInfo] = useState<LearningProfileType>();
+
+  const { data: NotMypageData, isLoading, error } = useMyLearningProfile();
+
+  useEffect(() => {
+    console.log(pathname);
+    console.log(isMypage);
+    if (!isMypage) {
+      setInfo(NotMypageData);
+    }
+  }, [NotMypageData]);
 
   return (
     <div
@@ -30,7 +45,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
         />
       ) : (
         <Image
-          src={'/assets/onboarding/check.png'}
+          src={info ? info.imageUrl : '/assets/onboarding/check.png'}
           width={227}
           height={227}
           alt={''}
@@ -43,24 +58,26 @@ const LearningProfile = ({ className }: { className?: string }) => {
           isMypage ? '' : ' mt-[179px]',
         )}
       >
-        <span className="ml-[13px] text-black text-footer-bold">김복순</span>
+        <span className="ml-[13px] text-black text-footer-bold">
+          {info && info.name}
+        </span>
         <div className="w-fit h-fit rounded-[18.5px] flex gap-[10px] bg-white px-[14px] py-1 text-notification-chip-no text-gray-08">
-          <span>62세</span>
+          <span>{info && info.age} 세</span>
           <span>|</span>
-          <span>남</span>
+          <span>{info && info.gender}</span>
           <span>|</span>
-          <span>불광동</span>
+          <span>{info && info.location}</span>
         </div>
       </div>
       <ul className="flex flex-col gap-2">
-        <li className="flex items-center px-4 py-[13px] bg-white rounded-[20px]">
-          <Chip type="운동" className="mr-[10px]" />
-          <span className="text-body2 text-black">탁구</span>
-        </li>
-        <li className="flex items-center px-4 py-[13px] bg-white rounded-[20px]">
-          <Chip type="운동" className="mr-[10px]" />
-          <span className="text-body2 text-black">탁구</span>
-        </li>
+        {info &&
+          info.experiences.map((item) => (
+            <li className="flex items-center px-4 py-[13px] bg-white rounded-[20px] whitespace-nowrap">
+              <Chip type={item.type} className="mr-[10px]" />
+              <span className="text-body2 text-black">{item.message}</span>
+            </li>
+          ))}
+
         {isMypage ? (
           ''
         ) : (
