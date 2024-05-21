@@ -98,6 +98,10 @@ export const postLocalUserInfo = async ({
     }),
   })
     .then((res) => {
+      if (res.status === 500) {
+        throw new Error('Internal Server Error');
+      }
+
       if (res.headers) {
         let jwtToken = res.headers.get('Authorization');
         jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
@@ -112,6 +116,7 @@ export const postLocalUserInfo = async ({
     })
     .catch((err) => {
       console.log('err', err);
+      throw err; // 오류를 다시 던져서 리액트 쿼리의 onError로 가도록
     });
 };
 
