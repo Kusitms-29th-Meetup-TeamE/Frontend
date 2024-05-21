@@ -6,10 +6,10 @@ export const EmptyChat = () => {
       <div className="h-full flex flex-col items-center justify-center">
         <Image
           src={'/assets/main/how3.png'}
-          width={230}
+          width={280}
           height={300}
           alt=""
-          className="object-cover w-[230px] h-[250px]"
+          className="object-cover w-[280px] h-[250px]"
         />
 
         <div className="-mt-[40px]">

@@ -4,11 +4,10 @@ import { useMemo } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 import MainTitle from '@/components/main/MainTitle';
-import RecommendItem, {
-  RecommendItemProps,
-} from '@/components/main/RecommendItem';
+import RecommendItem from '@/components/main/RecommendItem';
 
 import { useMainDataList } from '@/hooks/api/useMain';
+import { RecommendItemProps } from '@/types/activity';
 
 import { useRouter } from 'next/navigation';
 

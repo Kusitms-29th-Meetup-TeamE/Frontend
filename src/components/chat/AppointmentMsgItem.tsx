@@ -14,8 +14,7 @@ export const AppointmentMsgItem = (props: { data: MsgLogProps }) => {
     <div className="inline-flex flex-col gap-3">
       <div className="flex gap-3 items-center">
         <Image
-          src={'/assets/main/main_banner.png'}
-          //   src={data.senderImageUrl ?? '/assets/main/main_banner.png'}
+          src={data.senderImageUrl ?? '/assets/main/main_banner.png'}
           alt=""
           width={48}
           height={48}

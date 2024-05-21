@@ -56,7 +56,12 @@ export default function Sidebar() {
 
       {/* 메뉴 부분 */}
       <div>
-        <ul className={sidebarStyle.ul}>나의 일정 확인하기</ul>
+        <ul
+          onClick={() => router.push('/mypage/calendar')}
+          className={sidebarStyle.ul}
+        >
+          나의 일정 확인하기
+        </ul>
         <ul
           onClick={() => router.push('/mypage/activity')}
           className={sidebarStyle.ul}
