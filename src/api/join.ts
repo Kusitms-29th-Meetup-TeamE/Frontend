@@ -1,58 +1,35 @@
-import { BASE_URL } from './index';
+import { ActivityRequestProps } from '@/types/activity';
 
-export type AllActivityProps = {
-  page: number;
-  agencyTypes?: string;
-  personalities: string[];
-};
+import { BASE_URL } from './index';
 
 export const getAllActivity = async ({
   page,
   agencyTypes,
   personalities,
-}: AllActivityProps) => {
-  if (agencyTypes) {
-    const res = await fetch(
-      `${BASE_URL}/activities?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${sessionStorage.accessToken}`,
-        },
-      },
-    );
+}: ActivityRequestProps) => {
+  const url = agencyTypes
+    ? `${BASE_URL}/activities?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`
+    : `${BASE_URL}/activities?page=${page}&personalities=${personalities}`;
 
-    if (!res.ok) {
-      console.log('Error on fetching on All Activities');
-    }
+  const res = await fetch(`${url}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+    },
+  });
 
-    const data = res.json();
-    return data;
-  } else {
-    const res = await fetch(
-      `${BASE_URL}/activities?page=${page}&personalities=${personalities}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${sessionStorage.accessToken}`,
-        },
-      },
-    );
-
-    if (!res.ok) {
-      console.log('Error on fetching on All Activities');
-    }
-
-    const data = res.json();
-    return data;
+  if (!res.ok) {
+    console.log('Error on fetching on Liked Activities');
   }
+
+  return res.json();
 };
 
 export const getLikedActivity = async ({
   page,
   agencyTypes,
   personalities,
-}: AllActivityProps) => {
+}: ActivityRequestProps) => {
   const url = agencyTypes
     ? `${BASE_URL}/activities/liked?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`
     : `${BASE_URL}/activities/liked?page=${page}&personalities=${personalities}`;
@@ -68,8 +45,7 @@ export const getLikedActivity = async ({
     console.log('Error on fetching on Liked Activities');
   }
 
-  const data = res.json();
-  return data;
+  return res.json();
 };
 
 export const getActivityDetail = async (id: number) => {
@@ -84,8 +60,7 @@ export const getActivityDetail = async (id: number) => {
     console.log('Error on fetching Activity Detail');
   }
 
-  const data = res.json();
-  return data;
+  return res.json();
 };
 
 export const postActivityLike = async (id: number) => {

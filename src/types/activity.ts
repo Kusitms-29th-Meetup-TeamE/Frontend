@@ -31,6 +31,12 @@ export type AllActivity = {
   activitySummaries: ActivityType[];
 };
 
+export type ActivityRequestProps = {
+  page: number;
+  agencyTypes?: string;
+  personalities: string[];
+};
+
 export type LearningType = {
   id?: string;
   imageUrl: string;
