@@ -1,4 +1,8 @@
-import { LearnProfileProps, MyPageInfoProps } from '@/types/mypage';
+import {
+  CalendarParams,
+  LearnProfileProps,
+  MyPageInfoProps,
+} from '@/types/mypage';
 
 import { BASE_URL } from '.';
 
@@ -212,5 +216,30 @@ export const postMyReview = async (content: string, id: number) => {
     return res;
   } catch (err) {
     throw err;
+  }
+};
+
+// 마이페이지 - 마이페이지 캘린더 조회
+export const getMyCalendar = async (readCalenderReq: CalendarParams) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/users/mypage/calender?year=${readCalenderReq.year}&month=${readCalenderReq.month}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${sessionStorage.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
   }
 };

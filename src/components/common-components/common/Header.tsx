@@ -5,7 +5,7 @@ import { CgProfile } from 'react-icons/cg';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { VscBell } from 'react-icons/vsc';
 
-import { useNotifyLogin } from '@/hooks/useToast';
+import { useNotifyLater, useNotifyLogin } from '@/hooks/useToast';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -87,11 +87,14 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
           {accessToken ? (
             <div className={variants.rightBar}>
-              <div className={variants.rightMenu}>
+              <div
+                className={variants.rightMenu}
+                onClick={() => useNotifyLater()}
+              >
                 <VscBell width={20} height={20} />
                 <span className="pl-[4px]">알림</span>
               </div>
-              <Link href="/mypage">
+              <Link href="/mypage/calendar">
                 <span className={variants.rightMenu}>
                   <CgProfile width={20} height={20} />
                   <span className="pl-[4px]">마이페이지</span>
