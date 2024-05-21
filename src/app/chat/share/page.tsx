@@ -7,6 +7,7 @@ import Skeleton from '@/components/common-components/skeleton';
 import { OneRoomItem } from '@/components/chat/OneRoomItem';
 
 import { useChatRoomsDirect } from '@/hooks/api/useChat';
+import { DirectChatRoom } from '@/types/chat';
 
 import { SOCKET_URL } from '@/api';
 import { ChatRoom } from '@/containers/chat/ChatRoom';
@@ -23,11 +24,6 @@ export default function ChatSharePage() {
   const { setMyId } = useChatStore();
 
   const [directRoomId, setDirectRoomId] = useState<number | null>(null);
-
-  const handleClick = (id: number) => {
-    setMyId(data?.myId as number);
-    setDirectRoomId(id); // roomId 담아주기
-  };
 
   const [stompClient, setStompClient] = useState<CompatClient | null>(null);
   const [isSocketLoading, setIsSocketLoading] = useState<boolean>(true); // 추가
@@ -59,6 +55,14 @@ export default function ChatSharePage() {
 
   useEffect(connectToWebSocket, []);
 
+  const [roomInfo, setRoomInfo] = useState<DirectChatRoom>();
+
+  const handleClick = (item: DirectChatRoom) => {
+    setMyId(data?.myId as number);
+    setDirectRoomId(item.id); // roomId 담아주기
+    setRoomInfo(item);
+  };
+
   return (
     <div className="w-full mx-auto pt-[40px] max-w-[1200px] flex">
       <RoomList
@@ -70,7 +74,7 @@ export default function ChatSharePage() {
             <div
               key={idx}
               className="mr-[10px]"
-              onClick={() => handleClick(item.id)}
+              onClick={() => handleClick(item)}
             >
               {isLoading ? (
                 <Skeleton width={470} height={170} />
@@ -92,6 +96,7 @@ export default function ChatSharePage() {
         ) : directRoomId !== null ? (
           <ChatRoom
             isGroup={false}
+            roomInfo={roomInfo as DirectChatRoom}
             roomId={directRoomId}
             stompClient={stompClient}
           />
