@@ -12,10 +12,10 @@ import Link from 'next/link';
 
 const variants = {
   menubar: 'w-1/2 max-w-[760px] flex text-gray-11 justify-between',
-  centerMenu: 'text-h3 cursor-pointer',
+  centerMenu: 'text-h3 cursor-pointer hover:text-primary-orange6',
   rightBar: 'flex items-center gap-[40px] text-gray-07 text-body3',
   rightMenu:
-    'flex items-center text-gray-07 text-body3 hover:text-red-500 cursor-pointer',
+    'flex items-center text-gray-07 text-body3 hover:text-primary-orange6 cursor-pointer',
 };
 
 export default function Header({ isGuest }: { isGuest: boolean }) {
