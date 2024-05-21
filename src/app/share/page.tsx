@@ -32,6 +32,7 @@ const page = () => {
 
   useEffect(() => {
     refetch();
+    setCurrentPage(1);
   }, [selectDropbox, selectedChip]);
 
   return (
