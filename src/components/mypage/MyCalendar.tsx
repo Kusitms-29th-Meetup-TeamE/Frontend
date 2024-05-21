@@ -48,7 +48,7 @@ export default function MyCalendar() {
   );
 
   return (
-    <div className="flex flex-col w-full border border-black">
+    <div className="flex flex-col w-full">
       <Calendar
         formatDay={(locale, date) => moment(date).format('D')}
         locale="ko"
@@ -113,7 +113,18 @@ export default function MyCalendar() {
               >
                 {item?.tag}
               </span>
-              <span className="text-body2 ml-4">{item?.description}</span>
+              <span
+                className={clsx(
+                  'text-body2 ml-4',
+                  item?.description.includes('배움 나누기') &&
+                    'text-secondary-violet7',
+                  item?.description.includes('약속') && 'text-[#EFBA00]',
+                  item?.description.includes('활동 참여') &&
+                    'text-primary-orange6',
+                )}
+              >
+                {item?.description}
+              </span>
               <span className="text-body2"> - </span>
               <span className="text-body2">{item?.about}</span>
             </div>
