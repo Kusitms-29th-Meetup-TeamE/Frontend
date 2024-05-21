@@ -27,10 +27,14 @@ export const useLearningDetail = (experieceId: number) => {
   return { data, isLoading, error, refetch };
 };
 
-export const useMyLearningProfile = (experienceId: number) => {
+export const useMyLearningProfile = () => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['MY_LEARNING_PROFILE', 'SHARE_PAGE', experienceId],
-    queryFn: () => getMyLearningProfile(experienceId),
+    queryKey: [
+      'MY_LEARNING_PROFILE',
+      'SHARE_PAGE',
+      sessionStorage.getItem('accessToken'),
+    ],
+    queryFn: () => getMyLearningProfile(),
   });
   return { data, isLoading, error };
 };

@@ -36,3 +36,17 @@ export type LearningRequestType = {
   sort: string;
   category: string;
 };
+
+export type LearningProfileType = {
+  imageUrl: string;
+  name: string;
+  age: number;
+  gender: string;
+  location: string;
+  experiences: [
+    {
+      type: 'string';
+      message: 'string';
+    },
+  ];
+};

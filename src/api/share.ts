@@ -39,7 +39,7 @@ export const getLearningDetail = async (experienceId: number) => {
   return res.json();
 };
 
-export const getMyLearningProfile = async (experienceId: number) => {
+export const getMyLearningProfile = async () => {
   const res = await fetch(`${BASE_URL}/experiences/profile`, {
     method: 'GET',
     headers: {
