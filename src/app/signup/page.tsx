@@ -77,8 +77,6 @@ export default function SignUp() {
     day: '',
   });
 
-  console.log('userinfo', userInfo);
-
   const { mutate, isPending } = useLocalUserInfo(userInfo);
 
   const handleNextClick = () => {

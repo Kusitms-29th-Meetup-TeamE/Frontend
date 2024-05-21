@@ -128,9 +128,7 @@ export default function FifthForm({ setUserInfo, userInfo }: FifthFormProps) {
 
             <div className="relative mt-1">
               <Input
-                onChange={() => {
-                  // console.log(emailInputRef.current?.value);
-                }}
+                onChange={() => {}}
                 size="lg"
                 value={location}
                 placeholder="오른쪽 버튼을 눌러 주소를 검색해보세요."

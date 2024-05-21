@@ -101,11 +101,11 @@ const page = () => {
   const [selectDropbox, setSelectDropbox] = useState<string | number>();
 
   useEffect(() => {
-    console.log(selectDropbox);
+    // console.log(selectDropbox);
   }, [selectDropbox]);
 
   useEffect(() => {
-    console.log(selectedChip);
+    // console.log(selectedChip);
   }, [selectedChip]);
 
   return (

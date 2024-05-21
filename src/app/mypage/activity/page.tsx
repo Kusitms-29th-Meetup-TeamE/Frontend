@@ -8,7 +8,6 @@ import { useMyActivities } from '@/hooks/api/useMyPage';
 
 export default function MyPageActivity() {
   const { data, isLoading } = useMyActivities();
-  console.log('hihi', data);
 
   return (
     <div className="w-full m-auto max-w-[1200px]">

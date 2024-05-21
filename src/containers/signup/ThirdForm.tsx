@@ -55,11 +55,9 @@ export default function ThirdForm(props: ThirdFormProps) {
 
   const checkAuthNum = (input: any) => {
     if (input === authAnswer) {
-      console.log('인증성공');
       useNotifySuccess('인증이 완료되었습니다.');
       setAuthEmail(true);
     } else {
-      console.log('실패');
       useNotifyError('인증에 실패하였습니다. 다시 시도해주세요.');
     }
   };

@@ -16,11 +16,11 @@ const page = () => {
   }
 
   const { data } = useKakaoToken(kakaoCode);
-  console.log('회원가입 시 데이터: ', data);
+  // console.log('회원가입 시 데이터: ', data);
 
   useEffect(() => {
-    console.log('hi');
-    console.log(data);
+    // console.log('hi');
+    // console.log(data);
   }, []);
 
   useEffect(() => {

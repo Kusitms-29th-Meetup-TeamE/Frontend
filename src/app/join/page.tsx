@@ -66,6 +66,8 @@ const page = () => {
     }
   }, [isLiked]);
 
+  const [tempValue, setTempValue] = useState<string>('');
+
   return (
     <>
       <ActivityBanner
@@ -76,9 +78,10 @@ const page = () => {
       <div className="max-w-[1210px] w-full mx-auto">
         <div className="mt-[60px] flex justify-between">
           <Input
-            onChange={() => console.log('input 클릭')}
+            onChange={(e) => setTempValue(e.currentTarget.value)}
             placeholder={'찾으시는 활동을 검색해보세요!'}
             search={true}
+            value={tempValue}
             shape={'rounded'}
             size={'sm'}
           />

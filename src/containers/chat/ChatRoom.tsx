@@ -59,7 +59,6 @@ export const ChatRoom = (props: {
         callback,
       );
       setSubscription(newSubscription);
-      console.log('here', stompClient?.connected);
       setChatList([]);
       setLogData([]);
     }
@@ -182,8 +181,6 @@ export const ChatRoom = (props: {
   const handleAppointment = () => {
     setModalOpen((prev) => !prev);
   };
-
-  // console.log('ll', logData);
 
   return (
     <>

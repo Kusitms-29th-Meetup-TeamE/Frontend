@@ -67,7 +67,7 @@ const ReviewSlider = () => {
     if (currentReview < data.length) {
       setCurrentReview((prev) => prev + 3);
     }
-    console.log(currentReview);
+    // console.log(currentReview);
   }, [currentReview]);
 
   //   useEffect(() => {

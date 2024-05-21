@@ -32,7 +32,7 @@ const variants = {
 const page = ({ params }: DetailProps) => {
   const router = useRouter();
   const handleClick = () => {
-    console.log('채팅방으로 이동');
+    // console.log('채팅방으로 이동');
   };
 
   const reviewChipsItem = ['운동', '요리', '하'];

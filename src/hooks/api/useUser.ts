@@ -36,7 +36,6 @@ export const useKakaoUserInfo = (data: KakaoUserProps) => {
       });
     },
     onError: (err: any) => {
-      console.log(err);
       setErrorModal({
         open: true,
         text: '예상치 못한 에러가 발생하였습니다.',
@@ -52,7 +51,6 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => postLocalUserInfo(data),
     onSuccess: (res) => {
-      console.log(res);
       setSuccessModal({
         open: true,
         text: '회원 정보가 등록되었습니다.',
@@ -61,7 +59,6 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
       // router.push('/login');
     },
     onError: (err: any) => {
-      console.log(err);
       setErrorModal({
         open: true,
         text: '예상치 못한 에러가 발생하였습니다.',
@@ -99,7 +96,6 @@ export const useLocalLogin = ({
       }
     },
     onError: (err: any) => {
-      console.log(err);
       setErrorModal({
         open: true,
         text: '로그인에 실패하였습니다.',
