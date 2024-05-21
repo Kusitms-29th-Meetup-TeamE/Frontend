@@ -26,7 +26,9 @@
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
   background-color: #eee;
-  border-radius: 50px;
+  border-radius: 10px;
+  padding: 4px 8px;
+  border-box: box-sizing;
 }
 
 /* 년/월 상단 네비게이션 칸 크기 줄이기 */
