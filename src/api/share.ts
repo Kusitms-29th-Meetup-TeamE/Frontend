@@ -38,3 +38,18 @@ export const getLearningDetail = async (experienceId: number) => {
 
   return res.json();
 };
+
+export const getMyLearningProfile = async (experienceId: number) => {
+  const res = await fetch(`${BASE_URL}/experiences/profile`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+    },
+  });
+
+  if (!res.ok) {
+    console.log('Error on fetching on My Learning Profile');
+  }
+
+  return res.json();
+};

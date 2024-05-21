@@ -1,6 +1,10 @@
 import { LearningRequestType } from '@/types/learning';
 
-import { getAllLearning, getLearningDetail } from '@/api/share';
+import {
+  getAllLearning,
+  getLearningDetail,
+  getMyLearningProfile,
+} from '@/api/share';
 import { useQuery } from '@tanstack/react-query';
 
 export const useAllLearning = ({
@@ -21,4 +25,12 @@ export const useLearningDetail = (experieceId: number) => {
     queryFn: () => getLearningDetail(experieceId),
   });
   return { data, isLoading, error, refetch };
+};
+
+export const useMyLearningProfile = (experienceId: number) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['MY_LEARNING_PROFILE', 'SHARE_PAGE', experienceId],
+    queryFn: () => getMyLearningProfile(experienceId),
+  });
+  return { data, isLoading, error };
 };
