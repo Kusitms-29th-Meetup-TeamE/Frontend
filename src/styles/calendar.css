@@ -59,7 +59,7 @@
 
 /* 일 날짜 간격 */
 .react-calendar__tile {
-  padding: 14px 10px !important;
+  padding: 14px !important;
   box-sizing: border-box !important;
   /* width: 120px !important; */
   height: 166px !important;

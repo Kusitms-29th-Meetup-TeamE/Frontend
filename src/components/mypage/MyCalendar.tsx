@@ -68,7 +68,7 @@ export default function MyCalendar() {
                 moment(date).format('YYYY-MM-DD'),
             );
             return (
-              <div className="w-full flex flex-col items-center">
+              <div className="w-[120%] -ml-2 flex flex-col justify-center items-center">
                 {toMeetItems.map((item, index) => {
                   return (
                     <div
