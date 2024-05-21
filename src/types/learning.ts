@@ -10,12 +10,20 @@ export type LearningType = {
   message: string;
 };
 
-export type ReviewSliderProps = {
-  id?: string;
+export type ReviewItemType = {
   title: string;
   content: string;
-  writer: string;
+  name: string;
   date: string;
+};
+
+export type ReviewProps = {
+  type: string;
+  reviews: ReviewItemType[];
+};
+
+export type ReviewSliderProps = {
+  reviewList: ReviewProps[];
 };
 
 export type OthreLearningItemProps = {

@@ -34,21 +34,16 @@ const LearningItem = ({
       <div className="ml-[10px] mt-3 flex items-center">
         <span className="mr-[10px] text-footer-bold text-black">{name}</span>
         <p className="flex gap-3 text-gray-08 text-chip-medium">
-          <span>{age}</span>
+          <span>{age} 세</span>
           <span>|</span>
           <span>{gender}</span>
           <span>|</span>
           <span>{location}</span>
         </p>
       </div>
-      <div
-        className={clsx(
-          'mt-[14px] w-full h-[80px] pt-3 pl-[19px] pr-[22px] pb-4 rounded-[20px] bg-gray-03 text-body3 text-black',
-          'multiLineText',
-        )}
-      >
+      <span className="mt-[14px] w-full h-[80px] pt-3 pl-[19px] pr-[22px] pb-4 rounded-[20px] bg-gray-03 text-body3 text-black text-ellipsis overflow-hidden">
         {message}
-      </div>
+      </span>
     </div>
   );
 };
