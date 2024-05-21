@@ -42,7 +42,7 @@ const page = () => {
       />
       <div className="max-w-[1200px] w-full mx-auto pt-14 flex gap-6">
         <LearningProfile className="mt-[70px]" />
-        <section className="flex flex-col">
+        <section className="w-full flex flex-col">
           <section className="w-full flex justify-between">
             <section className="h-9 flex gap-5 mb-[34px]">
               {learningCategoryItems.map((item, key) => (
