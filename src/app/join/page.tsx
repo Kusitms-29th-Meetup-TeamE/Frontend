@@ -30,7 +30,7 @@ const page = () => {
     (state) => state.currentPersonality,
   );
 
-  const { data, refetch } = useAllActivity({
+  const { data, isLoading, refetch } = useAllActivity({
     page: currentPage - 1,
     agencyTypes:
       currentAgency.length === 0 || currentAgency.includes('전체')
@@ -39,7 +39,11 @@ const page = () => {
     personalities: currentPersonality,
   });
 
-  const { data: likedData, refetch: likedRefetch } = useLikedActivity({
+  const {
+    data: likedData,
+    isLoading: likedLoading,
+    refetch: likedRefetch,
+  } = useLikedActivity({
     page: currentPage - 1,
     agencyTypes:
       currentAgency.length === 0 || currentAgency.includes('전체')
@@ -49,6 +53,7 @@ const page = () => {
   });
 
   useEffect(() => {
+    setCurrentPage(1);
     refetch();
     likedRefetch();
   }, [currentAgency, currentPersonality]);
@@ -57,6 +62,7 @@ const page = () => {
     // 관심활동 클릭 시 선택된 태그 초기화
     if (isLiked) {
       initChips();
+      setCurrentPage(1);
     }
   }, [isLiked]);
 
@@ -99,7 +105,7 @@ const page = () => {
             ? data &&
               data.activitySummaries.map((item: ActivityType, key: number) => (
                 <RecommendItem
-                  key={key}
+                  key={item.id.toString() + item.liked}
                   id={item.id}
                   title={item.title}
                   location={item.location}
@@ -108,13 +114,14 @@ const page = () => {
                   isLiked={item.liked}
                   personalities={[item.personality]}
                   isHoverSet={false}
+                  isLoading={isLoading}
                 />
               ))
             : likedData &&
               likedData.activitySummaries.map(
                 (item: ActivityType, key: number) => (
                   <RecommendItem
-                    key={key}
+                    key={item.id.toString() + item.liked}
                     id={item.id}
                     title={item.title}
                     location={item.location}
@@ -123,6 +130,7 @@ const page = () => {
                     isLiked={item.liked}
                     personalities={[item.personality]}
                     isHoverSet={false}
+                    isLoading={likedLoading}
                   />
                 ),
               )}
