@@ -13,6 +13,7 @@ import JoinActivityModal from '@/components/join/JoinActivityModal';
 import JoinSlider from '@/components/join/JoinSlider';
 
 import { useActivityDetail } from '@/hooks/api/useActivity';
+import { DetailProps } from '@/types/activity';
 
 import { useRouter } from 'next/navigation';
 
@@ -25,11 +26,7 @@ const variants = {
     'bg-gray-02 rounded-[20px] px-6 py-[23px] whitespace-pre-wrap text-gray-10 text-body3 leading-[30px]',
 };
 
-type ActivityDetailProps = {
-  params: { id: number };
-};
-
-const page = ({ params }: ActivityDetailProps) => {
+const page = ({ params }: DetailProps) => {
   // TODO: 활동 아이디로 api 연동 예정
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -51,7 +48,7 @@ const page = ({ params }: ActivityDetailProps) => {
     <div className="max-w-[1200px] w-full h-full mx-auto pt-8 flex flex-col">
       <button className={variants.prev} onClick={() => router.back()}>
         <MdKeyboardArrowLeft width={16} height={16} />
-        <span className="">이전으로</span>
+        <span>이전으로</span>
       </button>
       <span className="text-h2 text-primary-orange6 mb-[4px]">
         {data && data.title}

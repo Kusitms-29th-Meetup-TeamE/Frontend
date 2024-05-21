@@ -18,7 +18,7 @@ const ThirdStep = () => {
         alt=""
         width={715}
         height={590}
-        className="mb-[-90px]"
+        className="mb-[-90px] object-cover"
       />
     </OnboardingFrame>
   );

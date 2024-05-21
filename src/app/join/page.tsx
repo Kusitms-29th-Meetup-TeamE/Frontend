@@ -7,8 +7,10 @@ import Input from '@/components/common-components/input';
 import Pagination from '@/components/common-components/pagination';
 
 import ActivityBanner from '@/components/join/ActivityBanner';
+import RecommendItem from '@/components/main/RecommendItem';
 
 import { useAllActivity, useLikedActivity } from '@/hooks/api/useActivity';
+import { ActivityType } from '@/types/activity';
 
 import ActivityContainer from '@/containers/join/ActivityContainer';
 import ChipContainer from '@/containers/join/ChipContainer';
@@ -92,14 +94,39 @@ const page = () => {
           </div>
         </div>
         <ChipContainer className="mb-10" />
-        <ActivityContainer
-          data={
-            !isLiked
-              ? data && data.activitySummaries
-              : likedData && likedData.activitySummaries
-          }
-          className="mb-[100px]"
-        />
+        <ActivityContainer className="mb-[100px]">
+          {!isLiked
+            ? data &&
+              data.activitySummaries.map((item: ActivityType, key: number) => (
+                <RecommendItem
+                  key={key}
+                  id={item.id}
+                  title={item.title}
+                  location={item.location}
+                  time={item.time}
+                  img={item.activityThumbnail}
+                  isLiked={item.liked}
+                  personalities={[item.personality]}
+                  isHoverSet={false}
+                />
+              ))
+            : likedData &&
+              likedData.activitySummaries.map(
+                (item: ActivityType, key: number) => (
+                  <RecommendItem
+                    key={key}
+                    id={item.id}
+                    title={item.title}
+                    location={item.location}
+                    time={item.time}
+                    img={item.activityThumbnail}
+                    isLiked={item.liked}
+                    personalities={[item.personality]}
+                    isHoverSet={false}
+                  />
+                ),
+              )}
+        </ActivityContainer>
         <Pagination
           totalPages={8}
           currentPage={currentPage}

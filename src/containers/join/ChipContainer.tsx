@@ -26,6 +26,7 @@ const ChipContainer = (props: ChipContainerProps) => {
               isBtn={true}
               isSelected={false}
               isPersonality={false}
+              isActivity={true}
             />
           ))}
         </div>

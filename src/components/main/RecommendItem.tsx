@@ -8,27 +8,14 @@ import {
   usePostActivityLike,
   usePostActivityNotLike,
 } from '@/hooks/api/useActivity';
+import { RecommendItemProps } from '@/types/activity';
 
 import Chip from '../common-components/chip';
 import Skeleton from '../common-components/skeleton';
 
 import clsx from 'clsx';
 import Image from 'next/image';
-
-export type RecommendItemProps = {
-  id?: number;
-  title: string;
-  location: string;
-  maxParticipants?: number;
-  currentParticipants?: number;
-  time: string;
-  img: string;
-  isLiked: boolean;
-  className?: string;
-  personalities: string[];
-  isLoading?: boolean;
-  isHoverSet?: boolean;
-};
+import Link from 'next/link';
 
 export default function RecommendItem(props: RecommendItemProps) {
   const {
@@ -64,13 +51,15 @@ export default function RecommendItem(props: RecommendItemProps) {
       {isLoading ? (
         <Skeleton width={380} height={380} borderRadius={20} />
       ) : (
-        <Image
-          src={img ?? '/assets/main/main_banner.png'}
-          height={380}
-          width={380}
-          alt=""
-          className="cursor-pointer object-cover rounded-[20px] w-full h-[380px]"
-        />
+        <Link href={{ pathname: `/join/detail/${id}` }}>
+          <Image
+            src={img ?? '/assets/main/main_banner.png'}
+            height={380}
+            width={380}
+            alt=""
+            className="cursor-pointer object-cover rounded-[20px] w-full h-[380px]"
+          />
+        </Link>
       )}
 
       <div className="mt-[14px]">
@@ -79,7 +68,8 @@ export default function RecommendItem(props: RecommendItemProps) {
             {isLoading ? (
               <Skeleton count={1} height={32} width={200} borderRadius={20} />
             ) : (
-              personalities.map((item, idx) => <Chip text={item} key={idx} />)
+              <Chip text={personalities as string} />
+              // personalities?.map((item, idx) => <Chip text={item} key={idx} />)
             )}
           </div>
 
@@ -107,9 +97,11 @@ export default function RecommendItem(props: RecommendItemProps) {
         </div>
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[9px]">
-            <span className="text-gray-11 text-body2 cursor-pointer">
-              {isLoading ? <Skeleton width={380} height={30} /> : title}
-            </span>
+            <Link href={{ pathname: `/join/detail/${id}` }}>
+              <span className="text-gray-11 text-body2 cursor-pointer">
+                {isLoading ? <Skeleton width={380} height={30} /> : title}
+              </span>
+            </Link>
             <span className="text-gray-07 text-h5">
               {isLoading ? <Skeleton width={380} height={30} /> : location}
             </span>
