@@ -7,9 +7,12 @@ import Chip from '../common-components/chip';
 
 import clsx from 'clsx';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const LearningProfile = ({ className }: { className?: string }) => {
-  const isMypage = false;
+  const pathname = usePathname();
+  const isMypage = pathname.includes('mypage');
+
   return (
     <div
       className={clsx(
