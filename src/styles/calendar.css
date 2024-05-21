@@ -1,7 +1,7 @@
 .react-calendar {
-  width: 100%;
+  width: 100% !important;
   height: 100%;
-  /* max-width: 900px; */
+  max-width: 900px !important;
   padding: 20px;
   border-radius: 40px;
   border: 1px solid #a4a4a4;
@@ -46,26 +46,40 @@
   text-decoration: none;
 }
 
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  /* justify-content: start; */
+  gap: 10px !important;
+}
+
 .react-calendar__month-view__days__day--weekend {
   color: black;
 }
 
 /* 일 날짜 간격 */
 .react-calendar__tile {
-  padding: 200px;
-  /* height: 166px; */
-  /* position: relative; */
+  padding: 14px !important;
+  box-sizing: border-box !important;
+  /* width: 120px !important; */
+  height: 166px !important;
+  background: #f6f6f6 !important;
+  border-radius: 30px !important;
+
+  display: flex !important;
+  align-items: start !important;
 }
 
-//현재 날짜
-  .react-calendar__tile--now {
+/* 현재 날짜*/
+.react-calendar__tile--now {
   background: transparent;
-  color: black;
+  color: pink !important;
   font-weight: bold;
 
   /* border: 1px solid #757575; */
   /* border-radius: 100%; */
 }
+
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
   background: #e6e6e6;

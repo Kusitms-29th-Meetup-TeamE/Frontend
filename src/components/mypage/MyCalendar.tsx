@@ -1,9 +1,13 @@
+'use client';
+
+import '@/styles/calendar.css';
 import 'react-calendar/dist/Calendar.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
 
 import { useMyCalendar } from '@/hooks/api/useMyPage';
+import { MyCalendarListItem } from '@/types/mypage';
 
 import moment from 'moment';
 
@@ -18,20 +22,61 @@ export default function MyCalendar() {
   }, [month]);
 
   const handleDateChange = (newDate: Date) => {
+    console.log('hihi', newDate);
     setDate(newDate);
   };
 
-  //
   const { data } = useMyCalendar({
     year: 2024,
     month: 5,
   });
 
-  console.log('calendar', data);
+  const toMeetList: MyCalendarListItem[] = useMemo(
+    () => data?.appointments ?? [],
+    [data],
+  );
+
+  console.log('toMeetList', toMeetList);
+
+  const dateList = useMemo(
+    () => toMeetList.map((appointment) => appointment.date),
+    [toMeetList],
+  );
 
   return (
-    <div>
-      <Calendar locale="ko" onChange={() => handleDateChange} value={date} />
+    <div className="flex flex-col w-full border border-black">
+      <Calendar
+        formatDay={(locale, date) => moment(date).format('D')}
+        locale="ko"
+        onChange={() => handleDateChange}
+        value={date}
+        calendarType="gregory"
+        next2Label={null}
+        prev2Label={null}
+        tileContent={({ date, view }) => {
+          if (
+            view === 'month' &&
+            dateList.includes(moment(date).format('YYYY-MM-DD'))
+          ) {
+            const toMeetItems = toMeetList.filter(
+              (item) =>
+                moment(item.date).format('YYYY-MM-DD') ===
+                moment(date).format('YYYY-MM-DD'),
+            );
+            console.log('sisi', toMeetItems);
+            return (
+              <div className="flex justify-center items-center absoluteDiv">
+                {toMeetItems.map((item, index) => (
+                  <div key={index} className="">
+                    {item.tag}
+                  </div>
+                ))}
+              </div>
+            );
+          }
+        }}
+      />
+      <div> selected date : {moment(date).format('YYYY년 MM월 DD일')}</div>
     </div>
   );
 }
