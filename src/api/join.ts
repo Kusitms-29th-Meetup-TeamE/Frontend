@@ -7,11 +7,15 @@ export const getAllActivity = async ({
   agencyTypes,
   personalities,
 }: ActivityRequestProps) => {
-  const url = agencyTypes
-    ? `${BASE_URL}/activities?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`
-    : `${BASE_URL}/activities?page=${page}&personalities=${personalities}`;
+  const params = { page: page.toString() };
+  const queryParams = new URLSearchParams(params);
+  if (agencyTypes) {
+    queryParams.append('agencyTypes', agencyTypes);
+  }
+  personalities.forEach((p) => queryParams.append('personalities', p));
+  const queryString = queryParams.toString();
 
-  const res = await fetch(`${url}`, {
+  const res = await fetch(`${BASE_URL}/activities?${queryString}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${sessionStorage.accessToken}`,
