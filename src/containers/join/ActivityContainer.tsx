@@ -1,20 +1,11 @@
 import React from 'react';
 
-import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
+import { ActivityContainerProps } from '@/types/activity';
 
-export type ActivityContainerProps = {
-  className?: string;
-  children?: React.ReactNode;
-};
+import clsx from 'clsx';
 
 const ActivityContainer = (props: ActivityContainerProps) => {
-  const router = useRouter();
   const { className, children } = props;
-
-  const handleItemClick = (id: string) => {
-    router.push(`/join/detail/${id}`);
-  };
 
   return (
     <div

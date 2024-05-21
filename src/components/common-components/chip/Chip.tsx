@@ -1,5 +1,7 @@
 import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
+import { personalityItmes } from '@/constants/object';
+
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 import useSelectedLearningChipStore from '@/store/share/selectedLearningChipStore';
 
@@ -58,8 +60,8 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       isBtn = false,
       initialChip,
       handleSelect,
+      isActivity,
       isPersonality = true,
-      isActivity = false,
     } = props;
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
@@ -67,8 +69,11 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
 
     // 활동 참여하기
     const isInit = useSelectedJoinChipStore((state) => state.isInit);
-    const currentChips = useSelectedJoinChipStore(
-      (state) => state.currentChips,
+    const currentAgency = useSelectedJoinChipStore(
+      (state) => state.currentAgency,
+    );
+    const currentPersonality = useSelectedJoinChipStore(
+      (state) => state.currentPersonality,
     );
     const setCurrentChips = useSelectedJoinChipStore(
       (state) => state.setCurrentChips,
@@ -87,12 +92,10 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
 
     const handleClick = () => {
       if (isBtn && text) {
-        // if (isActivity && !isLearning) {
         // 활동 참여하기
-        if (isActivity) {
-          setIsSelected((prev) => !prev);
-          setCurrentChips(text);
-        } else if (text !== selectedChip && handleSelect) {
+        setIsSelected((prev) => !prev);
+        setCurrentChips(text);
+        if (text !== selectedChip && handleSelect) {
           setSelectedChip(text);
           handleSelect(text);
         }
@@ -105,6 +108,16 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
     };
 
     useEffect(() => {
+      // 화면 첫 진입 시 초기화
+      if (
+        currentAgency.includes(text || '') ||
+        currentPersonality.includes(text || '')
+      ) {
+        setIsSelected(true);
+      }
+    }, []);
+
+    useEffect(() => {
       if (handleSelect) {
         handleSelect(selectedChip);
         setIsSelected(selectedChip === text);
@@ -112,18 +125,22 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
     }, [selectedChip, text]);
 
     useEffect(() => {
-      // 활동 참여하기
-      if (isActivity && isInit) {
-        setIsSelected(false);
+      if (isInit) {
+        // 관심활동 클릭 시 초기화
+        if (text === '전체') {
+          setIsSelected(true);
+        } else if (personalityItmes.includes(text!)) {
+          setIsSelected(true);
+        }
       }
 
-      // // 배움 나누기
-      // if (isLearning && getCurrentLearningChip() !== text) {
-      //   setIsSelected(false);
-      // } else {
-      //   setIsSelected(true);
-      // }
-    }, [currentChips]);
+      if (
+        !currentAgency.includes(text!) &&
+        !currentPersonality.includes(text!)
+      ) {
+        setIsSelected(false);
+      }
+    }, [currentAgency, currentPersonality]);
 
     return (
       <div

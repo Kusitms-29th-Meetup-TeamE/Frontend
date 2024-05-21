@@ -122,8 +122,8 @@ const page = ({ params }: DetailProps) => {
               key={item}
               isBtn={true}
               isPersonality={false}
-              isActivity={true} // 스타일 적용 위함
-              isLearning={true}
+              // isActivity={true} // 스타일 적용 위함
+              // isLearning={true}
               isSelected={false}
               className="cursor-pointer"
             />

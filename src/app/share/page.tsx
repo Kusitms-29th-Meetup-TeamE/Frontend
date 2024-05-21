@@ -141,10 +141,7 @@ const page = () => {
           <ActivityContainer className="grid !grid-rows-2 !grid-cols-3 !gap-y-[60px] !mb-[146px]">
             {data.map((item, key) => {
               return (
-                <Link
-                  href={{ pathname: `/share/detail/${item.id}` }}
-                  // as={'/join/detail'}
-                >
+                <Link href={{ pathname: `/share/detail/${item.id}` }}>
                   <LearningItem
                     key={key + item.name}
                     imageUrl={item.imageUrl}
