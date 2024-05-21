@@ -183,7 +183,7 @@ export const ChatRoom = (props: {
     setModalOpen((prev) => !prev);
   };
 
-  console.log('ll', logData);
+  // console.log('ll', logData);
 
   return (
     <>
