@@ -133,9 +133,11 @@ export const usePostMyReview = (content: string, id: number) => {
 };
 
 export const useMyCalendar = (param: CalendarParams) => {
-  const { data, isLoading, error } = useQuery<MyCalendarResponse>({
-    queryKey: ['myCalendar', param],
-    queryFn: () => getMyCalendar(param),
-  });
-  return { data, isLoading, error };
+  const { data, isLoading, error, isPlaceholderData } =
+    useQuery<MyCalendarResponse>({
+      queryKey: ['myCalendar', param],
+      queryFn: () => getMyCalendar(param),
+      placeholderData: (prev, _) => prev,
+    });
+  return { data, isLoading, error, isPlaceholderData };
 };

@@ -20,7 +20,7 @@ export default function MyCalendar() {
 
   console.log('date', month, year);
 
-  const { data, isLoading } = useMyCalendar({
+  const { data, isLoading, isPlaceholderData } = useMyCalendar({
     year: year,
     month: month,
   });
