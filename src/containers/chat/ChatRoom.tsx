@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { FaRegSmile } from 'react-icons/fa';
 import { LuCalendarDays } from 'react-icons/lu';
 
 import Button from '@/components/common-components/button';
@@ -248,26 +249,30 @@ export const ChatRoom = (props: {
         </div>
 
         <div className="flex gap-4 h-[94px] px-[30px] py-[18px]">
-          <button
-            onClick={() => sendEmoticon(roomId)}
-            className="w-[120px] rounded-full border-2 text-gray-09 text-h3 border-primary-orange6 hover:bg-primary-orange1"
-          >
-            또바 :D
-          </button>
-          <Input
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            size="lg"
-            placeholder="메시지를 입력하세요."
-            shape="square"
-            type="text"
-            className="!bg-gray-02 border-gray-04"
-            onKeyDown={(ev) => {
-              if (ev.keyCode === 13) {
-                sendChat(roomId);
-              }
-            }}
-          />
+          <div className="relative w-full">
+            <button
+              onClick={() => sendEmoticon(roomId)}
+              className="absolute h-[38px] inline-flex gap-[6px] items-center z-50 top-[10px] left-[10px] py-[6px] px-3 rounded-[20px] bg-primary-orange1 border border-primary-orange6 hover:bg-primary-orange2 text-h5 text-primary-orange6"
+            >
+              <FaRegSmile />
+              보고싶어요
+            </button>
+
+            <Input
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              size="lg"
+              placeholder="메시지를 입력하세요."
+              shape="square"
+              type="text"
+              className="pl-[136px] !bg-gray-02 border-gray-04 !h-[58px]"
+              onKeyDown={(ev) => {
+                if (ev.keyCode === 13) {
+                  sendChat(roomId);
+                }
+              }}
+            />
+          </div>
           <Button
             size="sm"
             shape="square"
