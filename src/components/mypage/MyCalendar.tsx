@@ -9,27 +9,23 @@ import Calendar from 'react-calendar';
 import { useMyCalendar } from '@/hooks/api/useMyPage';
 import { MyCalendarListItem } from '@/types/mypage';
 
+import clsx from 'clsx';
 import moment from 'moment';
 
 export default function MyCalendar() {
   const [date, setDate] = useState(new Date());
-  //   const setCalendarDate = useSetRecoilState(selectedDate);
 
-  const month = moment(date).format('MM');
+  const month = Number(moment(date).format('MM'));
+  const year = Number(moment(date).format('YYYY'));
 
-  useEffect(() => {
-    // setCalendarDate(month);
-  }, [month]);
+  console.log('date', month, year);
 
-  const handleDateChange = (newDate: Date) => {
-    console.log('hihi', newDate);
-    setDate(newDate);
-  };
-
-  const { data } = useMyCalendar({
-    year: 2024,
-    month: 5,
+  const { data, isLoading } = useMyCalendar({
+    year: year,
+    month: month,
   });
+
+  useEffect(() => {}, [month]);
 
   const toMeetList: MyCalendarListItem[] = useMemo(
     () => data?.appointments ?? [],
@@ -48,7 +44,7 @@ export default function MyCalendar() {
       <Calendar
         formatDay={(locale, date) => moment(date).format('D')}
         locale="ko"
-        onChange={() => handleDateChange}
+        onChange={(value) => setDate(value as Date)}
         value={date}
         calendarType="gregory"
         next2Label={null}
@@ -65,9 +61,20 @@ export default function MyCalendar() {
             );
             console.log('sisi', toMeetItems);
             return (
-              <div className="flex justify-center items-center absoluteDiv">
+              <div className="w-full flex flex-col items-center">
                 {toMeetItems.map((item, index) => (
-                  <div key={index} className="">
+                  <div
+                    key={index}
+                    className={clsx(
+                      'mt-[2px] w-full py-[7px] px-2 rounded-[15px] border text-chip-semibold-sm text-start',
+                      item.description.includes('배움 나누기') &&
+                        'bg-secondary-violet2 border-secondary-violet7 text-secondary-violet7',
+                      item.description.includes('약속') &&
+                        'bg-[#FFF8DD] border-chip-creative text-[#EFBA00]',
+                      item.description.includes('활동 참여') &&
+                        'bg-primary-orange2 border-primary-orange5 text-primary-orange6',
+                    )}
+                  >
                     {item.tag}
                   </div>
                 ))}
