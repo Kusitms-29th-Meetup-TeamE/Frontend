@@ -1,14 +1,10 @@
 import React from 'react';
 
-import RecommendItem from '@/components/main/RecommendItem';
-
 import { ActivityContainerProps } from '@/types/activity';
 
 import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
 
 const ActivityContainer = (props: ActivityContainerProps) => {
-  const router = useRouter();
   const { className, children } = props;
 
   return (

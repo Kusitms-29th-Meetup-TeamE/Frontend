@@ -53,41 +53,23 @@ export const getLikedActivity = async ({
   agencyTypes,
   personalities,
 }: AllActivityProps) => {
-  if (agencyTypes) {
-    const res = await fetch(
-      `${BASE_URL}/activities/liked?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${sessionStorage.accessToken}`,
-        },
-      },
-    );
+  const url = agencyTypes
+    ? `${BASE_URL}/activities/liked?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`
+    : `${BASE_URL}/activities/liked?page=${page}&personalities=${personalities}`;
 
-    if (!res.ok) {
-      console.log('Error on fetching on Liked Activities');
-    }
+  const res = await fetch(`${url}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${sessionStorage.accessToken}`,
+    },
+  });
 
-    const data = res.json();
-    return data;
-  } else {
-    const res = await fetch(
-      `${BASE_URL}/activities/liked?page=${page}&personalities=${personalities}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${sessionStorage.accessToken}`,
-        },
-      },
-    );
-
-    if (!res.ok) {
-      console.log('Error on fetching on Liked Activities');
-    }
-
-    const data = res.json();
-    return data;
+  if (!res.ok) {
+    console.log('Error on fetching on Liked Activities');
   }
+
+  const data = res.json();
+  return data;
 };
 
 export const getActivityDetail = async (id: number) => {
