@@ -49,13 +49,13 @@ const LearningProfile = ({ className }: { className?: string }) => {
           width={227}
           height={227}
           alt={''}
-          className="absolute top-[-13%] rounded-full object-cover"
+          className="absolute top-[-8%] rounded-full object-cover"
         />
       )}
       <div
         className={clsx(
           'mb-[18px] flex items-center justify-between',
-          isMypage ? '' : ' mt-[179px]',
+          isMypage ? '' : ' mt-[183px]',
         )}
       >
         <span className="ml-[13px] text-black text-footer-bold">

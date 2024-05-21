@@ -41,7 +41,14 @@ const LearningItem = ({
           <span>{location}</span>
         </p>
       </div>
-      <span className="mt-[14px] w-full h-[80px] pt-3 pl-[19px] pr-[22px] pb-4 rounded-[20px] bg-gray-03 text-body3 text-black text-ellipsis overflow-hidden">
+      <span
+        style={{
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+        }}
+        className="overflow-hidden mt-[14px] w-full h-[80px] pt-3 pl-[19px] pr-[22px] pb-4 rounded-[20px] bg-gray-03 text-body3 text-black"
+      >
         {message}
       </span>
     </div>
