@@ -37,18 +37,6 @@ export type ActivityRequestProps = {
   personalities: string[];
 };
 
-export type LearningType = {
-  id?: string;
-  imageUrl: string;
-  name: string;
-  age: number;
-  gender: string;
-  location: string;
-  message: string;
-
-  title: string;
-};
-
 export type ActivityContainerProps = {
   // data: ActivityType[];
   className?: string;
@@ -57,17 +45,4 @@ export type ActivityContainerProps = {
 
 export type DetailProps = {
   params: { id: number };
-};
-
-export type ReviewSliderProps = {
-  id?: string;
-  title: string;
-  content: string;
-  writer: string;
-  date: string;
-};
-
-export type OthreLearningItemProps = {
-  type: string;
-  title: string;
 };
