@@ -7,7 +7,7 @@ export type CheckboxProps = {
   height: number;
   isLogin?: boolean;
   isChecked: boolean;
-  handleCheck: () => void;
+  handleCheck?: () => void;
 };
 
 const Checkbox = (props: CheckboxProps) => {
@@ -26,6 +26,7 @@ const Checkbox = (props: CheckboxProps) => {
       width={width}
       height={height}
       onClick={handleCheck}
+      className="object-cover"
     />
   );
 };

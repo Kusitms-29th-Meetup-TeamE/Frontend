@@ -34,13 +34,12 @@ export default function Sidebar() {
     if (data) {
       setImgUrl(data.imageUrl);
       setName(data.name);
+      localStorage.setItem('name', data.name);
     }
   }, [data]);
 
   return (
-    <aside
-      className={`${sidebarStyle.fixed} bg-gray-01 w-full max-w-[282px] border border-red-500`}
-    >
+    <aside className={`${sidebarStyle.fixed} bg-gray-01 w-full max-w-[282px]`}>
       <div className="flex flex-col items-center justify-center pt-[50px] px-[66px]">
         <Image
           // src={'/assets/main/main_banner.png'}
@@ -58,7 +57,12 @@ export default function Sidebar() {
       {/* 메뉴 부분 */}
       <div>
         <ul className={sidebarStyle.ul}>나의 일정 확인하기</ul>
-        <ul className={sidebarStyle.ul}>활동 참여 내역 보기</ul>
+        <ul
+          onClick={() => router.push('/mypage/activity')}
+          className={sidebarStyle.ul}
+        >
+          활동 참여 내역 보기
+        </ul>
         <ul
           onClick={handleClick}
           onMouseEnter={() => setIsHovered(true)}
@@ -93,8 +97,18 @@ export default function Sidebar() {
             </div>
           )}
         </ul>
-        <ul className={sidebarStyle.ul}>포인트 내역 보기</ul>
-        <ul className={sidebarStyle.ul}>기본정보 수정하기</ul>
+        <ul
+          className={sidebarStyle.ul}
+          onClick={() => router.push('/mypage/point')}
+        >
+          포인트 내역 보기
+        </ul>
+        <ul
+          onClick={() => router.push('/mypage/edit')}
+          className={sidebarStyle.ul}
+        >
+          기본정보 수정하기
+        </ul>
       </div>
     </aside>
   );

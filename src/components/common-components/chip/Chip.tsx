@@ -1,6 +1,9 @@
 import { PropsWithChildren, forwardRef, useEffect, useState } from 'react';
 
+import { personalityItmes } from '@/constants/object';
+
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
+import useSelectedLearningChipStore from '@/store/share/selectedLearningChipStore';
 
 import { ChipProps } from '.';
 
@@ -19,8 +22,9 @@ const style: {
     md: 'max-h-9 rounded-[22px] px-[22px] py-[6px] text-chip-semibold-sm cursor-pointer', // 필터링에서 사용하는 칩
   },
   focus: {
-    abled: 'text-white bg-primary-orange6',
-    disabled: 'border-gray-04 text-gray-07 !bg-gray-04',
+    abled: 'text-white bg-primary-orange6 border border-primary-orange6',
+    disabledActivity: '!text-gray-07 !bg-gray-04',
+    disabledLearning: 'border border-gray-04 !text-gray-07 !bg-gray-03',
   },
   color: {
     활발한: 'bg-[rgba(253,143,42,0.10)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
@@ -54,30 +58,89 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       text,
       type,
       isBtn = false,
+      initialChip,
+      handleSelect,
+      isActivity,
       isPersonality = true,
     } = props;
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
+    const [selectedChip, setSelectedChip] = useState<string>(initialChip || '');
+
+    // 활동 참여하기
     const isInit = useSelectedJoinChipStore((state) => state.isInit);
-    const currentChips = useSelectedJoinChipStore(
-      (state) => state.currentChips,
+    const currentAgency = useSelectedJoinChipStore(
+      (state) => state.currentAgency,
+    );
+    const currentPersonality = useSelectedJoinChipStore(
+      (state) => state.currentPersonality,
     );
     const setCurrentChips = useSelectedJoinChipStore(
       (state) => state.setCurrentChips,
     );
 
+    // // 배움 나누기
+    // const currentLearningChip = useSelectedLearningChipStore(
+    //   (state) => state.currentLearningChip,
+    // );
+    // const setCurrentLearningChip = useSelectedLearningChipStore(
+    //   (state) => state.setCurrentLearningChip,
+    // );
+    // const getCurrentLearningChip = useSelectedLearningChipStore(
+    //   (state) => state.getCurrentLearningChip,
+    // );
+
     const handleClick = () => {
       if (isBtn && text) {
+        // 활동 참여하기
         setIsSelected((prev) => !prev);
         setCurrentChips(text);
+        if (text !== selectedChip && handleSelect) {
+          setSelectedChip(text);
+          handleSelect(text);
+        }
       }
+      // else {
+      //   // 배움 나누기
+      //   setIsSelected(true);
+      //   setCurrentLearningChip(text);
+      // }
     };
 
     useEffect(() => {
+      // 화면 첫 진입 시 초기화
+      if (
+        currentAgency.includes(text || '') ||
+        currentPersonality.includes(text || '')
+      ) {
+        setIsSelected(true);
+      }
+    }, []);
+
+    useEffect(() => {
+      if (handleSelect) {
+        handleSelect(selectedChip);
+        setIsSelected(selectedChip === text);
+      }
+    }, [selectedChip, text]);
+
+    useEffect(() => {
       if (isInit) {
+        // 관심활동 클릭 시 초기화
+        if (text === '전체') {
+          setIsSelected(true);
+        } else if (personalityItmes.includes(text!)) {
+          setIsSelected(true);
+        }
+      }
+
+      if (
+        !currentAgency.includes(text!) &&
+        !currentPersonality.includes(text!)
+      ) {
         setIsSelected(false);
       }
-    }, [currentChips]);
+    }, [currentAgency, currentPersonality]);
 
     return (
       <div
@@ -87,7 +150,9 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
           isBtn
             ? isSelected
               ? !isPersonality && style.focus['abled']
-              : style.focus['disabled']
+              : isActivity
+                ? style.focus['disabledActivity']
+                : style.focus['disabledLearning']
             : '',
           text ? style.color[text as string] : style.type,
           style.size[size],

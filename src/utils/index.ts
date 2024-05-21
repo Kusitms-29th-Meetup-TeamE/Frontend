@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const trimDateString = (text: string) => {
   return text.replace(/(\d{4}년 \d{2}월 \d{2}일)/, '').trim();
 };
@@ -8,4 +10,9 @@ export const dateToUTC = (year: number, month: number, day: number) => {
   const utcDate = new Date(kstDate.getTime() + KST_OFFSET);
 
   return utcDate;
+};
+
+export const formatDate = (d: string | Date) => {
+  if (!d) return '-';
+  return moment(d).local().format('YYYY-MM-DD HH:mm:ss');
 };

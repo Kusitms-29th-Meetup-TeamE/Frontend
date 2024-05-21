@@ -7,10 +7,12 @@ import Input from '@/components/common-components/input';
 import Pagination from '@/components/common-components/pagination';
 
 import ActivityBanner from '@/components/join/ActivityBanner';
+import RecommendItem from '@/components/main/RecommendItem';
 
-import ActivityContainer, {
-  ActivityType,
-} from '@/containers/join/ActivityContainer';
+import { useAllActivity, useLikedActivity } from '@/hooks/api/useActivity';
+import { ActivityType } from '@/types/activity';
+
+import ActivityContainer from '@/containers/join/ActivityContainer';
 import ChipContainer from '@/containers/join/ChipContainer';
 import useSelectedJoinChipStore from '@/store/join/selectedJoinChipStore';
 
@@ -19,128 +21,48 @@ import clsx from 'clsx';
 const page = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const initCurrentChips = useSelectedJoinChipStore(
-    (state) => state.initCurrentChips,
+  const initChips = useSelectedJoinChipStore((state) => state.initChips);
+
+  const currentAgency = useSelectedJoinChipStore(
+    (state) => state.currentAgency,
+  );
+  const currentPersonality = useSelectedJoinChipStore(
+    (state) => state.currentPersonality,
   );
 
-  // API response 받고 수정 예정
-  const data: ActivityType[] = [
-    {
-      //1
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-      id: '1',
-    },
-    {
-      //2
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-      id: '2',
-    },
-    {
-      //3
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //4
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //5
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //6
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //7
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //8
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //9
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //10
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //11
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-    {
-      //12
-      title: '자연의 맛 요리 배우기',
-      location: '서대문노인종합복지관',
-      time: '4월 20일 토요일',
-      imageUrl: '/assets/main/main_banner.png',
-      personalities: ['활발한'],
-      isLiked: false,
-    },
-  ];
+  const { data, isLoading, refetch } = useAllActivity({
+    page: currentPage - 1,
+    agencyTypes:
+      currentAgency.length === 0 || currentAgency.includes('전체')
+        ? undefined
+        : currentAgency.join(','),
+    personalities: currentPersonality,
+  });
+
+  const {
+    data: likedData,
+    isLoading: likedLoading,
+    refetch: likedRefetch,
+  } = useLikedActivity({
+    page: currentPage - 1,
+    agencyTypes:
+      currentAgency.length === 0 || currentAgency.includes('전체')
+        ? undefined
+        : currentAgency.join(','),
+    personalities: currentPersonality,
+  });
+
+  useEffect(() => {
+    setCurrentPage(1);
+    refetch();
+    likedRefetch();
+  }, [currentAgency, currentPersonality]);
 
   useEffect(() => {
     // 관심활동 클릭 시 선택된 태그 초기화
     if (isLiked) {
-      initCurrentChips();
+      initChips();
+      setCurrentPage(1);
     }
   }, [isLiked]);
 
@@ -178,7 +100,41 @@ const page = () => {
           </div>
         </div>
         <ChipContainer className="mb-10" />
-        <ActivityContainer data={data} className="mb-[100px]" />
+        <ActivityContainer className="mb-[100px]">
+          {!isLiked
+            ? data &&
+              data.activitySummaries.map((item: ActivityType, key: number) => (
+                <RecommendItem
+                  key={item.id.toString() + item.liked}
+                  id={item.id}
+                  title={item.title}
+                  location={item.location}
+                  time={item.time}
+                  img={item.activityThumbnail}
+                  isLiked={item.liked}
+                  personalities={[item.personality]}
+                  isHoverSet={false}
+                  isLoading={isLoading}
+                />
+              ))
+            : likedData &&
+              likedData.activitySummaries.map(
+                (item: ActivityType, key: number) => (
+                  <RecommendItem
+                    key={item.id.toString() + item.liked}
+                    id={item.id}
+                    title={item.title}
+                    location={item.location}
+                    time={item.time}
+                    img={item.activityThumbnail}
+                    isLiked={item.liked}
+                    personalities={[item.personality]}
+                    isHoverSet={false}
+                    isLoading={likedLoading}
+                  />
+                ),
+              )}
+        </ActivityContainer>
         <Pagination
           totalPages={8}
           currentPage={currentPage}

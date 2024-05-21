@@ -8,6 +8,7 @@ export type SelectBoxProps = {
 };
 
 export const selectBoxSizes = {
+  xs: 'xs',
   sm: 'sm',
   md: 'md',
   lg: 'lg',

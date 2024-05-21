@@ -113,32 +113,7 @@ export default function LearnProfile() {
             className="h-[60px]"
           />
         </div>
-        <div>
-          <label className={formStyle.label}>나이</label>
-          <div className="flex gap-[6px]">
-            <SelectBox
-              initText="년"
-              items={yearItems}
-              size="md"
-              setParams={setYear}
-              className="h-[60px]"
-            />
-            <SelectBox
-              initText="월"
-              items={monthItems}
-              size="md"
-              setParams={setMonth}
-              className="h-[60px]"
-            />
-            <SelectBox
-              initText="일"
-              items={dayItems}
-              size="md"
-              setParams={setDay}
-              className="h-[60px]"
-            />
-          </div>
-        </div>
+
         <div className="relative">
           <label className={formStyle.label}>활동 지역</label>
           <Input

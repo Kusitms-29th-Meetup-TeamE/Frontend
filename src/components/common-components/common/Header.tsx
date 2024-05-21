@@ -24,12 +24,11 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
   const handleLogout = () => {
     sessionStorage.clear();
-    window.location.reload();
+    localStorage.clear();
+    window.location.href = '/';
   };
 
-  useEffect(() => {
-    // window.location.reload();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="w-full flex items-center fixed z-50 top-0 h-[70px] bg-white">
@@ -45,7 +44,6 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
         </Link>
       ) : (
         <div className="w-4/5 flex justify-between m-auto">
-          {/* <div className="flex gap-[200px]"> */}
           <Link href="/">
             <div className="flex gap-[2px] items-center">
               <Image
@@ -61,7 +59,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
           <div className={variants.menubar}>
             <Link
-              href="/join"
+              href={accessToken ? '/join' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -69,7 +67,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
               <div className={variants.centerMenu}>활동 참여하기</div>
             </Link>
             <Link
-              href="#"
+              href={accessToken ? '/share' : '#'}
               onClick={() => {
                 if (!accessToken) useNotifyLogin();
               }}
@@ -86,7 +84,6 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
               <div className={variants.centerMenu}>함께 대화하기</div>
             </Link>
           </div>
-          {/* </div> */}
 
           {accessToken ? (
             <div className={variants.rightBar}>
@@ -112,7 +109,7 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
             </div>
           ) : (
             <div className={variants.rightBar}>
-              <div className="flex gap-1">
+              <div className="flex gap-2">
                 <Link href="/login">
                   <span>로그인</span>
                 </Link>

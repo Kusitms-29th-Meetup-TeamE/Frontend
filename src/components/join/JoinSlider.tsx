@@ -7,10 +7,11 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export type JoinSliderProps = {
-  imgs: string[];
+  // imgs: string[];
+  img: string;
 };
 
-const JoinSlider = ({ imgs }: JoinSliderProps) => {
+const JoinSlider = ({ img }: JoinSliderProps) => {
   const [currentCard, setCurrentCard] = useState<number>(0);
 
   return (
@@ -29,16 +30,17 @@ const JoinSlider = ({ imgs }: JoinSliderProps) => {
           height: '100%',
         }}
       >
-        {imgs?.map((item, index) => {
-          return (
-            <SwiperSlide
-              key={index}
-              className={'item-centered w-full h-full overflow-hidden'}
-            >
-              <Image src={item} fill alt={index.toString()} />
-            </SwiperSlide>
-          );
-        })}
+        {/* {imgs?.map((item, index) => {
+          return ( */}
+        <SwiperSlide
+          // key={index}
+          className={'item-centered w-full h-full overflow-hidden'}
+        >
+          {/* <Image src={item} fill alt={index.toString()} /> */}
+          <Image src={img} alt={''} fill className="object-cover" />
+        </SwiperSlide>
+        {/* );
+        })} */}
       </Swiper>
     </div>
   );
