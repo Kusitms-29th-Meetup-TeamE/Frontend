@@ -14,7 +14,7 @@ import moment from 'moment';
 
 export default function MyCalendar() {
   const [date, setDate] = useState(new Date());
-  const [selectedData, setSelectedData] = useState<MyCalendarListItem>();
+  const [selectedData, setSelectedData] = useState<MyCalendarListItem[]>([]);
 
   const month = Number(moment(date).format('MM'));
   const year = Number(moment(date).format('YYYY'));
@@ -30,10 +30,11 @@ export default function MyCalendar() {
 
   useEffect(() => {
     const selectedDateStr = moment(date).format('YYYY-MM-DD');
-    const selectedAppointment = data?.appointments.find(
-      (appointment) => appointment.date === selectedDateStr,
-    );
-    setSelectedData(selectedAppointment);
+    const selectedAppointments =
+      data?.appointments.filter(
+        (appointment) => appointment.date === selectedDateStr,
+      ) ?? [];
+    setSelectedData(selectedAppointments);
   }, [date, data]);
 
   const toMeetList: MyCalendarListItem[] = useMemo(
@@ -72,9 +73,6 @@ export default function MyCalendar() {
             return (
               <div className="w-full flex flex-col items-center">
                 {toMeetItems.map((item, index) => {
-                  // if (item.date === moment(date).format('YYYY-MM-DD')) {
-                  //   setSelectedData(item);
-                  // }
                   return (
                     <div
                       key={index}
@@ -102,24 +100,28 @@ export default function MyCalendar() {
         <p className="text-black text-footer-bold mb-7">
           {moment(date).format('YYYY년 MM월 DD일')}
         </p>
-        <div>
-          <span
-            className={clsx(
-              'mt-[2px] w-full py-[7px] px-2 rounded-[15px] border text-chip-semibold-sm text-start',
-              selectedData?.description.includes('배움 나누기') &&
-                'bg-secondary-violet2 border-secondary-violet7 text-secondary-violet7',
-              selectedData?.description.includes('약속') &&
-                'bg-[#FFF8DD] border-chip-creative text-[#EFBA00]',
-              selectedData?.description.includes('활동 참여') &&
-                'bg-primary-orange2 border-primary-orange5 text-primary-orange6',
-            )}
-          >
-            {selectedData?.tag}
-          </span>
-          <span className="text-body2 ml-4">{selectedData?.description}</span>
-          <span> - </span>
-          <span className="text-body2">{selectedData?.about}</span>
-        </div>
+        {selectedData?.map((item, idx) => {
+          return (
+            <div>
+              <span
+                className={clsx(
+                  'mt-[2px] w-full py-[7px] px-2 rounded-[15px] border text-chip-semibold-sm text-start',
+                  item?.description.includes('배움 나누기') &&
+                    'bg-secondary-violet2 border-secondary-violet7 text-secondary-violet7',
+                  item?.description.includes('약속') &&
+                    'bg-[#FFF8DD] border-chip-creative text-[#EFBA00]',
+                  item?.description.includes('활동 참여') &&
+                    'bg-primary-orange2 border-primary-orange5 text-primary-orange6',
+                )}
+              >
+                {item?.tag}
+              </span>
+              <span className="text-body2 ml-4">{item?.description}</span>
+              <span> - </span>
+              <span className="text-body2">{item?.about}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
