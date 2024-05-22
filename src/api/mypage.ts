@@ -135,13 +135,18 @@ export const getReviewsByMe = async () => {
 // 마이페이지 - 나의 후기 확인하기
 export const getRecievedReviews = async (type?: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/users/reviews`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${sessionStorage.accessToken}`,
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      type
+        ? `${BASE_URL}/users/reviews?type=${type}`
+        : `${BASE_URL}/users/reviews`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${sessionStorage.accessToken}`,
+          'Content-Type': 'application/json',
+        },
       },
-    });
+    );
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }

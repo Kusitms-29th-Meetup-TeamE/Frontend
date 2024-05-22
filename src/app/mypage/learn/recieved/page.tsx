@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Chip from '@/components/common-components/chip';
 
@@ -14,8 +14,14 @@ import { useGetRecievedReviews } from '@/hooks/api/useMyPage';
 export default function MyLearnRecieved() {
   const [selectedChip, setSelectedChip] = useState<string>('전체');
 
-  const { data } = useGetRecievedReviews();
+  const { data, refetch } = useGetRecievedReviews(
+    selectedChip === '전체' ? '' : selectedChip,
+  );
   //   console.log('받은리비', data);
+
+  useEffect(() => {
+    refetch();
+  }, [selectedChip]);
 
   return (
     <div className="w-full m-auto max-w-[1200px]">
