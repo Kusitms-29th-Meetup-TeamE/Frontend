@@ -23,7 +23,7 @@ export const MyAppointmentMsgItem = (props: { data: MsgLogProps }) => {
             <div className="flex mt-[10px]">
               <span className="flex items-center gap-[6px] mr-[17px] text-gray-08 text-chip-medium">
                 <IoLocationOutline />
-                위치
+                장소
               </span>
               <span className="text-footer-medium text-black">
                 {data.location}
@@ -41,7 +41,7 @@ export const MyAppointmentMsgItem = (props: { data: MsgLogProps }) => {
             </div>
             <div className="flex justify-end">
               <button className="flex items-center gap-1 py-1 px-2 rounded hover:bg-gray-03 mt-[18px]">
-                캘린더로 이동하기
+                일정 확인하기
                 <IoIosArrowForward />
               </button>
             </div>
