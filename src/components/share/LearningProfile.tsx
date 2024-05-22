@@ -19,15 +19,24 @@ const LearningProfile = ({ className }: { className?: string }) => {
 
   const [info, setInfo] = useState<LearningProfileType>();
 
-  const { data: NotMypageData, isLoading, error } = useMyLearningProfile();
+  const {
+    data: NotMypageData,
+    isLoading: NotMypageLoading,
+    error: NotMypageError,
+  } = useMyLearningProfile();
+  const {
+    data: MypageData,
+    isLoading: MypageLoading,
+    error: MypageError,
+  } = useMyLearningProfile();
 
   useEffect(() => {
-    console.log(pathname);
-    console.log(isMypage);
     if (!isMypage) {
       setInfo(NotMypageData);
+    } else {
+      setInfo(MypageData);
     }
-  }, [NotMypageData]);
+  }, [NotMypageData, MypageData]);
 
   return (
     <div
@@ -38,7 +47,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
     >
       {isMypage ? (
         <Image
-          src={'/assets/onboarding/check.png'}
+          src={info?.imageUrl ? info.imageUrl : '/assets/onboarding/check.png'}
           width={150}
           height={150}
           alt={''}

@@ -76,104 +76,106 @@ export default function LearnProfile() {
 
   return (
     <>
-      <div className="w-full max-w-[588px] flex flex-col gap-[30px] py-5 px-6 rounded-[20px] bg-gray-02">
-        <div>
-          <label className={formStyle.label}>사진 등록하기</label>
-          <Image
-            //   TODO: 플러스 아이콘 넣기
-            // src={'/assets/main/main_banner.png'}
-            src={img ?? '/assets/main/main_banner.png'}
-            alt=""
-            width={150}
-            height={150}
-            className="rounded-full object-cover w-[150px] h-[150px] border border-gray-04"
-          />
-        </div>
-        <div>
-          <label className={formStyle.label}>이름</label>
-          <Input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            size="lg"
-            placeholder=""
-            shape="square"
-            className="h-[60px]"
-          />
-        </div>
-        <div>
-          <label className={formStyle.label}>나이</label>
-          <Input
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            size="lg"
-            placeholder=""
-            shape="square"
-            className="h-[60px]"
-          />
-        </div>
+      <div className="w-full max-w-[588px] flex flex-col">
+        <div className="flex flex-col gap-[30px] py-5 px-6 rounded-[20px] bg-gray-02">
+          <div>
+            <label className={formStyle.label}>사진 등록하기</label>
+            <Image
+              //   TODO: 플러스 아이콘 넣기
+              // src={'/assets/main/main_banner.png'}
+              src={img ?? '/assets/main/main_banner.png'}
+              alt=""
+              width={150}
+              height={150}
+              className="rounded-full object-cover w-[150px] h-[150px] border border-gray-04"
+            />
+          </div>
+          <div>
+            <label className={formStyle.label}>이름</label>
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              size="lg"
+              placeholder=""
+              shape="square"
+              className="h-[60px]"
+            />
+          </div>
+          <div>
+            <label className={formStyle.label}>나이</label>
+            <Input
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              size="lg"
+              placeholder=""
+              shape="square"
+              className="h-[60px]"
+            />
+          </div>
 
-        <div className="relative">
-          <label className={formStyle.label}>활동 지역</label>
-          <Input
-            onChange={() => {
-              // console.log(emailInputRef.current?.value);
-            }}
-            size="lg"
-            value={location}
-            placeholder="오른쪽 버튼을 눌러 주소를 검색해보세요."
-            shape="square"
-            className="h-[60px]"
-          />
-          <span
-            onClick={() => setIsOpen(true)}
-            className={clsx(formStyle.inputBtn)}
-          >
-            주소 검색
-          </span>
-        </div>
-        <div>
-          <label className={formStyle.label}>한마디</label>
-          <Input
-            value={statusMsg}
-            onChange={(e) => setStatusMsg(e.target.value)}
-            size="lg"
-            placeholder="나의 마음가짐을 자유롭게 적어주세요! (100자 내외)"
-            shape="square"
-            className="h-[60px]"
-          />
-        </div>
-        <div>
-          <label className={formStyle.label}>나의 배움 목록</label>
-          <div className="flex flex-col gap-[10px]">
-            {exDataList.map((item, idx) => {
-              return (
-                <div key={idx}>
-                  <MyExperienceItem
-                    profileData={profileData}
-                    setProfileData={setProfileData}
-                    data={item}
-                  />
-                </div>
-              );
-            })}
-            <button
-              onClick={handleAddExperience}
-              className="bg-white border border-gray-04 w-full rounded-[20px] h-[60px]"
+          <div className="relative">
+            <label className={formStyle.label}>활동 지역</label>
+            <Input
+              onChange={() => {
+                // console.log(emailInputRef.current?.value);
+              }}
+              size="lg"
+              value={location}
+              placeholder="오른쪽 버튼을 눌러 주소를 검색해보세요."
+              shape="square"
+              className="h-[60px]"
+            />
+            <span
+              onClick={() => setIsOpen(true)}
+              className={clsx(formStyle.inputBtn)}
             >
-              + 나의 경험 목록 추가
-            </button>
+              주소 검색
+            </span>
+          </div>
+          <div>
+            <label className={formStyle.label}>한마디</label>
+            <Input
+              value={statusMsg}
+              onChange={(e) => setStatusMsg(e.target.value)}
+              size="lg"
+              placeholder="나의 마음가짐을 자유롭게 적어주세요! (100자 내외)"
+              shape="square"
+              className="h-[60px]"
+            />
+          </div>
+          <div>
+            <label className={formStyle.label}>나의 배움 목록</label>
+            <div className="flex flex-col gap-[10px]">
+              {exDataList.map((item, idx) => {
+                return (
+                  <div key={idx}>
+                    <MyExperienceItem
+                      profileData={profileData}
+                      setProfileData={setProfileData}
+                      data={item}
+                    />
+                  </div>
+                );
+              })}
+              <button
+                onClick={handleAddExperience}
+                className="bg-white border border-gray-04 w-full rounded-[20px] h-[60px]"
+              >
+                + 나의 경험 목록 추가
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex justify-center mt-[60px]">
-        <Button
-          onClick={handleSubmit}
-          size="lg"
-          color="default"
-          className="flex"
-        >
-          변경사항 저장
-        </Button>
+        <div className="flex justify-center mt-[80px]">
+          <Button
+            onClick={handleSubmit}
+            size="lg"
+            color="default"
+            className="flex"
+          >
+            변경사항 저장
+          </Button>
+        </div>
       </div>
 
       {/* 주소 검색 모달 */}
