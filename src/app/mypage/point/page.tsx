@@ -7,6 +7,7 @@ import MyPageTitle from '@/components/mypage/MypageTItle';
 import Sidebar from '@/components/mypage/Sidebar';
 
 import { pointNotice } from '@/constants/object';
+import { useNotifySuccess } from '@/hooks/useToast';
 
 import { formatDate } from '@/utils';
 
@@ -44,7 +45,10 @@ export default function MyPoint() {
                 <span className="text-primary-orange6">300</span>
                 포인트
               </span>
-              <span className="flex gap-[6px] items-center text-gray-07 text-notification-chip-no">
+              <span
+                onClick={() => useNotifySuccess('초기화가 완료되었습니다.')}
+                className="cursor-pointer flex gap-[6px] items-center text-gray-07 text-notification-chip-no"
+              >
                 초기화 <GrPowerReset />
               </span>
             </div>

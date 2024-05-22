@@ -1,10 +1,16 @@
 import { useGlobalModal } from '@/components/common-components/global-modal';
 
-import { LearnProfileProps, MyPageInfoProps } from '@/types/mypage';
+import {
+  CalendarParams,
+  LearnProfileProps,
+  MyCalendarResponse,
+  MyPageInfoProps,
+} from '@/types/mypage';
 
 import {
   getLearnProfile,
   getMyActivities,
+  getMyCalendar,
   getMyPageInfo,
   getMyReviews,
   getRecievedReviews,
@@ -124,4 +130,14 @@ export const usePostMyReview = (content: string, id: number) => {
     },
   });
   return { mutate, isPending, error };
+};
+
+export const useMyCalendar = (param: CalendarParams) => {
+  const { data, isLoading, error, isPlaceholderData } =
+    useQuery<MyCalendarResponse>({
+      queryKey: ['myCalendar', param],
+      queryFn: () => getMyCalendar(param),
+      placeholderData: (prev, _) => prev,
+    });
+  return { data, isLoading, error, isPlaceholderData };
 };

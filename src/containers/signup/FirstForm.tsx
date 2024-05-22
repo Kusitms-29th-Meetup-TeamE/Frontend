@@ -11,7 +11,7 @@ export const style = {
   title: 'text-primary-orange6 text-h2 text-center',
   content: 'text-gray-08 text-body2 text-center',
   background:
-    'cursor-pointer w-full border border-white flex flex-col max-w-[384px] h-[372px] bg-white px-[96px] py-[46px] rounded-[40px] shadow-[0_4px_20px_5px_rgba(0,0,0,0.08)] hover:border hover:border-primary-orange6 hover:bg-primary-orange1',
+    'cursor-pointer w-full border border-white flex items-center justify-center flex-col max-w-[384px] h-[372px] bg-white px-[96px] py-[46px] rounded-[40px] shadow-[0_4px_20px_5px_rgba(0,0,0,0.08)] hover:border hover:border-primary-orange6 hover:bg-primary-orange1',
   clicked: '!border !border-primary-orange6 !bg-primary-orange1',
 };
 
@@ -42,7 +42,7 @@ export default function FirstForm(props: FirstFormProps) {
         subTitle={'어떤 유형의 이용자이신가요?'}
       />
 
-      <div className="flex gap-6 mt-[104px]">
+      <div className="flex items-center gap-6 mt-[104px]">
         <div
           className={clsx(
             style.background,
@@ -50,7 +50,13 @@ export default function FirstForm(props: FirstFormProps) {
           )}
           onClick={() => handleClick('general')}
         >
-          <div>이미지</div>
+          <Image
+            src={'/assets/signup/ddoba_person.png'}
+            width={120}
+            height={120}
+            alt=""
+            className="mb-5 mx-auto"
+          />
           <div className={style.title}>일반 회원</div>
           <div className={style.content}>
             또바를 통해 다양한 만남과 경험을 만들어 갈 회원님!
@@ -63,7 +69,13 @@ export default function FirstForm(props: FirstFormProps) {
           )}
           onClick={() => handleClick('organization')}
         >
-          <div>이미지</div>
+          <Image
+            src={'/assets/signup/ddoba_org.png'}
+            width={120}
+            height={120}
+            alt=""
+            className="mb-5 mx-auto"
+          />
           <div className={style.title}>단체/기관 회원</div>
           <div className={style.content}>
             또바 이용자에게 활동을 제공하는 회원 계정
