@@ -36,7 +36,7 @@ const page = () => {
       // 로그인
       router.push('/');
     }
-  }, [data]);
+  }, []);
 
   return (
     <div className="w-full h-full flex justify-center">
