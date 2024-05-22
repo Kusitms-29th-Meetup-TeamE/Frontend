@@ -67,7 +67,9 @@ const page = ({ params }: DetailProps) => {
         </div>
       </div>
       <div className="w-full h-[487px] mb-[10px]">
-        <JoinSlider img={data?.imageUrl ?? '/assets/main/main_banner.png'} />
+        <JoinSlider
+          img={data ? data.imageUrl : '/assets/main/main_banner.png'}
+        />
       </div>
       <div className={variants.info}>
         <div className="flex gap-[30px]">
