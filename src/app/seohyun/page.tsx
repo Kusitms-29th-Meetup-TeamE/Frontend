@@ -12,7 +12,7 @@ import ThirdStep from '@/containers/onboarding/ThirdStep';
 
 const TestPage = () => {
   return (
-    <div className="w-screen h-screen">
+    <div className="">
       <div className="w-full h-full pr-[10px] pl-[10px]">
         {/* <div className="flex gap-2 p-2"></div>
  
@@ -28,7 +28,11 @@ const TestPage = () => {
     />
     <div className="h-[30px]"></div>
     <Point /> */}
-        <Spinner isLoading={true} size={70} messageStyle="text-body2" />
+        <Spinner
+          className="p-2 py-4 border border-red-500"
+          isLoading={true}
+          messageStyle="text-body2"
+        />
       </div>
     </div>
   );

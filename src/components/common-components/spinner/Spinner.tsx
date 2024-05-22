@@ -33,8 +33,8 @@ const Spinner = ({
         size={size || 20}
         speedMultiplier={0.7}
       />
-      <div className={messageStyle || 'text-body-3'}>
-        {message || '로딩 중입니다'}
+      <div className={messageStyle || 'text-body2'}>
+        {message || '잠시만 기다려주세요.'}
       </div>
     </div>
   );
