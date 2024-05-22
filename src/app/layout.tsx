@@ -1,5 +1,3 @@
-'use client';
-
 import './globals.css';
 
 import wantedSans from '@/styles/font';
@@ -7,43 +5,30 @@ import wantedSans from '@/styles/font';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
-import Footer from '@/components/common-components/common/Footer';
-import Header from '@/components/common-components/common/Header';
+import Layout from '@/components/common-components/common/Layout';
 import GlobalModal, {
   GlobalModalProvider,
 } from '@/components/common-components/global-modal';
 
 import Providers from './providers';
 
-import { usePathname } from 'next/navigation';
+export const metadata = {
+  // metadataBase: new URL(process.env.NEXT_PUBLIC_ORIGIN),
+  title: '또바',
+  description: '또바는 또바',
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-
-  const isGuest =
-    pathname.includes('/login') ||
-    pathname.includes('/signup') ||
-    pathname.includes('/onboarding');
-
-  const isMyPage = pathname.startsWith('/mypage');
-
   return (
     <html>
-      {/* TOFIX: body 제거 필요 */}
       <body className={`${wantedSans.variable} font-wantedSans`}>
         <Providers>
           <GlobalModalProvider>
-            <Header isGuest={isGuest} />
-            <div
-              className={`${isGuest ? 'mt-[70px]' : 'mt-[70px] mb-[160px]'}`}
-            >
-              {children}
-            </div>
-            {!isGuest && !isMyPage && <Footer />}
+            <Layout>{children}</Layout>
             <GlobalModal />
           </GlobalModalProvider>
           <Toaster />

@@ -59,7 +59,6 @@ export const ChatRoom = (props: {
         callback,
       );
       setSubscription(newSubscription);
-      console.log('here', stompClient?.connected);
       setChatList([]);
       setLogData([]);
     }
@@ -183,8 +182,6 @@ export const ChatRoom = (props: {
     setModalOpen((prev) => !prev);
   };
 
-  // console.log('ll', logData);
-
   return (
     <>
       <div className="flex flex-col ml-[5px] rounded-[20px] border border-gray-04 w-full max-w-[690px] h-[940px]">
@@ -231,7 +228,7 @@ export const ChatRoom = (props: {
               <div className="mb-[20px] bg-gray-02 rounded-[20px] py-[18px] px-6 flex flex-col gap-[6px]">
                 <span className="text-gray-08 text-footer-regular">
                   <b>[{roomInfo.experienceType}]</b>을(를) 통해 1:1 대화가
-                  시작되었습니다
+                  시작되었습니다.
                 </span>
                 <span className="text-h5 text-black">
                   대화를 통해 만날 시간을 약속하고 상단에 ‘배움 나누기 확정하기’

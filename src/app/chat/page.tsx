@@ -14,7 +14,7 @@ const style = {
   title: 'text-primary-orange6 text-h2 text-center',
   content: 'text-gray-08 text-body2 text-center',
   background:
-    'cursor-pointer w-full border border-white flex flex-col max-w-[384px] h-[372px] bg-white px-[80px] py-[46px] rounded-[40px] shadow-[0_4px_20px_5px_rgba(0,0,0,0.08)] hover:border hover:border-primary-orange6 hover:bg-primary-orange1',
+    'cursor-pointer w-[384px] border border-white flex flex-col justify-center items-center max-w-[384px] h-[372px] bg-white px-[80px] py-[46px] rounded-[40px] shadow-[0_4px_20px_5px_rgba(0,0,0,0.08)] hover:border hover:border-primary-orange6 hover:bg-primary-orange1',
   clicked: '!border !border-primary-orange6 !bg-primary-orange1',
 };
 
@@ -51,11 +51,11 @@ export default function Chat() {
           onClick={() => handleClick('activity')}
         >
           <Image
-            src={'/assets/main/how3.png'}
-            width={618}
-            height={42}
+            src={'/assets/chat/ddoba_groupchat.png'}
+            width={155}
+            height={145}
             alt=""
-            className=""
+            className="mb-5"
           />
 
           <div className={style.title}>활동 대화방</div>
@@ -69,11 +69,11 @@ export default function Chat() {
           onClick={() => handleClick('share')}
         >
           <Image
-            src={'/assets/main/how3.png'}
-            width={618}
-            height={42}
+            src={'/assets/chat/ddoba_directchat.png'}
+            width={170}
+            height={150}
             alt=""
-            className=""
+            className="mb-5"
           />
           <div className={style.title}>배움 나누기 대화방</div>
           <div className={style.content}>

@@ -124,3 +124,110 @@ export const pointNotice = [
     point: '30',
   },
 ];
+
+export const noticeData = [
+  {
+    img: '/assets/main/notice.png',
+    title: '또바 공지사항',
+    subTitle: '또바 사용에 필요한 공지사항을 알려드립니다.',
+    content: [
+      '[이벤트] 내 친구를 또바에 초대하면 친구에게도, 나에게도 선물이!',
+      '[이벤트] 활동 후기 올리고 포인트 받아가세요!',
+      '[안내] 또바 서비스 점검 시간 안내',
+      '[안내] 또바 사용방법 안내',
+    ],
+  },
+  {
+    img: '/assets/main/faq.png',
+    title: '자주 하는 질문',
+    subTitle: '또바에게 자주 하시는 질문에 답해드립니다.',
+    content: [
+      'Q. 활동 참여를 하려면 어떻게 해야 하나요?',
+      'Q. 나의 위치 수정은 어디서 하면 되나요?',
+      'Q. 포인트는 어떻게 사용하나요?',
+      'Q. 활동 신청 내역은 어디서 확인하나요?',
+    ],
+  },
+];
+
+export const reviewData = [
+  {
+    id: 1,
+    title: '제목',
+    content: '내용',
+    writer: '작성자',
+    writeDate: '날짜',
+  },
+  {
+    id: 2,
+    title: '제목',
+    content: '내용',
+    writer: '작성자',
+    writeDate: '날짜',
+  },
+  {
+    id: 3,
+    title: '제목',
+    content: '내용',
+    writer: '작성자',
+    writeDate: '날짜',
+  },
+  {
+    id: 4,
+    title: '제목',
+    content: '내용',
+    writer: '작성자',
+    writeDate: '날짜',
+  },
+  {
+    id: 5,
+    title: '제목',
+    content: '내용',
+    writer: '작성자',
+    writeDate: '날짜',
+  },
+  {
+    id: 6,
+    title: '제목',
+    content: '내용',
+    writer: '작성자',
+    writeDate: '날짜',
+  },
+  {
+    id: 7,
+    title: '제목',
+    content: '내용',
+    writer: '작성자',
+    writeDate: '날짜',
+  },
+];
+
+export const howData = [
+  {
+    title: '내가 하고 싶은 활동을 찾고 있다면',
+    imgUrl: '/assets/main/how1.png',
+    goToText: '활동 참여하기',
+    goToUrl: '/join',
+  },
+  {
+    title: '알찬 내 인생을 위해 배움을 찾고 있다면',
+    imgUrl: '/assets/main/how2.png',
+    goToText: '배움 나누기',
+    goToUrl: '/share',
+  },
+  {
+    title: '내 배움을 누군가에게 나누고 싶다면',
+    imgUrl: '/assets/main/how3.png',
+    goToText: '함께 대화하기',
+    goToUrl: '/chat',
+  },
+];
+
+export const onboardingData = [
+  { 활발한: '매주 한 번 테니스' },
+  { 창의적인: '창의적인 사고 배우기' },
+  { 평화로운: '요가 명상 클래스' },
+  { 활발한: '아침 건강 등산' },
+  { 자연친화적인: '자연의 맛 요리 배우기' },
+  { 예술적인: '형형색색 크레파스' },
+];

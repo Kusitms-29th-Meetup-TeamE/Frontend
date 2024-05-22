@@ -36,7 +36,6 @@ export const useKakaoUserInfo = (data: KakaoUserProps) => {
       });
     },
     onError: (err: any) => {
-      console.log(err);
       setErrorModal({
         open: true,
         text: '예상치 못한 에러가 발생하였습니다.',
@@ -57,11 +56,9 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
         open: true,
         text: '회원가입이 완료되었습니다.',
       });
-      sessionStorage.clear();
-      router.push('/login');
+      router.push('/onboarding');
     },
     onError: (err: any) => {
-      console.log(err);
       setErrorModal({
         open: true,
         text: '예상치 못한 에러가 발생하였습니다.',
@@ -99,7 +96,6 @@ export const useLocalLogin = ({
       }
     },
     onError: (err: any) => {
-      console.log(err);
       setErrorModal({
         open: true,
         text: '로그인에 실패하였습니다.',

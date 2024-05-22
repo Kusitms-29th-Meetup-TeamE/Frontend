@@ -30,7 +30,7 @@ const variants = {
 const page = ({ params }: DetailProps) => {
   const router = useRouter();
   const handleClick = () => {
-    console.log('채팅방으로 이동');
+    // console.log('채팅방으로 이동');
   };
 
   const { data, isLoading, refetch } = useLearningDetail(params.id);

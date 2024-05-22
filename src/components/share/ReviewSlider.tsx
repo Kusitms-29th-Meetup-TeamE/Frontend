@@ -7,7 +7,7 @@ import { ReviewSliderProps } from '@/types/learning';
 import ReviewItem from './ReviewItem';
 
 import Image from 'next/image';
-import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const ReviewSlider = (data: ReviewSliderProps) => {
   const [currentReview, setCurrentReview] = useState<number>(0);
@@ -18,7 +18,7 @@ const ReviewSlider = (data: ReviewSliderProps) => {
     if (currentReview < data.reviewList.length) {
       setCurrentReview((prev) => prev + 3);
     }
-    console.log(currentReview);
+    // console.log(currentReview);
   }, [currentReview]);
 
   //   useEffect(() => {
