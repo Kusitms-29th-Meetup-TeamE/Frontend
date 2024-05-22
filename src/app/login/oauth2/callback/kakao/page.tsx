@@ -2,6 +2,8 @@
 
 import React, { use, useEffect, useState } from 'react';
 
+import Spinner from '@/components/common-components/spinner';
+
 import { useKakaoToken } from '@/hooks/api/useUser';
 
 import { useRouter } from 'next/navigation';
@@ -39,7 +41,11 @@ const page = () => {
     }
   }, [data]);
 
-  return <div></div>;
+  return (
+    <div className="w-screen h-screen flex justify-center">
+      <Spinner />
+    </div>
+  );
 };
 
 export default page;

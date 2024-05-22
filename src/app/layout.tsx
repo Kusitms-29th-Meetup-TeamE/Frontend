@@ -38,7 +38,9 @@ export default function RootLayout({
         <Providers>
           <GlobalModalProvider>
             <Header isGuest={isGuest} />
-            <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>
+            <div
+              className={`${isGuest ? 'mt-[70px]' : 'mt-[70px] mb-[160px]'}`}
+            >
               {children}
             </div>
             {!isGuest && !isMyPage && <Footer />}
