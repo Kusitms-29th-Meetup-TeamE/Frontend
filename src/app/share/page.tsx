@@ -39,7 +39,7 @@ const page = () => {
     <>
       <ActivityBanner
         title={'배움 나누기'}
-        content={'다른 사람의 경험을 공유하고, 나의 경험을 나눠보세요.'}
+        content={'다른 사람으로부터 배우고 알려주며, 배움을 나눠보세요!'}
       />
       <div className="max-w-[1200px] w-full mx-auto pt-14 flex gap-6">
         <LearningProfile className="mt-[70px]" />

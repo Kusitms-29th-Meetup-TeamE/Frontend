@@ -82,7 +82,7 @@ export default function LearnProfile() {
           <Image
             //   TODO: 플러스 아이콘 넣기
             // src={'/assets/main/main_banner.png'}
-            src={img}
+            src={img ?? '/assets/main/main_banner.png'}
             alt=""
             width={150}
             height={150}
@@ -143,7 +143,7 @@ export default function LearnProfile() {
           />
         </div>
         <div>
-          <label className={formStyle.label}>나의 경험 목록</label>
+          <label className={formStyle.label}>나의 배움 목록</label>
           <div className="flex flex-col gap-[10px]">
             {exDataList.map((item, idx) => {
               return (
