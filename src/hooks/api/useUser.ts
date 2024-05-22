@@ -56,8 +56,7 @@ export const useLocalUserInfo = (data: UserInfoProps) => {
         open: true,
         text: '회원가입이 완료되었습니다.',
       });
-      sessionStorage.clear();
-      router.push('/login');
+      router.push('/onboarding');
     },
     onError: (err: any) => {
       setErrorModal({
