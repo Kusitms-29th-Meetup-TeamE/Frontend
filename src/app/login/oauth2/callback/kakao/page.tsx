@@ -44,7 +44,7 @@ const page = () => {
   }, [data]);
 
   return (
-    <div className="w-screen h-screen flex justify-center">
+    <div className="w-full h-full flex justify-center">
       <Spinner />
     </div>
   );
