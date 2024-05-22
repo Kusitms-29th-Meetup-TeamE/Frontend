@@ -15,7 +15,7 @@ import Skeleton from '../common-components/skeleton';
 
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function RecommendItem(props: RecommendItemProps) {
   const {
@@ -35,6 +35,7 @@ export default function RecommendItem(props: RecommendItemProps) {
 
   const [hover, setHover] = useState<boolean>(false);
   const [isItemLiked, setIsItemLiked] = useState<boolean>(isLiked);
+  const router = useRouter();
 
   const { mutate: postMutate, isPending: postPending } = usePostActivityLike(
     id!,
@@ -51,7 +52,7 @@ export default function RecommendItem(props: RecommendItemProps) {
       {isLoading ? (
         <Skeleton width={380} height={380} borderRadius={20} />
       ) : (
-        <Link href={{ pathname: `/join/detail/${id}` }}>
+        <div onClick={() => router.push(`/join/detail/${id}`)}>
           <Image
             src={imageUrl ?? '/assets/main/main_banner.png'}
             height={380}
@@ -59,7 +60,7 @@ export default function RecommendItem(props: RecommendItemProps) {
             alt=""
             className="cursor-pointer object-cover rounded-[20px] w-full h-[380px]"
           />
-        </Link>
+        </div>
       )}
 
       <div className="mt-[14px]">
@@ -97,11 +98,11 @@ export default function RecommendItem(props: RecommendItemProps) {
         </div>
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[9px]">
-            <Link href={{ pathname: `/join/detail/${id}` }}>
+            <div onClick={() => router.push(`/join/detail/${id}`)}>
               <span className="text-gray-11 text-body2 cursor-pointer">
                 {isLoading ? <Skeleton width={380} height={30} /> : title}
               </span>
-            </Link>
+            </div>
             <span className="text-gray-07 text-h5">
               {isLoading ? <Skeleton width={380} height={30} /> : location}
             </span>
