@@ -28,12 +28,11 @@ export const useLearningDetail = (experieceId: number) => {
 };
 
 export const useMyLearningProfile = () => {
+  const accessToken =
+    typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
+
   const { data, isLoading, error } = useQuery({
-    queryKey: [
-      'MY_LEARNING_PROFILE',
-      'SHARE_PAGE',
-      sessionStorage.getItem('accessToken'),
-    ],
+    queryKey: ['MY_LEARNING_PROFILE', 'SHARE_PAGE', accessToken],
     queryFn: () => getMyLearningProfile(),
   });
   return { data, isLoading, error };

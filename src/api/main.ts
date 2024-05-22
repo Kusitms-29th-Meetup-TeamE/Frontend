@@ -6,7 +6,9 @@ export const getMainData = async () => {
       'Content-Type': 'application/json',
     };
 
-    const accessToken = sessionStorage.getItem('accessToken');
+    const accessToken =
+      typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
+
     if (accessToken) {
       headers['Authorization'] = `Bearer ${accessToken}`;
     }

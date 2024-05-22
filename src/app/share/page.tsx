@@ -87,7 +87,7 @@ const page = () => {
               })}
           </ActivityContainer>
           <Pagination
-            totalPages={8}
+            totalPages={data && data.pageCount}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
