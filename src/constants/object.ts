@@ -201,19 +201,19 @@ export const howData = [
     title: '내가 하고 싶은 활동을 찾고 있다면',
     imgUrl: '/assets/main/how1.png',
     goToText: '활동 참여하기',
-    goToUrl: '/',
+    goToUrl: '/join',
   },
   {
     title: '알찬 내 인생을 위해 배움을 찾고 있다면',
     imgUrl: '/assets/main/how2.png',
-    goToText: '경험 나누기',
-    goToUrl: '/',
+    goToText: '배움 나누기',
+    goToUrl: '/share',
   },
   {
     title: '내 배움을 누군가에게 나누고 싶다면',
     imgUrl: '/assets/main/how3.png',
     goToText: '함께 대화하기',
-    goToUrl: '/',
+    goToUrl: '/chat',
   },
 ];
 
