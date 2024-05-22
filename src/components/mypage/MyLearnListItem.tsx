@@ -34,8 +34,7 @@ export default function MyLearnListItem(props: { data: ReviewsByMeItem }) {
       <div className="px-7 py-6 h-full flex items-center justify-between">
         <div className="flex gap-5">
           <Image
-            // src="/assets/main/main_banner.png"
-            src={data.imageUrl}
+            src={data.imageUrl ?? '/assets/main/main_banner.png'}
             alt=""
             width={80}
             height={80}
