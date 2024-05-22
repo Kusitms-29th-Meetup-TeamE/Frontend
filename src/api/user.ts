@@ -23,6 +23,7 @@ export const getKakaoToken = async (code: string) => {
     }
   }
 
+  console.log('카카오 회원가입 데이터: ', res.json());
   return res.json();
   //  catch (error) {
   //   console.error('Error fetching Kakao token:', error);
