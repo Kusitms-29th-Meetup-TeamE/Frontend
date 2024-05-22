@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from 'react';
 
 import Button from '@/components/common-components/button';
 import Input from '@/components/common-components/input';
-import SelectBox from '@/components/common-components/select-box/SelectBox';
 
 import MyExperienceItem from '@/components/mypage/MyExperienceItem';
 import SearchAddressModal from '@/components/signup/SearchAddressModal';
