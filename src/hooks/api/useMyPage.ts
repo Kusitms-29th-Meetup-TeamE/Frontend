@@ -87,12 +87,12 @@ export const useGetReviewsByMe = () => {
   return { data, isLoading, error };
 };
 
-export const useGetRecievedReviews = () => {
-  const { data, isLoading, error } = useQuery({
+export const useGetRecievedReviews = (type?: string) => {
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['recievedReviews'],
-    queryFn: () => getRecievedReviews(),
+    queryFn: () => getRecievedReviews(type),
   });
-  return { data, isLoading, error };
+  return { data, isLoading, error, refetch };
 };
 
 export const useMyActivities = () => {
