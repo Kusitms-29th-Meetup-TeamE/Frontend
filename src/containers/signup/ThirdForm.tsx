@@ -33,15 +33,12 @@ export default function ThirdForm(props: ThirdFormProps) {
     const regExp =
       /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     if (regExp.test(email)) {
-      // TODO: 아래 setter 삭제 필요 (임시로 작성해놓음)
-      // setAuthEmail(false);
       return false;
     } else return true;
   };
 
   const requestAuthNumber = () => {
     sendAuthNumber();
-    useNotifySuccess('인증번호가 발송되었습니다.');
   };
 
   const [authAnswer, setAuthAnswer] = useState<string | void>('');
@@ -49,7 +46,12 @@ export default function ThirdForm(props: ThirdFormProps) {
 
   const sendAuthNumber = async () => {
     await postEmailAuth(email).then((res) => {
-      setAuthAnswer(`${res}`);
+      if (res !== undefined) {
+        setAuthAnswer(`${res}`);
+        useNotifySuccess('인증번호가 발송되었습니다.');
+      } else {
+        useNotifyError('이미 등록된 사용자입니다.');
+      }
     });
   };
 
