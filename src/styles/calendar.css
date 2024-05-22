@@ -62,7 +62,7 @@
 }
 
 .react-calendar__month-view__days__day--weekend {
-  color: black;
+  color: black !important;
 }
 
 /* 일 날짜 간격 */
