@@ -6,8 +6,12 @@ import { MsgLogProps } from '@/types/chat';
 
 import { trimDateString } from '@/utils';
 
+import { useRouter } from 'next/navigation';
+
 export const MyAppointmentMsgItem = (props: { data: MsgLogProps }) => {
   const { data } = props;
+  const router = useRouter();
+
   return (
     <div className="inline-flex flex-col gap-3">
       <div className="flex gap-3 items-end">
@@ -40,7 +44,10 @@ export const MyAppointmentMsgItem = (props: { data: MsgLogProps }) => {
               </span>
             </div>
             <div className="flex justify-end">
-              <button className="flex items-center gap-1 py-1 px-2 rounded hover:bg-gray-03 mt-[18px]">
+              <button
+                onClick={() => router.push('/mypage/calendar')}
+                className="flex items-center gap-1 py-1 px-2 rounded hover:bg-gray-03 mt-[18px]"
+              >
                 캘린더로 이동하기
                 <IoIosArrowForward />
               </button>
