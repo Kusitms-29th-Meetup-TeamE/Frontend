@@ -20,7 +20,9 @@ function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Header isGuest={isGuest} />
-      <div className={`${!isGuest && 'mt-[70px] mb-[160px]'}`}>{children}</div>
+      <div className={`${isGuest ? 'mt-[70px]' : 'mt-[70px] mb-[160px]'}`}>
+        {children}
+      </div>
       {!isGuest && !isMyPage && <Footer />}
     </>
   );
