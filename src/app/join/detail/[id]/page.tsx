@@ -41,7 +41,7 @@ const page = ({ params }: DetailProps) => {
 
   const handleJoin = () => {
     setIsOpen(true);
-    console.log('신청하기');
+    // console.log('신청하기');
   };
 
   return (
@@ -99,7 +99,7 @@ const page = ({ params }: DetailProps) => {
           size="md"
           ref={textAreaRef}
           onChange={() => {
-            console.log(textAreaRef.current?.value);
+            // console.log(textAreaRef.current?.value);
             if (textAreaRef.current?.value) setIsDisabled(false);
             else setIsDisabled(true);
           }}

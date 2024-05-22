@@ -114,13 +114,13 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
             <div className={variants.rightBar}>
               <div className="flex gap-2">
                 <Link href="/login">
-                  <span>로그인</span>
+                  <span className="hover:text-primary-orange6">로그인</span>
                 </Link>
 
                 <span>/</span>
 
                 <Link href="/signup">
-                  <span>회원가입</span>
+                  <span className="hover:text-primary-orange6">회원가입</span>
                 </Link>
               </div>
             </div>

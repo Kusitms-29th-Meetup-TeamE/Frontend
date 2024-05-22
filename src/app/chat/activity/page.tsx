@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import Skeleton from '@/components/common-components/skeleton';
+import Spinner from '@/components/common-components/spinner';
 
 import { RoomItem } from '@/components/chat/RoomItem';
 
@@ -35,11 +36,11 @@ export default function ChatActivity() {
     client.connect(
       {},
       () => {
-        console.log('Connection success');
+        // console.log('Connection success');
         setIsSocketLoading(false);
       },
       () => {
-        console.log('Connection failed');
+        // console.log('Connection failed');
         // setIsSocketLoading(false);
       },
     );
@@ -90,8 +91,7 @@ export default function ChatActivity() {
 
       <section className="flex-1">
         {isSocketLoading ? (
-          // TODO: 로딩 컴포넌트 넣기
-          <div>로딩중입니다요</div>
+          <Spinner />
         ) : groupRoomId !== null ? (
           <ChatRoom
             roomInfo={roomInfo as GroupChatRoom}

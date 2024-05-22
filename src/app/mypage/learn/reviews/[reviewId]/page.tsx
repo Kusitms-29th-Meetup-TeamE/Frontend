@@ -62,7 +62,6 @@ export default function MyLearnReviewsDetailPage() {
             size="md"
             ref={textareaRef}
             onChange={() => {
-              console.log(textareaRef.current?.value);
               setContent(textareaRef.current?.value as string);
               if (textareaRef.current?.value) setIsDisabled(false);
               else setIsDisabled(true);

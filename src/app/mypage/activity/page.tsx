@@ -8,7 +8,6 @@ import { useMyActivities } from '@/hooks/api/useMyPage';
 
 export default function MyPageActivity() {
   const { data, isLoading } = useMyActivities();
-  console.log('hihi', data);
 
   return (
     <div className="w-full m-auto max-w-[1200px]">
@@ -26,7 +25,7 @@ export default function MyPageActivity() {
                 key={item.id}
                 title={item.title}
                 location={item.location}
-                img={item.activityThumbnail}
+                imageUrl={item.activityThumbnail}
                 time={item.time}
                 isLiked={item.liked}
                 isHoverSet={false}

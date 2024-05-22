@@ -9,10 +9,16 @@ import ShareProfile, {
 } from '@/components/main/ShareProfile';
 
 import { useMainDataList } from '@/hooks/api/useMain';
+import { useNotifyLogin } from '@/hooks/useToast';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function ShareExperience() {
+  const router = useRouter();
+  const accessToken =
+    typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
+
   const { data: mainData, isLoading, error } = useMainDataList();
 
   const mainProfileList: ShareProfileProps[] = useMemo(
@@ -39,7 +45,7 @@ export default function ShareExperience() {
                 gender={item.gender}
                 message={item.message}
                 location={item.location}
-                imgUrl={item.imgUrl}
+                imageUrl={item.imageUrl}
                 type={item.type}
                 className="bg-white transition-transform duration-300 ease-in-out transform-gpu hover:rounded-[20px] hover:p-[6px] hover:bg-white hover:shadow-[0_4px_30px_20px_rgba(0,0,0,0.08)]"
               />
@@ -48,14 +54,17 @@ export default function ShareExperience() {
         })}
       </div>
 
-      <div className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10">
-        <Link
-          href={'/share'}
-          className="inline-flex items-center gap-[2px] px-3 py-1 rounded-lg hover:bg-gray-02"
-        >
+      <div
+        onClick={() => {
+          if (accessToken) router.push('/share');
+          else useNotifyLogin();
+        }}
+        className="mt-[70px] w-full mx-auto max-w-[1200px] text-center text-body3 text-gray-10"
+      >
+        <div className="inline-flex items-center gap-[2px] cursor-pointer px-3 py-1 rounded-lg hover:bg-gray-02">
           더 많은 활동 보기
           <IoIosArrowForward />
-        </Link>
+        </div>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const Checkbox = (props: CheckboxProps) => {
       width={width}
       height={height}
       onClick={handleCheck}
-      className="object-cover"
+      className="object-fill"
     />
   );
 };

@@ -81,37 +81,53 @@ const page = () => {
         />
       </div>
       <div className="max-w-[588px] w-full mx-auto flex flex-col mb-[20px]">
-        <Input
-          ref={emailInputRef}
-          startIcon={<TfiEmail />}
-          onChange={() => {
-            setUserInput({
-              ...userInput,
-              email: emailInputRef.current?.value || '',
-            });
-          }}
-          placeholder={'이메일을 입력해주세요'}
-          type="text"
-          shape={'square'}
-          className="mb-3"
-        />
-        <form>
+        <div>
           <Input
-            ref={passwordInputRef}
-            startIcon={<TfiLock />}
+            ref={emailInputRef}
+            startIcon={<TfiEmail />}
             onChange={() => {
               setUserInput({
                 ...userInput,
-                password: passwordInputRef.current?.value || '',
+                email: emailInputRef.current?.value || '',
               });
             }}
-            placeholder={'비밀번호를 입력해주세요'}
-            type="password"
-            autoComplete="true"
+            placeholder={'이메일을 입력해주세요'}
+            type="text"
             shape={'square'}
-            className="mb-5"
+            className="mb-3"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleLocalLogin();
+              }
+            }}
           />
-        </form>
+        </div>
+        <div>
+          <form>
+            <Input
+              ref={passwordInputRef}
+              startIcon={<TfiLock />}
+              onChange={() => {
+                setUserInput({
+                  ...userInput,
+                  password: passwordInputRef.current?.value || '',
+                });
+              }}
+              placeholder={'비밀번호를 입력해주세요'}
+              type="password"
+              autoComplete="true"
+              shape={'square'}
+              className="mb-5"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleLocalLogin();
+                }
+              }}
+            />
+          </form>
+        </div>
         <div className={variants.checkboxContainer} onClick={handleCheck}>
           <Checkbox
             width={19}
