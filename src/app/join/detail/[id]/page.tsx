@@ -13,6 +13,7 @@ import JoinActivityModal from '@/components/join/JoinActivityModal';
 import JoinSlider from '@/components/join/JoinSlider';
 
 import { useActivityDetail } from '@/hooks/api/useActivity';
+import { usePostChatRoomsGroup } from '@/hooks/api/useChat';
 import { DetailProps } from '@/types/activity';
 
 import { useRouter } from 'next/navigation';
@@ -41,16 +42,19 @@ const page = ({ params }: DetailProps) => {
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
+  const { mutate } = usePostChatRoomsGroup(resData?.id);
+
   const handleJoin = () => {
     setIsOpen(true);
     // console.log('신청하기');
+    mutate();
   };
 
   useEffect(() => {
     if (data) {
       setResData(data);
     }
-  }, []);
+  }, [data]);
 
   return (
     <div className="max-w-[1200px] w-full h-full mx-auto pt-8 flex flex-col">
