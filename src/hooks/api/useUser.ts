@@ -48,17 +48,17 @@ export const useKakaoUserInfo = (data: KakaoUserProps) => {
 
 export const useLocalUserInfo = (data: UserInfoProps) => {
   const { setSuccessModal, setErrorModal } = useGlobalModal();
+  const router = useRouter();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => postLocalUserInfo(data),
     onSuccess: (res) => {
-      console.log(res);
       setSuccessModal({
         open: true,
-        text: '회원 정보가 등록되었습니다.',
+        text: '회원가입이 완료되었습니다.',
       });
-      // TODO: 회원가입 성공 시에만
-      // router.push('/login');
+      sessionStorage.clear();
+      router.push('/login');
     },
     onError: (err: any) => {
       console.log(err);
