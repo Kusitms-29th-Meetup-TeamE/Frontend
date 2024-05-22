@@ -74,7 +74,7 @@ export default function MyCalendar() {
                     <div
                       key={index}
                       className={clsx(
-                        'mt-[2px] w-full py-[7px] px-2 rounded-[15px] border text-chip-semibold-sm text-start',
+                        'mt-[2px] w-full overflow-hidden whitespace-nowrap text-ellipsis py-[7px] px-2 rounded-[15px] border text-chip-semibold-sm text-start',
                         item.description.includes('배움 나누기') &&
                           'bg-secondary-violet2 border-secondary-violet7 text-secondary-violet7',
                         item.description.includes('약속') &&

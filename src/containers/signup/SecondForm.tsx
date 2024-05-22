@@ -78,18 +78,13 @@ export default function SecondForm(props: SecondFormProps) {
               <div
                 className="flex items-center justify-between cursor-pointer"
                 key={idx}
+                onClick={() => handleCheckChange(idx)}
               >
-                <div
-                  className="flex items-center"
-                  onClick={() => handleCheckChange(idx)}
-                >
+                <div className="flex items-center">
                   <Checkbox
                     width={19}
                     height={19}
                     isChecked={checkItems[idx]}
-                    handleCheck={() => {
-                      handleCheckChange(idx);
-                    }}
                   />
                   <span
                     className={clsx(
