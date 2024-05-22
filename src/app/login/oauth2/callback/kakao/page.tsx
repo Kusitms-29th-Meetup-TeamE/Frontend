@@ -19,18 +19,13 @@ const page = () => {
 
   const { data } = useKakaoToken(kakaoCode);
 
-  useEffect(() => {
-    // console.log('hi');
-    // console.log(data);
-  }, []);
-
-  console.log('회원가입 시 데이터: ', data);
+  // console.log('회원가입 시 데이터: ', data);
 
   useEffect(() => {
     console.log('회원가입 데이터 존재: ', data);
     if (data) {
       // 회원가입
-      sessionStorage.clear();
+      // sessionStorage.clear();
       sessionStorage.setItem('name', data.name);
       sessionStorage.setItem('email', data.email || '');
       sessionStorage.setItem('birthyear', data.birthyear || '');
