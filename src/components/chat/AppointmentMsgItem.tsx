@@ -7,9 +7,12 @@ import { MsgLogProps } from '@/types/chat';
 import { trimDateString } from '@/utils';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export const AppointmentMsgItem = (props: { data: MsgLogProps }) => {
   const { data } = props;
+  const router = useRouter();
+
   return (
     <div className="inline-flex flex-col gap-3">
       <div className="flex gap-3 items-center">
@@ -52,7 +55,10 @@ export const AppointmentMsgItem = (props: { data: MsgLogProps }) => {
               </span>
             </div>
             <div className="flex justify-end">
-              <button className="flex items-center gap-1 py-1 px-2 rounded hover:bg-gray-03 mt-[18px]">
+              <button
+                onClick={() => router.push('/mypage/calendar')}
+                className="flex items-center gap-1 py-1 px-2 rounded hover:bg-gray-03 mt-[18px]"
+              >
                 일정 확인하기
                 <IoIosArrowForward />
               </button>

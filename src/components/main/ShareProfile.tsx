@@ -26,7 +26,7 @@ export default function ShareProfile(props: ShareProfileProps) {
     type,
     gender,
     location,
-    imgUrl,
+    imageUrl,
     className,
   } = props;
 
@@ -43,7 +43,7 @@ export default function ShareProfile(props: ShareProfileProps) {
         <div
           className="rounded-[20px] h-[282px] object-cover py-[10px] px-[10px]"
           style={{
-            backgroundImage: `url(${imgUrl ?? 'assets/main/main_banner.png'})`,
+            backgroundImage: `url(${imageUrl ?? 'assets/main/main_banner.png'})`,
             backgroundSize: 'cover',
           }}
         >

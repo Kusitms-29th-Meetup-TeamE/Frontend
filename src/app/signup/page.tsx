@@ -77,8 +77,6 @@ export default function SignUp() {
     day: '',
   });
 
-  console.log('userinfo', userInfo);
-
   const { mutate, isPending } = useLocalUserInfo(userInfo);
 
   const handleNextClick = () => {
@@ -154,7 +152,7 @@ export default function SignUp() {
           shape="rounded"
           size="lg"
           onClick={handleNextClick}
-          // disabled={disabledBtn()}
+          disabled={disabledBtn()}
           type="submit"
         >
           {step !== 4 ? '다음' : '완료'}

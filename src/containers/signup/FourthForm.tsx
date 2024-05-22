@@ -29,14 +29,6 @@ const schema = z
       .regex(/^(?=.*d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/, {
         message: '비밀번호는 영문, 숫자를 포함해야 합니다.',
       }),
-    // string(): 문자열 타입을 나타내며, 문자열에 대한 유효성 검사를 수행
-    // number(): 숫자 타입을 나타내며, 숫자에 대한 유효성 검사를 수행
-    // boolean(): 부울 타입을 나타내며, 참/거짓 값에 대한 유효성 검사를 수행
-    // array(): 배열 타입을 나타내며, 배열에 대한 유효성 검사를 수행
-    // object(): 중첩된 객체를 정의할 수 있으며, 객체에 대한 유효성 검사를 수행
-    // nullable(): 값이 null일 수 있는지 여부를 나타냄
-    // optional(): 값을 생략할 수 있는지 여부를 나타냄
-    // refine(): 사용자 정의 유효성 검사 함수를 정의
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],

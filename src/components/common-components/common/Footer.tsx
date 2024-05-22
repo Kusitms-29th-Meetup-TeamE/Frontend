@@ -22,7 +22,7 @@ const Footer = () => {
         <span>또바</span>
       </div>
       <span className={variants.description}>
-        나중에 수정 예정,<br></br>새로운 만남의 기회를 제공하는 서비스
+        나의 일생을 더 아름답고 따뜻하게,<br></br>지역기반 사회 참여 서비스
       </span>
       <ul className={variants.menu}>
         <li>서비스 이용 가이드</li>

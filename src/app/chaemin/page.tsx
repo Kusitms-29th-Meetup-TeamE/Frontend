@@ -117,7 +117,6 @@ export default function TestPage() {
   const [location, setLocation] = useState<string>('');
 
   const handleComplete = (data: any) => {
-    console.log(data);
     setLocation(data.roadAddress);
     onToggleModal();
   };
@@ -133,15 +132,11 @@ export default function TestPage() {
 
   const sendAuthNumber = async () => {
     await postEmailAuth('chamny20@naver.com').then((res) => {
-      console.log('res:', res);
       setAuthAnswer(`${res}`);
     });
   };
 
-  const checkAuthNum = (input: any) => {
-    if (input === authAnswer) console.log('인증성공');
-    else console.log('실패');
-  };
+  const checkAuthNum = (input: any) => {};
 
   const [appointmentOpen, setAppointmentOpen] = useState<boolean>(false);
 
@@ -149,9 +144,6 @@ export default function TestPage() {
 
   const { data, isLoading } = useChatRoomsGroup();
   const { data: directData } = useChatRoomsDirect();
-
-  console.log('data:', data);
-  console.log('dir', directData);
 
   return (
     <>
