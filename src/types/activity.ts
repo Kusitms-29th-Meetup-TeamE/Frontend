@@ -5,7 +5,7 @@ export type RecommendItemProps = {
   maxParticipants?: number;
   currentParticipants?: number;
   time: string;
-  img: string;
+  imageUrl: string;
   isLiked: boolean;
   className?: string;
   personalities?: string[] | string;
