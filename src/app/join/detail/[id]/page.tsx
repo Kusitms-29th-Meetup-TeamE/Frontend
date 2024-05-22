@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FiHeart, FiShare2 } from 'react-icons/fi';
 import { GrLocation } from 'react-icons/gr';
 import { LuCalendarClock } from 'react-icons/lu';
@@ -34,6 +34,8 @@ const page = ({ params }: DetailProps) => {
 
   const { data, isLoading, error } = useActivityDetail(params.id);
 
+  const [resData, setResData] = useState<any>({});
+
   // 활동 내용 중 필터링 위함
   const [content, setContent] = useState<string>('');
 
@@ -44,6 +46,12 @@ const page = ({ params }: DetailProps) => {
     // console.log('신청하기');
   };
 
+  useEffect(() => {
+    if (data) {
+      setResData(data);
+    }
+  }, []);
+
   return (
     <div className="max-w-[1200px] w-full h-full mx-auto pt-8 flex flex-col">
       <button className={variants.prev} onClick={() => router.back()}>
@@ -51,10 +59,10 @@ const page = ({ params }: DetailProps) => {
         <span>이전으로</span>
       </button>
       <span className="text-h2 text-primary-orange6 mb-[4px]">
-        {data && data.title}
+        {resData.title}
       </span>
       <div className="w-full flex justify-between items-end mb-4">
-        <span className="text-gray-08 text-body2">{data && data.agency}</span>
+        <span className="text-gray-08 text-body2">{resData.agency}</span>
         <div className="flex gap-4">
           <button className={variants.headerBtn}>
             <FiShare2 width={20} height={20} />
@@ -67,32 +75,29 @@ const page = ({ params }: DetailProps) => {
         </div>
       </div>
       <div className="w-full h-[487px] mb-[10px]">
-        <JoinSlider
-          img={data ? data.imageUrl : '/assets/main/main_banner.png'}
-        />
+        <JoinSlider img={resData.imageUrl ?? '/assets/main/main_banner.png'} />
       </div>
       <div className={variants.info}>
         <div className="flex gap-[30px]">
           <div className="flex gap-[10px] items-center">
             <GrLocation width={20} height={20} />
-            <span>장소 | {data && data.agency}</span>
+            <span>장소 | {resData.agency}</span>
           </div>
           <div className="flex gap-[10px] items-center">
             <LuCalendarClock width={20} height={20} />
-            <span>시간 | {data && data.time}</span>
+            <span>시간 | {resData.time}</span>
           </div>
         </div>
         <div className="flex gap-[10px] items-center">
           <MdOutlinePersonOutline width={20} height={20} />
           <span>
-            신청자수 | {data && data.currentParticipants} /{' '}
-            {data && data.maxParticipants}
+            신청자수 | {resData.currentParticipants} / {resData.maxParticipants}
           </span>
         </div>
       </div>
       <div className="flex flex-col gap-3 mb-[40px]">
         <span className="text-black text-h3 text-[22px]">활동 설명</span>
-        <div className={variants.content}>{data && data.description}</div>
+        <div className={variants.content}>{resData.description}</div>
       </div>
       <div className="flex flex-col gap-3 mb-[100px]">
         <span className="text-black text-h3 text-[22px]">요청사항</span>
