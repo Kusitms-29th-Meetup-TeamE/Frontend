@@ -24,7 +24,6 @@ import Image from 'next/image';
 
 export default function MyPageEdit() {
   const { data } = useGetMyPageInfo();
-  console.log('sdf', data);
 
   const userData: MyPageInfoProps = useMemo(() => data ?? [], [data]);
 

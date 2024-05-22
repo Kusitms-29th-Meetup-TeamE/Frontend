@@ -43,7 +43,6 @@ export default function LearnProfile() {
   const { data: userData } = useGetMyPageInfo();
 
   const { data, isLoading, error } = useGetLearnProfile();
-  // console.log('data', data);
 
   const [exDataList, setExDataList] = useState<LearnProfileProps[]>([]);
 
@@ -75,7 +74,6 @@ export default function LearnProfile() {
     // mutate();
   };
 
-  console.log(exDataList, 'ss');
   return (
     <>
       <div className="w-full max-w-[588px] flex flex-col gap-[30px] py-5 px-6 rounded-[20px] bg-gray-02">

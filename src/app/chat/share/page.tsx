@@ -36,11 +36,11 @@ export default function ChatSharePage() {
     client.connect(
       {},
       () => {
-        console.log('Connection success');
+        // console.log('Connection success');
         setIsSocketLoading(false);
       },
       () => {
-        console.log('Connection failed');
+        // console.log('Connection failed');
         // setIsSocketLoading(false);
       },
     );
