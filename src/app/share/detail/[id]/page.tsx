@@ -52,7 +52,7 @@ const page = ({ params }: DetailProps) => {
           <Image
             width={344}
             height={344}
-            src={data && data.imageUrl}
+            src={data ? data.imageUrl : '/assets/main/main_banner.png'}
             alt={''}
             className="w-[344px] h-[344px] ml-[146px] rounded-full border-primary-orange6 border-4 object-cover"
           />

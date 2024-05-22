@@ -6,7 +6,7 @@ const variants = {
   menu: 'flex gap-[40px] items-center mt-[24px] text-footer-regular',
   liSeperator: 'w-[1px] h-[12px] bg-gray-06',
   contact: 'mt-[24px] text-footer-medium',
-  copyright: 'mt-[24px] text-footer-regular',
+  copyright: 'mt-1 text-footer-regular',
 };
 
 const Footer = () => {

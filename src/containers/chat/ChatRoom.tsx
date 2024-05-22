@@ -29,6 +29,7 @@ export const ChatRoom = (props: {
 }) => {
   const { roomId, roomInfo, stompClient, isGroup = true } = props;
   const { myId } = useChatStore();
+  console.log('riri', roomInfo);
 
   const [value, setValue] = useState<string>('');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -200,10 +201,29 @@ export const ChatRoom = (props: {
           </div>
           <button
             onClick={handleAppointment}
-            className="flex gap-2 items-center border border-gray-05 text-body3 bg-white rounded-[6px] text-gray-09 py-[5px] px-4 hover:bg-gray-02"
+            className={clsx(
+              'flex gap-1 justify-center items-center border border-gray-05 text-body3 bg-white rounded-[6px] text-gray-09 py-[5px] px-3 hover:bg-gray-02',
+
+              isGroup &&
+                roomInfo.appointmentDate &&
+                'border-none text-primary-orange6 !bg-primary-orange1',
+              !isGroup &&
+                roomInfo.appointmentDate &&
+                'border-none text-primary-orange6 !bg-primary-orange1',
+            )}
           >
             <LuCalendarDays />
-            <span>{isGroup ? '약속 잡기' : '배움 나누기 확정하기'}</span>
+            <span>{isGroup && !roomInfo.appointmentDate && '약속 잡기'}</span>
+            <span>
+              {isGroup && roomInfo.appointmentDate && '약속 잡기 완료'}
+            </span>
+            <span>
+              {!isGroup && roomInfo.appointmentDate && '배움 나누기 확정 완료'}
+            </span>
+            <span>
+              {!isGroup && !roomInfo.appointmentDate && '배움 나누기 확정하기'}
+            </span>
+            {/* <span>{isGroup ? '약속 잡기' : '배움 나누기 확정하기'}</span> */}
           </button>
         </div>
 
@@ -213,17 +233,7 @@ export const ChatRoom = (props: {
         >
           <div className="flex flex-col gap-[10px] -mt-3">
             {/* 배움 나누기 대화방 공지 */}
-            {/* {!isGroup && !logData.length && (
-              <div className="bg-gray-02 rounded-[20px] py-[18px] px-6 flex flex-col gap-[6px]">
-                <span className="text-gray-08 text-footer-regular">
-                  {roomInfo.experienceType}한식을 통해 1:1 대화가 시작되었습니다
-                </span>
-                <span className="text-h5 text-black">
-                  대화를 통해 만날 시간을 약속하고 상단에 ‘배움 나누기 확정하기’
-                  버튼을 눌러주세요!
-                </span>
-              </div>
-            )} */}
+
             {!isGroup && (
               <div className="mb-[20px] bg-gray-02 rounded-[20px] py-[18px] px-6 flex flex-col gap-[6px]">
                 <span className="text-gray-08 text-footer-regular">
