@@ -25,7 +25,7 @@ export default function MyPageActivity() {
                 key={item.id}
                 title={item.title}
                 location={item.location}
-                img={item.activityThumbnail}
+                imageUrl={item.activityThumbnail}
                 time={item.time}
                 isLiked={item.liked}
                 isHoverSet={false}
