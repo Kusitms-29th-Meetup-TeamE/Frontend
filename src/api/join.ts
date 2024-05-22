@@ -42,6 +42,7 @@ export const getLikedActivity = async ({
     method: 'GET',
     headers: {
       Authorization: `Bearer ${sessionStorage.accessToken}`,
+      'Content-Type': 'application/json',
     },
   });
 
@@ -53,18 +54,24 @@ export const getLikedActivity = async ({
 };
 
 export const getActivityDetail = async (id: number) => {
-  const res = await fetch(`${BASE_URL}/${id}/activity-details`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
-    },
-  });
+  try {
+    const res = await fetch(`${BASE_URL}/${id}/activity-details`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
 
-  if (!res.ok) {
-    console.log('Error on fetching Activity Detail');
+    if (!res.ok) {
+      console.log('Error on fetching Activity Detail');
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log('err:', err);
   }
-
-  return res.json();
 };
 
 export const postActivityLike = async (id: number) => {
