@@ -67,7 +67,7 @@ export const postChatRoomsGroup = async (activityId: number) => {
 export const postChatRoomsDirect = async (experienceId: number) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/chatrooms/group/${experienceId}`,
+      `${BASE_URL}/chatrooms/direct/${experienceId}`,
       {
         method: 'POST',
         headers: {
@@ -83,6 +83,6 @@ export const postChatRoomsDirect = async (experienceId: number) => {
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
-    throw error;
+    // throw error;
   }
 };

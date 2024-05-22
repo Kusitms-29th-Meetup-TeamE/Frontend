@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { PiChatTextBold } from 'react-icons/pi';
 
@@ -10,6 +10,7 @@ import Chip from '@/components/common-components/chip';
 import OtherLearningItem from '@/components/share/OtherLearningItem';
 import ReviewSlider from '@/components/share/ReviewSlider';
 
+import { usePostChatRoomsDirect } from '@/hooks/api/useChat';
 import { useLearningDetail } from '@/hooks/api/useLearning';
 import { DetailProps } from '@/types/activity';
 import { OthreLearningItemProps, ReviewProps } from '@/types/learning';
@@ -29,11 +30,24 @@ const variants = {
 
 const page = ({ params }: DetailProps) => {
   const router = useRouter();
+
+  const { data, isLoading, refetch } = useLearningDetail(params.id);
+
+  const [resData, setResData] = useState<any>({});
+
+  useEffect(() => {
+    if (data) {
+      setResData(data);
+    }
+  }, [data]);
+
+  const { mutate } = usePostChatRoomsDirect(data?.id);
+
   const handleClick = () => {
+    mutate();
     // console.log('채팅방으로 이동');
   };
 
-  const { data, isLoading, refetch } = useLearningDetail(params.id);
   return (
     <>
       <div className="max-w-[1200px] w-full h-full mx-auto pt-8 flex flex-col">
