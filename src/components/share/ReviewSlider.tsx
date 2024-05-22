@@ -2,20 +2,20 @@ import 'swiper/css';
 
 import React, { useCallback, useRef, useState } from 'react';
 
-import { reviewData } from '@/constants/object';
+import { ReviewSliderProps } from '@/types/learning';
 
 import ReviewItem from './ReviewItem';
 
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-const ReviewSlider = () => {
+const ReviewSlider = (data: ReviewSliderProps) => {
   const [currentReview, setCurrentReview] = useState<number>(0);
   //   const swiperRef = useRef<SwiperRef>(null);
   const nextButtonRef = useRef(null);
 
   const handleNextClick = useCallback(() => {
-    if (currentReview < reviewData.length) {
+    if (currentReview < data.reviewList.length) {
       setCurrentReview((prev) => prev + 3);
     }
     // console.log(currentReview);
@@ -39,7 +39,7 @@ const ReviewSlider = () => {
       onSlideChange={(swiper) => {
         setCurrentReview(swiper.snapIndex);
       }}
-      className="relative"
+      className="relative cursor-pointer"
       //   ref={swiperRef}
     >
       <Image
@@ -52,19 +52,19 @@ const ReviewSlider = () => {
         onClick={handleNextClick}
         ref={nextButtonRef}
       />
-      {reviewData &&
-        reviewData.map((item) => {
-          return (
+      {data.reviewList &&
+        data.reviewList.map((item) =>
+          item.reviews.map((item) => (
             <SwiperSlide className="w-fit">
               <ReviewItem
                 title={item.title}
                 content={item.content}
-                writer={item.writer}
-                date={item.writeDate}
+                name={item.name}
+                date={item.date}
               />
             </SwiperSlide>
-          );
-        })}
+          )),
+        )}
     </Swiper>
   );
 };

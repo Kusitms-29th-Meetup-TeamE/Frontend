@@ -6,10 +6,9 @@ export type ChipProps = {
   text?: string;
   type?: string;
   isBtn?: boolean;
+  focusType?: string;
   initialChip?: string;
   handleSelect?: Dispatch<SetStateAction<string>>;
   isPersonality?: boolean;
-  isActivity?: boolean;
-  // isLearning?: boolean;
   isSelected?: boolean;
 };

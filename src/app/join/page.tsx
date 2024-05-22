@@ -113,7 +113,7 @@ const page = () => {
                   title={item.title}
                   location={item.location}
                   time={item.time}
-                  img={item.activityThumbnail}
+                  imageUrl={item.activityThumbnail}
                   isLiked={item.liked}
                   personalities={[item.personality]}
                   isHoverSet={false}
@@ -129,7 +129,7 @@ const page = () => {
                     title={item.title}
                     location={item.location}
                     time={item.time}
-                    img={item.activityThumbnail}
+                    imageUrl={item.activityThumbnail}
                     isLiked={item.liked}
                     personalities={[item.personality]}
                     isHoverSet={false}

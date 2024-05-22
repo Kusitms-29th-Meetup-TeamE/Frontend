@@ -37,10 +37,10 @@ export default function RecommendActivity() {
           return (
             <RecommendItem
               isLoading={isLoading}
-              key={idx}
+              key={idx + item.title}
               title={item.title}
               location={item.location}
-              img={item.img}
+              imageUrl={item.imageUrl}
               currentParticipants={item.currentParticipants}
               maxParticipants={item.maxParticipants}
               time={item.time}

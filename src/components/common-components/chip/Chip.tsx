@@ -23,8 +23,8 @@ const style: {
   },
   focus: {
     abled: 'text-white bg-primary-orange6 border border-primary-orange6',
-    disabledActivity: '!text-gray-07 !bg-gray-04',
-    disabledLearning: 'border border-gray-04 !text-gray-07 !bg-gray-03',
+    disabledDark: '!text-gray-07 !bg-gray-04 border border-gray-04',
+    disabledLight: 'border border-gray-04 !text-gray-07 !bg-gray-03',
   },
   color: {
     활발한: 'bg-[rgba(253,143,42,0.10)] border border-[#FD8F2A] text-[#FD8F2A]', // 활발한
@@ -58,14 +58,13 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       text,
       type,
       isBtn = false,
+      focusType,
       initialChip,
       handleSelect,
-      isActivity,
       isPersonality = true,
     } = props;
 
     const [isSelected, setIsSelected] = useState<boolean>(false);
-    const [selectedChip, setSelectedChip] = useState<string>(initialChip || '');
 
     // 활동 참여하기
     const isInit = useSelectedJoinChipStore((state) => state.isInit);
@@ -79,54 +78,19 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
       (state) => state.setCurrentChips,
     );
 
-    // // 배움 나누기
-    // const currentLearningChip = useSelectedLearningChipStore(
-    //   (state) => state.currentLearningChip,
-    // );
-    // const setCurrentLearningChip = useSelectedLearningChipStore(
-    //   (state) => state.setCurrentLearningChip,
-    // );
-    // const getCurrentLearningChip = useSelectedLearningChipStore(
-    //   (state) => state.getCurrentLearningChip,
-    // );
-
     const handleClick = () => {
       if (isBtn && text) {
-        // 활동 참여하기
         setIsSelected((prev) => !prev);
-        setCurrentChips(text);
-        if (text !== selectedChip && handleSelect) {
-          setSelectedChip(text);
+        setCurrentChips(text); // 활동 참여하기 필터링
+        if (text !== initialChip && handleSelect) {
           handleSelect(text);
         }
       }
-      // else {
-      //   // 배움 나누기
-      //   setIsSelected(true);
-      //   setCurrentLearningChip(text);
-      // }
     };
 
     useEffect(() => {
-      // 화면 첫 진입 시 초기화
-      if (
-        currentAgency.includes(text || '') ||
-        currentPersonality.includes(text || '')
-      ) {
-        setIsSelected(true);
-      }
-    }, []);
-
-    useEffect(() => {
-      if (handleSelect) {
-        handleSelect(selectedChip);
-        setIsSelected(selectedChip === text);
-      }
-    }, [selectedChip, text]);
-
-    useEffect(() => {
       if (isInit) {
-        // 관심활동 클릭 시 초기화
+        // 활동 참여하기 -> 관심활동 클릭 시 초기화
         if (text === '전체') {
           setIsSelected(true);
         } else if (personalityItmes.includes(text!)) {
@@ -138,9 +102,29 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
         !currentAgency.includes(text!) &&
         !currentPersonality.includes(text!)
       ) {
+        // 활동 참여하기 선택되지 않은 칩 ㄴㄴ비활성화
         setIsSelected(false);
       }
     }, [currentAgency, currentPersonality]);
+
+    useEffect(() => {
+      // 배움 나누기 칩 선택 해제
+      if (initialChip !== text) {
+        setIsSelected(false);
+      } else {
+        setIsSelected(true);
+      }
+    }, [initialChip]);
+
+    useEffect(() => {
+      // 활동 참여하기 화면 첫 진입 시 초기화
+      if (
+        currentAgency.includes(text || '') ||
+        currentPersonality.includes(text || '')
+      ) {
+        setIsSelected(true);
+      }
+    }, []);
 
     return (
       <div
@@ -150,9 +134,7 @@ const Chip = forwardRef<HTMLDivElement, PropsWithChildren<ChipProps>>(
           isBtn
             ? isSelected
               ? !isPersonality && style.focus['abled']
-              : isActivity
-                ? style.focus['disabledActivity']
-                : style.focus['disabledLearning']
+              : style.focus[focusType as string]
             : '',
           text ? style.color[text as string] : style.type,
           style.size[size],

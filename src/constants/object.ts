@@ -92,6 +92,12 @@ export const learningCategoryItems: string[] = [
   '기타',
 ];
 
+export const sortItems: SelectItemType[] = [
+  { id: 1, text: '최신순', value: 'latest' },
+  { id: 2, text: '후기순', value: 'review' },
+  { id: 3, text: '거리순', value: 'latest' },
+];
+
 export const pointNotice = [
   {
     text: '‘활동참여하기’에서 활동을 신청했다면',

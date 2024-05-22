@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ReviewSliderProps } from '@/types/activity';
+import { ReviewItemType } from '@/types/learning';
 
 import Image from 'next/image';
 
-const ReviewItem = (props: ReviewSliderProps) => {
-  const { title, content, writer, date } = props;
+const ReviewItem = (props: ReviewItemType) => {
+  const { title, content, name, date } = props;
 
   return (
     <div className="max-w-[384px] w-full h-[207px] flex flex-col relative rounded-[20px] bg-white px-8 pt-4 pb-6 whitespace-nowrap">
@@ -18,11 +18,11 @@ const ReviewItem = (props: ReviewSliderProps) => {
       <span className="text-primary-orange6 text-footer-bold mt-[10px]">
         {title}
       </span>
-      <span className="text-gray-07 text-notification-chip-yes mt-[8px]">
+      <span className="text-gray-07 text-notification-chip-yes mt-[8px] text-ellipsis overflow-hidden">
         {content}
       </span>
       <p className="absolute bottom-6 right-8 flex gap-[10px] text-gray-05 text-notification-chip-no">
-        <span>{writer} 님</span>
+        <span>{name} 님</span>
         <span>{date}</span>
       </p>
     </div>
