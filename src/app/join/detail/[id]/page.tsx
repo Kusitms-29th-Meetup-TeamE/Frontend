@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { FiHeart, FiShare2 } from 'react-icons/fi';
 import { GrLocation } from 'react-icons/gr';
 import { LuCalendarClock } from 'react-icons/lu';
@@ -57,78 +57,83 @@ const page = ({ params }: DetailProps) => {
   }, [data]);
 
   return (
-    <div className="max-w-[1200px] w-full h-full mx-auto pt-8 flex flex-col">
-      <button className={variants.prev} onClick={() => router.back()}>
-        <MdKeyboardArrowLeft width={16} height={16} />
-        <span>이전으로</span>
-      </button>
-      <span className="text-h2 text-primary-orange6 mb-[4px]">
-        {resData.title}
-      </span>
-      <div className="w-full flex justify-between items-end mb-4">
-        <span className="text-gray-08 text-body2">{resData.agency}</span>
-        <div className="flex gap-4">
-          <button className={variants.headerBtn}>
-            <FiShare2 width={20} height={20} />
-            공유하기
-          </button>
-          <button className={variants.headerBtn}>
-            <FiHeart width={20} height={20} />
-            관심활동
-          </button>
-        </div>
-      </div>
-      <div className="w-full h-[487px] mb-[10px]">
-        <JoinSlider img={resData.imageUrl ?? '/assets/main/main_banner.png'} />
-      </div>
-      <div className={variants.info}>
-        <div className="flex gap-[30px]">
-          <div className="flex gap-[10px] items-center">
-            <GrLocation width={20} height={20} />
-            <span>장소 | {resData.agency}</span>
-          </div>
-          <div className="flex gap-[10px] items-center">
-            <LuCalendarClock width={20} height={20} />
-            <span>시간 | {resData.time}</span>
+    <Suspense>
+      <div className="max-w-[1200px] w-full h-full mx-auto pt-8 flex flex-col">
+        <button className={variants.prev} onClick={() => router.back()}>
+          <MdKeyboardArrowLeft width={16} height={16} />
+          <span>이전으로</span>
+        </button>
+        <span className="text-h2 text-primary-orange6 mb-[4px]">
+          {resData.title}
+        </span>
+        <div className="w-full flex justify-between items-end mb-4">
+          <span className="text-gray-08 text-body2">{resData.agency}</span>
+          <div className="flex gap-4">
+            <button className={variants.headerBtn}>
+              <FiShare2 width={20} height={20} />
+              공유하기
+            </button>
+            <button className={variants.headerBtn}>
+              <FiHeart width={20} height={20} />
+              관심활동
+            </button>
           </div>
         </div>
-        <div className="flex gap-[10px] items-center">
-          <MdOutlinePersonOutline width={20} height={20} />
-          <span>
-            신청자수 | {resData.currentParticipants} / {resData.maxParticipants}
-          </span>
+        <div className="w-full h-[487px] mb-[10px]">
+          <JoinSlider
+            img={resData.imageUrl ?? '/assets/main/main_banner.png'}
+          />
         </div>
+        <div className={variants.info}>
+          <div className="flex gap-[30px]">
+            <div className="flex gap-[10px] items-center">
+              <GrLocation width={20} height={20} />
+              <span>장소 | {resData.agency}</span>
+            </div>
+            <div className="flex gap-[10px] items-center">
+              <LuCalendarClock width={20} height={20} />
+              <span>시간 | {resData.time}</span>
+            </div>
+          </div>
+          <div className="flex gap-[10px] items-center">
+            <MdOutlinePersonOutline width={20} height={20} />
+            <span>
+              신청자수 | {resData.currentParticipants} /{' '}
+              {resData.maxParticipants}
+            </span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-3 mb-[40px]">
+          <span className="text-black text-h3 text-[22px]">활동 설명</span>
+          <div className={variants.content}>{resData.description}</div>
+        </div>
+        <div className="flex flex-col gap-3 mb-[100px]">
+          <span className="text-black text-h3 text-[22px]">요청사항</span>
+          <Textarea
+            placeholder="관리자에게 전달하고 싶은 요청사항을 적어주세요. (500자 이내)"
+            size="md"
+            ref={textAreaRef}
+            onChange={() => {
+              // console.log(textAreaRef.current?.value);
+              if (textAreaRef.current?.value) setIsDisabled(false);
+              else setIsDisabled(true);
+            }}
+          />
+        </div>
+        <div className="w-full flex justify-center">
+          <Button
+            color={!isDisabled ? 'default' : 'disabled'}
+            size={'lg'}
+            shape={'rounded'}
+            onClick={handleJoin}
+            disabled={isDisabled}
+          >
+            활동 신청하기
+          </Button>
+        </div>
+        <JoinActivityModal isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
-      <div className="flex flex-col gap-3 mb-[40px]">
-        <span className="text-black text-h3 text-[22px]">활동 설명</span>
-        <div className={variants.content}>{resData.description}</div>
-      </div>
-      <div className="flex flex-col gap-3 mb-[100px]">
-        <span className="text-black text-h3 text-[22px]">요청사항</span>
-        <Textarea
-          placeholder="관리자에게 전달하고 싶은 요청사항을 적어주세요. (500자 이내)"
-          size="md"
-          ref={textAreaRef}
-          onChange={() => {
-            // console.log(textAreaRef.current?.value);
-            if (textAreaRef.current?.value) setIsDisabled(false);
-            else setIsDisabled(true);
-          }}
-        />
-      </div>
-      <div className="w-full flex justify-center">
-        <Button
-          color={!isDisabled ? 'default' : 'disabled'}
-          size={'lg'}
-          shape={'rounded'}
-          onClick={handleJoin}
-          disabled={isDisabled}
-        >
-          활동 신청하기
-        </Button>
-      </div>
-      <JoinActivityModal isOpen={isOpen} setIsOpen={setIsOpen} />
-    </div>
+    </Suspense>
   );
 };
 
