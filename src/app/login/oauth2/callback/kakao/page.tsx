@@ -2,6 +2,8 @@
 
 import React, { use, useEffect, useState } from 'react';
 
+import Spinner from '@/components/common-components/spinner';
+
 import { useKakaoToken } from '@/hooks/api/useUser';
 
 import { useRouter } from 'next/navigation';
@@ -16,14 +18,16 @@ const page = () => {
   }
 
   const { data } = useKakaoToken(kakaoCode);
-  // console.log('회원가입 시 데이터: ', data);
 
   useEffect(() => {
     // console.log('hi');
     // console.log(data);
   }, []);
 
+  console.log('회원가입 시 데이터: ', data);
+
   useEffect(() => {
+    console.log('회원가입 데이터 존재: ', data);
     if (data) {
       // 회원가입
       sessionStorage.clear();
@@ -39,7 +43,11 @@ const page = () => {
     }
   }, [data]);
 
-  return <div></div>;
+  return (
+    <div className="w-screen h-screen flex justify-center">
+      <Spinner />
+    </div>
+  );
 };
 
 export default page;
