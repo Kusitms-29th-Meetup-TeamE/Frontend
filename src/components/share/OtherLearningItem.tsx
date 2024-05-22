@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdOutlineChevronRight } from 'react-icons/md';
 
-import { OthreLearningItemProps } from '@/types/activity';
+import { OthreLearningItemProps } from '@/types/learning';
 
 import Chip from '../common-components/chip';
 

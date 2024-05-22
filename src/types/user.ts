@@ -3,7 +3,7 @@ export interface UserProps {
   age?: number;
   gender: string;
   location: string;
-  imgUrl?: string;
+  imageUrl?: string;
 }
 
 export interface UserInfoProps extends UserProps {

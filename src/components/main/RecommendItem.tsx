@@ -26,7 +26,7 @@ export default function RecommendItem(props: RecommendItemProps) {
     maxParticipants,
     currentParticipants,
     time,
-    img,
+    imageUrl,
     isLiked,
     className,
     isLoading,
@@ -53,7 +53,7 @@ export default function RecommendItem(props: RecommendItemProps) {
       ) : (
         <Link href={{ pathname: `/join/detail/${id}` }}>
           <Image
-            src={img ?? '/assets/main/main_banner.png'}
+            src={imageUrl ?? '/assets/main/main_banner.png'}
             height={380}
             width={380}
             alt=""

@@ -1,70 +1,21 @@
 import 'swiper/css';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+
+import { ReviewSliderProps } from '@/types/learning';
 
 import ReviewItem from './ReviewItem';
 
 import Image from 'next/image';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 
-const data = [
-  {
-    id: 1,
-    title: '제목',
-    content: '내용',
-    writer: '작성자',
-    writeDate: '날짜',
-  },
-  {
-    id: 2,
-    title: '제목',
-    content: '내용',
-    writer: '작성자',
-    writeDate: '날짜',
-  },
-  {
-    id: 3,
-    title: '제목',
-    content: '내용',
-    writer: '작성자',
-    writeDate: '날짜',
-  },
-  {
-    id: 4,
-    title: '제목',
-    content: '내용',
-    writer: '작성자',
-    writeDate: '날짜',
-  },
-  {
-    id: 5,
-    title: '제목',
-    content: '내용',
-    writer: '작성자',
-    writeDate: '날짜',
-  },
-  {
-    id: 6,
-    title: '제목',
-    content: '내용',
-    writer: '작성자',
-    writeDate: '날짜',
-  },
-  {
-    id: 7,
-    title: '제목',
-    content: '내용',
-    writer: '작성자',
-    writeDate: '날짜',
-  },
-];
-const ReviewSlider = () => {
+const ReviewSlider = (data: ReviewSliderProps) => {
   const [currentReview, setCurrentReview] = useState<number>(0);
   //   const swiperRef = useRef<SwiperRef>(null);
   const nextButtonRef = useRef(null);
 
   const handleNextClick = useCallback(() => {
-    if (currentReview < data.length) {
+    if (currentReview < data.reviewList.length) {
       setCurrentReview((prev) => prev + 3);
     }
     console.log(currentReview);
@@ -88,7 +39,7 @@ const ReviewSlider = () => {
       onSlideChange={(swiper) => {
         setCurrentReview(swiper.snapIndex);
       }}
-      className="relative"
+      className="relative cursor-pointer"
       //   ref={swiperRef}
     >
       <Image
@@ -101,18 +52,19 @@ const ReviewSlider = () => {
         onClick={handleNextClick}
         ref={nextButtonRef}
       />
-      {data.map((item) => {
-        return (
-          <SwiperSlide className="w-fit">
-            <ReviewItem
-              title={item.title}
-              content={item.content}
-              writer={item.writer}
-              date={item.writeDate}
-            />
-          </SwiperSlide>
-        );
-      })}
+      {data.reviewList &&
+        data.reviewList.map((item) =>
+          item.reviews.map((item) => (
+            <SwiperSlide className="w-fit">
+              <ReviewItem
+                title={item.title}
+                content={item.content}
+                name={item.name}
+                date={item.date}
+              />
+            </SwiperSlide>
+          )),
+        )}
     </Swiper>
   );
 };
