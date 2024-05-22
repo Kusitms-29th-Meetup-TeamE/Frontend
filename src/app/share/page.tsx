@@ -16,9 +16,10 @@ import { LearningType } from '@/types/learning';
 
 import ActivityContainer from '@/containers/join/ActivityContainer';
 
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const [selectedChip, setSelectedChip] = useState<string>('전체');
@@ -70,7 +71,7 @@ const page = () => {
             {data &&
               data.experiences.map((item: LearningType, key: number) => {
                 return (
-                  <Link href={{ pathname: `/share/detail/${item.id}` }}>
+                  <div onClick={() => router.push(`/share/detail/${item.id}`)}>
                     <LearningItem
                       key={key + item.name}
                       imageUrl={item.imageUrl}
@@ -82,7 +83,7 @@ const page = () => {
                       title={item.title}
                       type={item.type}
                     />
-                  </Link>
+                  </div>
                 );
               })}
           </ActivityContainer>

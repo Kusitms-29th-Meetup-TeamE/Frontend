@@ -9,9 +9,10 @@ import Sidebar from '@/components/mypage/Sidebar';
 import { useGetReviewsByMe } from '@/hooks/api/useMyPage';
 import { ReviewsByMeItem } from '@/types/mypage';
 
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function MyLearnReviewsPage() {
+  const router = useRouter();
   const { data } = useGetReviewsByMe();
 
   const reviewsList: ReviewsByMeItem[] = useMemo(
@@ -31,9 +32,11 @@ export default function MyLearnReviewsPage() {
 
         {reviewsList.map((item) => {
           return (
-            <Link href={{ pathname: `/mypage/learn/reviews/${item.id}` }}>
+            <div
+              onClick={() => router.push(`/mypage/learn/reviews/${item.id}`)}
+            >
               <MyLearnListItem key={item.id} data={item} />
-            </Link>
+            </div>
           );
         })}
       </div>
