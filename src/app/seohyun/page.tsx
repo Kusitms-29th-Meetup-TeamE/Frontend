@@ -12,8 +12,8 @@ import ThirdStep from '@/containers/onboarding/ThirdStep';
 
 const TestPage = () => {
   return (
-    <>
-      <div className="w-full h-100% pr-[10px] pl-[10px]">
+    <div className="w-screen h-screen">
+      <div className="w-full h-full pr-[10px] pl-[10px]">
         {/* <div className="flex gap-2 p-2"></div>
  
     <FourthStep />
@@ -28,9 +28,9 @@ const TestPage = () => {
     />
     <div className="h-[30px]"></div>
     <Point /> */}
-        <Spinner isLoading={true} />
+        <Spinner isLoading={true} size={70} messageStyle="text-body2" />
       </div>
-    </>
+    </div>
   );
 };
 

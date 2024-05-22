@@ -7,8 +7,9 @@ export type SpinnerProps = {
   isLoading?: boolean;
   className?: string;
   color?: string;
-  size?: string;
+  size?: number;
   message?: string;
+  messageStyle?: string;
 };
 
 const Spinner = ({
@@ -17,6 +18,7 @@ const Spinner = ({
   color,
   size,
   message,
+  messageStyle,
 }: SpinnerProps) => {
   return (
     <div
@@ -31,7 +33,9 @@ const Spinner = ({
         size={size || 20}
         speedMultiplier={0.7}
       />
-      <div className="text-body3">{message || '로딩 중입니다'}</div>
+      <div className={messageStyle || 'text-body-3'}>
+        {message || '로딩 중입니다'}
+      </div>
     </div>
   );
 };
