@@ -10,6 +10,7 @@ import Chip from '../common-components/chip';
 
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const LearningProfile = ({ className }: { className?: string }) => {
@@ -81,12 +82,15 @@ const LearningProfile = ({ className }: { className?: string }) => {
         {isMypage ? (
           ''
         ) : (
-          <button className="flex items-center px-4 py-[13px] bg-white rounded-[20px]">
+          <Link
+            href={'/mypage/learn/profile'}
+            className="flex items-center px-4 py-[13px] bg-white rounded-[20px]"
+          >
             <FaCirclePlus className="ml-[6px] mr-4 text-gray-06 w-5 h-5" />
             <span className="text-notification-chip-yes text-gray-07">
               경험 프로필 등록
             </span>
-          </button>
+          </Link>
         )}
       </ul>
     </div>
