@@ -39,7 +39,7 @@ export default function ShareExperience() {
                 gender={item.gender}
                 message={item.message}
                 location={item.location}
-                imgUrl={item.imgUrl}
+                imageUrl={item.imageUrl}
                 type={item.type}
                 className="bg-white transition-transform duration-300 ease-in-out transform-gpu hover:rounded-[20px] hover:p-[6px] hover:bg-white hover:shadow-[0_4px_30px_20px_rgba(0,0,0,0.08)]"
               />

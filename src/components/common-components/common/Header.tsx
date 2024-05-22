@@ -5,16 +5,17 @@ import { CgProfile } from 'react-icons/cg';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { VscBell } from 'react-icons/vsc';
 
-import { useNotifyLogin } from '@/hooks/useToast';
+import { useNotifyLater, useNotifyLogin } from '@/hooks/useToast';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
 const variants = {
   menubar: 'w-1/2 max-w-[760px] flex text-gray-11 justify-between',
-  centerMenu: 'text-h3 cursor-pointer',
+  centerMenu: 'text-h3 cursor-pointer hover:text-primary-orange6',
   rightBar: 'flex items-center gap-[40px] text-gray-07 text-body3',
-  rightMenu: 'flex items-center text-gray-07 text-body3 cursor-pointer',
+  rightMenu:
+    'flex items-center text-gray-07 text-body3 hover:text-primary-orange6 cursor-pointer',
 };
 
 export default function Header({ isGuest }: { isGuest: boolean }) {
@@ -86,11 +87,14 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
 
           {accessToken ? (
             <div className={variants.rightBar}>
-              <div className={variants.rightMenu}>
+              <div
+                className={variants.rightMenu}
+                onClick={() => useNotifyLater()}
+              >
                 <VscBell width={20} height={20} />
                 <span className="pl-[4px]">알림</span>
               </div>
-              <Link href="/mypage">
+              <Link href="/mypage/calendar">
                 <span className={variants.rightMenu}>
                   <CgProfile width={20} height={20} />
                   <span className="pl-[4px]">마이페이지</span>

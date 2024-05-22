@@ -154,7 +154,7 @@ export default function SignUp() {
           shape="rounded"
           size="lg"
           onClick={handleNextClick}
-          // disabled={disabledBtn()}
+          disabled={disabledBtn()}
           type="submit"
         >
           {step !== 4 ? '다음' : '완료'}

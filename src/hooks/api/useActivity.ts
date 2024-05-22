@@ -1,5 +1,6 @@
+import { ActivityRequestProps } from '@/types/activity';
+
 import {
-  AllActivityProps,
   getActivityDetail,
   getAllActivity,
   getLikedActivity,
@@ -12,7 +13,7 @@ export const useAllActivity = ({
   page,
   agencyTypes,
   personalities,
-}: AllActivityProps) => {
+}: ActivityRequestProps) => {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['ALL_ACTIVITY', page],
     queryFn: () => getAllActivity({ page, agencyTypes, personalities }),
@@ -24,7 +25,7 @@ export const useLikedActivity = ({
   page,
   agencyTypes,
   personalities,
-}: AllActivityProps) => {
+}: ActivityRequestProps) => {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['LIKED_ACTIVITY', page],
     queryFn: () => getLikedActivity({ page, agencyTypes, personalities }),

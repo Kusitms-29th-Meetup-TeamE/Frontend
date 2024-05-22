@@ -1,3 +1,4 @@
+import { useNotifyError } from '@/hooks/useToast';
 import { KakaoUserProps, UserInfoProps } from '@/types/user';
 
 import { BASE_URL } from '.';
@@ -21,11 +22,7 @@ export const getKakaoToken = async (code: string) => {
       return null;
     }
   }
-  // 회원가입
-  // console.log(res);
-  // console.log(res.body);
-  // console.log(res.json);
-  // console.log(res.json());
+
   return res.json();
   //  catch (error) {
   //   console.error('Error fetching Kakao token:', error);
@@ -98,6 +95,10 @@ export const postLocalUserInfo = async ({
     }),
   })
     .then((res) => {
+      if (res.status === 500) {
+        throw new Error('Internal Server Error');
+      }
+
       if (res.headers) {
         let jwtToken = res.headers.get('Authorization');
         jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
@@ -112,6 +113,7 @@ export const postLocalUserInfo = async ({
     })
     .catch((err) => {
       console.log('err', err);
+      throw err; // 오류를 다시 던져서 리액트 쿼리의 onError로 가도록
     });
 };
 
@@ -133,6 +135,10 @@ export const postEmailAuth = async (email: string) => {
 
     // 텍스트로 변환
     const text = new TextDecoder().decode(content?.value);
+
+    if (text === '이미 등록된 사용자 입니다.') {
+      throw new Error('이미 등록된 사용자입니다.');
+    }
 
     return text;
   } catch (error) {
