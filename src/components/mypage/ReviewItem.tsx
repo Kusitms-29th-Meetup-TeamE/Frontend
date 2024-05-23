@@ -24,7 +24,7 @@ export default function ReviewItem(props: { data: ReviewItemProps }) {
       </div>
       <div className="-mt-7 pt-[40px] px-[30px] pb-[20px] flex gap-4 rounded-[20px] rounded-tl-none bg-gray-02 w-full max-w-[894px]">
         <Image
-          src="/assets/main/main_banner.png"
+          src={data.imageUrl || '/assets/main/main_banner.png'}
           alt=""
           width={56}
           height={56}
