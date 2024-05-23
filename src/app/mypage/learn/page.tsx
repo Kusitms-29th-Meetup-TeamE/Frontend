@@ -2,6 +2,7 @@
 
 import MyPageTitle from '@/components/mypage/MypageTItle';
 import Sidebar from '@/components/mypage/Sidebar';
+import LearningProfile from '@/components/share/LearningProfile';
 
 import LearnProfile from '@/containers/mypage/LearnProfile';
 
@@ -14,7 +15,10 @@ export default function MyLearnPage() {
           title="배움 프로필 수정하기"
           content="배움 나누기 활동을 통해 얻은 경험 내역을 확인해보세요"
         />
-        <LearnProfile />
+        <div className="w-full h-full flex flex-row gap-6">
+          <LearningProfile />
+          <LearnProfile />
+        </div>
       </div>
     </div>
   );
