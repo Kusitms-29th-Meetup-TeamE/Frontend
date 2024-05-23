@@ -44,7 +44,7 @@ const Page = () => {
   }, [data, isLoading, error]);
 
   return isLoading ? (
-    <div className="w-full h-full flex justify-center items-center my-auto border-2 border-red-500">
+    <div className="w-full h-screen flex justify-center items-center my-auto border-2 border-red-500">
       <Spinner />
     </div>
   ) : (
