@@ -17,7 +17,7 @@ const variants = {
   title: 'text-black text-body2',
   contentContainer: 'w-[100%] mt-[21px] flex justify-between items-end',
   content: 'text-body3 text-gray-08 whitespace-pre-wrap',
-  btn: 'flex items-center gap-[3px] bg-gray-03 rounded-[20px] text-gray-08 text-chip-medium pt-[10px] pr-[14px] pb-[8px] pl-[14px] hover:bg-gray-03',
+  btn: 'flex items-center gap-[3px] bg-gray-03 rounded-[20px] text-gray-08 text-chip-medium pt-[10px] pr-[14px] pb-[8px] pl-[14px] hover:bg-gray-04',
   arrow: 'w-[16px] h-[16px] fill-gray-08',
 };
 
