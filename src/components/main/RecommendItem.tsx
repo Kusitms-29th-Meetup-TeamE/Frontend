@@ -54,7 +54,7 @@ export default function RecommendItem(props: RecommendItemProps) {
       ) : (
         <div onClick={() => router.push(`/join/detail?id=${id}`)}>
           <Image
-            src={imageUrl ?? '/assets/main/main_banner.png'}
+            src={imageUrl ?? '/assets/ddoba_profile.png'}
             height={380}
             width={380}
             alt=""

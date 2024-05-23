@@ -151,7 +151,7 @@ export const ChatRoom = (props: {
               {item.senderId !== myId && (
                 <div className="flex gap-3 items-center">
                   <Image
-                    src={item.senderImageUrl ?? '/assets/main/main_banner.png'}
+                    src={item.senderImageUrl ?? '/assets/ddoba_profile.png'}
                     alt=""
                     width={48}
                     height={48}

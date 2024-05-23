@@ -63,7 +63,7 @@ export default function MyPageEdit() {
           <div className="w-full max-w-[254px] flex flex-col justify-start">
             <label className="text-h3 text-black">프로필 사진</label>
             <Image
-              src={userData.imageUrl ?? '/assets/main/main_banner.png'}
+              src={userData.imageUrl ?? '/assets/ddoba_profile.png'}
               alt=""
               width={254}
               height={254}
