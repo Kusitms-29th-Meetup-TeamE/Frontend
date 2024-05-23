@@ -21,7 +21,7 @@ import { useRouter } from 'next/navigation';
 const variants = {
   prev: 'w-fit h-fit px-[5px] pr-[10px] py-[5px] flex gap-[5px] items-center text-body2 text-gray-08 mb-[14px] hover:bg-gray-02 border-box rounded-[10px]',
   headerBtn:
-    'flex gap-2 justify-center items-center text-gray-08 text-body3 px-[14px] py-2 bg-gray-03 rounded-[30px]',
+    'flex gap-2 justify-center items-center text-gray-08 text-body3 px-[14px] py-2 bg-gray-03 rounded-[30px] hover:bg-gray-04',
   info: 'w-full h-[70px] flex justify-between items-center px-[30px] rounded-[20px] mb-[50px] bg-primary-orange6 text-white text-body2',
   content:
     'bg-gray-02 rounded-[20px] px-6 py-[23px] whitespace-pre-wrap text-gray-10 text-body3 leading-[30px]',
@@ -105,7 +105,9 @@ const page = ({ params }: DetailProps) => {
         </div>
         <div className="flex flex-col gap-3 mb-[40px]">
           <span className="text-black text-h3 text-[22px]">활동 설명</span>
-          <div className={variants.content}>{resData.description}</div>
+          <div className={variants.content}>
+            {resData.description || '활동 설명이 없어요'}
+          </div>
         </div>
         <div className="flex flex-col gap-3 mb-[100px]">
           <span className="text-black text-h3 text-[22px]">요청사항</span>
