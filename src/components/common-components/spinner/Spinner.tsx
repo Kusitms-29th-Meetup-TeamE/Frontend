@@ -23,7 +23,7 @@ const Spinner = ({
   return (
     <div
       className={clsx(
-        'w-full h-full flex flex-col gap-8 justify-center items-center m-auto border border-blue-500',
+        'w-full h-full flex flex-col gap-8 justify-center items-center m-auto',
         className,
       )}
     >
