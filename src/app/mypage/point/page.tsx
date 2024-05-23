@@ -33,7 +33,7 @@ export default function MyPoint() {
 
         <div className="bg-gray-01 border border-gray-03 rounded-[20px]">
           <div className="px-[30px] pt-[26px] pb-[6px] flex flex-col gap-1">
-            <div className="flex justify-between">
+            <div className="flex justify-between text-body2">
               <span>
                 <span className="text-primary-orange6">{name ?? '또바기'}</span>
                 님의 사용 가능 포인트
