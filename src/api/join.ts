@@ -74,6 +74,27 @@ export const getActivityDetail = async (id: number) => {
   }
 };
 
+export const getOnboardingInfo = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/users/personalities`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!res.ok) {
+      console.log('Error on fetching Activity Detail');
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log('err:', err);
+  }
+};
+
 export const postActivityLike = async (id: number) => {
   const res = await fetch(`${BASE_URL}/activate-like/${id}`, {
     method: 'POST',

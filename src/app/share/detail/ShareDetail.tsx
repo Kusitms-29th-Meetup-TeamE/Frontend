@@ -129,15 +129,14 @@ const ShareDetail = () => {
         </div>
         <div className="mt-[27px] flex gap-[10px]">
           {data &&
-            data.reviews.map((item: ReviewProps) => (
+            data.reviews.map((item: ReviewProps, key: number) => (
               <Chip
                 text={item.type}
                 key={item.type}
                 isBtn={true}
                 isPersonality={false}
-                // isActivity={true} // 스타일 적용 위함
-                // isLearning={true}
-                isSelected={false}
+                focusType="disabledLight"
+                isSelected={key === 0}
                 className="cursor-pointer"
               />
             ))}

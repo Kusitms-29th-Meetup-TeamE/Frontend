@@ -104,7 +104,9 @@ const JoinDetail = () => {
       </div>
       <div className="flex flex-col gap-3 mb-[40px]">
         <span className="text-black text-h3 text-[22px]">활동 설명</span>
-        <div className={variants.content}>{resData.description}</div>
+        <div className={variants.content}>
+          {resData.description || '활동 설명이 없어요'}
+        </div>
       </div>
       <div className="flex flex-col gap-3 mb-[100px]">
         <span className="text-black text-h3 text-[22px]">요청사항</span>
