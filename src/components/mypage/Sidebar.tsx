@@ -46,7 +46,7 @@ export default function Sidebar() {
     <aside className={`${sidebarStyle.fixed} bg-gray-01 w-full max-w-[282px]`}>
       <div className="flex flex-col items-center justify-center pt-[50px] px-[66px]">
         <Image
-          src={imgUrl ?? '/assets/main/main_banner.png'}
+          src={imgUrl ?? '/assets/ddoba_profile.png'}
           width={150}
           height={150}
           alt=""

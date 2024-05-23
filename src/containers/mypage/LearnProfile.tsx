@@ -82,7 +82,7 @@ export default function LearnProfile() {
             <Image
               //   TODO: 플러스 아이콘 넣기
               // src={'/assets/main/main_banner.png'}
-              src={img ?? '/assets/main/main_banner.png'}
+              src={img ?? '/assets/ddoba_profile.png'}
               alt=""
               width={150}
               height={150}

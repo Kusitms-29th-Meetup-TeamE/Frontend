@@ -33,7 +33,7 @@ export const OneRoomItem = (props: {
     >
       <div className="flex gap-5 p-5">
         <Image
-          src={data.imageUrl ?? '/assets/main/main_banner.png'}
+          src={data.imageUrl ?? '/assets/ddoba_profile.png'}
           width={76}
           height={76}
           alt=""
