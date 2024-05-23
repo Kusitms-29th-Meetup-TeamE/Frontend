@@ -90,7 +90,7 @@ const page = () => {
                 })
               : null}
           </ActivityContainer>
-          {data ? (
+          {data && data.experiences.length > 0 ? (
             <Pagination
               totalPages={data && data.pageCount}
               currentPage={currentPage}
