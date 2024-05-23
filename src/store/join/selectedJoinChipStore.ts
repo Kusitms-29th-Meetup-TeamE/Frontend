@@ -14,7 +14,7 @@ interface SelectedJoinChipState {
 
 const initialChip = {
   currentAgency: ['전체'],
-  currentPersonality: personalityItmes,
+  currentPersonality: [],
   isInit: false,
 };
 
