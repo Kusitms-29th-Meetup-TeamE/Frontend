@@ -101,7 +101,13 @@ const SignUpKakaoPage = () => {
               )}
               onClick={() => handleClick('general')}
             >
-              <div>이미지</div>
+              <Image
+                src={'/assets/signup/ddoba_person.png'}
+                width={120}
+                height={120}
+                alt=""
+                className="mb-5 mx-auto"
+              />
               <div className={style.title}>일반 회원</div>
               <div className={style.content}>
                 또바를 통해 다양한 만남과 경험을 만들어 갈 회원님!
@@ -114,7 +120,13 @@ const SignUpKakaoPage = () => {
               )}
               onClick={() => handleClick('organization')}
             >
-              <div>이미지</div>
+              <Image
+                src={'/assets/signup/ddoba_org.png'}
+                width={120}
+                height={120}
+                alt=""
+                className="mb-5 mx-auto"
+              />
               <div className={style.title}>단체/기관 회원</div>
               <div className={style.content}>
                 또바 이용자에게 활동을 제공하는 회원 계정
