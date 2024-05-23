@@ -160,7 +160,7 @@ export default function LearnProfile() {
                 onClick={handleAddExperience}
                 className="bg-white border border-gray-04 w-full rounded-[20px] h-[60px]"
               >
-                + 나의 경험 목록 추가
+                + 나의 배움 목록 추가
               </button>
             </div>
           </div>
