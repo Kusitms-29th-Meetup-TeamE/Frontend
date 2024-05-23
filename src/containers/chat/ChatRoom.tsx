@@ -29,7 +29,6 @@ export const ChatRoom = (props: {
 }) => {
   const { roomId, roomInfo, stompClient, isGroup = true } = props;
   const { myId } = useChatStore();
-  console.log('riri', roomInfo);
 
   const [value, setValue] = useState<string>('');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
