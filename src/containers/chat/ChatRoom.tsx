@@ -29,7 +29,6 @@ export const ChatRoom = (props: {
 }) => {
   const { roomId, roomInfo, stompClient, isGroup = true } = props;
   const { myId } = useChatStore();
-  console.log('riri', roomInfo);
 
   const [value, setValue] = useState<string>('');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -202,7 +201,7 @@ export const ChatRoom = (props: {
           <button
             onClick={handleAppointment}
             className={clsx(
-              'flex gap-1 justify-center items-center border border-gray-05 text-body3 bg-white rounded-[6px] text-gray-09 py-[5px] px-3 hover:bg-gray-02',
+              'flex gap-1 justify-center items-center text-center border border-gray-05 text-body3 bg-white rounded-[6px] text-gray-09 py-[5px] px-3 hover:bg-gray-02',
 
               isGroup &&
                 roomInfo.appointmentDate &&
@@ -213,17 +212,12 @@ export const ChatRoom = (props: {
             )}
           >
             <LuCalendarDays />
-            <span>{isGroup && !roomInfo.appointmentDate && '약속 잡기'}</span>
             <span>
+              {isGroup && !roomInfo.appointmentDate && '약속 잡기'}
               {isGroup && roomInfo.appointmentDate && '약속 잡기 완료'}
-            </span>
-            <span>
               {!isGroup && roomInfo.appointmentDate && '배움 나누기 확정 완료'}
-            </span>
-            <span>
               {!isGroup && !roomInfo.appointmentDate && '배움 나누기 확정하기'}
             </span>
-            {/* <span>{isGroup ? '약속 잡기' : '배움 나누기 확정하기'}</span> */}
           </button>
         </div>
 

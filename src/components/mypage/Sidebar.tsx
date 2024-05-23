@@ -87,7 +87,7 @@ export default function Sidebar() {
               sidebarStyle.ul,
               pathname.includes('learn') && sidebarStyle.selected,
             )}
-            onClick={() => router.push('/mypage/learn')}
+            onClick={() => router.push('/mypage/learn/profile')}
           >
             나의 배움 확인하기
           </ul>
