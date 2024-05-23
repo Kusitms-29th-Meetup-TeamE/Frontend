@@ -63,6 +63,7 @@ const page = () => {
     if (isLiked) {
       initChips();
       setCurrentPage(1);
+      likedRefetch();
     }
   }, [isLiked]);
 
