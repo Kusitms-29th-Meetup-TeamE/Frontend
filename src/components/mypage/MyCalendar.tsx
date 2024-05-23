@@ -94,9 +94,15 @@ export default function MyCalendar() {
       />
 
       <div className="my-[30px]">
-        <p className="text-black text-footer-bold mb-7">
-          {moment(date).format('YYYY년 MM월 DD일')}
-        </p>
+        {selectedData.length !== 0 ? (
+          <p className="text-black text-footer-bold mb-7">
+            {moment(date).format('YYYY년 MM월 DD일')}
+          </p>
+        ) : (
+          <p className="text-gray-07 text-footer-bold mb-7">
+            원하는 날짜를 클릭하시면 일정 정보를 볼 수 있어요!
+          </p>
+        )}
         {selectedData?.map((item, idx) => {
           return (
             <div className="mt-4">
