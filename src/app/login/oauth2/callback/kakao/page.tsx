@@ -1,6 +1,6 @@
 'use client';
 
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import Spinner from '@/components/common-components/spinner';
 
@@ -8,7 +8,7 @@ import { useKakaoToken } from '@/hooks/api/useUser';
 
 import { useRouter } from 'next/navigation';
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   let kakaoCode: string = '';
@@ -17,12 +17,17 @@ const page = () => {
     kakaoCode = new URL(window.location.href).searchParams.get('code') || '';
   }
 
-  const { data } = useKakaoToken(kakaoCode);
-
-  // console.log('회원가입 시 데이터: ', data);
+  const { data, isLoading, error } = useKakaoToken(kakaoCode);
 
   useEffect(() => {
-    console.log('회원가입 데이터 존재: ', data);
+    if (isLoading) return; // 로딩 중일 때는 아무 작업도 하지 않음
+
+    if (error) {
+      console.error('Error fetching Kakao token:', error);
+      // 에러 페이지로 리디렉션하거나 에러 메시지를 표시할 수 있음
+      return;
+    }
+
     if (data) {
       // 회원가입
       // sessionStorage.clear();
@@ -36,13 +41,17 @@ const page = () => {
       // 로그인
       router.push('/');
     }
-  }, [data]);
+  }, [data, isLoading, error]);
 
-  return (
+  return isLoading ? (
     <div className="w-full h-full flex justify-center">
       <Spinner />
     </div>
+  ) : (
+    <></>
   );
+
+  return null; // 로딩이 끝나면 실제 컴포넌트가 리디렉션 되므로 아무것도 렌더링하지 않음
 };
 
-export default page;
+export default Page;

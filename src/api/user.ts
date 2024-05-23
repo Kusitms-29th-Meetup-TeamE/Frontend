@@ -15,11 +15,12 @@ export const getKakaoToken = async (code: string) => {
   if (res.headers) {
     let jwtToken = res.headers.get('Authorization');
     jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
+    console.log('jwtToken', jwtToken);
 
     if (jwtToken) {
-      sessionStorage.clear();
+      // sessionStorage.clear();
       sessionStorage.setItem('accessToken', jwtToken);
-      return null;
+      // return null;
     }
   }
 
