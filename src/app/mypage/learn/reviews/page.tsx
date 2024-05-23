@@ -33,7 +33,9 @@ export default function MyLearnReviewsPage() {
         {reviewsList.map((item) => {
           return (
             <div
-              onClick={() => router.push(`/mypage/learn/reviews/${item.id}`)}
+              onClick={() =>
+                router.push(`/mypage/learn/reviews/detail?id=${item.id}`)
+              }
             >
               <MyLearnListItem key={item.id} data={item} />
             </div>
