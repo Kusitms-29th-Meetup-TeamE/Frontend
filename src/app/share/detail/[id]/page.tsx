@@ -45,6 +45,7 @@ const page = ({ params }: DetailProps) => {
 
   const handleClick = () => {
     mutate();
+    router.push('/chat/share');
     // console.log('채팅방으로 이동');
   };
 

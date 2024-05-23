@@ -5,17 +5,21 @@ import { ModalDefaultProps } from '@/types/modal';
 import Button from '../common-components/button';
 import { Modal } from '../common-components/modal';
 
+import { useRouter } from 'next/navigation';
+
 const JoinActivityModal = ({ isOpen, setIsOpen }: ModalDefaultProps) => {
+  const router = useRouter();
+
   const handleClose = () => {
     setIsOpen(false);
   };
   const handleSchedule = () => {
-    // TODO: 일정 확인 페이지로 이동
+    router.push('/mypage/calendar');
     handleClose();
   };
 
   const handleChat = () => {
-    // TODO: 대화방으로 이동
+    router.push('/chat/activity');
     handleClose();
   };
 

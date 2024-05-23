@@ -68,7 +68,7 @@ const page = () => {
             />
           </section>
           <ActivityContainer className="grid !grid-rows-2 !grid-cols-3 !gap-y-[60px] !mb-[146px]">
-            {data &&
+            {data ? (
               data.experiences.map((item: LearningType, key: number) => {
                 return (
                   <div onClick={() => router.push(`/share/detail/${item.id}`)}>
@@ -85,13 +85,20 @@ const page = () => {
                     />
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <></>
+            )}
           </ActivityContainer>
-          <Pagination
-            totalPages={data && data.pageCount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          {data ? (
+            <Pagination
+              totalPages={data && data.pageCount}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          ) : (
+            <></>
+          )}
         </section>
       </div>
     </>

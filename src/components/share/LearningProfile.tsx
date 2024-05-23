@@ -64,7 +64,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
       )}
       <div
         className={clsx(
-          'mb-[18px] flex items-center justify-between',
+          'mb-[18px] flex flex-wrap gap-2 items-center justify-between',
           isMypage ? '' : ' mt-[183px]',
         )}
       >
