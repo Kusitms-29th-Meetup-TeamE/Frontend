@@ -10,6 +10,8 @@ import {
 } from '@/api/chat';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
+import { useRouter } from 'next/navigation';
+
 export const useChatRoomsGroup = (accessToken?: string) => {
   const { data, isLoading, error } = useQuery<GroupChatRoomsResponse>({
     queryKey: ['chatroomsGroup', accessToken],
@@ -49,6 +51,7 @@ export const usePostChatRoomsGroup = (id: number) => {
 
 export const usePostChatRoomsDirect = (id: number) => {
   const { setSuccessModal, setErrorModal } = useGlobalModal();
+  const router = useRouter();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => postChatRoomsDirect(id),
@@ -57,6 +60,7 @@ export const usePostChatRoomsDirect = (id: number) => {
         open: true,
         text: '1:1 대화방이 만들어졌어요!',
       });
+      router.push('/chat/share');
     },
     onError: () => {
       setErrorModal({

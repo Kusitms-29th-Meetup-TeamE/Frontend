@@ -3,9 +3,12 @@ import { KakaoUserProps, UserInfoProps } from '@/types/user';
 
 import { BASE_URL } from '.';
 
+import { useRouter } from 'next/navigation';
+
 // [oauth] kakao - 사용자 로그인/회원가입 요청
 export const getKakaoToken = async (code: string) => {
   const res = await fetch(`${BASE_URL}/login/kakao?code=${code}`);
+  const router = useRouter();
 
   if (!res.ok) {
     throw new Error(`HTTP error in Kakao! Status: ${res.status}`);
@@ -25,6 +28,16 @@ export const getKakaoToken = async (code: string) => {
 
   const data = await res.json();
   console.log('카카오 회원가입 데이터: ', data);
+
+  if (data) {
+    console.log('api쪽 실행됨');
+    sessionStorage.setItem('name', data.name);
+    sessionStorage.setItem('email', data.email || '');
+    sessionStorage.setItem('birthyear', data.birthyear || '');
+    sessionStorage.setItem('gender', data.gender);
+    sessionStorage.setItem('imgUrl', data.profileImage || '');
+    router.push('/signup/kakao');
+  }
 
   return data;
   //  catch (error) {

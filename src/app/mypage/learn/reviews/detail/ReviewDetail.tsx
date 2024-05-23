@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
 
 import Button from '@/components/common-components/button';
 import Checkbox from '@/components/common-components/check-box/Checkbox';
@@ -17,6 +18,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation';
 const variants = {
   checkboxContainer: 'flex flex-row gap-[10px] ml-7 cursor-pointer',
   checkboxLabel: 'text-body3 text-gray-07 cursor-pointer',
+  prev: 'w-fit h-fit px-[5px] pr-[10px] py-[5px] flex gap-[5px] items-center text-body2 text-gray-08 mb-[14px] hover:bg-gray-02 border-box rounded-[10px]',
 };
 
 export default function MyLearnReviewsDetailPage() {
@@ -49,10 +51,18 @@ export default function MyLearnReviewsDetailPage() {
     <div className="w-full m-auto max-w-[1200px]">
       <Sidebar />
       <div className="pt-[60px] flex flex-col gap-[30px] ml-[282px] pl-6">
-        <MyPageTitle
-          title="후기 보내기"
-          content="배움 나누기 활동에 대한 후기를 작성해보세요"
-        />
+        <div>
+          <button className={variants.prev} onClick={() => router.back()}>
+            <MdKeyboardArrowLeft width={16} height={16} />
+            <span>이전으로</span>
+          </button>
+
+          <MyPageTitle
+            title="후기 보내기"
+            content="배움 나누기 활동에 대한 후기를 작성해보세요"
+          />
+        </div>
+
         {data && <MyLearnListItem data={data} />}
 
         <div className="my-[30px]">

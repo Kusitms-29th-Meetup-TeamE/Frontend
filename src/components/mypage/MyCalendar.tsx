@@ -99,7 +99,7 @@ export default function MyCalendar() {
         </p>
         {selectedData?.map((item, idx) => {
           return (
-            <div>
+            <div className="mt-4">
               <span
                 className={clsx(
                   'mt-[2px] w-full py-[7px] px-2 rounded-[15px] border text-chip-semibold-sm text-start',
