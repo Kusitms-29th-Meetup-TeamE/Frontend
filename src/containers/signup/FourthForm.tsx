@@ -20,13 +20,14 @@ const schema = z
     password: z
       .string()
       .min(8, { message: '비밀번호는 8자 이상 20자 이하이어야 합니다.' })
-      .regex(/^(?=.*d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/, {
+      .regex(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/, {
         message: '비밀번호는 영문, 숫자를 포함해야 합니다.',
       }),
+    // /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/
     confirmPassword: z
       .string()
       .min(8, { message: '비밀번호는 8자 이상 20자 이하이어야 합니다.' })
-      .regex(/^(?=.*d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/, {
+      .regex(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/, {
         message: '비밀번호는 영문, 숫자를 포함해야 합니다.',
       }),
   })
@@ -78,10 +79,10 @@ export default function FourthForm(props: FourthFormProps) {
   //   }));
   // }, [getValues, setUserInfo]);
 
-  // useEffect(() => {
-  //   const subscirbe = watch((data, { name }) => console.log(data, name));
-  //   return () => subscirbe.unsubscribe();
-  // }, [watch]);
+  useEffect(() => {
+    const subscirbe = watch((data, { name }) => console.log(data, name));
+    return () => subscirbe.unsubscribe();
+  }, [watch]);
 
   useEffect(() => {
     const subscription = watch((value: any) => {

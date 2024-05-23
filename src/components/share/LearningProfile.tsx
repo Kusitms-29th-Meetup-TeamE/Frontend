@@ -99,7 +99,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
           >
             <FaCirclePlus className="ml-[6px] mr-4 text-gray-06 w-5 h-5" />
             <span className="text-notification-chip-yes text-gray-07">
-              경험 프로필 등록
+              배움 프로필 등록
             </span>
           </Link>
         )}
