@@ -15,7 +15,7 @@ const nextConfig = {
         hostname: `ddoba.s3.ap-northeast-2.amazonaws.com`,
       },
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: `k.kakaocdn.net`,
       },
     ],
