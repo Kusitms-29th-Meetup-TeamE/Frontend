@@ -35,12 +35,11 @@ export const useLikedActivity = ({
 };
 
 export const useOnboardingInfo = () => {
+  const accessToken =
+    typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
+
   const { data, isLoading, error } = useQuery({
-    queryKey: [
-      'ONBOARDING_CHIPS',
-      'ACTIVITY',
-      sessionStorage.getItem('accessToken'),
-    ],
+    queryKey: ['ONBOARDING_CHIPS', 'ACTIVITY', accessToken],
     queryFn: () => getOnboardingInfo(),
   });
   return { data, isLoading, error };
