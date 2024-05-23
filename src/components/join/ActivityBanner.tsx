@@ -22,7 +22,7 @@ const ActivityBanner = (props: ActivityBannerProps) => {
       style={{ backgroundImage: backgroundColor }}
     >
       <div className="text-white text-h2 mb-4">{title}</div>
-      <div className="text-gray-02 text-h3">{content}</div>
+      <div className="text-gray-02 text-h3 font-medium">{content}</div>
     </div>
   );
 };
