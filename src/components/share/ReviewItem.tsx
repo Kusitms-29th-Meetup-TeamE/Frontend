@@ -21,10 +21,10 @@ const ReviewItem = (props: ReviewItemType) => {
       <span className="text-gray-07 text-notification-chip-yes mt-[8px] text-ellipsis overflow-hidden">
         {content}
       </span>
-      <p className="absolute bottom-6 right-8 flex gap-[10px] text-gray-05 text-notification-chip-no">
+      <div className="absolute bottom-6 right-8 flex gap-[10px] text-gray-05 text-notification-chip-no">
         <span>{name} 님</span>
         <span>{date}</span>
-      </p>
+      </div>
     </div>
   );
 };
