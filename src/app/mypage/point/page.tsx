@@ -38,7 +38,9 @@ export default function MyPoint() {
                 <span className="text-primary-orange6">{name ?? '또바기'}</span>
                 님의 사용 가능 포인트
               </span>
-              <span>{formatDate(today as Date)} 기준</span>
+              <span className="text-notification-chip-no text-gray-06">
+                {formatDate(today as Date)} 기준
+              </span>
             </div>
             <div className="flex justify-between border-b border-gray-04 pb-[30px]">
               <span className="text-body1 text-black mt-[10px]">
