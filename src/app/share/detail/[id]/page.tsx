@@ -90,12 +90,12 @@ const page = ({ params }: DetailProps) => {
           </section>
         </section>
         <section className="w-full h-fit flex flex-col gap-[30px] mt-5">
-          <p className="text-footer-bold">
+          <div className="text-footer-bold">
             <span className="text-primary-orange6">
               '{data && data.title}'{' '}
             </span>
             <span className="text-black">배움 나누기 설명</span>
-          </p>
+          </div>
           <div className="w-full h-fit bg-gray-02 rounded-[20px] p-7 whitespace-pre-wrap">
             {data && data.content}
           </div>
@@ -116,10 +116,10 @@ const page = ({ params }: DetailProps) => {
         </section>
       </div>
       <section className="w-full h-[450px] mt-[70px] bg-gray-02 py-[60px] px-[360px]">
-        <p className="text-footer-bold">
+        <div className="text-footer-bold">
           <span className="text-primary-orange6">{data && data.name} </span>
           <span className="text-black">배움 선배님이 받은 후기</span>
-        </p>
+        </div>
         <div className="mt-[27px] flex gap-[10px]">
           {data &&
             data.reviews.map((item: ReviewProps) => (
@@ -140,10 +140,10 @@ const page = ({ params }: DetailProps) => {
         </div>
       </section>
       <section className="w-full mt-[60px] pt-[60px] pb-[100px] px-[360px]">
-        <p className="text-footer-bold">
+        <div className="text-footer-bold">
           <span className="text-primary-orange6">{data && data.name} </span>
           <span className="text-black">배움 선배님의 다른 배움 나누기</span>
-        </p>
+        </div>
         <div className="flex gap-6 mt-5">
           {data &&
             data.otherExperiences.map((item: OthreLearningItemProps) => (

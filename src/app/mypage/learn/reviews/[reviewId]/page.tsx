@@ -53,10 +53,10 @@ export default function MyLearnReviewsDetailPage() {
         {data && <MyLearnListItem data={data} />}
 
         <div className="my-[30px]">
-          <p className="text-footer-bold">
+          <div className="text-footer-bold">
             <span className="text-primary-orange6">'{data?.title}'</span> 배움에
             대한 후기
-          </p>
+          </div>
           <Textarea
             placeholder="배움 후기를 적어주세요. (10자 이상 300자 이내)"
             size="md"
