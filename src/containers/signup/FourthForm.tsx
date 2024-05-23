@@ -79,10 +79,10 @@ export default function FourthForm(props: FourthFormProps) {
   //   }));
   // }, [getValues, setUserInfo]);
 
-  useEffect(() => {
-    const subscirbe = watch((data, { name }) => console.log(data, name));
-    return () => subscirbe.unsubscribe();
-  }, [watch]);
+  // useEffect(() => {
+  //   const subscirbe = watch((data, { name }) => console.log(data, name));
+  //   return () => subscirbe.unsubscribe();
+  // }, [watch]);
 
   useEffect(() => {
     const subscription = watch((value: any) => {
