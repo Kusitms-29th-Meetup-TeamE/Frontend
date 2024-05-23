@@ -52,7 +52,7 @@ export default function RecommendItem(props: RecommendItemProps) {
       {isLoading ? (
         <Skeleton width={380} height={380} borderRadius={20} />
       ) : (
-        <div onClick={() => router.push(`/join/detail/${id}`)}>
+        <div onClick={() => router.push(`/join/detail?id=${id}`)}>
           <Image
             src={imageUrl ?? '/assets/main/main_banner.png'}
             height={380}

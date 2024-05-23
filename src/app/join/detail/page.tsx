@@ -16,7 +16,7 @@ import { useActivityDetail } from '@/hooks/api/useActivity';
 import { usePostChatRoomsGroup } from '@/hooks/api/useChat';
 import { DetailProps } from '@/types/activity';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const variants = {
   prev: 'w-fit h-fit px-[5px] pr-[10px] py-[5px] flex gap-[5px] items-center text-body2 text-gray-08 mb-[14px] hover:bg-gray-02 border-box rounded-[10px]',
@@ -33,7 +33,10 @@ const page = ({ params }: DetailProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
-  const { data, isLoading, error } = useActivityDetail(params.id);
+  const searchParams = useSearchParams();
+  const detailId = searchParams.get('id');
+
+  const { data, isLoading, error } = useActivityDetail(Number(detailId));
 
   const [resData, setResData] = useState<any>({});
 
