@@ -98,7 +98,7 @@ export default function RecommendItem(props: RecommendItemProps) {
         </div>
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-[9px]">
-            <div onClick={() => router.push(`/join/detail/${id}`)}>
+            <div onClick={() => router.push(`/join/detail?id=${id}`)}>
               <span className="text-gray-11 text-body2 cursor-pointer">
                 {isLoading ? <Skeleton width={380} height={30} /> : title}
               </span>
@@ -115,7 +115,7 @@ export default function RecommendItem(props: RecommendItemProps) {
           )}
         </div>
 
-        <div className="inline-flex max-h-[35px] mt-[20px] bg-gray-chip rounded-[20px] px-5 py-[10px] items-center text-center">
+        <div className="inline-flex max-h-[35px] mt-[20px] bg-gray-chip rounded-[20px] px-5 py-[10px] items-center text-center text-gray-08 text-chip-medium">
           {isLoading ? <Skeleton width={100} height={15} /> : time}
         </div>
       </div>
