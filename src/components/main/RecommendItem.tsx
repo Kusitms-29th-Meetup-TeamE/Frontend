@@ -115,7 +115,7 @@ export default function RecommendItem(props: RecommendItemProps) {
           )}
         </div>
 
-        <div className="inline-flex max-h-[35px] mt-[20px] bg-gray-chip rounded-[20px] px-5 py-[10px] items-center text-center">
+        <div className="inline-flex max-h-[35px] mt-[20px] bg-gray-chip rounded-[20px] px-5 py-[10px] items-center text-center text-gray-08 text-chip-medium">
           {isLoading ? <Skeleton width={100} height={15} /> : time}
         </div>
       </div>
