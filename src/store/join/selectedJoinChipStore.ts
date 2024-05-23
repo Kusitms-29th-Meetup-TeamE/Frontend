@@ -6,7 +6,7 @@ interface SelectedJoinChipState {
   currentAgency: string[];
   currentPersonality: string[];
   isInit: boolean;
-  initChips: () => void;
+  initChips: (initialPersonalities: string[]) => void;
   setCurrentChips: (chip: string) => void;
   getCurrentAgency: () => string[];
   getCurretPersonality: () => string[];
@@ -24,10 +24,11 @@ export const useSelectedJoinChipStore = create<SelectedJoinChipState>(
     currentPersonality: initialChip.currentPersonality,
     isInit: initialChip.isInit,
 
-    initChips: () =>
+    initChips: (initialPersonalities: string[]) =>
       set(() => ({
         currentAgency: initialChip.currentAgency,
-        currentPersonality: initialChip.currentPersonality,
+        currentPersonality:
+          initialPersonalities || initialChip.currentPersonality,
         isInit: true,
       })),
 

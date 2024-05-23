@@ -4,6 +4,7 @@ import {
   getActivityDetail,
   getAllActivity,
   getLikedActivity,
+  getOnboardingInfo,
   postActivityLike,
   postActivityNotLike,
 } from '@/api/join';
@@ -31,6 +32,18 @@ export const useLikedActivity = ({
     queryFn: () => getLikedActivity({ page, agencyTypes, personalities }),
   });
   return { data, isLoading, error, refetch };
+};
+
+export const useOnboardingInfo = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: [
+      'ONBOARDING_CHIPS',
+      'ACTIVITY',
+      sessionStorage.getItem('accessToken'),
+    ],
+    queryFn: () => getOnboardingInfo(),
+  });
+  return { data, isLoading, error };
 };
 
 export const useActivityDetail = (id: number) => {

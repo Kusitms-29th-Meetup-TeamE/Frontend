@@ -9,7 +9,11 @@ import Pagination from '@/components/common-components/pagination';
 import ActivityBanner from '@/components/join/ActivityBanner';
 import RecommendItem from '@/components/main/RecommendItem';
 
-import { useAllActivity, useLikedActivity } from '@/hooks/api/useActivity';
+import {
+  useAllActivity,
+  useLikedActivity,
+  useOnboardingInfo,
+} from '@/hooks/api/useActivity';
 import { ActivityType } from '@/types/activity';
 
 import ActivityContainer from '@/containers/join/ActivityContainer';
@@ -29,6 +33,8 @@ const page = () => {
   const currentPersonality = useSelectedJoinChipStore(
     (state) => state.currentPersonality,
   );
+
+  const { data: initialData, isLoading: initialLoading } = useOnboardingInfo();
 
   const { data, isLoading, refetch } = useAllActivity({
     page: currentPage - 1,
@@ -53,6 +59,10 @@ const page = () => {
   });
 
   useEffect(() => {
+    initChips(initialData && initialData.personalities);
+  }, [initialData]);
+
+  useEffect(() => {
     setCurrentPage(1);
     refetch();
     likedRefetch();
@@ -61,7 +71,7 @@ const page = () => {
   useEffect(() => {
     // 관심활동 클릭 시 선택된 태그 초기화
     if (isLiked) {
-      initChips();
+      initChips(initialData && initialData.personalities);
       setCurrentPage(1);
       likedRefetch();
     }
