@@ -64,13 +64,16 @@ const page = ({ params }: DetailProps) => {
             alt={''}
             className="absolute ml-[46px] object-cover"
           />
-          <Image
-            width={344}
-            height={344}
-            src={data ? data.imageUrl : '/assets/main/main_banner.png'}
-            alt={''}
-            className="w-[344px] h-[344px] ml-[146px] rounded-full border-primary-orange6 border-4 object-cover"
-          />
+          {data?.imageUrl ? (
+            <Image
+              width={344}
+              height={344}
+              src={data.imageUrl ?? '/assets/main/main_banner.png'}
+              alt={''}
+              className="w-[344px] h-[344px] ml-[146px] rounded-full border-primary-orange6 border-4 object-cover"
+            />
+          ) : null}
+
           <section className="ml-[87px] flex flex-col gap-[22px]">
             <span className="ml-[38px] text-black text-notification-h1">
               {data && data.name}

@@ -45,7 +45,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
         className,
       )}
     >
-      {isMypage ? (
+      {isMypage && info?.imageUrl ? (
         <Image
           src={info?.imageUrl ? info.imageUrl : '/assets/onboarding/check.png'}
           width={150}
@@ -53,7 +53,9 @@ const LearningProfile = ({ className }: { className?: string }) => {
           alt={''}
           className="rounded-full mx-auto mb-[22px] object-cover"
         />
-      ) : (
+      ) : null}
+
+      {!isMypage && info?.imageUrl ? (
         <Image
           src={info ? info.imageUrl : '/assets/onboarding/check.png'}
           width={227}
@@ -61,7 +63,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
           alt={''}
           className="absolute top-[-8%] rounded-full object-cover"
         />
-      )}
+      ) : null}
       <div
         className={clsx(
           'mb-[18px] flex flex-wrap gap-2 items-center justify-between',
