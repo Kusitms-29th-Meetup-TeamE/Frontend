@@ -57,7 +57,10 @@ export default function SecondForm(props: SecondFormProps) {
 
       <div className="w-full max-w-[588px] mt-[74px]">
         <div
-          className="cursor-pointer text-gray-06 border border-gray-05 text-h3 px-7 py-5 rounded-[20px] flex items-center"
+          className={clsx(
+            'cursor-pointer text-gray-06 border border-gray-05 text-h3 px-7 py-5 rounded-[20px] flex items-center',
+            totalCheck && 'border-primary-orange6',
+          )}
           onClick={handleTotalCheck}
         >
           <Checkbox
