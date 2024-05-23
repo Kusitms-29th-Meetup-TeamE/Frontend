@@ -72,7 +72,7 @@ const page = () => {
               ? data.experiences.map((item: LearningType, key: number) => {
                   return (
                     <div
-                      onClick={() => router.push(`/share/detail/${item.id}`)}
+                      onClick={() => router.push(`/share/detail?id=${item.id}`)}
                     >
                       <LearningItem
                         key={key + item.name}

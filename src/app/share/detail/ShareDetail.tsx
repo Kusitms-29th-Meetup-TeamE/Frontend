@@ -17,7 +17,7 @@ import { OthreLearningItemProps, ReviewProps } from '@/types/learning';
 
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const variants = {
   prev: 'w-fit h-fit px-[5px] pr-[10px] py-[5px] flex gap-[5px] items-center text-body2 text-gray-08 mb-[14px] hover:bg-gray-02 border-box rounded-[10px]',
@@ -28,10 +28,13 @@ const variants = {
     'w-[450px] min-h-[66px] bg-gray-03 rounded-[20px] text-body2 text-gray-11 pl-[31px] pr-[40px] py-[18px]',
 };
 
-const page = ({ params }: DetailProps) => {
+const ShareDetail = () => {
   const router = useRouter();
 
-  const { data, isLoading, refetch } = useLearningDetail(params.id);
+  const searchParams = useSearchParams();
+  const detailId = searchParams.get('id');
+
+  const { data, isLoading, refetch } = useLearningDetail(Number(detailId));
 
   const [resData, setResData] = useState<any>({});
 
@@ -163,4 +166,4 @@ const page = ({ params }: DetailProps) => {
   );
 };
 
-export default page;
+export default ShareDetail;
