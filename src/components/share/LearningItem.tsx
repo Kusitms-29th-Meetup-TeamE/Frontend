@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 
 import { LearningType } from '@/types/learning';
 
@@ -20,13 +20,16 @@ const LearningItem = ({
 }: LearningType) => {
   return (
     <div className="max-w-[282px] w-full h-[452px] flex flex-col overflow-hidden rounded-[20px] cursor-pointer">
-      <Image
-        src={imageUrl}
-        alt={''}
-        width={282}
-        height={282}
-        className="w-[282px] h-[282px] rounded-[20px]"
-      />
+      {imageUrl ? (
+        <Image
+          src={imageUrl ? imageUrl : '/assets/main/main_banner.png'}
+          alt={''}
+          width={282}
+          height={282}
+          className="w-[282px] h-[282px] rounded-[20px]"
+        />
+      ) : null}
+
       <div className="flex gap-[10px] mt-2 items-center">
         <Chip type={type} />
         <span className="text-primary-orange9 text-body2">{title}</span>

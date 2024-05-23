@@ -38,10 +38,10 @@ export const usePostChatRoomsGroup = (id: number) => {
       });
     },
     onError: () => {
-      setErrorModal({
-        open: true,
-        text: '예기치 못한 에러가 발생하였습니다.',
-      });
+      // setErrorModal({
+      //   open: true,
+      //   text: '예기치 못한 에러가 발생하였습니다.',
+      // });
     },
   });
   return { mutate, isPending, error };

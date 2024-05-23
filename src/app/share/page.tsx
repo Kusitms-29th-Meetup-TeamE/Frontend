@@ -68,30 +68,37 @@ const page = () => {
             />
           </section>
           <ActivityContainer className="grid !grid-rows-2 !grid-cols-3 !gap-y-[60px] !mb-[146px]">
-            {data &&
-              data.experiences.map((item: LearningType, key: number) => {
-                return (
-                  <div onClick={() => router.push(`/share/detail/${item.id}`)}>
-                    <LearningItem
-                      key={key + item.name}
-                      imageUrl={item.imageUrl}
-                      name={item.name}
-                      age={item.age}
-                      gender={item.gender}
-                      location={item.location}
-                      message={item.message}
-                      title={item.title}
-                      type={item.type}
-                    />
-                  </div>
-                );
-              })}
+            {data
+              ? data.experiences.map((item: LearningType, key: number) => {
+                  return (
+                    <div
+                      onClick={() => router.push(`/share/detail/${item.id}`)}
+                    >
+                      <LearningItem
+                        key={key + item.name}
+                        imageUrl={item.imageUrl}
+                        name={item.name}
+                        age={item.age}
+                        gender={item.gender}
+                        location={item.location}
+                        message={item.message}
+                        title={item.title}
+                        type={item.type}
+                      />
+                    </div>
+                  );
+                })
+              : null}
           </ActivityContainer>
-          <Pagination
-            totalPages={data && data.pageCount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          {data ? (
+            <Pagination
+              totalPages={data && data.pageCount}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          ) : (
+            <></>
+          )}
         </section>
       </div>
     </>
