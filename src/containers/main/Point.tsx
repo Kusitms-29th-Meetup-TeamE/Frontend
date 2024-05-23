@@ -50,11 +50,13 @@ const Point = () => {
             '오늘의 미션을 확인해보세요.\n 미션을 달성하면 포인트를 드립니다.'
           }
           btnContent={'오늘의 미션 보러 가기'}
+          img="point1"
         />
         <PointItem
           title={'포인트를 사용하고 싶다면?'}
           content={'모은 포인트로 상점에서 \n다양한 상품을 구매 가능합니다.'}
           btnContent={'포인트 쓰러 가기'}
+          img="point2"
         />
       </div>
     </div>

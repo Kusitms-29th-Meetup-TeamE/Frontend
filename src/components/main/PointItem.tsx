@@ -7,6 +7,7 @@ export type PointItemProps = {
   title: string;
   content: string;
   btnContent: string;
+  img: string;
 };
 
 const variants = {
@@ -22,13 +23,20 @@ const variants = {
 };
 
 const PointItem = (props: PointItemProps) => {
-  const { title, content, btnContent } = props;
+  const { title, content, btnContent, img } = props;
 
   return (
     <div className={variants.container}>
-      {/* <Image src="/assets/main/pointItem.svg" width={169} height={169} alt=""/> */}
       {/* 이미지 대체 div */}
-      <div className="w-[169px] h-full bg-gray-03"></div>
+      <div className="w-[169px] h-full flex justify-center items-center">
+        <Image
+          src={`/assets/main/${img}.png`}
+          width={200}
+          height={140}
+          alt=""
+          className="object-cover h-[140px] w-[200px] pt-6 pl-4"
+        />
+      </div>
       <div className={variants.textContainer}>
         <span className={variants.title}>{title}</span>
         <div className={variants.contentContainer}>
