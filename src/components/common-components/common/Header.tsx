@@ -35,26 +35,22 @@ export default function Header({ isGuest }: { isGuest: boolean }) {
       {isGuest ? (
         <Link href={'/'}>
           <Image
-            className="absolute top-[40px] left-[50px]"
-            src="/assets/ddoba_logo_text.svg"
+            className="absolute top-[40px] left-[80px]"
+            src="/assets/ddoba_logo.png"
             alt=""
             width={86}
-            height={30}
+            height={29}
           />
         </Link>
       ) : (
         <div className="w-4/5 flex justify-between m-auto">
           <Link href="/">
-            <div className="flex gap-[2px] items-center">
-              <Image
-                src="/assets/ddoba_logo.png"
-                alt="logo"
-                width={38}
-                height={30}
-                className="pr-[2px]"
-              />
-              <div className="text-body1 text-gray-11">또바</div>
-            </div>
+            <Image
+              src="/assets/ddoba_logo.png"
+              alt="logo"
+              width={86}
+              height={29}
+            />
           </Link>
 
           <div className={variants.menubar}>

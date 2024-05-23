@@ -13,8 +13,8 @@ const sidebarStyle = {
   liBox: 'pt-[14px] flex flex-col items-center gap-[26px] pb-[42px]',
   li: 'cursor-pointer text-gray-08 hover:text-primary-orange6 text-[16px] font-semibold leading-[22px]',
   fixed: 'fixed h-screen overflow-y-auto', // Fixed position with full height and scrollable
-  selected: 'bg-primary-orange1 text-primary-orange6',
-  selectedText: 'text-primary-orange6',
+  selected: 'bg-primary-orange1 text-primary-orange6 text-body4',
+  selectedText: 'text-primary-orange6 ',
 };
 
 export default function Sidebar() {

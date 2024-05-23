@@ -65,6 +65,10 @@
   color: black !important;
 }
 
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: grey !important;
+}
+
 /* 일 날짜 간격 */
 .react-calendar__tile {
   padding: 14px !important;
