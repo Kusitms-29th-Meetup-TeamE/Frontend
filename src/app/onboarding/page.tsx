@@ -17,13 +17,6 @@ const page = () => {
 
   return (
     <div>
-      <Image
-        className="absolute top-10 left-[50px]"
-        src="/assets/ddoba_logo_text.png"
-        alt=""
-        width={86}
-        height={30}
-      />
       {step === 0 && <ZeroStep />}
       {step === 1 && <FirstStep />}
       {step === 2 && <SecondStep />}
