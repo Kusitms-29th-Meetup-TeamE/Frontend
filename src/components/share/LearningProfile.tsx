@@ -51,7 +51,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
           width={150}
           height={150}
           alt={''}
-          className="rounded-full mx-auto mb-[22px] object-cover"
+          className="rounded-full mx-auto mb-[22px] object-cover w-[150px] h-[150px]"
         />
       ) : null}
 
@@ -61,7 +61,7 @@ const LearningProfile = ({ className }: { className?: string }) => {
           width={227}
           height={227}
           alt={''}
-          className="absolute top-[-8%] rounded-full object-cover"
+          className="absolute top-[-8%] left-[28px] rounded-full object-cover w-[227px] h-[227px]"
         />
       ) : null}
       <div
