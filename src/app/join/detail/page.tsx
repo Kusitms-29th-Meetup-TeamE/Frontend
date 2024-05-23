@@ -6,9 +6,11 @@ import JoinDetail from './JoinDetail';
 
 const page = () => {
   return (
-    <Suspense>
-      <JoinDetail />
-    </Suspense>
+    <main>
+      <Suspense>
+        <JoinDetail />
+      </Suspense>
+    </main>
   );
 };
 
