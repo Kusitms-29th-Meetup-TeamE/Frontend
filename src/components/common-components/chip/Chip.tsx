@@ -42,7 +42,7 @@ const style: {
       'border border-chip-creative bg-[rgba(255,199,0,0.1)] text-chip-creative',
   },
   // 활동 타입은 아래 type 색상만 사용합니다.
-  type: '!px-[16px] !rounded-[30px] text-white text-chip-bold bg-primary-orange4 bg-opacity-80 border border-primary-orange5',
+  type: '!px-[16px] !rounded-[30px] text-white text-chip-bold bg-[rgba(251,140,79,0.8)] border border-primary-orange5',
 };
 
 /**

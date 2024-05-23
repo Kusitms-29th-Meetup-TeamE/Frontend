@@ -39,9 +39,10 @@ export default function MyExperienceItem(props: {
           />
 
           <input
-            className="text-body2 text-gray-09 bg-gray-02  focus:outline-primary-orange5"
+            className="text-body2 text-gray-09 bg-gray-02 placeholder:text-gray-06 placeholder:text-body2 focus:outline-primary-orange5"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            placeholder="소분류를 입력해주세요"
           />
         </div>
 

@@ -16,14 +16,7 @@ const page = () => {
   const step = useStepStore((state) => state.currentStep);
 
   return (
-    <div>
-      <Image
-        className="absolute top-10 left-[50px]"
-        src="/assets/ddoba_logo_text.png"
-        alt=""
-        width={86}
-        height={30}
-      />
+    <div className="absolute top-0 w-full h-full">
       {step === 0 && <ZeroStep />}
       {step === 1 && <FirstStep />}
       {step === 2 && <SecondStep />}

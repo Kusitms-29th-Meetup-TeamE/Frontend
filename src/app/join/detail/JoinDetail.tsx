@@ -123,13 +123,13 @@ const JoinDetail = () => {
       </div>
       <div className="w-full flex justify-center">
         <Button
-          color={!isDisabled ? 'default' : 'disabled'}
+          color={!isDisabled ? (!isOpen ? 'default' : 'darkGray') : 'disabled'}
           size={'lg'}
           shape={'rounded'}
           onClick={handleJoin}
           disabled={isDisabled}
         >
-          활동 신청하기
+          {!isOpen ? '활동 신청하기' : '활동 신청완료'}
         </Button>
       </div>
       <JoinActivityModal isOpen={isOpen} setIsOpen={setIsOpen} />
