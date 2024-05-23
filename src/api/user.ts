@@ -20,7 +20,7 @@ export const getKakaoToken = async (code: string) => {
     if (jwtToken) {
       // sessionStorage.clear();
       sessionStorage.setItem('accessToken', jwtToken);
-      // return null;
+      return null;
     }
   }
 
