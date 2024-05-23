@@ -16,7 +16,7 @@ const page = () => {
   const step = useStepStore((state) => state.currentStep);
 
   return (
-    <div>
+    <div className="absolute top-0 w-full h-screen">
       {step === 0 && <ZeroStep />}
       {step === 1 && <FirstStep />}
       {step === 2 && <SecondStep />}
