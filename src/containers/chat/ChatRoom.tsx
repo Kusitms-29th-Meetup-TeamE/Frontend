@@ -188,7 +188,7 @@ export const ChatRoom = (props: {
         <div className="border-b border-b-gray-04 flex justify-between items-center max-h-[118px] px-[30px] py-[22px]">
           <div className="flex gap-5 items-center">
             <Image
-              src={roomInfo.imageUrl}
+              src={roomInfo.imageUrl ?? '/assets/main/main_banner.png'}
               width={76}
               height={76}
               alt=""
