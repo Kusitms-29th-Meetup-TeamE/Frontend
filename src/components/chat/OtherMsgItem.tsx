@@ -11,7 +11,11 @@ export const OtherMsgItem = (props: { data: MsgLogProps }) => {
     <div className="inline-flex flex-col gap-3">
       <div className="flex gap-3 items-center">
         <Image
-          src={data.senderImageUrl ?? '/assets/ddoba_profile.png'}
+          src={
+            data.senderImageUrl !== null && data.senderImageUrl !== undefined
+              ? data.senderImageUrl
+              : '/assets/ddoba_profile.png'
+          }
           alt=""
           width={48}
           height={48}
