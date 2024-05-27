@@ -15,7 +15,7 @@ export const getKakaoToken = async (code: string) => {
   if (res.headers) {
     let jwtToken = res.headers.get('Authorization');
     jwtToken = jwtToken?.split(' ')[1] || ''; // Bearer 제거
-    console.log('jwtToken', jwtToken);
+    // console.log('jwtToken', jwtToken);
 
     if (jwtToken) {
       // sessionStorage.clear();
@@ -25,7 +25,7 @@ export const getKakaoToken = async (code: string) => {
   }
 
   const data = await res.json();
-  console.log('카카오 회원가입 데이터: ', data);
+  // console.log('카카오 회원가입 데이터: ', data);
 
   if (data) {
     console.log('api쪽 실행됨');

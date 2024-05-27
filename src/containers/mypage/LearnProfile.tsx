@@ -69,8 +69,16 @@ export default function LearnProfile() {
   const [profileData, setProfileData] = useState<any>([]);
   const { mutate } = usePostLearnProfile(profileData);
 
+  useEffect(() => {
+    setProfileData({
+      ...profileData,
+      introduce: statusMsg,
+    });
+  }, [statusMsg]);
+
   const handleSubmit = () => {
-    // mutate();
+    mutate();
+    // console.log('profiledata', profileData);
   };
 
   return (
