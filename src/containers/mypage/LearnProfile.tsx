@@ -78,7 +78,7 @@ export default function LearnProfile() {
 
   const handleSubmit = () => {
     mutate();
-    console.log('profiledata', profileData);
+    // console.log('profiledata', profileData);
   };
 
   return (
