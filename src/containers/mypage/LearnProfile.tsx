@@ -70,7 +70,8 @@ export default function LearnProfile() {
   const { mutate } = usePostLearnProfile(profileData);
 
   const handleSubmit = () => {
-    // mutate();
+    mutate();
+    // console.log('profiledata', profileData);
   };
 
   return (

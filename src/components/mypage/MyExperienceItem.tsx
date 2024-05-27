@@ -10,7 +10,7 @@ import SelectBox from '../common-components/select-box/SelectBox';
 export default function MyExperienceItem(props: {
   data?: LearnProfileProps;
   profileData?: any;
-  setProfileData?: Dispatch<SetStateAction<any>>;
+  setProfileData: Dispatch<SetStateAction<any>>;
 }) {
   const { data, profileData, setProfileData } = props;
 
@@ -26,6 +26,15 @@ export default function MyExperienceItem(props: {
       setText(data.description);
     }
   }, [data]);
+
+  useEffect(() => {
+    setProfileData({
+      title: title,
+      experienceType: experienceType,
+      // introduce: data.introduce,
+      description: text,
+    });
+  }, [title, text, experienceType]);
 
   return (
     <div className="border border-gray-04 w-full max-w-[540px] rounded-[20px]">
