@@ -16,6 +16,7 @@ import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { DirectChatRoom, GroupChatRoom, MsgLogProps } from '@/types/chat';
 
 import { useChatStore } from '@/store/chatStore';
+import { trimDateString } from '@/utils';
 import { CompatClient } from '@stomp/stompjs';
 
 import clsx from 'clsx';
@@ -162,14 +163,27 @@ export const ChatRoom = (props: {
                   </span>
                 </div>
               )}
+              <div className="flex gap-3 items-end">
+                {item.senderId === myId && (
+                  <span className="text-footer-regular text-gray-06">
+                    {trimDateString(item.createdAt)}
+                  </span>
+                )}
 
-              <Image
-                src={'/assets/ddoba_emoticon.png'}
-                alt=""
-                width={200}
-                height={200}
-                className="object-cover m-3 rounded-[20px]"
-              />
+                <Image
+                  src={'/assets/ddoba_emoticon.png'}
+                  alt=""
+                  width={200}
+                  height={200}
+                  className="object-cover m-3 rounded-[20px]"
+                />
+
+                {item.senderId !== myId && (
+                  <span className="text-footer-regular text-gray-06">
+                    {trimDateString(item.createdAt)}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         );
