@@ -142,6 +142,7 @@ export default function LearnProfile() {
           <div>
             <label className={formStyle.label}>한마디</label>
             <Input
+              maxLength={100}
               value={statusMsg}
               onChange={(e) => setStatusMsg(e.target.value)}
               size="lg"

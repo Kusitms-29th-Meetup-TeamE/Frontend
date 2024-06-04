@@ -71,6 +71,7 @@ export default function MyExperienceItem(props: {
             setText(e.target.value);
           }}
           value={text}
+          maxLength={500}
           className="bg-gray-02 min-h-[100px] w-full h-full placeholder:text-h4 placeholder:text-gray-06 focus-visible:outline-primary-orange6"
         />
       </div>
