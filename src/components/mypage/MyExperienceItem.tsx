@@ -66,7 +66,7 @@ export default function MyExperienceItem(props: {
       <div className="p-5 h-full">
         <textarea
           // ref={ref}
-          placeholder="나의 경험 나누기의 진행 방식, 원하는 장소나 시간, 관련된 나의 경험 등의 상세내용을 자유롭게 적어주세요 (500자 내외)"
+          placeholder="나의 경험 나누기의 진행 방식, 원하는 장소나 시간, 관련된 나의 경험 등의 상세내용을 자유롭게 적어주세요 (500자 이내)"
           onChange={(e) => {
             setText(e.target.value);
           }}

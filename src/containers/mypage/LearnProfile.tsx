@@ -146,7 +146,7 @@ export default function LearnProfile() {
               value={statusMsg}
               onChange={(e) => setStatusMsg(e.target.value)}
               size="lg"
-              placeholder="나의 마음가짐을 자유롭게 적어주세요! (100자 내외)"
+              placeholder="나의 마음가짐을 자유롭게 적어주세요! (100자 이내)"
               shape="square"
               className="h-[60px]"
             />
