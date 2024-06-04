@@ -153,6 +153,10 @@ export default function LearnProfile() {
           </div>
           <div>
             <label className={formStyle.label}>나의 배움 목록</label>
+            <span className="text-body3 text-error-main">
+              * 배움 목록은 하나씩 추가해주세요.
+            </span>
+
             <div className="flex flex-col gap-[10px]">
               {exDataList.map((item, idx) => {
                 return (
