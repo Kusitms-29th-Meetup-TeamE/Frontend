@@ -18,6 +18,7 @@ import { DirectChatRoom, GroupChatRoom, MsgLogProps } from '@/types/chat';
 import { useChatStore } from '@/store/chatStore';
 import { trimDateString } from '@/utils';
 import { CompatClient, StompSubscription } from '@stomp/stompjs';
+import { useQueryClient } from '@tanstack/react-query';
 
 import clsx from 'clsx';
 import Image from 'next/image';
@@ -30,6 +31,7 @@ export const ChatRoom = (props: {
 }) => {
   const { roomId, roomInfo, stompClient, isGroup = true } = props;
   const { myId } = useChatStore();
+  const queryClient = useQueryClient();
 
   const [value, setValue] = useState<string>('');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -114,6 +116,8 @@ export const ChatRoom = (props: {
 
   useEffect(() => {
     scrollToBottom();
+    queryClient.invalidateQueries({ queryKey: ['chatroomsGroup'] });
+    queryClient.invalidateQueries({ queryKey: ['chatroomsDirect'] });
   }, [chatList]);
 
   const renderMessageItem = (item: MsgLogProps, idx: number) => {

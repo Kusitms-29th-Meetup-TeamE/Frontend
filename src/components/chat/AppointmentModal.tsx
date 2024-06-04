@@ -86,7 +86,7 @@ export const AppointmentModal = (props: AppointmentModalProps) => {
     setDay('');
     // test
     queryClient.invalidateQueries({ queryKey: ['chatroomsGroup'] });
-    // queryClient.invalidateQueries({ queryKey: ['chatroomsDirect'] });
+    queryClient.invalidateQueries({ queryKey: ['chatroomsDirect'] });
   };
 
   return (
