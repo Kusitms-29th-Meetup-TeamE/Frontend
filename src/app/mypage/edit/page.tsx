@@ -88,6 +88,7 @@ export default function MyPageEdit() {
                 onChange={(e) => setName(e.currentTarget.value)}
                 placeholder="이름을 입력해주세요."
                 shape="square"
+                maxLength={20}
               />
             </div>
             <div className="flex flex-col gap-1">

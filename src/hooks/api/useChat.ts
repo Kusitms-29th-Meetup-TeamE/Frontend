@@ -16,6 +16,7 @@ export const useChatRoomsGroup = (accessToken?: string) => {
   const { data, isLoading, error } = useQuery<GroupChatRoomsResponse>({
     queryKey: ['chatroomsGroup', accessToken],
     queryFn: () => getChatRoomsGroup(),
+    refetchOnWindowFocus: true,
   });
   return { data, isLoading, error };
 };
@@ -24,6 +25,7 @@ export const useChatRoomsDirect = () => {
   const { data, isLoading, error } = useQuery<DirectChatRoomsResponse>({
     queryKey: ['chatroomsDirect'],
     queryFn: () => getChatRoomsDirect(),
+    refetchOnWindowFocus: true,
   });
   return { data, isLoading, error };
 };
