@@ -69,8 +69,16 @@ export default function LearnProfile() {
   const [profileData, setProfileData] = useState<any>([]);
   const { mutate } = usePostLearnProfile(profileData);
 
+  useEffect(() => {
+    setProfileData({
+      ...profileData,
+      introduce: statusMsg,
+    });
+  }, [statusMsg]);
+
   const handleSubmit = () => {
-    // mutate();
+    mutate();
+    // console.log('profiledata', profileData);
   };
 
   return (
@@ -134,16 +142,21 @@ export default function LearnProfile() {
           <div>
             <label className={formStyle.label}>한마디</label>
             <Input
+              maxLength={100}
               value={statusMsg}
               onChange={(e) => setStatusMsg(e.target.value)}
               size="lg"
-              placeholder="나의 마음가짐을 자유롭게 적어주세요! (100자 내외)"
+              placeholder="나의 마음가짐을 자유롭게 적어주세요! (100자 이내)"
               shape="square"
               className="h-[60px]"
             />
           </div>
           <div>
             <label className={formStyle.label}>나의 배움 목록</label>
+            <span className="text-body3 text-error-main">
+              * 배움 목록은 하나씩 추가해주세요.
+            </span>
+
             <div className="flex flex-col gap-[10px]">
               {exDataList.map((item, idx) => {
                 return (

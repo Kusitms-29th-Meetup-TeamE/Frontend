@@ -11,6 +11,7 @@ import { ModalDefaultProps } from '@/types/modal';
 import { useChatStore } from '@/store/chatStore';
 import { dateToUTC } from '@/utils';
 import { CompatClient } from '@stomp/stompjs';
+import { useQueryClient } from '@tanstack/react-query';
 
 import Button from '../common-components/button';
 import Input from '../common-components/input';
@@ -28,6 +29,7 @@ interface AppointmentModalProps extends ModalDefaultProps {
 export const AppointmentModal = (props: AppointmentModalProps) => {
   const { isOpen, setIsOpen, stompClient, roomId } = props;
   const { myId } = useChatStore();
+  const queryClient = useQueryClient();
 
   const [year, setYear] = useState<string | number>('');
   const [month, setMonth] = useState<string | number>('');
@@ -82,6 +84,9 @@ export const AppointmentModal = (props: AppointmentModalProps) => {
     setYear('');
     setMonth('');
     setDay('');
+    // test
+    queryClient.invalidateQueries({ queryKey: ['chatroomsGroup'] });
+    queryClient.invalidateQueries({ queryKey: ['chatroomsDirect'] });
   };
 
   return (

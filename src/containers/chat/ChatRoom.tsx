@@ -16,27 +16,32 @@ import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { DirectChatRoom, GroupChatRoom, MsgLogProps } from '@/types/chat';
 
 import { useChatStore } from '@/store/chatStore';
-import { CompatClient } from '@stomp/stompjs';
+import { trimDateString } from '@/utils';
+import { CompatClient, StompSubscription } from '@stomp/stompjs';
+import { useQueryClient } from '@tanstack/react-query';
 
 import clsx from 'clsx';
 import Image from 'next/image';
 
 export const ChatRoom = (props: {
   roomId: number;
-  roomInfo: any;
+  roomInfo: GroupChatRoom | DirectChatRoom;
   stompClient: CompatClient | null;
   isGroup?: boolean;
 }) => {
   const { roomId, roomInfo, stompClient, isGroup = true } = props;
   const { myId } = useChatStore();
+  const queryClient = useQueryClient();
 
   const [value, setValue] = useState<string>('');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const [subscription, setSubscription] = useState<any>(null);
+  const [subscription, setSubscription] = useState<StompSubscription | null>(
+    null,
+  );
 
-  const [logData, setLogData] = useState<any[]>([]);
-  const [chatList, setChatList] = useState<any[]>([]);
+  const [logData, setLogData] = useState<MsgLogProps[]>([]);
+  const [chatList, setChatList] = useState<MsgLogProps[]>([]);
 
   const msgBoxRef = useRef<HTMLDivElement>(null);
 
@@ -111,6 +116,8 @@ export const ChatRoom = (props: {
 
   useEffect(() => {
     scrollToBottom();
+    queryClient.invalidateQueries({ queryKey: ['chatroomsGroup'] });
+    queryClient.invalidateQueries({ queryKey: ['chatroomsDirect'] });
   }, [chatList]);
 
   const renderMessageItem = (item: MsgLogProps, idx: number) => {
@@ -162,14 +169,27 @@ export const ChatRoom = (props: {
                   </span>
                 </div>
               )}
+              <div className="flex gap-3 items-end">
+                {item.senderId === myId && (
+                  <span className="text-footer-regular text-gray-06">
+                    {trimDateString(item.createdAt)}
+                  </span>
+                )}
 
-              <Image
-                src={'/assets/ddoba_emoticon.png'}
-                alt=""
-                width={200}
-                height={200}
-                className="object-cover m-3 rounded-[20px]"
-              />
+                <Image
+                  src={'/assets/ddoba_emoticon.png'}
+                  alt=""
+                  width={200}
+                  height={200}
+                  className="object-cover m-3 rounded-[20px]"
+                />
+
+                {item.senderId !== myId && (
+                  <span className="text-footer-regular text-gray-06">
+                    {trimDateString(item.createdAt)}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         );
@@ -188,14 +208,16 @@ export const ChatRoom = (props: {
         <div className="border-b border-b-gray-04 flex justify-between items-center max-h-[118px] px-[30px] py-[22px]">
           <div className="flex gap-5 items-center">
             <Image
-              src={roomInfo.imageUrl ?? '/assets/main/main_banner.png'}
+              src={roomInfo.imageUrl ?? '/assets/ddoba_profile.png'}
               width={76}
               height={76}
               alt=""
               className="object-cover w-[76px] h-[76px] rounded-[10px]"
             />
             <p className="text-black text-body1">
-              {isGroup ? roomInfo.title : roomInfo.opponentName}
+              {isGroup
+                ? (roomInfo as GroupChatRoom).title
+                : (roomInfo as DirectChatRoom).opponentName}
             </p>
           </div>
           <button
@@ -231,8 +253,8 @@ export const ChatRoom = (props: {
             {!isGroup && (
               <div className="mb-[20px] bg-gray-02 rounded-[20px] py-[18px] px-6 flex flex-col gap-[6px]">
                 <span className="text-gray-08 text-footer-regular">
-                  <b>[{roomInfo.experienceType}]</b>을(를) 통해 1:1 대화가
-                  시작되었습니다.
+                  <b>[{(roomInfo as DirectChatRoom).experienceType}]</b>을(를)
+                  통해 1:1 대화가 시작되었습니다.
                 </span>
                 <span className="text-h5 text-black">
                   대화를 통해 만날 시간을 약속하고 상단에 ‘배움 나누기 확정하기’
@@ -243,7 +265,7 @@ export const ChatRoom = (props: {
 
             {logData?.map((item, idx) => renderMessageItem(item, idx))}
             {chatList?.map(
-              (item: any, idx: number) =>
+              (item: MsgLogProps, idx: number) =>
                 idx !== 0 && renderMessageItem(item, idx),
             )}
           </div>

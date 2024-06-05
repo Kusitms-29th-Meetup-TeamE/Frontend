@@ -10,7 +10,7 @@ import SelectBox from '../common-components/select-box/SelectBox';
 export default function MyExperienceItem(props: {
   data?: LearnProfileProps;
   profileData?: any;
-  setProfileData?: Dispatch<SetStateAction<any>>;
+  setProfileData: Dispatch<SetStateAction<any>>;
 }) {
   const { data, profileData, setProfileData } = props;
 
@@ -26,6 +26,15 @@ export default function MyExperienceItem(props: {
       setText(data.description);
     }
   }, [data]);
+
+  useEffect(() => {
+    setProfileData({
+      title: title,
+      experienceType: experienceType,
+      // introduce: data.introduce,
+      description: text,
+    });
+  }, [title, text, experienceType]);
 
   return (
     <div className="border border-gray-04 w-full max-w-[540px] rounded-[20px]">
@@ -57,11 +66,12 @@ export default function MyExperienceItem(props: {
       <div className="p-5 h-full">
         <textarea
           // ref={ref}
-          placeholder="나의 경험 나누기의 진행 방식, 원하는 장소나 시간, 관련된 나의 경험 등의 상세내용을 자유롭게 적어주세요 (500자 내외)"
+          placeholder="나의 경험 나누기의 진행 방식, 원하는 장소나 시간, 관련된 나의 경험 등의 상세내용을 자유롭게 적어주세요 (500자 이내)"
           onChange={(e) => {
             setText(e.target.value);
           }}
           value={text}
+          maxLength={500}
           className="bg-gray-02 min-h-[100px] w-full h-full placeholder:text-h4 placeholder:text-gray-06 focus-visible:outline-primary-orange6"
         />
       </div>
