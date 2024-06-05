@@ -46,8 +46,10 @@ const SignUpKakaoPage = () => {
         name: sessionStorage.name,
         email: sessionStorage.email,
         profileImage: sessionStorage.imgUrl,
-        gender: sessionStorage.gender,
-        birthyear: sessionStorage.birthyear,
+        // gender: sessionStorage.gender,
+        gender: 'female',
+        // birthyear: sessionStorage.birthyear,
+        birthyear: '2001',
         location: location,
       });
     }
