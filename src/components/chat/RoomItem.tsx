@@ -43,7 +43,7 @@ export const RoomItem = (props: {
           width={76}
           height={76}
           alt=""
-          className="rounded-[10px] object-cover h-[76px]"
+          className="rounded-[10px] object-cover w-[76px] h-[76px]"
         />
         <div className="flex flex-col justify-around w-full max-w-[350px]">
           <div className="flex items-center justify-between">
