@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export const EmptyChat = () => {
   return (
-    <div className="ml-[5px] rounded-[20px] border border-gray-04 w-full max-w-[690px] h-[940px]">
+    <div className="ml-[10px] rounded-[20px] border border-gray-04 w-full max-w-[690px] h-[980px]">
       <div className="h-full flex flex-col items-center justify-center">
         <Image
           src={'/assets/main/how3.png'}

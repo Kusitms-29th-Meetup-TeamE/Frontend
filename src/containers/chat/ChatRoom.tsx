@@ -252,7 +252,7 @@ export const ChatRoom = (props: {
 
   return (
     <>
-      <div className="flex flex-col ml-[5px] rounded-[20px] border border-gray-04 w-full max-w-[690px] h-[940px]">
+      <div className="flex flex-col ml-[10px] rounded-[20px] border border-gray-04 w-full max-w-[690px] h-[980px]">
         <div className="border-b border-b-gray-04 flex justify-between items-center max-h-[118px] px-[30px] py-[22px]">
           <div className="flex gap-5 items-center">
             <Image
