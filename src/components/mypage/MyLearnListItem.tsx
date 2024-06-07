@@ -8,9 +8,14 @@ import Button from '../common-components/button';
 import Chip from '../common-components/chip';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-export default function MyLearnListItem(props: { data: ReviewsByMeItem }) {
-  const { data } = props;
+export default function MyLearnListItem(props: {
+  data: ReviewsByMeItem;
+  isDetail?: boolean;
+}) {
+  const { data, isDetail } = props;
+  const router = useRouter();
   // console.log('props', data);
 
   return (
@@ -57,14 +62,21 @@ export default function MyLearnListItem(props: { data: ReviewsByMeItem }) {
             </span>
           </div>
         </div>
-        <Button
-          color={data.isWritten ? 'darkGray' : 'default'}
-          size="md"
-          className="!px-1 gap-2 !h-[42px]"
-        >
-          <SlPencil />
-          {data.isWritten ? '후기 작성 완료' : '후기 보내기'}
-        </Button>
+        {!isDetail && (
+          <Button
+            onClick={() => {
+              if (!data.isWritten)
+                router.push(`/mypage/learn/reviews/detail?id=${data.id}`);
+            }}
+            color={data.isWritten ? 'darkGray' : 'default'}
+            size="md"
+            className="!px-1 gap-2 !h-[42px]"
+            disabled={data.isWritten}
+          >
+            <SlPencil />
+            {data.isWritten ? '후기 작성 완료' : '후기 보내기'}
+          </Button>
+        )}
       </div>
       {data.isWritten ? (
         <div className="flex flex-col gap-1 py-6 px-7 border-t border-gray-04">
