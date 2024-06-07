@@ -16,11 +16,12 @@ import { OtherMsgItem } from '@/components/chat/OtherMsgItem';
 import { DirectChatRoom, GroupChatRoom, MsgLogProps } from '@/types/chat';
 
 import { useChatStore } from '@/store/chatStore';
-import { trimDateString } from '@/utils';
+import { formatSimpleDate, strToDate, trimDateString } from '@/utils';
 import { CompatClient, StompSubscription } from '@stomp/stompjs';
 import { useQueryClient } from '@tanstack/react-query';
 
 import clsx from 'clsx';
+import moment from 'moment';
 import Image from 'next/image';
 
 export const ChatRoom = (props: {
@@ -118,80 +119,120 @@ export const ChatRoom = (props: {
     scrollToBottom();
     queryClient.invalidateQueries({ queryKey: ['chatroomsGroup'] });
     queryClient.invalidateQueries({ queryKey: ['chatroomsDirect'] });
+
+    setLastDate(logData[logData.length - 1]?.createdAt);
   }, [chatList]);
 
-  const renderMessageItem = (item: MsgLogProps, idx: number) => {
+  const [lastDate, setLastDate] = useState<string>('');
+
+  const renderMessageItem = (
+    item: MsgLogProps,
+    idx: number,
+    isNewMsg?: boolean,
+  ) => {
+    const currentDate = formatSimpleDate(item?.createdAt);
+    const previousDate =
+      idx > 0 ? formatSimpleDate(logData[idx - 1]?.createdAt) : null;
+
     switch (item.type) {
       case 'TEXT':
         return (
-          <div
-            key={idx}
-            className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
-          >
-            {item.senderId === myId ? (
-              <MyMsgItem data={item} />
-            ) : (
-              <OtherMsgItem data={item} />
+          <>
+            {previousDate !== currentDate && !isNewMsg && (
+              <div className="mx-auto">
+                <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
+                  {currentDate}
+                </div>
+              </div>
             )}
-          </div>
+
+            <div
+              key={idx}
+              className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
+            >
+              {item.senderId === myId ? (
+                <MyMsgItem data={item} />
+              ) : (
+                <OtherMsgItem data={item} />
+              )}
+            </div>
+          </>
         );
       case 'APPOINTMENT':
         return (
-          <div
-            key={idx}
-            className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
-          >
-            {item.senderId === myId ? (
-              <MyAppointmentMsgItem data={item as MsgLogProps} />
-            ) : (
-              <AppointmentMsgItem data={item as MsgLogProps} />
+          <>
+            {previousDate !== currentDate && !isNewMsg && (
+              <div className="mx-auto">
+                <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
+                  {currentDate}
+                </div>
+              </div>
             )}
-          </div>
+            <div
+              key={idx}
+              className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
+            >
+              {item.senderId === myId ? (
+                <MyAppointmentMsgItem data={item as MsgLogProps} />
+              ) : (
+                <AppointmentMsgItem data={item as MsgLogProps} />
+              )}
+            </div>
+          </>
         );
       case 'EMOTICON':
         return (
-          <div
-            key={idx}
-            className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
-          >
-            <div>
-              {item.senderId !== myId && (
-                <div className="flex gap-3 items-center">
-                  <Image
-                    src={item.senderImageUrl ?? '/assets/ddoba_profile.png'}
-                    alt=""
-                    width={48}
-                    height={48}
-                    className="object-cover w-[48px] h-[48px] rounded-full"
-                  />
-                  <span className="text-black text-body2">
-                    {item.senderName ?? '또바기'}
-                  </span>
+          <>
+            {previousDate !== currentDate && !isNewMsg && (
+              <div className="mx-auto">
+                <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
+                  {currentDate}
                 </div>
-              )}
-              <div className="flex gap-3 items-end">
-                {item.senderId === myId && (
-                  <span className="text-footer-regular text-gray-06">
-                    {trimDateString(item.createdAt)}
-                  </span>
-                )}
-
-                <Image
-                  src={'/assets/ddoba_emoticon.png'}
-                  alt=""
-                  width={200}
-                  height={200}
-                  className="object-cover m-3 rounded-[20px]"
-                />
-
+              </div>
+            )}
+            <div
+              key={idx}
+              className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
+            >
+              <div>
                 {item.senderId !== myId && (
-                  <span className="text-footer-regular text-gray-06">
-                    {trimDateString(item.createdAt)}
-                  </span>
+                  <div className="flex gap-3 items-center">
+                    <Image
+                      src={item.senderImageUrl ?? '/assets/ddoba_profile.png'}
+                      alt=""
+                      width={48}
+                      height={48}
+                      className="object-cover w-[48px] h-[48px] rounded-full"
+                    />
+                    <span className="text-black text-body2">
+                      {item.senderName ?? '또바기'}
+                    </span>
+                  </div>
                 )}
+                <div className="flex gap-3 items-end">
+                  {item.senderId === myId && (
+                    <span className="text-footer-regular text-gray-06">
+                      {trimDateString(item.createdAt)}
+                    </span>
+                  )}
+
+                  <Image
+                    src={'/assets/ddoba_emoticon.png'}
+                    alt=""
+                    width={200}
+                    height={200}
+                    className="object-cover m-3 rounded-[20px]"
+                  />
+
+                  {item.senderId !== myId && (
+                    <span className="text-footer-regular text-gray-06">
+                      {trimDateString(item.createdAt)}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </>
         );
       default:
         return null;
@@ -201,6 +242,12 @@ export const ChatRoom = (props: {
   const handleAppointment = () => {
     setModalOpen((prev) => !prev);
   };
+
+  const isDuplicated =
+    strToDate(lastDate)?.toDateString().split(' ').slice(0, 4).join(' ') ===
+    new Date().toDateString().split(' ').slice(0, 4).join(' ')
+      ? true
+      : false;
 
   return (
     <>
@@ -263,10 +310,20 @@ export const ChatRoom = (props: {
               </div>
             )}
 
-            {logData?.map((item, idx) => renderMessageItem(item, idx))}
+            {logData?.map((item, idx) => renderMessageItem(item, idx, false))}
+
+            {/* date - today status */}
+            {!isDuplicated && chatList.length > 1 && (
+              <div className="mx-auto">
+                <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
+                  {moment(new Date()).local().format('YYYY년 MM월 DD일')}
+                </div>
+              </div>
+            )}
+
             {chatList?.map(
               (item: MsgLogProps, idx: number) =>
-                idx !== 0 && renderMessageItem(item, idx),
+                idx !== 0 && renderMessageItem(item, idx, true),
             )}
           </div>
         </div>
