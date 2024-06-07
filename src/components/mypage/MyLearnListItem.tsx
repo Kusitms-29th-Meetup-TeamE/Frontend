@@ -8,9 +8,11 @@ import Button from '../common-components/button';
 import Chip from '../common-components/chip';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function MyLearnListItem(props: { data: ReviewsByMeItem }) {
   const { data } = props;
+  const router = useRouter();
   // console.log('props', data);
 
   return (
@@ -58,9 +60,14 @@ export default function MyLearnListItem(props: { data: ReviewsByMeItem }) {
           </div>
         </div>
         <Button
+          onClick={() => {
+            if (!data.isWritten)
+              router.push(`/mypage/learn/reviews/detail?id=${data.id}`);
+          }}
           color={data.isWritten ? 'darkGray' : 'default'}
           size="md"
           className="!px-1 gap-2 !h-[42px]"
+          disabled={data.isWritten}
         >
           <SlPencil />
           {data.isWritten ? '후기 작성 완료' : '후기 보내기'}
