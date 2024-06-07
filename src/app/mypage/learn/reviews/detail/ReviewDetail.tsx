@@ -63,7 +63,7 @@ export default function MyLearnReviewsDetailPage() {
           />
         </div>
 
-        {data && <MyLearnListItem data={data} />}
+        {data && <MyLearnListItem data={data} isDetail />}
 
         <div className="my-[30px]">
           <div className="text-footer-bold">
