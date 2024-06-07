@@ -37,7 +37,7 @@ export const OneRoomItem = (props: {
           width={76}
           height={76}
           alt=""
-          className="rounded-full object-cover h-[76px] w-[76px]"
+          className="rounded-full object-cover h-[76px] w-[76px] min-w-[76px] min-h-[76px]"
         />
         <div className="flex flex-col justify-around w-full max-w-[350px]">
           <div className="flex items-center justify-between">
