@@ -125,6 +125,23 @@ export const ChatRoom = (props: {
 
   const [lastDate, setLastDate] = useState<string>('');
 
+  const renderDateSeparator = (
+    currentDate: string,
+    previousDate: string | null,
+    isNewMsg: boolean | undefined,
+  ) => {
+    if (previousDate !== currentDate && !isNewMsg) {
+      return (
+        <div className="mx-auto">
+          <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
+            {currentDate}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   const renderMessageItem = (
     item: MsgLogProps,
     idx: number,
@@ -138,13 +155,7 @@ export const ChatRoom = (props: {
       case 'TEXT':
         return (
           <>
-            {previousDate !== currentDate && !isNewMsg && (
-              <div className="mx-auto">
-                <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
-                  {currentDate}
-                </div>
-              </div>
-            )}
+            {renderDateSeparator(currentDate, previousDate, isNewMsg)}
 
             <div
               key={idx}
@@ -161,13 +172,8 @@ export const ChatRoom = (props: {
       case 'APPOINTMENT':
         return (
           <>
-            {previousDate !== currentDate && !isNewMsg && (
-              <div className="mx-auto">
-                <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
-                  {currentDate}
-                </div>
-              </div>
-            )}
+            {renderDateSeparator(currentDate, previousDate, isNewMsg)}
+
             <div
               key={idx}
               className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
@@ -183,13 +189,8 @@ export const ChatRoom = (props: {
       case 'EMOTICON':
         return (
           <>
-            {previousDate !== currentDate && !isNewMsg && (
-              <div className="mx-auto">
-                <div className="my-4 inline-flex py-2 px-5 text-h5 bg-gray-06 text-white rounded-full text-center items-center justify-center">
-                  {currentDate}
-                </div>
-              </div>
-            )}
+            {renderDateSeparator(currentDate, previousDate, isNewMsg)}
+
             <div
               key={idx}
               className={`inline-flex ${item.senderId === myId ? 'justify-end' : ''}`}
