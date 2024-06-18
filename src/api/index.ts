@@ -11,9 +11,12 @@ export const apiRequest = async <T>(
   method: string | undefined = 'GET',
   body?: BodyInit | null | undefined,
 ) => {
+  const accessToken =
+    typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
+
   const options = {
     method,
-    headers: getHeaders(),
+    headers: accessToken ? getHeaders() : undefined,
     body,
   };
 
