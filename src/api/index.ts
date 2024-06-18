@@ -1,3 +1,5 @@
+import { API_METHOD_TYPE } from '@/types';
+
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
@@ -8,7 +10,7 @@ export const getHeaders = (): HeadersInit => ({
 
 export const apiRequest = async <T>(
   endpoint: string,
-  method: string | undefined = 'GET',
+  method: API_METHOD_TYPE | undefined = 'GET',
   body?: BodyInit | null | undefined,
 ) => {
   const accessToken =
