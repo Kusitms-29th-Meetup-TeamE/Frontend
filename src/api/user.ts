@@ -1,7 +1,6 @@
-import { useNotifyError } from '@/hooks/useToast';
 import { KakaoUserProps, UserInfoProps } from '@/types/user';
 
-import { BASE_URL } from '.';
+import { BASE_URL, apiRequest } from '.';
 
 // [oauth] kakao - 사용자 로그인/회원가입 요청
 export const getKakaoToken = async (code: string) => {
@@ -209,23 +208,5 @@ export const postLocalLogin = async ({
 
 // [user] 유저 - 온보딩 정보 등록
 export const postOnboardingInfo = async (personalities: string[]) => {
-  try {
-    const res = await fetch(`${BASE_URL}/users/onboarding`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${sessionStorage.accessToken}`,
-      },
-      body: JSON.stringify({
-        personalities,
-      }),
-    });
-
-    if (!res.ok) {
-      throw new Error('Failed to patch Onboarding Info');
-    }
-    return res;
-  } catch (err) {
-    throw err;
-  }
+  return apiRequest('/users/onboarding', 'PATCH', { personalities });
 };
