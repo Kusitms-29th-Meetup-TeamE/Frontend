@@ -11,20 +11,16 @@ export const getHeaders = (): HeadersInit => ({
 export const apiRequest = async <T>(
   endpoint: string,
   method: API_METHOD_TYPE | undefined = 'GET',
-  body?: BodyInit | null | undefined,
-) => {
+  body?: object | null | undefined,
+): Promise<T> => {
   const accessToken =
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
   const options = {
     method,
     headers: accessToken ? getHeaders() : undefined,
-    body,
+    body: body ? JSON.stringify(body) : undefined,
   };
-
-  if (body) {
-    options.body = JSON.stringify(body);
-  }
 
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, options);

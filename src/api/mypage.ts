@@ -16,16 +16,12 @@ export const putMyPageInfo = async ({
   location,
   imageUrl,
 }: MyPageInfoProps) => {
-  return apiRequest(
-    '/users/info',
-    'PUT',
-    JSON.stringify({
-      location,
-      name,
-      email,
-      imageUrl,
-    }),
-  );
+  return apiRequest('/users/info', 'PUT', {
+    location,
+    name,
+    email,
+    imageUrl,
+  });
 };
 
 // 마이페이지 - 배움 프로필 조회
@@ -40,16 +36,12 @@ export const postLearnProfile = async ({
   description,
   introduce,
 }: LearnProfileProps) => {
-  return apiRequest(
-    '/users/experience-profile',
-    'POST',
-    JSON.stringify({
-      title,
-      experienceType,
-      detail: description,
-      introduce,
-    }),
-  );
+  return apiRequest('/users/experience-profile', 'POST', {
+    title,
+    experienceType,
+    detail: description,
+    introduce,
+  });
 };
 
 // 마이페이지 - 나의 배움 내역 보기
@@ -75,13 +67,9 @@ export const getMyReviews = async (id: number) => {
 
 // 마이페이지 - 후기 등록하기
 export const postMyReview = async (content: string, id: number) => {
-  return apiRequest(
-    `/reviews/${id}`,
-    'POST',
-    JSON.stringify({
-      content,
-    }),
-  );
+  return apiRequest(`/reviews/${id}`, 'POST', {
+    content,
+  });
 };
 
 // 마이페이지 - 마이페이지 캘린더 조회
