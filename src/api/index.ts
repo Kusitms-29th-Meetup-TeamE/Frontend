@@ -11,8 +11,8 @@ export const getHeaders = (): HeadersInit => ({
 export const apiRequest = async <T>(
   endpoint: string,
   method: API_METHOD_TYPE | undefined = 'GET',
-  body?: object | null | undefined,
-): Promise<T> => {
+  body?: BodyInit | object | null | undefined,
+) => {
   const accessToken =
     typeof window !== 'undefined' && sessionStorage.getItem('accessToken');
 
