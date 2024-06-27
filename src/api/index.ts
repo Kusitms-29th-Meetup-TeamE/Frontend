@@ -18,7 +18,9 @@ export const apiRequest = async <T>(
 
   const options = {
     method,
-    headers: accessToken ? getHeaders() : undefined,
+    headers: accessToken
+      ? getHeaders()
+      : { 'Content-Type': 'application/json' },
     body: body ? JSON.stringify(body) : undefined,
   };
 
