@@ -28,7 +28,7 @@ export const apiRequest = async <T>(
       const errorData = await response.json();
       throw new Error(errorData.message || 'Failed to fetch data');
     }
-    return response.json();
+    return response;
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error;

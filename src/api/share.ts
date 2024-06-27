@@ -10,13 +10,13 @@ export const getAllLearning = async ({
   const params = { page: page.toString(), sort, category };
   const queryString = new URLSearchParams(params).toString();
 
-  return apiRequest(`/experiences?${queryString}`);
+  return (await apiRequest(`/experiences?${queryString}`)).json();
 };
 
 export const getLearningDetail = async (experienceId: number) => {
-  return apiRequest(`/experiences?${experienceId}`);
+  return (await apiRequest(`/experiences?${experienceId}`)).json();
 };
 
 export const getMyLearningProfile = async () => {
-  return apiRequest(`/experiences/profile`);
+  return (await apiRequest(`/experiences/profile`)).json();
 };

@@ -4,7 +4,7 @@ import { BASE_URL, apiRequest } from '.';
 
 // [oauth] kakao - 사용자 로그인/회원가입 요청
 export const getKakaoToken = async (code: string) => {
-  const res = await fetch(`${BASE_URL}/login/kakao?code=${code}`);
+  const res = await apiRequest(`/login/kakao?code=${code}`);
 
   if (!res.ok) {
     throw new Error(`HTTP error in Kakao! Status: ${res.status}`);
@@ -51,19 +51,13 @@ export const postKakaoUserInfo = async ({
   birthyear,
   location,
 }: KakaoUserProps) => {
-  await fetch(`${BASE_URL}/sign-up`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name,
-      email,
-      imageUrl: profileImage,
-      gender,
-      birthyear,
-      location,
-    }),
+  await apiRequest('/sign-up', 'POST', {
+    name,
+    email,
+    imageUrl: profileImage,
+    gender,
+    birthyear,
+    location,
   })
     .then((res) => {
       if (res.headers) {
@@ -92,19 +86,13 @@ export const postLocalUserInfo = async ({
   location,
   password,
 }: UserInfoProps) => {
-  await fetch(`${BASE_URL}/register`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      password: password,
-      gender: gender,
-      birthyear: birthyear,
-      location: location,
-    }),
+  await apiRequest('/register', 'POST', {
+    name: name,
+    email: email,
+    password: password,
+    gender: gender,
+    birthyear: birthyear,
+    location: location,
   })
     .then((res) => {
       if (res.status === 500) {
@@ -132,14 +120,8 @@ export const postLocalUserInfo = async ({
 // [register] 로컬 - 이메일 인증 번호 발송
 export const postEmailAuth = async (email: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/send-email`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-      }),
+    const response = await apiRequest('/send-email', 'POST', {
+      email,
     });
 
     const reader = response.body?.getReader();
@@ -167,15 +149,9 @@ export const postLocalLogin = async ({
   password: string;
 }) => {
   try {
-    const res = await fetch(`${BASE_URL}/login/local`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
+    const res = await apiRequest('/login/local', 'POST', {
+      email,
+      password,
     });
 
     if (!res.ok) {

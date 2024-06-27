@@ -15,7 +15,7 @@ export const getAllActivity = async ({
   personalities.forEach((p) => queryParams.append('personalities', p));
   const queryString = queryParams.toString();
 
-  return apiRequest(`/activities?${queryString}`);
+  return (await apiRequest(`/activities?${queryString}`)).json();
 };
 
 export const getLikedActivity = async ({
@@ -28,21 +28,21 @@ export const getLikedActivity = async ({
     (agencyTypes ? `&agencyTypes=${agencyTypes}` : '');
   const url = `/activities/liked?${queryParams}`;
 
-  return apiRequest(url);
+  return (await apiRequest(url)).json();
 };
 
 export const getActivityDetail = async (id: number) => {
-  return apiRequest(`/${id}/activity-details`);
+  return (await apiRequest(`/${id}/activity-details`)).json();
 };
 
 export const getOnboardingInfo = async () => {
-  return apiRequest(`/users/personalities`);
+  return (await apiRequest(`/users/personalities`)).json();
 };
 
 export const postActivityLike = async (id: number) => {
-  return apiRequest(`/activate-like/${id}`, 'POST');
+  return (await apiRequest(`/activate-like/${id}`, 'POST')).json();
 };
 
 export const postActivityNotLike = async (id: number) => {
-  return apiRequest(`/deactivate-like/${id}`, 'POST');
+  return (await apiRequest(`/deactivate-like/${id}`, 'POST')).json();
 };
