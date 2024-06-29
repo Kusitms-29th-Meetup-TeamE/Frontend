@@ -1,6 +1,6 @@
 import { ActivityRequestProps } from '@/types/activity';
 
-import { BASE_URL } from './index';
+import { apiRequest } from './index';
 
 export const getAllActivity = async ({
   page,
@@ -15,18 +15,7 @@ export const getAllActivity = async ({
   personalities.forEach((p) => queryParams.append('personalities', p));
   const queryString = queryParams.toString();
 
-  const res = await fetch(`${BASE_URL}/activities?${queryString}`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
-    },
-  });
-
-  if (!res.ok) {
-    console.log('Error on fetching on Liked Activities');
-  }
-
-  return res.json();
+  return (await apiRequest(`/activities?${queryString}`)).json();
 };
 
 export const getLikedActivity = async ({
@@ -34,93 +23,26 @@ export const getLikedActivity = async ({
   agencyTypes,
   personalities,
 }: ActivityRequestProps) => {
-  const url = agencyTypes
-    ? `${BASE_URL}/activities/liked?page=${page}&agencyTypes=${agencyTypes}&personalities=${personalities}`
-    : `${BASE_URL}/activities/liked?page=${page}&personalities=${personalities}`;
+  const queryParams =
+    `page=${page}&personalities=${personalities}` +
+    (agencyTypes ? `&agencyTypes=${agencyTypes}` : '');
+  const url = `/activities/liked?${queryParams}`;
 
-  const res = await fetch(`${url}`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!res.ok) {
-    console.log('Error on fetching on Liked Activities');
-  }
-
-  return res.json();
+  return (await apiRequest(url)).json();
 };
 
 export const getActivityDetail = async (id: number) => {
-  try {
-    const res = await fetch(`${BASE_URL}/${id}/activity-details`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${sessionStorage.accessToken}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!res.ok) {
-      console.log('Error on fetching Activity Detail');
-    }
-
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.log('err:', err);
-  }
+  return (await apiRequest(`/${id}/activity-details`)).json();
 };
 
 export const getOnboardingInfo = async () => {
-  try {
-    const res = await fetch(`${BASE_URL}/users/personalities`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${sessionStorage.accessToken}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!res.ok) {
-      console.log('Error on fetching Activity Detail');
-    }
-
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.log('err:', err);
-  }
+  return (await apiRequest(`/users/personalities`)).json();
 };
 
 export const postActivityLike = async (id: number) => {
-  const res = await fetch(`${BASE_URL}/activate-like/${id}`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
-    },
-  });
-
-  if (!res.ok) {
-    console.log('Error on posting Activity Like');
-  }
-
-  return res;
+  return (await apiRequest(`/activate-like/${id}`, 'POST')).json();
 };
 
 export const postActivityNotLike = async (id: number) => {
-  const res = await fetch(`${BASE_URL}/deactivate-like/${id}`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${sessionStorage.accessToken}`,
-    },
-  });
-
-  if (!res.ok) {
-    console.log('Error on canceling Activity Like');
-  }
-
-  return res;
+  return (await apiRequest(`/deactivate-like/${id}`, 'POST')).json();
 };
